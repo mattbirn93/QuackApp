@@ -23,6 +23,14 @@ module.exports = {
     "react/prop-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
   },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+      },
+    },
+  ],
 };
 
 /////////////////////////////////////////////////////
