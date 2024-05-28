@@ -1,10 +1,11 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface ISceneVersionContent extends Document {
-  content: { type: [Schema.Types.Mixed]; required: false };
+  content: {
+      [x: string]: any; type: [Schema.Types.Mixed]; required: false 
+};
   sceneVersions_id: mongoose.Types.ObjectId;
   scripts_id: mongoose.Types.ObjectId;
-  time_stamp: Date;
 }
 
 const SceneVersionContentSchema: Schema = new Schema({

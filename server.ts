@@ -15,7 +15,7 @@ import sceneVersionContentRoutes from './backend/routes/sceneVersionContentRoute
 import { createUserSocket } from './backend/controllers/userController2.js';
 import http from 'http';
 import { Server as SocketIOServer } from 'socket.io';
-import { getSceneVersionContentSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { getSceneVersionContentSocket, updateContentArraySocket } from './backend/controllers/sceneVersionContentWSController.js';
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -112,6 +112,17 @@ io.on('connection', (socket) => {
         socket.emit('get_scene_version_content_error', error);
       } else {
         socket.emit('scene_version_content', result);
+      }
+    });
+  });
+  
+  socket.on('update_content_array', (data) => {
+    console.log('Received update_content_array event:', data);
+    updateContentArraySocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('update_content_array_error', error);
+      } else {
+        socket.emit('content_array_updated', result);
       }
     });
   });
