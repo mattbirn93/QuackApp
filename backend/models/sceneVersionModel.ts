@@ -14,4 +14,7 @@ const sceneVersionSchema: Schema = new Schema({
   time_stamp: { type: Date, default: Date.now },
 });
 
-export default mongoose.model<ISceneVersion>('SceneVersion', sceneVersionSchema);
+export default mongoose.model<ISceneVersion>(
+  'SceneVersion',
+  sceneVersionSchema
+);

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 class ErrorBoundary extends Component {
   state = { hasError: false };
@@ -9,12 +9,12 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     //typicall you would log this to something like TrackJS or NewRelic
-    console.log("Errorboundary component caugh an error", error, info);
+    console.log('Errorboundary component caugh an error', error, info);
   }
 
   render() {
     if (this.state.hasError) {
-      console.log("ERROR BOUNDARY DETECTED");
+      console.log('ERROR BOUNDARY DETECTED');
       return (
         <h2>There was an error with this listing. Go back to the home page</h2>
       );

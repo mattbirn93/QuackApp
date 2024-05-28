@@ -8,7 +8,11 @@ export interface IScene extends Document {
 
 const sceneSchema: Schema = new Schema({
   script_id: { type: mongoose.Types.ObjectId, required: true, ref: 'Script' },
-  scene_id_array: { type: [mongoose.Types.ObjectId], required: true, ref: 'Scene' },
+  scene_id_array: {
+    type: [mongoose.Types.ObjectId],
+    required: true,
+    ref: 'Scene',
+  },
   time_stamp: { type: Date, default: Date.now },
 });
 
