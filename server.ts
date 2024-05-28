@@ -1,17 +1,21 @@
-import "tsconfig-paths/register.js";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
-import connectDB from "./backend/config2.js";
-import Item from "./backend/models/Item.js";
-import userRoutes from "./backend/routes/userRoutes.js";
-
-import { createUserSocket } from "./backend/controllers/userController2.js";
-import http from "http";
-import { Server as SocketIOServer } from "socket.io";
+import 'tsconfig-paths/register.js';
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './backend/config2.js';
+import Item from './backend/models/Item.js'; // Correct path for JavaScript 
+import userRoutes from './backend/routes/userRoutes.js';
+import scriptRoutes from './backend/routes/scriptRoutes.js';
+import sceneRoutes from './backend/routes/sceneRoutes.js';
+import sceneVersionRoutes from './backend/routes/sceneVersionRoutes.js';
+import sceneVersionContentRoutes from './backend/routes/sceneVersionContentRoutes.js';
+import { createUserSocket } from './backend/controllers/userController2.js';
+import http from 'http';
+import { Server as SocketIOServer } from 'socket.io';
+import { getSceneVersionContentSocket, updateContentArraySocket } from './backend/controllers/sceneVersionContentWSController.js';
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -26,8 +30,8 @@ const server = http.createServer(app);
 
 const io = new SocketIOServer(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: '*',
+    methods: ['GET', 'POST'],
   },
 });
 
@@ -44,22 +48,32 @@ connectDB();
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.use("/api/users", userRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/users/fetchUserById', userRoutes);
+app.use('/api/scripts', scriptRoutes);
+app.use('/api/scripts/fetchScriptsById', scriptRoutes);
+app.use('/api/scripts/createNewScript', scriptRoutes);
+app.use('/api/scenes', sceneRoutes);
+app.use('/api/sceneVersions', sceneVersionRoutes);
+app.use('/api/sceneVersions/createSceneVersion', sceneVersionRoutes);
+app.use('/api/sceneVersionContent', sceneVersionContentRoutes);
+app.use('/api/scenes/sceneVersions', sceneVersionContentRoutes);
+app.use('/api/scenes/sceneVersionContent', sceneVersionContentRoutes);
 
 // Define a test route
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Hello from the server SUCAKH MC!" });
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Hello from the server!' });
 });
 
 // Define a route to create a new item
-app.post("/api/items", async (req, res) => {
+app.post('/api/items', async (req, res) => {
   try {
     const { name, description } = req.body;
     const newItem = new Item({ name, description });
     await newItem.save();
     res.status(201).json(newItem);
   } catch (error) {
-    res.status(500).json({ message: "Error creating item", error });
+    res.status(500).json({ message: 'Error creating item', error });
   }
 });
 
@@ -74,19 +88,19 @@ app.get("/api/items", async (req, res) => {
 });
 
 // All other routes should serve the index.html file
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-io.on("connection", (socket) => {
-  console.log("New client connected", socket.id);
+io.on('connection', (socket) => {
+  console.log('New client connected', socket.id);
 
-  socket.on("add_user", (data) => {
+  socket.on('add_user', (data) => {
     createUserSocket(data, (error: any, savedUser: any) => {
       if (error) {
-        socket.emit("user_add_error", error);
+        socket.emit('user_add_error', error);
       } else {
-        socket.emit("user_added", savedUser);
+        socket.emit('user_added', savedUser);
       }
     });
   });

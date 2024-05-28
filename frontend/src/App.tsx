@@ -46,23 +46,36 @@ const App: React.FC = () => {
       console.log("Socket connected");
     });
 
-    socketRef.current.on("user_added", (response) => {
-      console.log("SUCCESS");
-      console.log("User added:", response);
+    socketRef.current.on('scene_version_content', (response) => {
+      console.log('SUCCESS');
+      console.log('data:', response);
     });
 
-    socketRef.current.on("connect_error", (error) => {
-      console.error("Socket connection error:", error);
-      console.log("FAILED");
+    socketRef.current.on('content_array_updated', (response) => {
+      console.log('Content array updated:', response);
+    });
+
+    socketRef.current.on('update_content_array_error', (error) => {
+      console.error('Update content array error:', error);
+    });
+
+    socketRef.current.on('connect_error', (error) => {
+      console.error('Socket connection error:', error);
     });
 
     return () => {
-      // Clean up the WebSocket connection when the component unmounts
       if (socketRef.current) {
         socketRef.current.disconnect();
       }
     };
   }, [API_BASE_URL]);
+
+  const fetchSceneVersionContent = (id: string) => {
+    if (socketRef.current) {
+      console.log('Emitting get_scene_version_content event with id:', id);
+      socketRef.current.emit('get_scene_version_content', { id });
+    }
+  };
 
   const addUser = () => {
     const data = {
@@ -74,6 +87,23 @@ const App: React.FC = () => {
 
     if (socketRef.current) {
       socketRef.current.emit("add_user", data);
+    }
+  };
+
+  const updateContentArray = () => {
+    const data = {
+      id: '66495227baa753a417fd5468', // Replace with the actual ID
+      contentItem: {
+        notes: 'Non notes',
+        text: 'Updated text',
+        type: 'Updated type',
+        content_id: '664cd9c83f4fd7f2ad6664f9', // Replace with the actual content_id
+      },
+    };
+
+    if (socketRef.current) {
+      console.log('Emitting update_content_array event with data:', data);
+      socketRef.current.emit('update_content_array', data);
     }
   };
 
