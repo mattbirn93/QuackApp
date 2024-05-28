@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './backend/config2.js';
-import Item from './backend/models/Item.js'; // Correct path for JavaScript 
+import Item from './backend/models/Item.js';
 import userRoutes from './backend/routes/userRoutes.js';
 
 import { createUserSocket } from './backend/controllers/userController2.js';
@@ -48,7 +48,7 @@ app.use('/api/users', userRoutes);
 
 // Define a test route
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'Hello from the server SUCAKH MATT S!' });
+    res.json({ message: 'Hello from the server SUCAKH MC!' });
 });
 
 // Define a route to create a new item
