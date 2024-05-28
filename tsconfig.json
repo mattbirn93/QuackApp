@@ -15,7 +15,12 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "types": ["node", "express", "morgan"],
   },
   "include": ["frontend/src", "server.ts", "backend/**/*.ts"]
 }
