@@ -1,5 +1,5 @@
 // src/CameraComponent.js
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 const CameraComponent = () => {
   const videoRef = useRef(null);
@@ -14,14 +14,14 @@ const CameraComponent = () => {
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
-        console.error('Error accessing camera:', err);
+        console.error("Error accessing camera:", err);
       }
     };
 
     getMedia();
   }, []);
 
-  return <video ref={videoRef} autoPlay style={{ width: '100%' }} />;
+  return <video ref={videoRef} autoPlay style={{ width: "100%" }} />;
 };
 
 export default CameraComponent;

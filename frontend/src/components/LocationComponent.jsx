@@ -1,5 +1,5 @@
 // src/LocationComponent.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const LocationComponent = () => {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
@@ -14,8 +14,8 @@ const LocationComponent = () => {
               longitude: position.coords.longitude,
             });
           },
-          (error) => console.error('Error getting location:', error),
-          { enableHighAccuracy: true }
+          (error) => console.error("Error getting location:", error),
+          { enableHighAccuracy: true },
         );
       }
     };

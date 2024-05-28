@@ -1,16 +1,16 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
   ],
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
+  plugins: ["@typescript-eslint", "react", "react-hooks", "prettier"],
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
   },
   env: {
@@ -19,9 +19,9 @@ module.exports = {
     node: true,
   },
   rules: {
-    'prettier/prettier': 'error',
-    'react/prop-types': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };
 
