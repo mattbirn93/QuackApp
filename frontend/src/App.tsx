@@ -85,18 +85,18 @@ const App: React.FC = () => {
           Add User
         </button>
         <div>
-          <div className="xs:text-[red] text-[green] xl:text-[4rem] lg:text-[3rem] md:text-[2rem] sm:text-[1rem]">
+          <div className="text-[white]">
             <div className="m-[var(--mXL)] p-[var(--padL)] text-fs1300">
               Hello World
             </div>
-            <h1>Camera and Location Access</h1>
+            <h1 className="text-[pink]">Camera and Location Access</h1>
 
-            <div style={{ marginTop: "10rem" }}>
+            <div className="mt-[10rem]">
               <CameraComponent />
             </div>
 
             <LocationComponent />
-            <div style={{ marginTop: "10rem" }}>
+            <div className="mt-[10rem]">
               <SpeechToText />
             </div>
           </div>
