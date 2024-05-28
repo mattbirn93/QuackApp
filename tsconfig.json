@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "outDir": "./dist"
   },
-  "include": ["frontend/src", "server.tsx", "backend/**/*.ts"]
+  "include": ["frontend/src", "server.ts", "backend/**/*.ts"]
 }
