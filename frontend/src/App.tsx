@@ -79,15 +79,26 @@ const App: React.FC = () => {
 
   return (
     <MyErrorBoundary fallback={"There was an error"}>
-      <div className="App">
+      <div className="custom-combined">
+        {/* Heading with extended 6xl font size */}
+        <h1 className="text-6xl font-bold text-primary mb-4">
+          Welcome to the Screenwriting App
+        </h1>
         <div>Toxic Positivity is for Realzzzzzz</div>
         <button title="Add User" onClick={addUser}>
           Add User
         </button>
         <div>
-          <div className="text-[white]">
+          <div className="text-custom-red">
             <div className="m-[var(--mXL)] p-[var(--padL)] text-fs1300">
               Hello World
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold mb-2">Example Component</h2>
+              <p className="text-[purple]">
+                This is an example component using Tailwind CSS.
+              </p>
+              <button className="custom-btn">Click Me</button>
             </div>
             <h1 className="text-[pink]">Camera and Location Access</h1>
 

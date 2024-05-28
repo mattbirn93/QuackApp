@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+@layer base {
+    :root {
+        /* Theme Colors */
+        --text-light: rgba(255, 255, 255, 0.87);
+        --text-dark: #213547;
+        --bg-dark: #242424;
+        --bg-light: #ffffff;
+        --primary: #646cff;
+        --primary-hover: #535bf2;
+        --button-dark: #1a1a1a;
+        --button-light: #f9f9f9;
+
+        /* Typography */
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+
+        /* Other */
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+        @apply font-medium text-primary no-underline;
+    }
+
+    a:hover {
+        @apply text-primary-hover;
+    }
+
+    body {
+        @apply m-0 flex items-center min-w-[320px] min-h-screen bg-bg-dark text-text-light;
+    }
+
+    h1 {
+        @apply text-4xl lg:text-5xl xl:text-6xl leading-tight;
+    }
+
+    button:focus,
+    button:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            @apply text-text-dark bg-bg-light;
+        }
+
+        body {
+            @apply bg-bg-light text-text-dark;
+        }
+
+        a:hover {
+            @apply text-primary-hover;
+        }
+
+        button {
+            @apply bg-button-light;
+        }
+    }
+}
+
+@layer components {
+    .btn {
+        @apply rounded-lg border border-transparent px-4 py-2 text-base font-medium cursor-pointer transition-colors duration-200;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-white hover:bg-primary-hover;
+    }
+
+    .btn-secondary {
+        @apply bg-button-light text-black hover:bg-primary;
+    }
+}
+
+@layer utilities {
+    .bg-bg-dark {
+        @apply bg-[var(--bg-dark)];
+    }
+
+    .bg-bg-light {
+        @apply bg-[var(--bg-light)];
+    }
+
+    .text-text-light {
+        @apply text-[var(--text-light)];
+    }
+
+    .text-text-dark {
+        @apply text-[var(--text-dark)];
+    }
+
+    .text-primary {
+        @apply text-[var(--primary)];
+    }
+
+    .text-primary-hover {
+        @apply text-[var(--primary-hover)];
+    }
+
+    .bg-button-dark {
+        @apply bg-[var(--button-dark)];
+    }
+
+    .bg-button-light {
+        @apply bg-[var(--button-light)];
+    }
+
+    .custom-combined {
+        @apply flex justify-center items-center flex-col text-[1rem] text-red-500 bg-black p-8 m-8;
+    }
+}
