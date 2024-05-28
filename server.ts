@@ -105,6 +105,29 @@ io.on('connection', (socket) => {
     });
   });
 
+
+  socket.on('get_scene_version_content', (data) => {
+    const { id } = data;
+    getSceneVersionContentSocket(id, (error: any, result: any) => {
+      if (error) {
+        socket.emit('get_scene_version_content_error', error);
+      } else {
+        socket.emit('scene_version_content', result);
+      }
+    });
+  });
+  
+  socket.on('update_content_array', (data) => {
+    console.log('Received update_content_array event:', data);
+    updateContentArraySocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('update_content_array_error', error);
+      } else {
+        socket.emit('content_array_updated', result);
+      }
+    });
+  });
+
   socket.on("disconnect", () => {
     console.log("Client disconnected", socket.id);
   });
