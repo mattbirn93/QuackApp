@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import scripts from '../models/scriptModel.js';
-import scenes from '../models/sceneModel.js';
-import User from '../models/userModel.js';
+import { Request, Response } from "express";
+import mongoose from "mongoose";
+import scripts from "../models/scriptModel.js";
+import scenes from "../models/sceneModel.js";
+import User from "../models/userModel.js";
 
 // Controller method to create a new script and its associated scenes
 export const createScript = async (req: Request, res: Response) => {
@@ -48,7 +48,7 @@ export const createScript = async (req: Request, res: Response) => {
 
     const user = await User.findById(users_id).session(session);
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
     user.scripts_id_array.push(savedScript._id as mongoose.Types.ObjectId);
     await user.save({ session });
@@ -61,8 +61,8 @@ export const createScript = async (req: Request, res: Response) => {
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
-    console.error('Error creating script and scenes:', error);
-    return res.status(500).json({ message: 'Server error' });
+    console.error("Error creating script and scenes:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -73,7 +73,7 @@ export const fetchScriptsById = async (req: Request, res: Response) => {
     //   return res.status(400).json({ message: 'Invalid ids parameter' });
     // }
 
-    const idsArray = (typeof ids === 'string' ? ids.split(',') : []).map((id) =>
+    const idsArray = (typeof ids === "string" ? ids.split(",") : []).map((id) =>
       id.trim(),
     );
 
@@ -95,13 +95,13 @@ export const fetchScriptsById = async (req: Request, res: Response) => {
     if (!fetchedScripts.length) {
       return res
         .status(404)
-        .json({ message: 'No scripts found for the given IDs.' });
+        .json({ message: "No scripts found for the given IDs." });
     }
 
     return res.status(200).json(fetchedScripts);
   } catch (error) {
-    console.error('Error fetching scripts by IDs:', error);
-    return res.status(500).json('');
+    console.error("Error fetching scripts by IDs:", error);
+    return res.status(500).json("");
   }
 };
 
@@ -111,19 +111,19 @@ export const fetchScripts = async (req: Request, res: Response) => {
     const fetchedScripts = await scripts.find().exec();
 
     // Debug information
-    console.log('scenes:', fetchedScripts);
+    console.log("scenes:", fetchedScripts);
 
     // If no scenes found, return a 404 response
     if (!fetchedScripts) {
       return res
         .status(404)
-        .json({ message: 'No scenes found for the given script ID.' });
+        .json({ message: "No scenes found for the given script ID." });
     }
 
     // Return the fetched scenes
     return res.status(200).json(fetchedScripts);
   } catch (error) {
-    console.error('Error fetching scenes:', error);
-    return res.status(500).json({ message: 'Server error' });
+    console.error("Error fetching scenes:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };
