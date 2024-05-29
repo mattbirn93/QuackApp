@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
-import SkeletonLoader from "./components/common/SkeletonLoader/SkeletonLoader-EXAMPLE";
+import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 
 import CameraComponent from "./components/Camera/CameraComponent-EXAMPLE";
 import LocationComponent from "./components/Location/LocationComponent-EXAMPLE";
@@ -10,8 +10,8 @@ import SpeechToText from "./components/SppechToText/SpeechToText-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
-import Button from "./components/common/Button/Button-EXAMPLE";
-import Header from "./components/layout/Header/Header-EXAMPLE";
+import { Button } from "./components";
+import Header from "./components/Header/Header-EXAMPLE";
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
