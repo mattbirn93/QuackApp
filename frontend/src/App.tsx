@@ -11,6 +11,8 @@ import SpeechToText from "./components/SpeechToText";
 import { AppDataInterface } from "./interfaces/interfaces";
 import UserComponent from "./components/UserComponent";
 
+import FramerComponent from "./components/FramerComponent";
+
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
   const [data, setData] = useState<AppDataInterface | null>(null);
@@ -134,6 +136,7 @@ const App: React.FC = () => {
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App
           </h1>
+          <FramerComponent />
           <div>Toxic Positivity is for Realzzzzzz</div>
           <button title="Add User" onClick={addUser}>
             Add User
