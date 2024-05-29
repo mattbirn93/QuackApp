@@ -32,6 +32,7 @@
     "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loading-skeleton": "^3.4.0",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "tsconfig-paths": "^4.2.0",
