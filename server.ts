@@ -1,24 +1,25 @@
-import "tsconfig-paths/register.js";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
-import connectDB from "./backend/config2.js";
-import Item from "./backend/models/Item.js";
-import userRoutes from "./backend/routes/userRoutes.js";
-import scriptRoutes from "./backend/routes/scriptRoutes.js";
-import sceneRoutes from "./backend/routes/sceneRoutes.js";
-import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
-import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-import { createUserSocket } from "./backend/controllers/userController2.js";
-import http from "http";
-import { Server as SocketIOServer } from "socket.io";
-import {
-  getSceneVersionContentSocket,
-  updateContentArraySocket,
-} from "./backend/controllers/sceneVersionContentWSController.js";
+import 'tsconfig-paths/register.js';
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectDB from './backend/config2.js';
+import Item from './backend/models/Item.js'; // Correct path for JavaScript 
+import userRoutes from './backend/routes/userRoutes.js';
+import scriptRoutes from './backend/routes/scriptRoutes.js';
+import sceneRoutes from './backend/routes/sceneRoutes.js';
+import sceneVersionRoutes from './backend/routes/sceneVersionRoutes.js';
+import sceneVersionContentRoutes from './backend/routes/sceneVersionContentRoutes.js';
+import { createUserSocket } from './backend/controllers/userController2.js';
+import http from 'http';
+import { Server as SocketIOServer } from 'socket.io';
+import { getSceneVersionContentSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { createContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { updateContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { deleteContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -57,7 +58,9 @@ app.use("/api/scripts", scriptRoutes);
 app.use("/api/scripts/fetchScriptsById", scriptRoutes);
 app.use("/api/scripts/createNewScript", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
+app.use("api/scenes/createSecene", sceneRoutes)
 app.use("/api/sceneVersions", sceneVersionRoutes);
+app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes)
 app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
@@ -108,7 +111,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("get_scene_version_content", (data) => {
+  socket.on('get_scene_version_content', (data) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
       if (error) {
@@ -117,15 +120,37 @@ io.on("connection", (socket) => {
         socket.emit("scene_version_content", result);
       }
     });
+});
+  
+  socket.on('create_content_item', (data : any) => {
+    console.log('Received create_content_item event:', data);
+    createContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('create_content_item_error', error);
+      } else {
+        socket.emit('content_item_created', result);
+      }
+    });
   });
 
-  socket.on("update_content_array", (data) => {
-    console.log("Received update_content_array event:", data);
-    updateContentArraySocket(data, (error: any, result: any) => {
+  socket.on('update_content_item', (data : any) => {
+    console.log('Received update_content_item event:', data);
+    updateContentItemSocket(data, (error: any, result: any) => {
       if (error) {
-        socket.emit("update_content_array_error", error);
+        socket.emit('update_content_item_error', error);
       } else {
-        socket.emit("content_array_updated", result);
+        socket.emit('content_item_updated', result);
+      }
+    });
+  });
+
+  socket.on('delete_content_item', (data : any) => {
+    console.log('Received delete_content_item event:', data);
+    deleteContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('delete_content_item_error', error);
+      } else {
+        socket.emit('content_item_deleted', result);
       }
     });
   });

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import scenes from '../models/sceneModel.js'; // Adjust the import path according to your project structure
 import sceneVersions from '../models/sceneVersionModel.js';
+import sceneVersionContent from '../models/sceneVersionContentModel.js';
 // Controller method to fetch scenes by scriptId
 export const fetchScenes = async (req: Request, res: Response) => {
   try {
@@ -130,6 +131,70 @@ export const fetchScenesWithVersionContent = async (
     return res.status(200).json(scenesWithVersions);
   } catch (error) {
     console.error('Error fetching scenes with versions:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+export const createScene = async (req: Request, res: Response) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const { scriptId } = req.body;  // Assuming scriptId is provided in the request body
+
+    // Create a new scene
+    const newScene = new scenes({
+      scripts_id: scriptId,
+      sceneVersions_id_array: [],  // This will be populated with the new version
+      time_stamp: new Date(),
+    });
+
+    // Save the new scene
+    const savedScene = await newScene.save({ session });
+
+    // Create a new scene version
+    const newSceneVersion = new sceneVersions({
+      scene_id: savedScene._id,
+      current_sceneVersionContent_id: null,  // This will be updated after creating the content
+      sceneVersionContent_id_array: [],
+      time_stamp: new Date(),
+    });
+
+    // Save the new scene version
+    const savedSceneVersion = await newSceneVersion.save({ session });
+
+    // Create a new scene version content
+    const newSceneVersionContent = new sceneVersionContent({
+      content: "Initial content",  // Example initial content, replace with actual initial content from the request
+      time_stamp: new Date(),
+    });
+
+    // Save the new scene version content
+    const savedSceneVersionContent = await newSceneVersionContent.save({ session });
+
+    // Link the content with the version
+    savedSceneVersion.current_sceneVersionContent_id = savedSceneVersionContent._id as any;
+    savedSceneVersion.sceneVersionContent_id_array.push(savedSceneVersionContent._id as any);
+    await savedSceneVersion.save({ session });
+
+    savedScene.sceneVersions_id_array.push(savedSceneVersion._id as any);
+    await savedScene.save({ session });
+
+    // Commit the transaction
+    await session.commitTransaction();
+    session.endSession();
+
+    // Return the newly created scene, its version, and content
+    return res.status(201).json({
+      scene: savedScene,
+      sceneVersion: savedSceneVersion,
+      sceneVersionContent: savedSceneVersionContent
+    });
+  } catch (error) {
+    // If an error occurs, abort the transaction and log the error
+    await session.abortTransaction();
+    session.endSession();
+    console.error('Error creating scene and related documents:', error);
     return res.status(500).json({ message: 'Server error' });
   }
 };
