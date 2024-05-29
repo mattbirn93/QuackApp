@@ -15,7 +15,11 @@ import sceneVersionContentRoutes from './backend/routes/sceneVersionContentRoute
 import { createUserSocket } from './backend/controllers/userController2.js';
 import http from 'http';
 import { Server as SocketIOServer } from 'socket.io';
-import { getSceneVersionContentSocket, updateContentArraySocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { getSceneVersionContentSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { createContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { updateContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+import { deleteContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -105,7 +109,6 @@ io.on('connection', (socket) => {
     });
   });
 
-
   socket.on('get_scene_version_content', (data) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
@@ -115,15 +118,37 @@ io.on('connection', (socket) => {
         socket.emit('scene_version_content', result);
       }
     });
-  });
+});
   
-  socket.on('update_content_array', (data) => {
-    console.log('Received update_content_array event:', data);
-    updateContentArraySocket(data, (error: any, result: any) => {
+  socket.on('create_content_item', (data : any) => {
+    console.log('Received create_content_item event:', data);
+    createContentItemSocket(data, (error: any, result: any) => {
       if (error) {
-        socket.emit('update_content_array_error', error);
+        socket.emit('create_content_item_error', error);
       } else {
-        socket.emit('content_array_updated', result);
+        socket.emit('content_item_created', result);
+      }
+    });
+  });
+
+  socket.on('update_content_item', (data : any) => {
+    console.log('Received update_content_item event:', data);
+    updateContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('update_content_item_error', error);
+      } else {
+        socket.emit('content_item_updated', result);
+      }
+    });
+  });
+
+  socket.on('delete_content_item', (data : any) => {
+    console.log('Received delete_content_item event:', data);
+    deleteContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit('delete_content_item_error', error);
+      } else {
+        socket.emit('content_item_deleted', result);
       }
     });
   });
