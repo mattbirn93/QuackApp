@@ -45,10 +45,8 @@ export const updateContentItemSocket = async (data : any, callback : any) => {
 
     if (existingItemIndex !== -1) {
       // Update existing item
-      console.log('Updating existing item');
       sceneVersionContent.content[existingItemIndex] = { ...sceneVersionContent.content[existingItemIndex], ...contentItem };
       await sceneVersionContent.save();
-      console.log('Saved SceneVersionContent:', sceneVersionContent);
 
       callback(null, sceneVersionContent);
     } else {
