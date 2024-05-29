@@ -1,103 +1,76 @@
-import 'tsconfig-paths/register.js';
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import connectDB from './backend/config2.js';
-import Item from './backend/models/Item.js'; // Correct path for JavaScript 
-import userRoutes from './backend/routes/userRoutes.js';
-import scriptRoutes from './backend/routes/scriptRoutes.js';
-import sceneRoutes from './backend/routes/sceneRoutes.js';
-import sceneVersionRoutes from './backend/routes/sceneVersionRoutes.js';
-import sceneVersionContentRoutes from './backend/routes/sceneVersionContentRoutes.js';
-import { createUserSocket } from './backend/controllers/userController2.js';
-import http from 'http';
-import { Server as SocketIOServer } from 'socket.io';
-import { getSceneVersionContentSocket } from './backend/controllers/sceneVersionContentWSController.js';
-import { createContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
-import { updateContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
-import { deleteContentItemSocket } from './backend/controllers/sceneVersionContentWSController.js';
+// The server file initializes the Express application, connects to the database, sets up middleware, and defines the routes.
 
+import "tsconfig-paths/register.js"; // Enables tsconfig paths in the project
+import express from "express"; // Express framework for building the server
+import path from "path"; // Utility module for handling and transforming file paths
+import { fileURLToPath } from "url"; // Module to convert file URL to path
+import bodyParser from "body-parser"; // Middleware to parse request bodies
+import cors from "cors"; // Middleware to enable CORS (Cross-Origin Resource Sharing)
+import dotenv from "dotenv"; // Module to load environment variables from a .env file
+import connectDB from "./backend/config2.js"; // Function to connect to the MongoDB database
+import http from "http"; // HTTP module to create server
+import { Server as SocketIOServer } from "socket.io"; // Socket.IO server for real-time communication
+
+// Importing user-related routes
+import userRoutes from "./backend/routes/userRoutes.js";
+import scriptRoutes from "./backend/routes/scriptRoutes.js";
+import sceneRoutes from "./backend/routes/sceneRoutes.js";
+import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+import { createUserSocket } from "./backend/controllers/userController2.js";
+import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
+dotenv.config(); // Load environment variables from .env file
 
-const app = express();
-const PORT = process.env.PORT || 5001;
+const app = express(); // Initialize Express app
+const PORT = process.env.PORT || 5001; // Port to run the server on
 
-const server = http.createServer(app);
-
+const server = http.createServer(app); // Create an HTTP server
 const io = new SocketIOServer(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: "*", // Allow all origins (for development, restrict in production)
+    methods: ["GET", "POST"], // Allowed HTTP methods
   },
 });
 
+// Middleware to parse request bodies
 app.use(bodyParser.json());
-
-// Middleware to parse JSON requests
 app.use(express.json());
 
-// Enable CORS
-app.use(cors());
+app.use(cors()); // Enable CORS
+app.use(express.static(path.join(__dirname, "dist"))); // Serve static files from the dist directory
 
+// Connect to the Mongo Database
 connectDB();
 
-// Serve static files from the dist directory
-app.use(express.static(path.join(__dirname, "dist")));
-
+// Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);
 app.use("/api/scripts", scriptRoutes);
 app.use("/api/scripts/fetchScriptsById", scriptRoutes);
 app.use("/api/scripts/createNewScript", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
-app.use("api/scenes/createSecene", sceneRoutes)
+app.use("api/scenes/createSecene", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
-app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes)
+app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
 app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
-
-// Define a test route
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Hello from the server!" });
-});
-
-// Define a route to create a new item
-app.post("/api/items", async (req, res) => {
-  try {
-    const { name, description } = req.body;
-    const newItem = new Item({ name, description });
-    await newItem.save();
-    res.status(201).json(newItem);
-  } catch (error) {
-    res.status(500).json({ message: "Error creating item", error });
-  }
-});
-
-// Define a route to get all items
-app.get("/api/items", async (req, res) => {
-  try {
-    const items = await Item.find();
-    res.status(200).json(items);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching items", error });
-  }
-});
 
 // All other routes should serve the index.html file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
+// Socket.io connection handler
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
@@ -111,7 +84,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on('get_scene_version_content', (data) => {
+  socket.on("get_scene_version_content", (data) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
       if (error) {
@@ -120,37 +93,37 @@ io.on("connection", (socket) => {
         socket.emit("scene_version_content", result);
       }
     });
-});
-  
-  socket.on('create_content_item', (data : any) => {
-    console.log('Received create_content_item event:', data);
+  });
+
+  socket.on("create_content_item", (data: any) => {
+    console.log("Received create_content_item event:", data);
     createContentItemSocket(data, (error: any, result: any) => {
       if (error) {
-        socket.emit('create_content_item_error', error);
+        socket.emit("create_content_item_error", error);
       } else {
-        socket.emit('content_item_created', result);
+        socket.emit("content_item_created", result);
       }
     });
   });
 
-  socket.on('update_content_item', (data : any) => {
-    console.log('Received update_content_item event:', data);
+  socket.on("update_content_item", (data: any) => {
+    console.log("Received update_content_item event:", data);
     updateContentItemSocket(data, (error: any, result: any) => {
       if (error) {
-        socket.emit('update_content_item_error', error);
+        socket.emit("update_content_item_error", error);
       } else {
-        socket.emit('content_item_updated', result);
+        socket.emit("content_item_updated", result);
       }
     });
   });
 
-  socket.on('delete_content_item', (data : any) => {
-    console.log('Received delete_content_item event:', data);
+  socket.on("delete_content_item", (data: any) => {
+    console.log("Received delete_content_item event:", data);
     deleteContentItemSocket(data, (error: any, result: any) => {
       if (error) {
-        socket.emit('delete_content_item_error', error);
+        socket.emit("delete_content_item_error", error);
       } else {
-        socket.emit('content_item_deleted', result);
+        socket.emit("content_item_deleted", result);
       }
     });
   });
@@ -160,6 +133,7 @@ io.on("connection", (socket) => {
   });
 });
 
+// Start the server
 server.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

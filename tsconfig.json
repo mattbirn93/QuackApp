@@ -22,5 +22,5 @@
     ],
     "types": ["node", "express", "morgan"],
   },
-  "include": ["frontend/src", "server.ts", "backend/**/*.ts"]
+  "include": ["frontend/src", "server.ts", "backend/**/*.ts", "backend/services/userService.tsx"]
 }

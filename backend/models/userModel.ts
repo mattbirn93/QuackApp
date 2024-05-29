@@ -1,5 +1,6 @@
-// backend/models/userModel.ts
-import mongoose, { Document, Schema } from 'mongoose';
+// The user model defines the structure of the user data and how it is stored in the database
+
+import mongoose, { Document, Schema } from "mongoose";
 
 export interface IUser extends Document {
   first_name: string;
@@ -17,8 +18,8 @@ const userSchema: Schema = new Schema({
   scripts_id_array: {
     type: [mongoose.Types.ObjectId],
     required: true,
-    ref: 'Script',
+    ref: "Script",
   },
 });
 
-export default mongoose.model<IUser>('User', userSchema);
+export default mongoose.model<IUser>("User", userSchema);

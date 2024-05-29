@@ -2,16 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
-import SkeletonLoader from "./components/SkeletonLoader";
+import SkeletonLoader from "./components/common/SkeletonLoader/SkeletonLoader-EXAMPLE";
 
-import CameraComponent from "./components/CameraComponent";
-import LocationComponent from "./components/LocationComponent";
-import SpeechToText from "./components/SpeechToText";
-
+import CameraComponent from "./components/Camera/CameraComponent-EXAMPLE";
+import LocationComponent from "./components/Location/LocationComponent-EXAMPLE";
+import SpeechToText from "./components/SppechToText/SpeechToText-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
-import UserComponent from "./components/UserComponent";
-
-import FramerComponent from "./components/FramerComponent";
+import UserComponent from "./components/UserComponent--EXAMPLE";
+import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
+import Button from "./components/common/Button/Button-EXAMPLE";
+import Header from "./components/layout/Header/Header-EXAMPLE";
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
@@ -65,36 +65,36 @@ const App: React.FC = () => {
       console.log("Socket connected");
     });
 
-    socketRef.current.on('content_item_created', (response) => {
-      console.log('Content item created:', response);
+    socketRef.current.on("content_item_created", (response) => {
+      console.log("Content item created:", response);
     });
 
-    socketRef.current.on('content_item_updated', (response) => {
-      console.log('Content item updated:', response);
+    socketRef.current.on("content_item_updated", (response) => {
+      console.log("Content item updated:", response);
     });
 
-    socketRef.current.on('scene_version_content', (response) => {
-      console.log('Scene version content received:', response);
-  });
-
-    socketRef.current.on('delete_content_item', (response) => {
-      console.log('Content item deleted:', response);
+    socketRef.current.on("scene_version_content", (response) => {
+      console.log("Scene version content received:", response);
     });
 
-    socketRef.current.on('update_content_item_error', (error) => {
-      console.error('Update content item error:', error);
+    socketRef.current.on("delete_content_item", (response) => {
+      console.log("Content item deleted:", response);
     });
 
-    socketRef.current.on('create_content_item_error', (error) => {
-      console.error('Create content item error:', error);
+    socketRef.current.on("update_content_item_error", (error) => {
+      console.error("Update content item error:", error);
     });
 
-    socketRef.current.on('delete_content_item_error', (error) => {
-      console.error('Delete content item error:', error);
+    socketRef.current.on("create_content_item_error", (error) => {
+      console.error("Create content item error:", error);
     });
 
-    socketRef.current.on('get_scene_version_content', (error) => {
-      console.error('Get scene version content  error:', error);
+    socketRef.current.on("delete_content_item_error", (error) => {
+      console.error("Delete content item error:", error);
+    });
+
+    socketRef.current.on("get_scene_version_content", (error) => {
+      console.error("Get scene version content  error:", error);
     });
 
     return () => {
@@ -106,12 +106,11 @@ const App: React.FC = () => {
 
   const fetchSceneVersionContent = () => {
     if (socketRef.current) {
-        const id = "66495227baa753a417fd5468";  // This should be replaced with the actual ID you want to query
-        console.log('Emitting get_scene_version_content event with id:', id);
-        socketRef.current.emit('get_scene_version_content', { id });
-      }
-};
-
+      const id = "66495227baa753a417fd5468"; // This should be replaced with the actual ID you want to query
+      console.log("Emitting get_scene_version_content event with id:", id);
+      socketRef.current.emit("get_scene_version_content", { id });
+    }
+  };
 
   const addUser = () => {
     const data = {
@@ -130,50 +129,49 @@ const App: React.FC = () => {
     const data = {
       id: "66495227baa753a417fd5468", // Replace with the actual ID
       contentItem: {
-        notes: 'Final test',
-        text: 'Test item text',
-        type: 'Test item type',
+        notes: "Final test",
+        text: "Test item text",
+        type: "Test item type",
         time_stamp: new Date(),
       },
-
     };
 
     if (socketRef.current) {
-      console.log('Emitting create_content_item event with data:', data);
-      socketRef.current.emit('create_content_item', data);
+      console.log("Emitting create_content_item event with data:", data);
+      socketRef.current.emit("create_content_item", data);
     }
   };
 
   const updateContentItem = () => {
     const data = {
-      id: '66495227baa753a417fd5468', // Replace with the actual ID
+      id: "66495227baa753a417fd5468", // Replace with the actual ID
       contentItem: {
-        notes: 'This really worked five',
-        text: 'Test Update text',
-        type: 'Test Update type',
-        content_id: '6656a1ae9e2949232a2ece0b', // Replace with the actual content_id
+        notes: "This really worked five",
+        text: "Test Update text",
+        type: "Test Update type",
+        content_id: "6656a1ae9e2949232a2ece0b", // Replace with the actual content_id
         time_stamp: new Date(),
       },
     };
 
     if (socketRef.current) {
-      console.log('Emitting update_content_item event with data:', data);
-      socketRef.current.emit('update_content_item', data);
+      console.log("Emitting update_content_item event with data:", data);
+      socketRef.current.emit("update_content_item", data);
     }
   };
 
   const deleteContentItem = (content_id: string) => {
-    console.log("hi")
+    console.log("hi");
     const data = {
-      id: '66495227baa753a417fd5468', // Replace with the actual ID
+      id: "66495227baa753a417fd5468", // Replace with the actual ID
       content_id,
     };
 
     if (socketRef.current) {
-      console.log('Emitting delete_content_item event to delete item:', data);
-      socketRef.current.emit('delete_content_item', data);
-   }
-  }
+      console.log("Emitting delete_content_item event to delete item:", data);
+      socketRef.current.emit("delete_content_item", data);
+    }
+  };
 
   return (
     <MyErrorBoundary fallback={"There was an error"}>
@@ -181,20 +179,26 @@ const App: React.FC = () => {
         <SkeletonLoader />
       ) : (
         <div className="custom-combined">
+          <Header />
           {/* Heading with extended 6xl font size */}
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App
           </h1>
+          <Button />
           <FramerComponent />
           <div>Toxic Positivity is for Realzzzzzz</div>
           <button title="Add User" onClick={addUser}>
             Add User
           </button>
           <button onClick={updateContentItem}>Update Content Item</button>
-      <button onClick={fetchSceneVersionContent}>Fetch Scene Version Content</button>
-      <button onClick={createContentItem}>Create Content Item</button>
-      <button onClick={() => deleteContentItem("66568fe27c5d9f8bebb8f3f3")}>Delete Content Item</button>
-              
+          <button onClick={fetchSceneVersionContent}>
+            Fetch Scene Version Content
+          </button>
+          <button onClick={createContentItem}>Create Content Item</button>
+          <button onClick={() => deleteContentItem("66568fe27c5d9f8bebb8f3f3")}>
+            Delete Content Item
+          </button>
+
           <UserComponent />
           <div>
             <div>
@@ -235,5 +239,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-

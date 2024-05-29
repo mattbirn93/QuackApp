@@ -1,6 +1,6 @@
 // src/components/UserComponent.tsx
 import React from "react";
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const UserComponent: React.FC = () => {
   const { user, setUser } = useAppContext();
