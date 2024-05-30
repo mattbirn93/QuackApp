@@ -9,7 +9,8 @@ const ExampleComponent: React.FC = () => {
       transition={{ duration: 10 }}
     >
       <p className="text-[4rem]">
-        Hello, From Fading In Framer Motion Suckah MC From Haiti!
+        Hello, From Fading In Framer Motion Suckah MC From Haiti in the
+        summertime!
       </p>
     </motion.div>
   );
