@@ -97,6 +97,22 @@ const App: React.FC = () => {
       console.error("Get scene version content  error:", error);
     });
 
+    socketRef.current.on("charactersData", (data) => {
+      console.log("Received characters data:", data);
+    });
+
+    // Listener for successful character addition
+    socketRef.current.on("characterAdded", (data) => {
+      console.log("Character added to array:", data);
+    });
+
+    // Listener for successful character update
+    socketRef.current.on("characterUpdated", (data) => {
+      console.log("Character updated in array:", data);
+    });
+
+    // Listen
+
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
@@ -173,6 +189,30 @@ const App: React.FC = () => {
     }
   };
 
+  const fetchCharactersById = (id: string) => {
+    if (socketRef.current) {
+      socketRef.current.emit("getCharactersById", id);
+    } else {
+      console.error("Socket not initialized");
+    }
+  };
+  
+  const addCharacter = (charactersId: string, character: { name: string; role: string; }) => {
+    if (socketRef.current) {
+      socketRef.current.emit("addCharacterToArray", { charactersId, character });
+    } else {
+      console.error("Socket not initialized");
+    }
+  };
+  
+  const updateCharacter = (charactersId: string, characterId: string,  character_name: string) => {
+    if (socketRef.current) {
+      socketRef.current.emit("updateCharacterInArray", { charactersId, characterId, character_name });
+    } else {
+      console.error("Socket not initialized");
+    }
+  };
+
   return (
     <MyErrorBoundary fallback={"There was an error"}>
       {loading ? (
@@ -194,6 +234,9 @@ const App: React.FC = () => {
           <button onClick={fetchSceneVersionContent}>
             Fetch Scene Version Content
           </button>
+          <button onClick={() => fetchCharactersById("6646c588a11c19e5e0bf3e1b")}>Fetch Characters</button>
+      <button onClick={() => addCharacter("6646c588a11c19e5e0bf3e1b", { name: "New Character", role: "Hero" })}>Add Character</button>
+      <button onClick={() => updateCharacter("6646c588a11c19e5e0bf3e1b", "6646c69998c165f4b5411292", "Batman" )}>Update Character</button>
           <button onClick={createContentItem}>Create Content Item</button>
           <button onClick={() => deleteContentItem("66568fe27c5d9f8bebb8f3f3")}>
             Delete Content Item

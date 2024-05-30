@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import scripts from "../models/scriptModel.js";
 import scenes from "../models/sceneModel.js";
 import User from "../models/userModel.js";
+import characters from "../models/charactersModel.js"
 
 // Controller method to create a new script and its associated scenes
 export const createScript = async (req: Request, res: Response) => {
@@ -13,7 +14,6 @@ export const createScript = async (req: Request, res: Response) => {
     const {
       title,
       title_page,
-      character_document_id,
       users_id,
       sceneVersions_id_array,
     } = req.body;
@@ -23,7 +23,6 @@ export const createScript = async (req: Request, res: Response) => {
       _id: new mongoose.Types.ObjectId(),
       title,
       title_page,
-      character_document_id,
       time_stamp: new Date(),
       users_id,
     });
@@ -31,6 +30,19 @@ export const createScript = async (req: Request, res: Response) => {
     // Save the new script to the database
     const savedScript = await newScript.save({ session });
 
+    const newCharacters = new characters({
+      _id: new mongoose.Types.ObjectId(),
+      script_id: savedScript._id,
+      time_stamp: new Date(),
+      characters_array: [], // Initialize as empty
+    });
+
+    // Save the new characters document to the database
+    const savedCharacters = await newCharacters.save({ session });
+
+    // Update the script document to include the characters_id
+    savedScript.characters_id = savedCharacters._id as mongoose.Types.ObjectId;
+    await savedScript.save({ session });
     // Create a new scenes document
     const newScenes = new scenes({
       _id: new mongoose.Types.ObjectId(),

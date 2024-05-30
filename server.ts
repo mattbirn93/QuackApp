@@ -22,6 +22,7 @@ import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersion
 import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { getCharactersById, addCharacterToArray, updateCharacterInArray } from "./backend/controllers/charactersWSController.js";
 
 // ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
@@ -124,6 +125,35 @@ io.on("connection", (socket) => {
         socket.emit("delete_content_item_error", error);
       } else {
         socket.emit("content_item_deleted", result);
+      }
+    });
+  });
+  socket.on('getCharactersById', (id) => {
+    getCharactersById(id, (error: any, characters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('charactersData', characters);
+      }
+    });
+  });
+
+  socket.on('addCharacterToArray', (data) => {
+    addCharacterToArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('updatedCharacters', updatedCharacters);
+      }
+    });
+  });
+
+  socket.on('updateCharacterInArray', (data) => {
+    updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('updatedCharacters', updatedCharacters);
       }
     });
   });
