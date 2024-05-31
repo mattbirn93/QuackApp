@@ -12,6 +12,10 @@ import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
 import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
+import Navbar from "./components/Navbar/Navbar-EXAMPLE";
+import { todos } from "./data.json";
+
+console.log("Todos:", todos);
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
@@ -179,6 +183,7 @@ const App: React.FC = () => {
         <SkeletonLoader />
       ) : (
         <div className="custom-combined">
+          <Navbar />
           <Header />
           {/* Heading with extended 6xl font size */}
           <h1 className="text-6xl font-bold text-primary mb-4">
