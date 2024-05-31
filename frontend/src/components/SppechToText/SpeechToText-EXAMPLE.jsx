@@ -5,31 +5,39 @@ const SpeechToText = () => {
   const [transcript, setTranscript] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
   const [localAudioUrl, setLocalAudioUrl] = useState("");
+  const [error, setError] = useState(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  const startRecording = () => {
-    const mimeType = getSupportedMimeType();
-    if (!mimeType) {
-      console.error("No supported MIME type found for MediaRecorder");
-      return;
-    }
+  const startRecording = async () => {
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setError("getUserMedia is not supported in your browser.");
+        return;
+      }
 
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream) => {
-        mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
-        mediaRecorderRef.current.ondataavailable = (event) => {
-          if (event.data.size > 0) {
-            audioChunksRef.current.push(event.data);
-          }
-        };
-        mediaRecorderRef.current.onstop = handleRecordingStop;
-        mediaRecorderRef.current.start();
-      })
-      .catch((error) => {
-        console.error("Error accessing audio stream:", error);
-      });
+      const mimeType = getSupportedMimeType();
+      if (!mimeType) {
+        setError("No supported MIME type found for MediaRecorder");
+        return;
+      }
+
+      // Must be triggered by a user action, such as a button click
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
+
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorderRef.current.onstop = handleRecordingStop;
+      mediaRecorderRef.current.start();
+    } catch (err) {
+      console.error("Error accessing audio stream: SUCKAH", err);
+      setError("Error accessing audio stream SUCKAH: " + err.message);
+    }
   };
 
   const stopRecording = () => {
@@ -72,22 +80,17 @@ const SpeechToText = () => {
       );
       setTranscript(response.data.transcription);
       setAudioUrl(response.data.audioUrl);
-    } catch (error) {
-      console.error("Error uploading audio:", error);
-      if (error.response) {
-        console.error("Error response data:", error.response.data);
+    } catch (err) {
+      console.error("Error uploading audio:", err);
+      setError("Error uploading audio: " + err.message);
+      if (err.response) {
+        console.error("Error response data:", err.response.data);
       }
     }
   };
 
   const getSupportedMimeType = () => {
-    const mimeTypes = [
-      "audio/webm",
-      "audio/mp4",
-      "audio/x-m4a",
-      "audio/ogg",
-      "audio/wav",
-    ];
+    const mimeTypes = ["audio/webm", "audio/mp4", "audio/ogg", "audio/wav"];
     for (const mimeType of mimeTypes) {
       if (MediaRecorder.isTypeSupported(mimeType)) {
         return mimeType;
@@ -105,7 +108,10 @@ const SpeechToText = () => {
       userAgent.indexOf("Opera") > -1
     ) {
       return "Chrome";
-    } else if (userAgent.indexOf("Safari") > -1) {
+    } else if (
+      userAgent.indexOf("Safari") > -1 &&
+      userAgent.indexOf("Chrome") === -1
+    ) {
       return "Safari";
     } else {
       return "Other";
@@ -130,6 +136,7 @@ const SpeechToText = () => {
           </div>
         )
       )}
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };
