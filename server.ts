@@ -20,10 +20,10 @@ import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 import { createUserSocket } from "./backend/controllers/userController2.js";
 import {
-  getSceneVersionContentSocket,
-  createContentItemSocket,
-  updateContentItemSocket,
-  deleteContentItemSocket,
+    getSceneVersionContentSocket,
+    createContentItemSocket,
+    updateContentItemSocket,
+    deleteContentItemSocket,
 } from "./backend/controllers/sceneVersionContentWSController.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,18 +36,18 @@ const PORT = process.env.PORT || 5001;
 
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
 });
 
 const speechClient = new SpeechClient({
-  keyFilename: path.join(
-    process.cwd(),
-    "config",
-    "gtm-mphdt7w-yjq5y-7c747b346026.json",
-  ),
+    keyFilename: path.join(
+        process.cwd(),
+        "config",
+        "gtm-mphdt7w-yjq5y-7c747b346026.json",
+    ),
 });
 
 app.use(bodyParser.json());
@@ -73,145 +73,361 @@ app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.post("/speech-to-text", async (req: Request, res: Response) => {
-  try {
-    if (!req.files || !req.files.audio) {
-      return res.status(400).send("No audio file uploaded.");
+    try {
+        if (!req.files || !req.files.audio) {
+            return res.status(400).send("No audio file uploaded.");
+        }
+
+        const audioFile = req.files.audio as fileUpload.UploadedFile;
+        const browser = req.body.browser;
+        console.log("Audio file properties:", {
+            name: audioFile.name,
+            encoding: audioFile.encoding,
+            mimetype: audioFile.mimetype,
+            size: audioFile.size,
+            browser: browser,
+        });
+
+        // Save the audio file
+        const audioFilePath = path.join(__dirname, "uploads", audioFile.name);
+        await fs.promises.writeFile(audioFilePath, audioFile.data);
+
+        // Convert audio file to base64 string
+        const audioBytes = audioFile.data.toString("base64");
+
+        const audio = {
+            content: audioBytes,
+        };
+
+        // Set audioChannelCount based on browser
+        let audioChannelCount = 1;
+        if (browser === "Firefox") {
+            audioChannelCount = 2;
+        }
+
+        const config: protos.google.cloud.speech.v1.IRecognitionConfig = {
+            encoding:
+                protos.google.cloud.speech.v1.RecognitionConfig.AudioEncoding.WEBM_OPUS,
+            sampleRateHertz: 48000, // Typical sample rate for WEBM_OPUS
+            audioChannelCount: audioChannelCount, // Set audio channel count based on browser
+            languageCode: "en-US",
+        };
+
+        console.log("Recognition request:", {
+            audio: audio,
+            config: config,
+        });
+
+        const request: protos.google.cloud.speech.v1.IRecognizeRequest = {
+            audio: audio,
+            config: config,
+        };
+
+        const [response] = await speechClient.recognize(request);
+        console.log("API response:", response);
+        const transcription =
+            response.results
+                ?.map((result) => result.alternatives?.[0].transcript)
+                .join("\n") || "No transcription available";
+        res.send({ transcription, audioUrl: `/uploads/${audioFile.name}` });
+    } catch (error: any) {
+        console.error("Error processing audio file:", error);
+        res.status(500).send("Error processing audio file: " + error.message);
     }
-
-    const audioFile = req.files.audio as fileUpload.UploadedFile;
-    const browser = req.body.browser;
-    console.log("Audio file properties:", {
-      name: audioFile.name,
-      encoding: audioFile.encoding,
-      mimetype: audioFile.mimetype,
-      size: audioFile.size,
-      browser: browser,
-    });
-
-    // Save the audio file
-    const audioFilePath = path.join(__dirname, "uploads", audioFile.name);
-    await fs.promises.writeFile(audioFilePath, audioFile.data);
-
-    // Convert audio file to base64 string
-    const audioBytes = audioFile.data.toString("base64");
-
-    const audio = {
-      content: audioBytes,
-    };
-
-    // Set audioChannelCount based on browser
-    let audioChannelCount = 1;
-    if (browser === "Firefox") {
-      audioChannelCount = 2;
-    }
-
-    const config: protos.google.cloud.speech.v1.IRecognitionConfig = {
-      encoding:
-        protos.google.cloud.speech.v1.RecognitionConfig.AudioEncoding.WEBM_OPUS,
-      sampleRateHertz: 48000, // Typical sample rate for WEBM_OPUS
-      audioChannelCount: audioChannelCount, // Set audio channel count based on browser
-      languageCode: "en-US",
-    };
-
-    console.log("Recognition request:", {
-      audio: audio,
-      config: config,
-    });
-
-    const request: protos.google.cloud.speech.v1.IRecognizeRequest = {
-      audio: audio,
-      config: config,
-    };
-
-    const [response] = await speechClient.recognize(request);
-    console.log("API response:", response);
-    const transcription =
-      response.results
-        ?.map((result) => result.alternatives?.[0].transcript)
-        .join("\n") || "No transcription available";
-    res.send({ transcription, audioUrl: `/uploads/${audioFile.name}` });
-  } catch (error: any) {
-    console.error("Error processing audio file:", error);
-    res.status(500).send("Error processing audio file: " + error.message);
-  }
 });
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 io.on("connection", (socket) => {
-  console.log("New client connected", socket.id);
+    console.log("New client connected", socket.id);
 
-  socket.on("add_user", (data) => {
-    createUserSocket(data, (error: any, savedUser: any) => {
-      if (error) {
-        socket.emit("user_add_error", error);
-      } else {
-        socket.emit("user_added", savedUser);
-      }
+    socket.on("add_user", (data) => {
+        createUserSocket(data, (error: any, savedUser: any) => {
+            if (error) {
+                socket.emit("user_add_error", error);
+            } else {
+                socket.emit("user_added", savedUser);
+            }
+        });
     });
-  });
 
-  socket.on("get_scene_version_content", (data) => {
-    const { id } = data;
-    getSceneVersionContentSocket(id, (error: any, result: any) => {
-      if (error) {
-        socket.emit("get_scene_version_content_error", error);
-      } else {
-        socket.emit("scene_version_content", result);
-      }
+    socket.on("get_scene_version_content", (data) => {
+        const { id } = data;
+        getSceneVersionContentSocket(id, (error: any, result: any) => {
+            if (error) {
+                socket.emit("get_scene_version_content_error", error);
+            } else {
+                socket.emit("scene_version_content", result);
+            }
+        });
     });
-  });
 
-  socket.on("create_content_item", (data: any) => {
-    console.log("Received create_content_item event:", data);
-    createContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("create_content_item_error", error);
-      } else {
-        socket.emit("content_item_created", result);
-      }
+    socket.on("create_content_item", (data: any) => {
+        console.log("Received create_content_item event:", data);
+        createContentItemSocket(data, (error: any, result: any) => {
+            if (error) {
+                socket.emit("create_content_item_error", error);
+            } else {
+                socket.emit("content_item_created", result);
+            }
+        });
     });
-  });
 
-  socket.on("update_content_item", (data: any) => {
-    console.log("Received update_content_item event:", data);
-    updateContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("update_content_item_error", error);
-      } else {
-        socket.emit("content_item_updated", result);
-      }
+    socket.on("update_content_item", (data: any) => {
+        console.log("Received update_content_item event:", data);
+        updateContentItemSocket(data, (error: any, result: any) => {
+            if (error) {
+                socket.emit("update_content_item_error", error);
+            } else {
+                socket.emit("content_item_updated", result);
+            }
+        });
     });
-  });
 
-  socket.on("delete_content_item", (data: any) => {
-    console.log("Received delete_content_item event:", data);
-    deleteContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("delete_content_item_error", error);
-      } else {
-        socket.emit("content_item_deleted", result);
-      }
+    socket.on("delete_content_item", (data: any) => {
+        console.log("Received delete_content_item event:", data);
+        deleteContentItemSocket(data, (error: any, result: any) => {
+            if (error) {
+                socket.emit("delete_content_item_error", error);
+            } else {
+                socket.emit("content_item_deleted", result);
+            }
+        });
     });
-  });
 
-  socket.on("disconnect", () => {
-    console.log("Client disconnected", socket.id);
-  });
+    socket.on("disconnect", () => {
+        console.log("Client disconnected", socket.id);
+    });
 });
 
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
+    fs.mkdirSync(uploadsDir);
 }
 
 server.listen(Number(PORT), "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
+/////////////////////
+
+// import "tsconfig-paths/register.js";
+// import express, { Request, Response } from "express";
+// import path from "path";
+// import { fileURLToPath } from "url";
+// import bodyParser from "body-parser";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import connectDB from "./backend/config2.js";
+// import http from "http";
+// import { Server as SocketIOServer } from "socket.io";
+// import fileUpload from "express-fileupload";
+// import { SpeechClient, protos } from "@google-cloud/speech";
+// import fs from "fs";
+
+// // Importing user-related routes
+// import userRoutes from "./backend/routes/userRoutes.js";
+// import scriptRoutes from "./backend/routes/scriptRoutes.js";
+// import sceneRoutes from "./backend/routes/sceneRoutes.js";
+// import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+// import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+// import { createUserSocket } from "./backend/controllers/userController2.js";
+// import {
+//   getSceneVersionContentSocket,
+//   createContentItemSocket,
+//   updateContentItemSocket,
+//   deleteContentItemSocket,
+// } from "./backend/controllers/sceneVersionContentWSController.js";
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// dotenv.config();
+
+// const app = express();
+// const PORT = process.env.PORT || 5001;
+
+// const server = http.createServer(app);
+// const io = new SocketIOServer(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+// const speechClient = new SpeechClient({
+//   keyFilename: path.join(
+//     process.cwd(),
+//     "config",
+//     "gtm-mphdt7w-yjq5y-7c747b346026.json",
+//   ),
+// });
+
+// app.use(bodyParser.json());
+// app.use(express.json());
+// app.use(cors());
+// app.use(express.static(path.join(__dirname, "dist")));
+// app.use(fileUpload());
+
+// connectDB();
+
+// app.use("/api/users", userRoutes);
+// app.use("/api/users/fetchUserById", userRoutes);
+// app.use("/api/scripts", scriptRoutes);
+// app.use("/api/scripts/fetchScriptsById", scriptRoutes);
+// app.use("/api/scripts/createNewScript", scriptRoutes);
+// app.use("/api/scenes", sceneRoutes);
+// app.use("api/scenes/createSecene", sceneRoutes);
+// app.use("/api/sceneVersions", sceneVersionRoutes);
+// app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
+// app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
+// app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+// app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
+// app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+
+// app.post("/speech-to-text", async (req: Request, res: Response) => {
+//   try {
+//     if (!req.files || !req.files.audio) {
+//       return res.status(400).send("No audio file uploaded.");
+//     }
+
+//     const audioFile = req.files.audio as fileUpload.UploadedFile;
+//     const browser = req.body.browser;
+//     console.log("Audio file properties:", {
+//       name: audioFile.name,
+//       encoding: audioFile.encoding,
+//       mimetype: audioFile.mimetype,
+//       size: audioFile.size,
+//       browser: browser,
+//     });
+
+//     // Save the audio file
+//     const audioFilePath = path.join(__dirname, "uploads", audioFile.name);
+//     await fs.promises.writeFile(audioFilePath, audioFile.data);
+
+//     // Convert audio file to base64 string
+//     const audioBytes = audioFile.data.toString("base64");
+
+//     const audio = {
+//       content: audioBytes,
+//     };
+
+//     // Set audioChannelCount based on browser
+//     let audioChannelCount = 1;
+//     if (browser === "Firefox") {
+//       audioChannelCount = 2;
+//     }
+
+//     const config: protos.google.cloud.speech.v1.IRecognitionConfig = {
+//       encoding:
+//         protos.google.cloud.speech.v1.RecognitionConfig.AudioEncoding.WEBM_OPUS,
+//       sampleRateHertz: 48000, // Typical sample rate for WEBM_OPUS
+//       audioChannelCount: audioChannelCount, // Set audio channel count based on browser
+//       languageCode: "en-US",
+//     };
+
+//     console.log("Recognition request:", {
+//       audio: audio,
+//       config: config,
+//     });
+
+//     const request: protos.google.cloud.speech.v1.IRecognizeRequest = {
+//       audio: audio,
+//       config: config,
+//     };
+
+//     const [response] = await speechClient.recognize(request);
+//     console.log("API response:", response);
+//     const transcription =
+//       response.results
+//         ?.map((result) => result.alternatives?.[0].transcript)
+//         .join("\n") || "No transcription available";
+//     res.send({ transcription, audioUrl: `/uploads/${audioFile.name}` });
+//   } catch (error: any) {
+//     console.error("Error processing audio file:", error);
+//     res.status(500).send("Error processing audio file: " + error.message);
+//   }
+// });
+
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// io.on("connection", (socket) => {
+//   console.log("New client connected", socket.id);
+
+//   socket.on("add_user", (data) => {
+//     createUserSocket(data, (error: any, savedUser: any) => {
+//       if (error) {
+//         socket.emit("user_add_error", error);
+//       } else {
+//         socket.emit("user_added", savedUser);
+//       }
+//     });
+//   });
+
+//   socket.on("get_scene_version_content", (data) => {
+//     const { id } = data;
+//     getSceneVersionContentSocket(id, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("get_scene_version_content_error", error);
+//       } else {
+//         socket.emit("scene_version_content", result);
+//       }
+//     });
+//   });
+
+//   socket.on("create_content_item", (data: any) => {
+//     console.log("Received create_content_item event:", data);
+//     createContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("create_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_created", result);
+//       }
+//     });
+//   });
+
+//   socket.on("update_content_item", (data: any) => {
+//     console.log("Received update_content_item event:", data);
+//     updateContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("update_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_updated", result);
+//       }
+//     });
+//   });
+
+//   socket.on("delete_content_item", (data: any) => {
+//     console.log("Received delete_content_item event:", data);
+//     deleteContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("delete_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_deleted", result);
+//       }
+//     });
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("Client disconnected", socket.id);
+//   });
+// });
+
+// const uploadsDir = path.join(__dirname, "uploads");
+// if (!fs.existsSync(uploadsDir)) {
+//   fs.mkdirSync(uploadsDir);
+// }
+
+// server.listen(Number(PORT), "0.0.0.0", () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 ///////////////////////
 

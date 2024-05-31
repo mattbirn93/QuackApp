@@ -105,6 +105,8 @@ const SpeechToText = () => {
       userAgent.indexOf("Opera") > -1
     ) {
       return "Chrome";
+    } else if (userAgent.indexOf("Safari") > -1) {
+      return "Safari";
     } else {
       return "Other";
     }
