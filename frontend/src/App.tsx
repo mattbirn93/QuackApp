@@ -12,9 +12,6 @@ import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
 import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
-import { todos } from "./data.json";
-
-console.log("Todos:", todos);
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
