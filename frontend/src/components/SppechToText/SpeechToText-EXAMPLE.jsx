@@ -22,7 +22,6 @@ const SpeechToText = () => {
         return;
       }
 
-      // Must be triggered by a user action, such as a button click
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
 
@@ -35,8 +34,8 @@ const SpeechToText = () => {
       mediaRecorderRef.current.onstop = handleRecordingStop;
       mediaRecorderRef.current.start();
     } catch (err) {
-      console.error("Error accessing audio stream: SUCKAH", err);
-      setError("Error accessing audio stream SUCKAH: " + err.message);
+      console.error("Error accessing audio stream:", err);
+      setError("Error accessing audio stream: " + err.message);
     }
   };
 
@@ -142,7 +141,6 @@ const SpeechToText = () => {
 };
 
 export default SpeechToText;
-
 ////////////////////////////////////////
 
 // import React, { useState, useRef } from "react";
