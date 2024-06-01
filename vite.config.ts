@@ -96,8 +96,8 @@ export default defineConfig({
     port: 5173,
     https: useHttps
       ? {
-        key: fs.readFileSync(path.resolve(__dirname, "key.pem")),
-        cert: fs.readFileSync(path.resolve(__dirname, "cert.pem")),
+        key: fs.readFileSync(path.resolve(__dirname, "certs/key.pem")),
+        cert: fs.readFileSync(path.resolve(__dirname, "certs/cert.pem")),
       }
       : undefined,
   },

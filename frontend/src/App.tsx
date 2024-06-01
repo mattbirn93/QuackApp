@@ -13,6 +13,8 @@ import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
 import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
 
+import SimpleFileUpload from "./components/SimplifiedUpload";
+
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
   const [data, setData] = useState<AppDataInterface | null>(null);
@@ -180,6 +182,7 @@ const App: React.FC = () => {
       ) : (
         <div className="custom-combined">
           <Header />
+          <SimpleFileUpload />
           {/* Heading with extended 6xl font size */}
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App

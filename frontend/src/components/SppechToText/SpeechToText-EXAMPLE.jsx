@@ -71,7 +71,10 @@ const SpeechToText = () => {
   const uploadAudio = async (formData) => {
     try {
       const response = await axios.post(
-        "http://localhost:5001/speech-to-text",
+        "https://localhost:5001/speech-to-text",
+        // "http://localhost:5001/speech-to-text",
+        // "http://192.168.0.211:5001/speech-to-text",
+        // "http://192.168.0.211:5001/speech-to-text",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -141,6 +144,153 @@ const SpeechToText = () => {
 };
 
 export default SpeechToText;
+
+////////////////////
+
+// import React, { useState, useRef } from "react";
+// import axios from "axios";
+
+// const SpeechToText = () => {
+//   const [transcript, setTranscript] = useState("");
+//   const [audioUrl, setAudioUrl] = useState("");
+//   const [localAudioUrl, setLocalAudioUrl] = useState("");
+//   const [error, setError] = useState(null);
+//   const mediaRecorderRef = useRef(null);
+//   const audioChunksRef = useRef([]);
+
+//   const startRecording = async () => {
+//     try {
+//       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+//         setError("getUserMedia is not supported in your browser.");
+//         return;
+//       }
+
+//       const mimeType = getSupportedMimeType();
+//       if (!mimeType) {
+//         setError("No supported MIME type found for MediaRecorder");
+//         return;
+//       }
+
+//       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+//       mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
+
+//       mediaRecorderRef.current.ondataavailable = (event) => {
+//         if (event.data.size > 0) {
+//           audioChunksRef.current.push(event.data);
+//         }
+//       };
+
+//       mediaRecorderRef.current.onstop = handleRecordingStop;
+//       mediaRecorderRef.current.start();
+//     } catch (err) {
+//       console.error("Error accessing audio stream:", err);
+//       setError("Error accessing audio stream: " + err.message);
+//     }
+//   };
+
+//   const stopRecording = () => {
+//     if (mediaRecorderRef.current) {
+//       mediaRecorderRef.current.stop();
+//     }
+//   };
+
+//   const handleRecordingStop = () => {
+//     const mimeType = getSupportedMimeType();
+//     const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
+//     audioChunksRef.current = []; // Clear the audioChunksRef array for next recording
+
+//     // Create a URL for the recorded audio to listen locally
+//     const audioUrl = URL.createObjectURL(audioBlob);
+//     setLocalAudioUrl(audioUrl);
+
+//     // Log the audio blob properties to verify its content
+//     console.log("Audio blob properties:", {
+//       size: audioBlob.size,
+//       type: audioBlob.type,
+//     });
+
+//     const formData = new FormData();
+//     formData.append("audio", audioBlob, "audio." + mimeType.split("/")[1]);
+//     formData.append("browser", getBrowser());
+
+//     // Upload the audio
+//     uploadAudio(formData);
+//   };
+
+//   // Error1 on iphone
+//   const uploadAudio = async (formData) => {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:5001/speech-to-text",
+//         formData,
+//         {
+//           headers: { "Content-Type": "multipart/form-data" },
+//         },
+//       );
+//       setTranscript(response.data.transcription);
+//       setAudioUrl(response.data.audioUrl);
+//     } catch (err) {
+//       console.error("Error uploading audio:", err);
+//       setError("Error uploading audio: " + err.message);
+//       if (err.response) {
+//         console.error("Error response data:", err.response.data);
+//       }
+//     }
+//   };
+
+//   const getSupportedMimeType = () => {
+//     const mimeTypes = ["audio/webm", "audio/mp4", "audio/ogg", "audio/wav"];
+//     for (const mimeType of mimeTypes) {
+//       if (MediaRecorder.isTypeSupported(mimeType)) {
+//         return mimeType;
+//       }
+//     }
+//     return null;
+//   };
+
+//   const getBrowser = () => {
+//     const userAgent = navigator.userAgent;
+//     if (userAgent.indexOf("Firefox") > -1) {
+//       return "Firefox";
+//     } else if (
+//       userAgent.indexOf("Chrome") > -1 ||
+//       userAgent.indexOf("Opera") > -1
+//     ) {
+//       return "Chrome";
+//     } else if (
+//       userAgent.indexOf("Safari") > -1 &&
+//       userAgent.indexOf("Chrome") === -1
+//     ) {
+//       return "Safari";
+//     } else {
+//       return "Other";
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <button onClick={startRecording}>Start Recording</button>
+//       <button onClick={stopRecording}>Stop Recording</button>
+//       <p>{transcript}</p>
+//       {audioUrl ? (
+//         <div>
+//           <p>Uploaded Audio:</p>
+//           <audio controls src={audioUrl}></audio>
+//         </div>
+//       ) : (
+//         localAudioUrl && (
+//           <div>
+//             <p>Local Recorded Audio:</p>
+//             <audio controls src={localAudioUrl}></audio>
+//           </div>
+//         )
+//       )}
+//       {error && <p className="error">{error}</p>}
+//     </div>
+//   );
+// };
+
+// export default SpeechToText;
 ////////////////////////////////////////
 
 // import React, { useState, useRef } from "react";
