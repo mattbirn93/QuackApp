@@ -33,9 +33,9 @@ const PORT = process.env.PORT || 5001; // Port to run the server on
 
 // Read SSL certificate and key from environment variables
 const keyPath =
-  process.env.SSL_KEY_PATH || path.join(__dirname, "../certs/key.pem");
+  process.env.VITE_SSL_KEY_PATH || path.join(__dirname, "./certs/key.pem");
 const certPath =
-  process.env.SSL_CERT_PATH || path.join(__dirname, "../certs/cert.pem");
+  process.env.VITE_SSL_CERT_PATH || path.join(__dirname, "./certs/cert.pem");
 
 // Read SSL certificate and key
 const httpsOptions = {
