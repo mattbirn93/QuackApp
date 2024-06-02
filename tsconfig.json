@@ -23,5 +23,5 @@
     "types": ["node", "express", "morgan"],
     "baseUrl": "src",
   },
-  "include": ["frontend/src", "server.ts", "backend/**/*.ts", "backend/services/userService.tsx"]
+  "include": ["frontend/src", "server.ts", "backend/**/*.ts", "backend/services/userService.tsx", "frontend/src/sw/worker.js"]
 }
