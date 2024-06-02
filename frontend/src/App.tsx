@@ -6,12 +6,13 @@ import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 
 import CameraComponent from "./components/Camera/CameraComponent-EXAMPLE";
 import LocationComponent from "./components/Location/LocationComponent-EXAMPLE";
-import SpeechToText from "./components/SppechToText/SpeechToText-EXAMPLE";
+import SpeechToText from "./components/SpeechToText/SpeechToText-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
 import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
+// import AudioRecorder from "./components/AudioRecorder/AudioRecorder";
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
@@ -180,6 +181,7 @@ const App: React.FC = () => {
       ) : (
         <div className="custom-combined">
           <Header />
+          {/* <AudioRecorder /> */}
           {/* Heading with extended 6xl font size */}
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App
