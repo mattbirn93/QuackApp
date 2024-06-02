@@ -123,6 +123,7 @@ const App: React.FC = () => {
 
     if (socketRef.current) {
       socketRef.current.emit("add_user", data);
+      console.log("USER CREATED");
     }
   };
 
