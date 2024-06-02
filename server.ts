@@ -1,5 +1,3 @@
-// The server file initializes the Express application, connects to the database, sets up middleware, and defines the routes.
-
 import "tsconfig-paths/register.js"; // Enables tsconfig paths in the project
 import express from "express"; // Express framework for building the server
 import path from "path"; // Utility module for handling and transforming file paths
@@ -33,10 +31,16 @@ dotenv.config(); // Load environment variables from .env file
 const app = express(); // Initialize Express app
 const PORT = process.env.PORT || 5001; // Port to run the server on
 
+// Read SSL certificate and key from environment variables
+const keyPath =
+  process.env.SSL_KEY_PATH || path.join(__dirname, "../certs/key.pem");
+const certPath =
+  process.env.SSL_CERT_PATH || path.join(__dirname, "../certs/cert.pem");
+
 // Read SSL certificate and key
 const httpsOptions = {
-  key: fs.readFileSync(path.resolve(__dirname, "../certs/key.pem")),
-  cert: fs.readFileSync(path.resolve(__dirname, "../certs/cert.pem")),
+  key: fs.readFileSync(keyPath),
+  cert: fs.readFileSync(certPath),
 };
 
 const server = https.createServer(httpsOptions, app); // Create an HTTPS server
