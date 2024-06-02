@@ -61,6 +61,12 @@ app.use(express.static(path.join(__dirname, "dist"))); // Serve static files fro
 // Connect to the Mongo Database
 connectDB();
 
+// Simple console log for adding a user
+app.use("/api/users", (req, res, next) => {
+  console.log(`SERVER USER ADDED: ${req.originalUrl}`);
+  next();
+});
+
 // Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);

@@ -3,7 +3,6 @@ import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
-
 import CameraComponent from "./components/Camera/CameraComponent-EXAMPLE";
 import LocationComponent from "./components/Location/LocationComponent-EXAMPLE";
 import SpeechToText from "./components/SpeechToText/SpeechToText-EXAMPLE";
@@ -12,14 +11,20 @@ import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
 import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
-// import AudioRecorder from "./components/AudioRecorder/AudioRecorder";
+import { set } from "mongoose";
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
   const [data, setData] = useState<AppDataInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [testMe, setTestMe] = useState<string>("TEST BUTTON IS NOT WORKING");
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const touchHere = () => {
+    setTestMe("TEST BUTTON IS WORKING");
+    console.log("TEST BUTTON IS WORKING:", testMe);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -35,12 +40,17 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`${API_BASE_URL}/api/users`, {
-          first_name: "From front end UseEffect9",
-          last_name: "From front end UseEffect9",
-          email: "From front end UseEffect9@gmail.com",
-          scripts_id_array: [],
-        });
+        // console.log("API_BASE_URL:", API_BASE_URL);
+        const response = await axios.post(
+          `https://192.168.0.211:5173/api/users`,
+          {
+            // const response = await axios.post(`${API_BASE_URL}/api/users`, {
+            first_name: "From front end UseEffect9",
+            last_name: "From front end UseEffect9",
+            email: "From front end UseEffect9@gmail.com",
+            scripts_id_array: [],
+          },
+        );
         console.log("User added:", response.data);
       } catch (error: any) {
         if (error.response) {
@@ -56,8 +66,8 @@ const App: React.FC = () => {
   }, [API_BASE_URL]);
 
   useEffect(() => {
-    // Initialize the WebSocket connection
-    socketRef.current = io(API_BASE_URL, {
+    socketRef.current = io("https://192.168.0.211:5173", {
+      // socketRef.current = io(API_BASE_URL, {
       transports: ["websocket"], // Force WebSocket transport
       rejectUnauthorized: false, // Accept self-signed certificates if using HTTPS
     });
@@ -182,13 +192,21 @@ const App: React.FC = () => {
       ) : (
         <div className="custom-combined">
           <Header />
-          {/* <AudioRecorder /> */}
-          {/* Heading with extended 6xl font size */}
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App
           </h1>
+          <button
+            style={{ color: "red", backgroundColor: "yellow" }}
+            onClick={() => {
+              touchHere();
+            }}
+          >
+            THIS IS THE TEST BUTTON
+          </button>
+          {testMe}
           <Button />
           <FramerComponent />
+
           <div>Toxic Positivity is for Realzzzzzz</div>
           <button title="Add User" onClick={addUser}>
             Add User
@@ -224,11 +242,9 @@ const App: React.FC = () => {
                 <button className="custom-btn">Click Me</button>
               </div>
               <h1 className="text-[pink]">Camera and Location Access</h1>
-
               <div className="mt-[10rem]">
                 <CameraComponent />
               </div>
-
               <LocationComponent />
               <div className="mt-[10rem]">
                 <SpeechToText />
