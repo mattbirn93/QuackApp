@@ -13,13 +13,27 @@ import { Button } from "./components";
 import Header from "./components/Header/Header-EXAMPLE";
 import { set } from "mongoose";
 
+const getApiBaseUrl = () => {
+  const hostname = window.location.hostname;
+  if (hostname === "localhost" || hostname === "127.0.0.1") {
+    return import.meta.env.VITE_API_BASE_URL_DESKTOP;
+  } else {
+    return import.meta.env.VITE_API_BASE_URL_MOBILE;
+  }
+};
+
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
   const [data, setData] = useState<AppDataInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [testMe, setTestMe] = useState<string>("TEST BUTTON IS NOT WORKING");
+  const [isClicked, setIsClicked] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+
+  const API_BASE_URL = getApiBaseUrl();
 
   const touchHere = () => {
     setTestMe("TEST BUTTON IS WORKING");
@@ -40,17 +54,13 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // console.log("API_BASE_URL:", API_BASE_URL);
-        const response = await axios.post(
-          `https://192.168.0.211:5173/api/users`,
-          {
-            // const response = await axios.post(`${API_BASE_URL}/api/users`, {
-            first_name: "From front end UseEffect9",
-            last_name: "From front end UseEffect9",
-            email: "From front end UseEffect9@gmail.com",
-            scripts_id_array: [],
-          },
-        );
+        console.log("API_BASE_URL:", API_BASE_URL);
+        const response = await axios.post(`${API_BASE_URL}/api/users`, {
+          first_name: "From front end UseEffect9",
+          last_name: "From front end UseEffect9",
+          email: "From front end UseEffect9@gmail.com",
+          scripts_id_array: [],
+        });
         console.log("User added:", response.data);
       } catch (error: any) {
         if (error.response) {
@@ -66,8 +76,7 @@ const App: React.FC = () => {
   }, [API_BASE_URL]);
 
   useEffect(() => {
-    socketRef.current = io("https://192.168.0.211:5173", {
-      // socketRef.current = io(API_BASE_URL, {
+    socketRef.current = io(API_BASE_URL, {
       transports: ["websocket"], // Force WebSocket transport
       rejectUnauthorized: false, // Accept self-signed certificates if using HTTPS
     });
@@ -205,10 +214,20 @@ const App: React.FC = () => {
           </button>
           {testMe}
           <Button />
+          <button
+            onClick={handleClick}
+            style={{ backgroundColor: isClicked ? "blue" : "gray" }}
+          >
+            Click me
+          </button>
           <FramerComponent />
 
           <div>Toxic Positivity is for Realzzzzzz</div>
-          <button title="Add User" onClick={addUser}>
+          <button
+            style={{ backgroundColor: isClicked ? "red" : "yellow" }}
+            title="Add User"
+            onClick={addUser}
+          >
             Add User
           </button>
           <button onClick={updateContentItem}>Update Content Item</button>
