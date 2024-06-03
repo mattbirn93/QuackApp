@@ -21,7 +21,6 @@ const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_BASE_URL_MOBILE;
   }
 };
-console.log("Hello");
 
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
