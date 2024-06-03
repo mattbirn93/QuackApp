@@ -48,6 +48,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // Start Performance Now
+      const start = performance.now();
+
       try {
         console.log("API_BASE_URL:", API_BASE_URL);
         const response = await axios.post(`${API_BASE_URL}/api/users`, {
@@ -56,8 +59,16 @@ const App: React.FC = () => {
           email: "From front end UseEffect9@gmail.com",
           scripts_id_array: [],
         });
+
+        //End Performance Now
+        const end = performance.now();
+        console.log(`Axios request took ${end - start} ms`);
         console.log("User added:", response.data);
       } catch (error: any) {
+        //End Performance Now
+        const end = performance.now();
+        console.log(`Axios request took ${end - start} ms (with error)`);
+
         if (error.response) {
           console.error("Error response:", error.response.data);
         } else if (error.request) {
@@ -67,17 +78,23 @@ const App: React.FC = () => {
         }
       }
     };
+
     fetchData();
   }, [API_BASE_URL]);
 
   useEffect(() => {
+    const socketConnectStart = performance.now();
+
     socketRef.current = io(API_BASE_URL, {
       transports: ["websocket"], // Force WebSocket transport
       rejectUnauthorized: false, // Accept self-signed certificates if using HTTPS
     });
 
     socketRef.current.on("connect", () => {
-      console.log("Socket connected");
+      const socketConnectEnd = performance.now();
+      console.log(
+        `Socket connected in ${socketConnectEnd - socketConnectStart} ms`,
+      );
     });
 
     socketRef.current.on("content_item_created", (response) => {
@@ -263,3 +280,145 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+/////////////////
+
+//BELOW HERE IS THE CODE TO MEASURE WEBSOCKEt ROUTN TRIP TIME
+
+// import React, { useEffect, useState, useRef } from "react";
+// import axios from "axios";
+// import { io, Socket } from "socket.io-client";
+
+// const getApiBaseUrl = () => {
+//   const hostname = window.location.hostname;
+//   if (hostname === "localhost" || hostname === "127.0.0.1") {
+//     return import.meta.env.VITE_API_BASE_URL_DESKTOP;
+//   } else {
+//     return import.meta.env.VITE_API_BASE_URL_MOBILE;
+//   }
+// };
+
+// const App: React.FC = () => {
+//   const socketRef = useRef<Socket | null>(null);
+//   const [apiResponseTime, setApiResponseTime] = useState<number | null>(null);
+//   const [socketConnectTime, setSocketConnectTime] = useState<number | null>(
+//     null,
+//   );
+//   const [messageRoundTripTime, setMessageRoundTripTime] = useState<
+//     number | null
+//   >(null);
+//   const messageSendTimeRef = useRef<number | null>(null);
+
+//   const API_BASE_URL = getApiBaseUrl();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const start = performance.now();
+//       try {
+//         console.log("API_BASE_URL:", API_BASE_URL);
+//         const response = await axios.post(`${API_BASE_URL}/api/users`, {
+//           first_name: "From front end UseEffect9",
+//           last_name: "From front end UseEffect9",
+//           email: "From front end UseEffect9@gmail.com",
+//           scripts_id_array: [],
+//         });
+//         const end = performance.now();
+//         setApiResponseTime(end - start);
+//         console.log(`Axios request took ${end - start} ms`);
+//         console.log("User added:", response.data);
+//       } catch (error: any) {
+//         const end = performance.now();
+//         console.log(`Axios request took ${end - start} ms (with error)`);
+//         setApiResponseTime(end - start);
+//         if (error.response) {
+//           console.error("Error response:", error.response.data);
+//         } else if (error.request) {
+//           console.error("Error request:", error.request);
+//         } else {
+//           console.error("Error:", error.message);
+//         }
+//       }
+//     };
+
+//     fetchData();
+//   }, [API_BASE_URL]);
+
+//   useEffect(() => {
+//     const socketConnectStart = performance.now();
+
+//     socketRef.current = io(API_BASE_URL, {
+//       transports: ["websocket"],
+//       rejectUnauthorized: false,
+//     });
+
+//     socketRef.current.on("connect", () => {
+//       const socketConnectEnd = performance.now();
+//       setSocketConnectTime(socketConnectEnd - socketConnectStart);
+//       console.log(
+//         `Socket connected in ${socketConnectEnd - socketConnectStart} ms`,
+//       );
+//     });
+
+//     socketRef.current.on("message_ack", () => {
+//       if (messageSendTimeRef.current !== null) {
+//         const messageReceiveTime = performance.now();
+//         setMessageRoundTripTime(
+//           messageReceiveTime - messageSendTimeRef.current,
+//         );
+//         console.log(
+//           `WebSocket message round trip took ${messageReceiveTime - messageSendTimeRef.current} ms`,
+//         );
+//         messageSendTimeRef.current = null; // Reset after measuring
+//       }
+//     });
+
+//     socketRef.current.on("connect_error", (error) => {
+//       console.error("Socket connection error:", error);
+//     });
+
+//     return () => {
+//       if (socketRef.current) {
+//         socketRef.current.disconnect();
+//       }
+//     };
+//   }, [API_BASE_URL]);
+
+//   const sendMessage = () => {
+//     messageSendTimeRef.current = performance.now();
+//     if (socketRef.current) {
+//       socketRef.current.emit("add_user", {
+//         first_name: "Jane",
+//         last_name: "Doe",
+//         email: "janedoe@example.com",
+//         scripts_id_array: [],
+//       });
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>Performance Metrics</h1>
+//       <p>
+//         API Response Time:{" "}
+//         {apiResponseTime !== null
+//           ? `${apiResponseTime.toFixed(2)} ms`
+//           : "Loading..."}
+//       </p>
+//       <p>
+//         Socket Connect Time:{" "}
+//         {socketConnectTime !== null
+//           ? `${socketConnectTime.toFixed(2)} ms`
+//           : "Loading..."}
+//       </p>
+//       <p>
+//         WebSocket Message Round Trip Time:{" "}
+//         {messageRoundTripTime !== null
+//           ? `${messageRoundTripTime.toFixed(2)} ms`
+//           : "Not measured yet"}
+//       </p>
+//       <button onClick={sendMessage}>Send WebSocket Message</button>
+//     </div>
+//   );
+// };
+
+// export default App;

@@ -1,16 +1,15 @@
-import "tsconfig-paths/register.js"; // Enables tsconfig paths in the project
-import express from "express"; // Express framework for building the server
-import path from "path"; // Utility module for handling and transforming file paths
-import { fileURLToPath } from "url"; // Module to convert file URL to path
-import bodyParser from "body-parser"; // Middleware to parse request bodies
-import cors from "cors"; // Middleware to enable CORS (Cross-Origin Resource Sharing)
-import dotenv from "dotenv"; // Module to load environment variables from a .env file
-import connectDB from "./backend/config2.js"; // Function to connect to the MongoDB database
-import https from "https"; // HTTPS module to create server
-import fs from "fs"; // File system module to read certificate files
-import { Server as SocketIOServer } from "socket.io"; // Socket.IO server for real-time communication
+import "tsconfig-paths/register.js";
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./backend/config2.js";
+import https from "https";
+import fs from "fs";
+import { Server as SocketIOServer } from "socket.io";
 
-// Importing user-related routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
@@ -22,52 +21,45 @@ import { createContentItemSocket } from "./backend/controllers/sceneVersionConte
 import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 
-// ES module equivalents of __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
-const app = express(); // Initialize Express app
-const PORT = process.env.PORT || 5001; // Port to run the server on
+const app = express();
+const PORT = process.env.PORT || 5001;
 
-// Read SSL certificate and key from environment variables
 const keyPath =
   process.env.VITE_SSL_KEY_PATH || path.join(__dirname, "./certs/key.pem");
 const certPath =
   process.env.VITE_SSL_CERT_PATH || path.join(__dirname, "./certs/cert.pem");
 
-// Read SSL certificate and key
 const httpsOptions = {
   key: fs.readFileSync(keyPath),
   cert: fs.readFileSync(certPath),
 };
 
-const server = https.createServer(httpsOptions, app); // Create an HTTPS server
+const server = https.createServer(httpsOptions, app);
 const io = new SocketIOServer(server, {
   cors: {
-    origin: "*", // Allow all origins (for development, restrict in production)
-    methods: ["GET", "POST"], // Allowed HTTP methods
+    origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
-// Middleware to parse request bodies
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.use(cors()); // Enable CORS
-app.use(express.static(path.join(__dirname, "dist"))); // Serve static files from the dist directory
+app.use(cors());
+app.use(express.static(path.join(__dirname, "dist")));
 
-// Connect to the Mongo Database
 connectDB();
 
-// Simple console log for adding a user
 app.use("/api/users", (req, res, next) => {
   console.log(`SERVER USER ADDED: ${req.originalUrl}`);
   next();
 });
 
-// Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);
 app.use("/api/scripts", scriptRoutes);
@@ -82,26 +74,26 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
 
-// All other routes should serve the index.html file
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-// Socket.io connection handler
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
-  socket.on("add_user", (data) => {
+  socket.on("add_user", (data, callback) => {
     createUserSocket(data, (error: any, savedUser: any) => {
       if (error) {
         socket.emit("user_add_error", error);
       } else {
         socket.emit("user_added", savedUser);
       }
+      if (callback) callback();
+      socket.emit("message_ack");
     });
   });
 
-  socket.on("get_scene_version_content", (data) => {
+  socket.on("get_scene_version_content", (data, callback) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
       if (error) {
@@ -109,10 +101,12 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("scene_version_content", result);
       }
+      if (callback) callback();
+      socket.emit("message_ack");
     });
   });
 
-  socket.on("create_content_item", (data: any) => {
+  socket.on("create_content_item", (data: any, callback) => {
     console.log("Received create_content_item event:", data);
     createContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -120,10 +114,12 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_created", result);
       }
+      if (callback) callback();
+      socket.emit("message_ack");
     });
   });
 
-  socket.on("update_content_item", (data: any) => {
+  socket.on("update_content_item", (data: any, callback) => {
     console.log("Received update_content_item event:", data);
     updateContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -131,10 +127,12 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_updated", result);
       }
+      if (callback) callback();
+      socket.emit("message_ack");
     });
   });
 
-  socket.on("delete_content_item", (data: any) => {
+  socket.on("delete_content_item", (data: any, callback) => {
     console.log("Received delete_content_item event:", data);
     deleteContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -142,6 +140,8 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_deleted", result);
       }
+      if (callback) callback();
+      socket.emit("message_ack");
     });
   });
 
@@ -150,7 +150,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// Start the server
 server.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on https://localhost:${PORT}`);
 });
