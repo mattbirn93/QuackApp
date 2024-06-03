@@ -35,11 +35,6 @@ const App: React.FC = () => {
 
   const API_BASE_URL = getApiBaseUrl();
 
-  const touchHere = () => {
-    setTestMe("TEST BUTTON IS WORKING");
-    console.log("TEST BUTTON IS WORKING:", testMe);
-  };
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setData({
@@ -204,15 +199,6 @@ const App: React.FC = () => {
           <h1 className="text-6xl font-bold text-primary mb-4">
             Welcome to the Screenwriting App
           </h1>
-          <button
-            style={{ color: "red", backgroundColor: "yellow" }}
-            onClick={() => {
-              touchHere();
-            }}
-          >
-            THIS IS THE TEST BUTTON
-          </button>
-          {testMe}
           <Button />
           <button
             onClick={handleClick}
