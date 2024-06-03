@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import scripts from "../models/scriptModel.js";
 import scenes from "../models/sceneModel.js";
 import User from "../models/userModel.js";
-import characters from "../models/charactersModel.js"
-
+import characters from "../models/characterModel.js"
 // Controller method to create a new script and its associated scenes
 export const createScript = async (req: Request, res: Response) => {
   const session = await mongoose.startSession();

@@ -7,7 +7,7 @@ export interface ICharacter extends Document {
 }
 
 const characterSchema: Schema = new Schema({
-  characters_array: { type: [], required: true },
+  characters_array: { type: [String], required: true },
   script_id: { type: mongoose.Types.ObjectId, required: true, ref: 'Script' },
   time_stamp: { type: Date, default: Date.now },
 });

@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+.editor-container p {
+  font-family: 'Times New Roman', serif; /* Typical screenplay font */
+  font-size: 16px;
+  line-height: 1.5; /* Adjust line spacing to make it easy to read */
+  margin-bottom: 1em; /* Space between paragraphs */
+}
+
+
+.editor-container {
+  max-width: 800px; /* or however wide you want your "page" to be */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff; /* White background for the paper */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: adds a slight shadow around the "paper" */
+  min-height: 1000px; /* Optional: to ensure there's always "paper" visible */
+  border-radius: 5px; /* Optional: to give the paper rounded corners */
+}

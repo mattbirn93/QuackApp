@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import characters from "../models/charactersModel.js"
+import characters from "../models/characterModel.js"
 
 export const getCharactersById = async (id : any, callback : any) => {
     try {
@@ -15,7 +15,7 @@ export const getCharactersById = async (id : any, callback : any) => {
   export const addCharacterToArray = async (data : any, callback : any) => {
     const { charactersId, character } = data;
     const session = await mongoose.startSession();
-
+ 
     if (!mongoose.Types.ObjectId.isValid(charactersId)) {
       return callback('Invalid Characters document ID');
     }
