@@ -10,12 +10,11 @@ import https from "https";
 import fs from "fs";
 import { Server as SocketIOServer } from "socket.io";
 
-
 // Importing user-related routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
-import scriptsFullRoutes from "./backend/routes/scriptsFullRoutes.js"
+import scriptsFullRoutes from "./backend/routes/scriptsFullRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 import { createUserSocket } from "./backend/controllers/userController2.js";
@@ -23,7 +22,11 @@ import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersion
 import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-import { getCharactersById, addCharacterToArray, updateCharacterInArray } from "./backend/controllers/charactersWSController.js";
+import {
+  getCharactersById,
+  addCharacterToArray,
+  updateCharacterInArray,
+} from "./backend/controllers/charactersWSController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,7 +75,7 @@ app.use("/api/scripts/fetchScriptsById", scriptRoutes);
 app.use("/api/scripts/createNewScript", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("api/scenes/createSecene", sceneRoutes);
-app.use("api/scriptsFull", scriptsFullRoutes)
+app.use("api/scriptsFull", scriptsFullRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
 app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
@@ -140,32 +143,32 @@ io.on("connection", (socket) => {
       }
     });
   });
-  socket.on('getCharactersById', (id) => {
+  socket.on("getCharactersById", (id) => {
     getCharactersById(id, (error: any, characters: any) => {
       if (error) {
-        socket.emit('error', error);
+        socket.emit("error", error);
       } else {
-        socket.emit('charactersData', characters);
+        socket.emit("charactersData", characters);
       }
     });
   });
 
-  socket.on('addCharacterToArray', (data) => {
+  socket.on("addCharacterToArray", (data) => {
     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
       if (error) {
-        socket.emit('error', error);
+        socket.emit("error", error);
       } else {
-        socket.emit('updatedCharacters', updatedCharacters);
+        socket.emit("updatedCharacters", updatedCharacters);
       }
     });
   });
 
-  socket.on('updateCharacterInArray', (data) => {
+  socket.on("updateCharacterInArray", (data) => {
     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
       if (error) {
-        socket.emit('error', error);
+        socket.emit("error", error);
       } else {
-        socket.emit('updatedCharacters', updatedCharacters);
+        socket.emit("updatedCharacters", updatedCharacters);
       }
     });
   });

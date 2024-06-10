@@ -5,9 +5,9 @@ import Footer from "../components/Footer/Footer";
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
