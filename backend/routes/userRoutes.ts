@@ -1,3 +1,4 @@
+
 // The routes define the endpoints and map them to the respective controller methods.
 
 import { Router } from "express";

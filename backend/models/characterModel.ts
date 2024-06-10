@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface ICharacter extends Document {
-  characters_array: string[];
+  characters_array: any[];
   script_id: mongoose.Types.ObjectId;
   time_stamp: Date;
 }

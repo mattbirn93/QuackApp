@@ -10,9 +10,12 @@ import https from "https";
 import fs from "fs";
 import { Server as SocketIOServer } from "socket.io";
 
+
+// Importing user-related routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
+import scriptsFullRoutes from "./backend/routes/scriptsFullRoutes.js"
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 import { createUserSocket } from "./backend/controllers/userController2.js";
@@ -20,6 +23,7 @@ import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersion
 import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { getCharactersById, addCharacterToArray, updateCharacterInArray } from "./backend/controllers/charactersWSController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,6 +64,7 @@ app.use("/api/users", (req, res, next) => {
   next();
 });
 
+// Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);
 app.use("/api/scripts", scriptRoutes);
@@ -67,6 +72,7 @@ app.use("/api/scripts/fetchScriptsById", scriptRoutes);
 app.use("/api/scripts/createNewScript", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("api/scenes/createSecene", sceneRoutes);
+app.use("api/scriptsFull", scriptsFullRoutes)
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
 app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
@@ -81,19 +87,17 @@ app.get("*", (req, res) => {
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
-  socket.on("add_user", (data, callback) => {
+  socket.on("add_user", (data) => {
     createUserSocket(data, (error: any, savedUser: any) => {
       if (error) {
         socket.emit("user_add_error", error);
       } else {
         socket.emit("user_added", savedUser);
       }
-      if (callback) callback();
-      socket.emit("message_ack");
     });
   });
 
-  socket.on("get_scene_version_content", (data, callback) => {
+  socket.on("get_scene_version_content", (data) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
       if (error) {
@@ -101,12 +105,10 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("scene_version_content", result);
       }
-      if (callback) callback();
-      socket.emit("message_ack");
     });
   });
 
-  socket.on("create_content_item", (data: any, callback) => {
+  socket.on("create_content_item", (data: any) => {
     console.log("Received create_content_item event:", data);
     createContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -114,12 +116,10 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_created", result);
       }
-      if (callback) callback();
-      socket.emit("message_ack");
     });
   });
 
-  socket.on("update_content_item", (data: any, callback) => {
+  socket.on("update_content_item", (data: any) => {
     console.log("Received update_content_item event:", data);
     updateContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -127,12 +127,10 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_updated", result);
       }
-      if (callback) callback();
-      socket.emit("message_ack");
     });
   });
 
-  socket.on("delete_content_item", (data: any, callback) => {
+  socket.on("delete_content_item", (data: any) => {
     console.log("Received delete_content_item event:", data);
     deleteContentItemSocket(data, (error: any, result: any) => {
       if (error) {
@@ -140,8 +138,35 @@ io.on("connection", (socket) => {
       } else {
         socket.emit("content_item_deleted", result);
       }
-      if (callback) callback();
-      socket.emit("message_ack");
+    });
+  });
+  socket.on('getCharactersById', (id) => {
+    getCharactersById(id, (error: any, characters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('charactersData', characters);
+      }
+    });
+  });
+
+  socket.on('addCharacterToArray', (data) => {
+    addCharacterToArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('updatedCharacters', updatedCharacters);
+      }
+    });
+  });
+
+  socket.on('updateCharacterInArray', (data) => {
+    updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit('error', error);
+      } else {
+        socket.emit('updatedCharacters', updatedCharacters);
+      }
     });
   });
 
