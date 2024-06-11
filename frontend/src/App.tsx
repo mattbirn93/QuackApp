@@ -209,13 +209,9 @@ const App: React.FC = () => {
 
   return (
     <MyErrorBoundary fallback={"There was an error"}>
-      {loading ? (
-        <SkeletonLoader />
-      ) : (
-        <div className="ProseBackground">
-          <Tiptap setDescription={setDescription} />
-        </div>
-      )}
+      <div className="ProseBackground">
+        <Tiptap setDescription={setDescription} />
+      </div>
     </MyErrorBoundary>
   );
 };

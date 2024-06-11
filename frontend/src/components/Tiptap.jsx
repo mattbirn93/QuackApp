@@ -189,7 +189,6 @@ export const Tiptap = ({ setDescription }) => {
     <div>
       <SpeechToText
         recordingState={recordingState}
-        listening={listening}
         onSpeechText={handleSpeechText}
       />
       <button onClick={toggleRecording}>
