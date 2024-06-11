@@ -17,8 +17,8 @@
 
         /* Typography */
         font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-        font-weight: 400;
+        /* line-height: 1.5; */
+        /* font-weight: 400; */
 
         /* Other */
         text-rendering: optimizeLegibility;
@@ -35,7 +35,7 @@
     }
 
     body {
-        @apply m-0 flex items-center min-w-[320px] min-h-screen bg-bg-dark text-text-light;
+        @apply bg-bg-dark text-text-light;
     }
 
     h1 {
@@ -118,14 +118,20 @@
     }
 }
 
+.ProseBackground {
+    background-color: black;
+    width: 810px;
+    margin: 0 auto;
+}
+
 .ProseMirror {
     background-color: white;
     color: black;
     font-size: 1.0rem;
     padding: 0.75rem;
     height: 100rem;
-    width: 100vw;
     outline: none;
+    padding-top: 5.5rem;
 }
 
 .collaboration-cursor__caret {
@@ -159,7 +165,7 @@
 }
 
 .ProseMirror>*+* {
-    margin-top: 0.75em;
+    /* margin-top: 0.75em; */
 }
 
 .ProseMirror ul,
@@ -228,7 +234,7 @@
     color: black;
     text-align: center;
     border-top: 3px solid black;
-;}
+}
 
 .menuBar {
     padding-bottom: 5px;
@@ -264,52 +270,55 @@ button.is_active {
     border-radius: 2px;
 }
 
-
-/* src/customNodes.css */
 /* General settings for better readability and spacing */
 body {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 12pt;
-    line-height: 1.5;
+    /* font-family: 'Courier New', Courier, monospace; */
+    /* font-size: 12pt;
+    line-height: 1.5; */
 }
 
 /* Style for action */
 .action {
-    margin-left: 1.5in;
-    margin-right: 1in;
+    margin-left: 140px !important;
+    margin-right: 140px !important;
     font-family: 'Courier New', Courier, monospace;
     font-size: 12pt;
+    font-weight: 550;
 }
 
 /* Style for scene header */
 .scene-header {
-    margin-left: 1.5in;
-    margin-right: 1in;
+    margin-left: 140px !important;
+    margin-right: 140px !important;
+    margin-top: 25px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 12pt;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 550;
 }
 
 /* Style for character */
 .character {
-    margin-left: 3in;
-    /* Roughly 3 inches from the left edge of the page */
-    margin-right: 1in;
     font-family: 'Courier New', Courier, monospace;
     font-size: 12pt;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 550;
     text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-bottom: -.2rem;
 }
 
 /* Style for dialogue */
 .dialogue {
-    margin-left: 2in;
-    /* Roughly 2 inches from the left edge of the page */
-    margin-right: 1in;
+    margin-left: 240px !important;
+    margin-right: 240px !important;
     font-family: 'Courier New', Courier, monospace;
     font-size: 12pt;
+    font-weight: 550;
+    line-height: 1.1;
 }
 
 /* Responsive adjustments */
@@ -323,11 +332,15 @@ body {
     }
 
     .character {
-        @apply ml-48;
+        @apply ml-auto mr-auto text-center;
     }
 
     .dialogue {
         @apply ml-24 mr-8;
+    }
+
+    .ProseBackground {
+        width: 400px;
     }
 }
 
@@ -341,7 +354,7 @@ body {
     }
 
     .character {
-        @apply ml-48;
+        @apply ml-auto mr-auto text-center;
     }
 
     .dialogue {
@@ -360,10 +373,15 @@ body {
     }
 
     .character {
-        @apply ml-10;
+        @apply ml-auto mr-auto text-center;
     }
 
     .dialogue {
         @apply ml-6 mr-2;
     }
+}
+
+/* NodeButton styles */
+.nodeButton1 {
+    @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
 }

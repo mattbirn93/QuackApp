@@ -1,4 +1,3 @@
-// src/Tiptap.jsx
 import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -8,6 +7,7 @@ import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
 import { Action, SceneHeader, Character, Dialogue } from "./nodes/customNodes";
+import NodeButton from "./Button/NodeButton";
 
 import {
   FaBold,
@@ -31,104 +31,108 @@ const MenuBar = ({ editor }) => {
   }
 
   return (
-    <div className="menuBar">
-      <div>
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "is_active" : ""}
-        >
-          <FaBold />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "is_active" : ""}
-        >
-          <FaItalic />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={editor.isActive("underline") ? "is_active" : ""}
-        >
-          <FaUnderline />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={editor.isActive("strike") ? "is_active" : ""}
-        >
-          <FaStrikethrough />
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? "is_active" : ""
-          }
-        >
-          <FaHeading />
-        </button>
-        <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 3 }) ? "is_active" : ""
-          }
-        >
-          <FaHeading className="heading3" />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive("bulletList") ? "is_active" : ""}
-        >
-          <FaListUl />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? "is_active" : ""}
-        >
-          <FaListOl />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={editor.isActive("blockquote") ? "is_active" : ""}
-        >
-          <FaQuoteLeft />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setAction().run()}
-          className={editor.isActive("action") ? "is_active" : ""}
-        >
-          Action
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setSceneHeader().run()}
-          className={editor.isActive("sceneHeader") ? "is_active" : ""}
-        >
-          Scene Header
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setCharacter().run()}
-          className={editor.isActive("character") ? "is_active" : ""}
-        >
-          Character
-        </button>
-        <button
-          onClick={() => editor.chain().focus().setDialogue().run()}
-          className={editor.isActive("dialogue") ? "is_active" : ""}
-        >
-          Dialogue
-        </button>
+    <>
+      <div className="flex justify-center my-2 space-x-2">
+        <NodeButton
+          editor={editor}
+          command="setAction"
+          label="Action"
+          className="nodeButton1"
+        />
+        <NodeButton
+          editor={editor}
+          command="setSceneHeader"
+          label="Scene Header"
+          className="nodeButton1"
+        />
+        <NodeButton
+          editor={editor}
+          command="setCharacter"
+          label="Character"
+          className="nodeButton1"
+        />
+        <NodeButton
+          editor={editor}
+          command="setDialogue"
+          label="Dialogue"
+          className="nodeButton1"
+        />
       </div>
-      <div>
-        <button onClick={() => editor.chain().focus().undo().run()}>
-          <FaUndo />
-        </button>
-        <button onClick={() => editor.chain().focus().redo().run()}>
-          <FaRedo />
-        </button>
+      <div className="menuBar">
+        <div>
+          <button
+            onClick={() => editor.chain().focus().toggleBold().run()}
+            className={editor.isActive("bold") ? "is_active" : ""}
+          >
+            <FaBold />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleItalic().run()}
+            className={editor.isActive("italic") ? "is_active" : ""}
+          >
+            <FaItalic />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            className={editor.isActive("underline") ? "is_active" : ""}
+          >
+            <FaUnderline />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleStrike().run()}
+            className={editor.isActive("strike") ? "is_active" : ""}
+          >
+            <FaStrikethrough />
+          </button>
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 2 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 2 }) ? "is_active" : ""
+            }
+          >
+            <FaHeading />
+          </button>
+          <button
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 3 }).run()
+            }
+            className={
+              editor.isActive("heading", { level: 3 }) ? "is_active" : ""
+            }
+          >
+            <FaHeading className="heading3" />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            className={editor.isActive("bulletList") ? "is_active" : ""}
+          >
+            <FaListUl />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            className={editor.isActive("orderedList") ? "is_active" : ""}
+          >
+            <FaListOl />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            className={editor.isActive("blockquote") ? "is_active" : ""}
+          >
+            <FaQuoteLeft />
+          </button>
+        </div>
+        <div>
+          <button onClick={() => editor.chain().focus().undo().run()}>
+            <FaUndo />
+          </button>
+          <button onClick={() => editor.chain().focus().redo().run()}>
+            <FaRedo />
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -153,15 +157,20 @@ export const Tiptap = ({ setDescription }) => {
     content,
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
+      const json = editor.getJSON();
+      const text = editor.getText();
+      console.log("HTML:", html);
+      console.log("JSON:", JSON.stringify(json, null, 2));
+      console.log("Text:", text);
       setDescription(html);
     },
   });
 
   return (
-    <div className="textEditor">
+    <div>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      <div className="characterDeck">Character Deck</div>
+      {/* <div className="characterDeck">Character Deck</div> */}
     </div>
   );
 };

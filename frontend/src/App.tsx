@@ -213,7 +213,7 @@ const App: React.FC = () => {
       {loading ? (
         <SkeletonLoader />
       ) : (
-        <div>
+        <div className="ProseBackground">
           <Tiptap setDescription={setDescription} />
         </div>
       )}
