@@ -154,9 +154,15 @@ const content = "<p>TIPTAP TEST TEXT</p>";
 
 export const Tiptap = ({ setDescription }) => {
   const [recordingState, setRecordingState] = useState("stop");
+  const [listening, setListening] = useState(false);
 
   const toggleRecording = () => {
-    setRecordingState((prev) => (prev === "stop" ? "start" : "stop"));
+    setRecordingState((prev) => {
+      const newState = prev === "stop" ? "start" : "stop";
+      console.log("Toggled recording state to:", newState);
+      setListening(newState === "start");
+      return newState;
+    });
   };
 
   const editor = useEditor({
@@ -166,9 +172,9 @@ export const Tiptap = ({ setDescription }) => {
       const html = editor.getHTML();
       const json = editor.getJSON();
       const text = editor.getText();
-      console.log("HTML:", html);
-      console.log("JSON:", JSON.stringify(json, null, 2));
-      console.log("Text:", text);
+      // console.log("HTML:", html);
+      // console.log("JSON:", JSON.stringify(json, null, 2));
+      // console.log("Text:", text);
       setDescription(html);
     },
   });
@@ -183,6 +189,7 @@ export const Tiptap = ({ setDescription }) => {
     <div>
       <SpeechToText
         recordingState={recordingState}
+        listening={listening}
         onSpeechText={handleSpeechText}
       />
       <button onClick={toggleRecording}>

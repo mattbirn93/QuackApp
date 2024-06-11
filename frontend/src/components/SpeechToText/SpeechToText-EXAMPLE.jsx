@@ -7,14 +7,7 @@ const SpeechToText = ({ recordingState, onSpeechText }) => {
   const recognitionRef = useRef(null);
   const interimTranscriptRef = useRef("");
 
-  useEffect(() => {
-    if (!("webkitSpeechRecognition" in window)) {
-      alert(
-        "Your browser does not support speech recognition. Please use a different browser.",
-      );
-      return;
-    }
-
+  const createRecognition = () => {
     const recognition = new window.webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -34,7 +27,6 @@ const SpeechToText = ({ recordingState, onSpeechText }) => {
           setText((prevText) => prevText + finalTranscript);
           interimTranscriptRef.current = ""; // Clear interim transcript on final result
           console.log("Final transcript:", finalTranscript);
-          onSpeechText(finalTranscript); // Send the final transcript back to TipTap
         } else {
           interimTranscript += event.results[i][0].transcript;
           console.log("Interim transcript:", interimTranscript);
@@ -58,19 +50,53 @@ const SpeechToText = ({ recordingState, onSpeechText }) => {
     };
 
     recognitionRef.current = recognition;
-  }, [onSpeechText]);
+  };
 
   useEffect(() => {
+    if (!("webkitSpeechRecognition" in window)) {
+      alert(
+        "Your browser does not support speech recognition. Please use a different browser.",
+      );
+      return;
+    }
+
+    createRecognition();
+  }, []);
+
+  useEffect(() => {
+    console.log("recordingState:", recordingState);
+    console.log("listening:", listening);
+
     if (recognitionRef.current) {
       if (recordingState === "start" && !listening) {
+        console.log("Starting recognition");
         recognitionRef.current.start();
       } else if (recordingState === "stop" && listening) {
+        console.log("Stopping recognition");
         recognitionRef.current.stop();
       }
     }
   }, [recordingState, listening]);
 
-  return <div></div>;
+  useEffect(() => {
+    if (recordingState === "stop" && listening) {
+      // Manually handle the forceful stop and reset
+      const handleForceStop = () => {
+        if (recognitionRef.current) {
+          console.log("Force stopping recognition");
+          recognitionRef.current.abort();
+          setListening(false);
+          onSpeechText(text); // Send the accumulated text back to TipTap
+          createRecognition();
+        }
+      };
+
+      // Give a small timeout to ensure the onend event is handled properly
+      setTimeout(handleForceStop, 100);
+    }
+  }, [recordingState, listening, text, onSpeechText]);
+
+  return <div>{errorMessage && <p>{errorMessage}</p>}</div>;
 };
 
 export default SpeechToText;
