@@ -123,10 +123,9 @@
     color: black;
     font-size: 1.0rem;
     padding: 0.75rem;
-    height: 100vh;
+    height: 100rem;
     width: 100vw;
     outline: none;
-    text-align: center;
 }
 
 .collaboration-cursor__caret {
@@ -215,9 +214,21 @@
 
 /* ............................ */
 .textEditor {
-    border-radius: 5rem;
+    border-radius: 0px;
     border: 1px solid grey;
 }
+
+.characterDeck {
+    position: absolute;
+    top: 45rem;
+    left: 0;
+    background-color: white;
+    height: 20rem;
+    width: 100%;
+    color: black;
+    text-align: center;
+    border-top: 3px solid black;
+;}
 
 .menuBar {
     padding-bottom: 5px;
@@ -251,4 +262,108 @@ button.is_active {
     background: rgb(197, 197, 197);
     padding: 2px 3px;
     border-radius: 2px;
+}
+
+
+/* src/customNodes.css */
+/* General settings for better readability and spacing */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    line-height: 1.5;
+}
+
+/* Style for action */
+.action {
+    margin-left: 1.5in;
+    margin-right: 1in;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+
+/* Style for scene header */
+.scene-header {
+    margin-left: 1.5in;
+    margin-right: 1in;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Style for character */
+.character {
+    margin-left: 3in;
+    /* Roughly 3 inches from the left edge of the page */
+    margin-right: 1in;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style for dialogue */
+.dialogue {
+    margin-left: 2in;
+    /* Roughly 2 inches from the left edge of the page */
+    margin-right: 1in;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+
+/* Responsive adjustments */
+@media (orientation: portrait) {
+
+    .action,
+    .scene-header,
+    .character,
+    .dialogue {
+        @apply ml-12 mr-8;
+    }
+
+    .character {
+        @apply ml-48;
+    }
+
+    .dialogue {
+        @apply ml-24 mr-8;
+    }
+}
+
+@media (orientation: landscape) {
+
+    .action,
+    .scene-header,
+    .character,
+    .dialogue {
+        @apply ml-12 mr-8;
+    }
+
+    .character {
+        @apply ml-48;
+    }
+
+    .dialogue {
+        @apply ml-24 mr-8;
+    }
+}
+
+/* Additional adjustments for smaller screens */
+@media (max-width: 600px) {
+
+    .action,
+    .scene-header,
+    .character,
+    .dialogue {
+        @apply ml-4 mr-2;
+    }
+
+    .character {
+        @apply ml-10;
+    }
+
+    .dialogue {
+        @apply ml-6 mr-2;
+    }
 }

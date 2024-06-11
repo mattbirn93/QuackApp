@@ -1,3 +1,4 @@
+// src/Tiptap.jsx
 import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -6,6 +7,8 @@ import Collaboration from "@tiptap/extension-collaboration";
 import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
+import { Action, SceneHeader, Character, Dialogue } from "./nodes/customNodes";
+
 import {
   FaBold,
   FaHeading,
@@ -92,6 +95,30 @@ const MenuBar = ({ editor }) => {
         >
           <FaQuoteLeft />
         </button>
+        <button
+          onClick={() => editor.chain().focus().setAction().run()}
+          className={editor.isActive("action") ? "is_active" : ""}
+        >
+          Action
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setSceneHeader().run()}
+          className={editor.isActive("sceneHeader") ? "is_active" : ""}
+        >
+          Scene Header
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setCharacter().run()}
+          className={editor.isActive("character") ? "is_active" : ""}
+        >
+          Character
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setDialogue().run()}
+          className={editor.isActive("dialogue") ? "is_active" : ""}
+        >
+          Dialogue
+        </button>
       </div>
       <div>
         <button onClick={() => editor.chain().focus().undo().run()}>
@@ -112,6 +139,10 @@ const extensions = [
     provider: provider,
     user: { name: "Mike Giffin", color: "red" },
   }),
+  Action,
+  SceneHeader,
+  Character,
+  Dialogue,
 ];
 
 const content = "<p>TIPTAP TEST TEXT</p>";
@@ -120,7 +151,6 @@ export const Tiptap = ({ setDescription }) => {
   const editor = useEditor({
     extensions,
     content,
-
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       setDescription(html);
@@ -131,6 +161,7 @@ export const Tiptap = ({ setDescription }) => {
     <div className="textEditor">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
+      <div className="characterDeck">Character Deck</div>
     </div>
   );
 };
