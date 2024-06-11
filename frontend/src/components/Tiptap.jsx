@@ -202,7 +202,7 @@ export const Tiptap = ({ setDescription }) => {
 
 ////////////////////////////
 
-// import React from "react";
+// import React, { useState } from "react";
 // import { useEditor, EditorContent } from "@tiptap/react";
 // import StarterKit from "@tiptap/starter-kit";
 // import Underline from "@tiptap/extension-underline";
@@ -357,10 +357,16 @@ export const Tiptap = ({ setDescription }) => {
 // const content = "<p>TIPTAP TEST TEXT</p>";
 
 // export const Tiptap = ({ setDescription }) => {
-//   const [recordingState, setRecordingState] = React.useState(false);
+//   const [recordingState, setRecordingState] = useState("stop");
+//   const [listening, setListening] = useState(false);
 
 //   const toggleRecording = () => {
-//     setRecordingState((prev) => (prev === "stop" ? "start" : "stop"));
+//     setRecordingState((prev) => {
+//       const newState = prev === "stop" ? "start" : "stop";
+//       console.log("Toggled recording state to:", newState);
+//       setListening(newState === "start");
+//       return newState;
+//     });
 //   };
 
 //   const editor = useEditor({
@@ -370,68 +376,30 @@ export const Tiptap = ({ setDescription }) => {
 //       const html = editor.getHTML();
 //       const json = editor.getJSON();
 //       const text = editor.getText();
-//       console.log("HTML:", html);
-//       console.log("JSON:", JSON.stringify(json, null, 2));
-//       console.log("Text:", text);
+//       // console.log("HTML:", html);
+//       // console.log("JSON:", JSON.stringify(json, null, 2));
+//       // console.log("Text:", text);
 //       setDescription(html);
 //     },
 //   });
 
+//   const handleSpeechText = (text) => {
+//     if (editor) {
+//       editor.chain().focus().insertContent(text).run();
+//     }
+//   };
+
 //   return (
 //     <div>
-//       <SpeechToText recordingState={recordingState} />
+//       <SpeechToText
+//         recordingState={recordingState}
+//         onSpeechText={handleSpeechText}
+//       />
 //       <button onClick={toggleRecording}>
 //         {recordingState === "start" ? "Stop Recording" : "Start Recording"}
 //       </button>
 //       <MenuBar editor={editor} />
 //       <EditorContent editor={editor} />
-//       {/* <div className="characterDeck">Character Deck</div> */}
 //     </div>
 //   );
 // };
-
-//////////////
-
-// import {
-//   useEditor,
-//   EditorContent,
-//   FloatingMenu,
-//   BubbleMenu,
-// } from "@tiptap/react";
-// import StarterKit from "@tiptap/starter-kit";
-// import Collaboration from "@tiptap/extension-collaboration";
-// import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
-// import * as Y from "yjs";
-// import { WebrtcProvider } from "y-webrtc";
-
-// const ydoc = new Y.Doc();
-// const provider = new WebrtcProvider("TipTap", ydoc);
-
-// // define your extension array
-// const extensions = [
-//   StarterKit,
-//   Collaboration.configure({ document: ydoc }),
-//   CollaborationCursor.configure({
-//     provider: provider,
-//     user: { name: "Mike Giffin", color: "red" },
-//   }),
-// ];
-
-// const content = "<p>TIPTAP TEST TEXT</p>";
-
-// const Tiptap = () => {
-//   const editor = useEditor({
-//     extensions,
-//     content,
-//   });
-
-//   return (
-//     <div className="ProseMirror">
-//       <EditorContent editor={editor} />
-//       <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
-//       <BubbleMenu editor={editor}>This is the bubble menu</BubbleMenu>
-//     </div>
-//   );
-// };
-
-// export default Tiptap;

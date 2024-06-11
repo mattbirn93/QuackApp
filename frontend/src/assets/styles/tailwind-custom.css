@@ -385,3 +385,27 @@ body {
 .nodeButton1 {
     @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
 }
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.hamburger-menu {
+    position: absolute;
+    top: 50px;
+    /* Adjust as needed */
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+}
+
+.hamburger-menu .menuBar {
+    display: flex;
+    flex-direction: column;
+}
