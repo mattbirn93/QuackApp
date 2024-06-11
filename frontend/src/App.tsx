@@ -5,7 +5,6 @@ import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import CameraComponent from "./components/Camera/CameraComponent-EXAMPLE";
 import LocationComponent from "./components/Location/LocationComponent-EXAMPLE";
-import SpeechToText from "./components/SpeechToText/SpeechToText-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 import UserComponent from "./components/UserComponent--EXAMPLE";
 import FramerComponent from "./components/Animation/FramerComponent-EXAMPLE";
