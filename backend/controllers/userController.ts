@@ -20,8 +20,8 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const fetchUserById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-
+  const { id } = req.query as any;
+console.log(id)
   try {
     const user = await UserService.getUserById(id);
     if (!user) {

@@ -62,10 +62,6 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 connectDB();
 
-app.use("/api/users", (req, res, next) => {
-  console.log(`SERVER USER ADDED: ${req.originalUrl}`);
-  next();
-});
 
 // Define API Routes
 app.use("/api/users", userRoutes);

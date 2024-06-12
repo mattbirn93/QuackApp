@@ -29,7 +29,7 @@ const App: React.FC = () => {
 
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=6646be1cdca652f39dd85ba9`,
+          `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=666950fba264438b2fbea931`,
         );
         console.log(response, "response dude");
         setTestContent(response.data.content);
