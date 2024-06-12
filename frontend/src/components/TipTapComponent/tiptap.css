@@ -27,7 +27,7 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 12px;
+    top: 45px;
     right: 555px;
 }
 
@@ -232,7 +232,7 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 8px;
+    top: 40px;
     right: 750px;
     /* background-color: red; */
 }
