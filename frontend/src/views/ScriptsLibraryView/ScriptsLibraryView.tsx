@@ -1,25 +1,15 @@
 import React from "react";
+import ScriptsLibraryComponent from "../../components/ScriptsLibraryComponent/ScriptsLibraryComponent";
 import "./ScriptsLibraryView.css";
-import PageIcon1 from "../../assets/images/PageIcon1.png";
-import scripts from "./scripts.json";
 
-const ScriptsLibraryView = () => {
+const ScriptsLibraryView: React.FC = () => {
   return (
-    <div className="ProseBackground ProseMirror scriptsLibraryBackground">
-      <div className="topContainer">
+    <div className="ProseBackground scripts-library-background">
+      <div className="top-container">
         <h1 className="heading1">Scripts Library View</h1>
-        <div className="scriptsDocumentContainer">
-          {scripts.map((script, index) => (
-            <div className="scriptContainer" key={index}>
-              <img
-                src={PageIcon1}
-                alt="Script Icon"
-                className="scriptIconImage"
-              />
-              <p className="scriptTitle">{script.title}</p>
-            </div>
-          ))}
-        </div>
+      </div>
+      <div className="scripts-document-container">
+        <ScriptsLibraryComponent />
       </div>
     </div>
   );
