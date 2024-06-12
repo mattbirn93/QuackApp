@@ -1,11 +1,9 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../views/Dashboard/Dashboard-EXAMPLE";
 import Home from "../views/Home/Home-EXAMPLE";
-import About from "../views/About/About-EXAMPLE";
 import MainLayout from "../layouts/MainLayout";
 import App from "../App";
-import ScriptsInterface from "../views/ScriptsInterface/ScriptsInterface";
+import ScriptsLibraryView from "../views/ScriptsLibraryView/ScriptsLibraryView";
 
 export const router = createBrowserRouter([
   {
@@ -13,14 +11,6 @@ export const router = createBrowserRouter([
     element: (
       <MainLayout>
         <App />
-      </MainLayout>
-    ),
-  },
-  {
-    path: "/scripts",
-    element: (
-      <MainLayout>
-        <ScriptsInterface />
       </MainLayout>
     ),
   },
@@ -33,18 +23,10 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
+    path: "/scriptslibrary",
     element: (
       <MainLayout>
-        <Dashboard />
-      </MainLayout>
-    ),
-  },
-  {
-    path: "/about",
-    element: (
-      <MainLayout>
-        <About />
+        <ScriptsLibraryView />
       </MainLayout>
     ),
   },

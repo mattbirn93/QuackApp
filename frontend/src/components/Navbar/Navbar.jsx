@@ -7,8 +7,7 @@ function Navbar() {
       <p>Here is the best looking Navbar placeholder you have ever seen!</p>
       <Link to="/"></Link>
       <Link to="/home">Home</Link>
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to="/about">About</Link>
+      <Link to="/scriptslibrary">ScriptsLibrary</Link>
     </div>
   );
 }
