@@ -1,0 +1,50 @@
+.scriptsLibraryBackground {
+    background-color: white;
+    /* background-color: #262626; */
+    z-index: 0;
+    border-radius: 15px;
+}
+
+.heading1 {
+    color: black;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.topContainer {
+    height: 4vh;
+}
+
+.scriptsDocumentContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 2rem;
+    z-index: 1;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.scriptContainer {
+    position: relative;
+}
+
+.scriptIconImage {
+    width: 9.0rem;
+    display: flex;
+    top: 0px;
+    left: 0px;
+    /* filter: invert(100%); */
+}
+
+.scriptTitle {
+    text-align: center;
+    color: black;
+    font-size: .875rem;
+    padding-top: 10px;
+    font-weight: 700;
+}

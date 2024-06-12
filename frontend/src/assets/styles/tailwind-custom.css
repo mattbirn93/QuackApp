@@ -35,7 +35,7 @@
     }
 
     body {
-        @apply bg-bg-dark text-text-light;
+        @apply bg-[black] text-text-light;
     }
 
     h1 {
@@ -129,10 +129,8 @@
     background-color: white;
     color: black;
     font-size: 1.0rem;
-    padding: 0.75rem;
     height: 100rem;
     outline: none;
-    padding-top: 5.5rem;
 }
 
 .collaboration-cursor__caret {
@@ -342,7 +340,7 @@ body {
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 12px;
+    top: 62px;
     right: 555px;
 }
 
@@ -351,9 +349,13 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 8px;
+    top: 58px;
     right: 750px;
     /* background-color: red; */
+}
+
+.navbar {
+    margin-left: 1rem;
 }
 
 /* Responsive adjustments */
