@@ -74,8 +74,9 @@ app.use("/api/scripts", scriptRoutes);
 app.use("/api/scripts/fetchScriptsById", scriptRoutes);
 app.use("/api/scripts/createNewScript", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
+app.use("api/scenes/fetchScriptsFull", sceneRoutes)
+app.use("api/scenes/updateScriptsContent", sceneRoutes)
 app.use("api/scenes/createSecene", sceneRoutes);
-app.use("api/scriptsFull", scriptsFullRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
 app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);

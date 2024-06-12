@@ -5,6 +5,7 @@ import Home from "../views/Home/Home-EXAMPLE";
 import About from "../views/About/About-EXAMPLE";
 import MainLayout from "../layouts/MainLayout";
 import App from "../App";
+import ScriptsInterface from "../views/ScriptsInterface/ScriptsInterface";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,14 @@ export const router = createBrowserRouter([
     element: (
       <MainLayout>
         <App />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/scripts",
+    element: (
+      <MainLayout>
+        <ScriptsInterface />
       </MainLayout>
     ),
   },
