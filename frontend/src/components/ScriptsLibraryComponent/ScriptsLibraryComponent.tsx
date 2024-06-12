@@ -24,8 +24,8 @@ const ScriptsLibraryComponent: React.FC = () => {
 
   return (
     <>
-      <div className="mb-[2rem]">
-        <Button1 onClick={handleClick} variant="primary" size="small">
+      <div className="scriptsButtonContainer">
+        <Button1 onClick={handleClick} variant="tertiary" size="small">
           Add Scripts +
         </Button1>
       </div>
@@ -33,14 +33,14 @@ const ScriptsLibraryComponent: React.FC = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          scriptList.map((script, index) => (
+          scriptList.map((scripts, index) => (
             <div className="script-container" key={index}>
               <img
                 src={PageIcon1}
                 alt="Script Icon"
                 className="script-icon-image"
               />
-              <p className="script-title">{script.title}</p>
+              <p className="script-title">{scripts.title}</p>
             </div>
           ))
         )}
