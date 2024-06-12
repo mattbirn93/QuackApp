@@ -3,8 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import App from "../App";
 import ScriptsLibraryView from "../views/ScriptsLibraryView/ScriptsLibraryView";
+import NotFound from "../views/NotFound";
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: (
@@ -21,4 +22,14 @@ export const router = createBrowserRouter([
       </MainLayout>
     ),
   },
-]);
+  {
+    path: "*",
+    element: (
+      <MainLayout>
+        <NotFound />
+      </MainLayout>
+    ),
+  },
+];
+
+export const router = createBrowserRouter(routes);
