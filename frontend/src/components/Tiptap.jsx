@@ -494,7 +494,7 @@ export const Tiptap = ({ initialContent, setDescription }) => {
       const newContent = editor.getJSON();
       try {
         const response = await fetch(
-          `https://localhost:5001/api/scenes/updateScriptsContent?scriptId=666950fba264438b2fbea931`,
+          `https://localhost:5001/api/scenes/updateScriptsContent?scriptId=6669547bb4ced7012655a6d8`,
           {
             method: "PUT",
             headers: {
