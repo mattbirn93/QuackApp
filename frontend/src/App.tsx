@@ -23,13 +23,88 @@ const getApiBaseUrl = () => {
   }
 };
 
+const initialContent = {
+  type: "doc",
+  content: [
+    {
+      type: "paragraph",
+      content: [
+        {
+          type: "text",
+          text: "hhh",
+        },
+      ],
+    },
+    {
+      type: "character",
+      content: [
+        {
+          type: "text",
+          text: "john",
+        },
+      ],
+    },
+    {
+      type: "dialogue",
+      content: [
+        {
+          type: "text",
+          text: "Come home today.",
+        },
+      ],
+    },
+    {
+      type: "action",
+      content: [
+        {
+          type: "text",
+          text: "No. ",
+        },
+      ],
+    },
+    {
+      type: "character",
+      content: [
+        {
+          type: "text",
+          text: "nate",
+        },
+      ],
+    },
+    {
+      type: "dialogue",
+      content: [
+        {
+          type: "text",
+          text: "Hello mr. kiako.",
+        },
+      ],
+    },
+    {
+      type: "action",
+      content: [
+        {
+          type: "text",
+          text: "he walked.",
+        },
+      ],
+    },
+    {
+      type: "action",
+    },
+  ],
+};
+
 const App: React.FC = () => {
   const socketRef = useRef<Socket | null>(null);
   const [data, setData] = useState<AppDataInterface | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [testMe, setTestMe] = useState<string>("TEST BUTTON IS NOT WORKING");
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(true);
   const [description, setDescription] = useState("");
+  const [testContent, setTestContent] = useState()
+
+
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -37,37 +112,19 @@ const App: React.FC = () => {
 
   const API_BASE_URL = getApiBaseUrl();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setData({
-        title: "Hello World",
-        content: "This is a sample content.",
-      });
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
+  
   useEffect(() => {
     const fetchData = async () => {
-      // Start Performance Now
       const start = performance.now();
 
       try {
-        console.log("API_BASE_URL:", API_BASE_URL);
-        const response = await axios.post(`${API_BASE_URL}/api/users`, {
-          first_name: "From front end UseEffect9",
-          last_name: "From front end UseEffect9",
-          email: "From front end UseEffect9@gmail.com",
-          scripts_id_array: [],
-        });
-
-        //End Performance Now
-        const end = performance.now();
-        console.log(`Axios request took ${end - start} ms`);
-        console.log("User added:", response.data);
+        const response = await axios.get(`${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=6646be1cdca652f39dd85ba9`);
+        console.log(response, "response dude")
+        setTestContent(response.data.content)
+        // Assuming response.data has the structure { data: { content: "..." } }
+        setData(response.data);
+        setLoading(false);
       } catch (error: any) {
-        //End Performance Now
         const end = performance.now();
         console.log(`Axios request took ${end - start} ms (with error)`);
 
@@ -84,137 +141,13 @@ const App: React.FC = () => {
     fetchData();
   }, [API_BASE_URL]);
 
-  useEffect(() => {
-    const socketConnectStart = performance.now();
-
-    socketRef.current = io(API_BASE_URL, {
-      transports: ["websocket"], // Force WebSocket transport
-      rejectUnauthorized: false, // Accept self-signed certificates if using HTTPS
-    });
-
-    socketRef.current.on("connect", () => {
-      const socketConnectEnd = performance.now();
-      console.log(
-        `Socket connected in ${socketConnectEnd - socketConnectStart} ms`,
-      );
-    });
-
-    socketRef.current.on("content_item_created", (response) => {
-      console.log("Content item created:", response);
-    });
-
-    socketRef.current.on("content_item_updated", (response) => {
-      console.log("Content item updated:", response);
-    });
-
-    socketRef.current.on("scene_version_content", (response) => {
-      console.log("Scene version content received:", response);
-    });
-
-    socketRef.current.on("delete_content_item", (response) => {
-      console.log("Content item deleted:", response);
-    });
-
-    socketRef.current.on("update_content_item_error", (error) => {
-      console.error("Update content item error:", error);
-    });
-
-    socketRef.current.on("create_content_item_error", (error) => {
-      console.error("Create content item error:", error);
-    });
-
-    socketRef.current.on("delete_content_item_error", (error) => {
-      console.error("Delete content item error:", error);
-    });
-
-    socketRef.current.on("get_scene_version_content", (error) => {
-      console.error("Get scene version content  error:", error);
-    });
-
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
-    };
-  }, [API_BASE_URL]);
-
-  const fetchSceneVersionContent = () => {
-    if (socketRef.current) {
-      const id = "66495227baa753a417fd5468"; // This should be replaced with the actual ID you want to query
-      console.log("Emitting get_scene_version_content event with id:", id);
-      socketRef.current.emit("get_scene_version_content", { id });
-    }
-  };
-
-  const addUser = () => {
-    const data = {
-      first_name: "From front end websockets version Homie3",
-      last_name: "From front end websockets version Homie3",
-      email: "From front end websockets versionHomie3@gmail.com",
-      scripts_id_array: [],
-    };
-
-    if (socketRef.current) {
-      socketRef.current.emit("add_user", data);
-      console.log("USER CREATED");
-    }
-  };
-
-  const createContentItem = () => {
-    const data = {
-      id: "66495227baa753a417fd5468", // Replace with the actual ID
-      contentItem: {
-        notes: "Final test",
-        text: "Test item text",
-        type: "Test item type",
-        time_stamp: new Date(),
-      },
-    };
-
-    if (socketRef.current) {
-      console.log("Emitting create_content_item event with data:", data);
-      socketRef.current.emit("create_content_item", data);
-    }
-  };
-
-  const updateContentItem = () => {
-    const data = {
-      id: "66495227baa753a417fd5468", // Replace with the actual ID
-      contentItem: {
-        notes: "This really worked five",
-        text: "Test Update text",
-        type: "Test Update type",
-        content_id: "6656a1ae9e2949232a2ece0b", // Replace with the actual content_id
-        time_stamp: new Date(),
-      },
-    };
-
-    if (socketRef.current) {
-      console.log("Emitting update_content_item event with data:", data);
-      socketRef.current.emit("update_content_item", data);
-    }
-  };
-
-  const deleteContentItem = (content_id: string) => {
-    console.log("hi");
-    const data = {
-      id: "66495227baa753a417fd5468", // Replace with the actual ID
-      content_id,
-    };
-
-    if (socketRef.current) {
-      console.log("Emitting delete_content_item event to delete item:", data);
-      socketRef.current.emit("delete_content_item", data);
-    }
-  };
-
   return (
     <MyErrorBoundary fallback={"There was an error"}>
       {loading ? (
         <SkeletonLoader />
       ) : (
         <div className="ProseBackground">
-          <Tiptap setDescription={setDescription} />
+          <Tiptap initialContent={testContent} setDescription={setDescription} />
         </div>
       )}
     </MyErrorBoundary>

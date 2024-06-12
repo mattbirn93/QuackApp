@@ -7,6 +7,8 @@ export interface IScript extends Document {
   characters_id: mongoose.Types.ObjectId;
   scenes_id: mongoose.Types.ObjectId;
   time_stamp: Date;
+  content: Object;
+
 }
 
 const scriptSchema: Schema = new Schema({
@@ -18,6 +20,7 @@ const scriptSchema: Schema = new Schema({
     required: false,
     ref: 'Character',
   },
+  content: {type: Object, required: true},
   scenes_id: { type: mongoose.Types.ObjectId, required: false, ref: 'Scene' },
   time_stamp: { type: Date, default: Date.now },
 });

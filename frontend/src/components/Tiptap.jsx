@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -149,74 +149,58 @@ const extensions = [
   Dialogue,
 ];
 
-const content = "<p>TIPTAP TEST TEXT</p>";
-
-export const Tiptap = ({ setDescription }) => {
+export const Tiptap = ({ initialContent, setDescription }) => {
+console.log(initialContent)
   const editor = useEditor({
     extensions,
-    content,
+    content: initialContent,
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       const json = editor.getJSON();
       const text = editor.getText();
-      console.log("HTML:", html);
       console.log("JSON:", JSON.stringify(json, null, 2));
-      console.log("Text:", text);
       setDescription(html);
     },
   });
+
+  // Update editor content when initialContent changes
+  useEffect(() => {
+    if (editor && initialContent) {
+      editor.commands.setContent(initialContent);
+    }
+  }, [initialContent, editor]);
+
+  const updateContent = async () => {
+    if (editor) {
+      const newContent = editor.getJSON();
+      try {
+        const response = await fetch(`https://localhost:5001/api/scenes/updateScriptsContent?scriptId=6646be1cdca652f39dd85ba9`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newContent: newContent }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Script content updated successfully:", data);
+        } else {
+          console.error("Failed to update script content:", data.message);
+        }
+      } catch (error) {
+        console.error("Error updating script content:", error);
+      }
+    }
+  };
+
 
   return (
     <div>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      {/* <div className="characterDeck">Character Deck</div> */}
+      <button onClick={updateContent}>Update Content</button>
+
     </div>
   );
 };
-
-//////////////
-
-// import {
-//   useEditor,
-//   EditorContent,
-//   FloatingMenu,
-//   BubbleMenu,
-// } from "@tiptap/react";
-// import StarterKit from "@tiptap/starter-kit";
-// import Collaboration from "@tiptap/extension-collaboration";
-// import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
-// import * as Y from "yjs";
-// import { WebrtcProvider } from "y-webrtc";
-
-// const ydoc = new Y.Doc();
-// const provider = new WebrtcProvider("TipTap", ydoc);
-
-// // define your extension array
-// const extensions = [
-//   StarterKit,
-//   Collaboration.configure({ document: ydoc }),
-//   CollaborationCursor.configure({
-//     provider: provider,
-//     user: { name: "Mike Giffin", color: "red" },
-//   }),
-// ];
-
-// const content = "<p>TIPTAP TEST TEXT</p>";
-
-// const Tiptap = () => {
-//   const editor = useEditor({
-//     extensions,
-//     content,
-//   });
-
-//   return (
-//     <div className="ProseMirror">
-//       <EditorContent editor={editor} />
-//       <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
-//       <BubbleMenu editor={editor}>This is the bubble menu</BubbleMenu>
-//     </div>
-//   );
-// };
-
-// export default Tiptap;
