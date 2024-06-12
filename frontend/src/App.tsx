@@ -72,7 +72,7 @@ export default App;
 // import MyErrorBoundary from "./MyErrorBoundary";
 // import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 // import { AppDataInterface } from "./interfaces/interfaces";
-// import { Tiptap } from "./components/Tiptap";
+// import { Tiptap } from "./components/TiptapComponent/TiptapComponent";
 
 // const getApiBaseUrl = () => {
 //   const hostname = window.location.hostname;
@@ -91,6 +91,7 @@ export default App;
 //   const [testContent, setTestContent] = useState();
 //   const API_BASE_URL = getApiBaseUrl();
 
+//   // Responsible for fetching content
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       const start = performance.now();

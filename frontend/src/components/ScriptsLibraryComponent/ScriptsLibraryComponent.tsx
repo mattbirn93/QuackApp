@@ -68,6 +68,16 @@ const ScriptsLibraryComponent: React.FC = () => {
       <ScriptsLibraryInfoModal
         isVisible={isInfoModalVisible}
         onClose={handleCloseInfoModal}
+        title={""}
+        author={""}
+        dateCreated={""}
+        dateModified={""}
+        onEdit={function (newTitle: string, newAuthor: string): void {
+          throw new Error("Function not implemented.");
+        }}
+        onDelete={function (): void {
+          throw new Error("Function not implemented.");
+        }}
       />
       <AddScriptModal
         isVisible={isAddScriptModalVisible}

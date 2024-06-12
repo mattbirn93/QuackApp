@@ -490,6 +490,7 @@ export const Tiptap = ({ initialContent, setDescription }) => {
     }
   }, [initialContent, editor]);
 
+  // Responsible for updating content
   const updateContent = async () => {
     if (editor) {
       const newContent = editor.getJSON();

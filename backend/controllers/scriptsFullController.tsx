@@ -4,7 +4,6 @@ import scriptsFull from "../models/scriptsFullModel.js";
 import scenes from "../models/sceneModel.js";
 import User from "../models/userModel.js";
 
-
 export const fetchScriptsFull = async (req: Request, res: Response) => {
   const { scriptId } = req.query as any;
 
@@ -32,7 +31,7 @@ export const fetchScriptsFull = async (req: Request, res: Response) => {
 export const updateScriptContent = async (req: Request, res: Response) => {
   const { scriptId } = req.query as any; // Change from req.params to req.query
   const { newContent } = req.body;
-console.log(newContent)
+  console.log(newContent);
   if (!mongoose.Types.ObjectId.isValid(scriptId)) {
     return res.status(400).json({ message: "Invalid script ID" });
   }
@@ -42,7 +41,7 @@ console.log(newContent)
     const updatedScript = await scriptsFull.findByIdAndUpdate(
       scriptId,
       { content: newContent },
-      { new: true }
+      { new: true },
     );
 
     // If no script found, return a 404 response
