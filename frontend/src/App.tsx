@@ -20,18 +20,19 @@ const App: React.FC = () => {
   const [data, setData] = useState<AppDataInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [description, setDescription] = useState("");
-  const [testContent, setTestContent] = useState()
+  const [testContent, setTestContent] = useState();
   const API_BASE_URL = getApiBaseUrl();
-
 
   useEffect(() => {
     const fetchData = async () => {
       const start = performance.now();
 
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=6646be1cdca652f39dd85ba9`);
-        console.log(response, "response dude")
-        setTestContent(response.data.content)
+        const response = await axios.get(
+          `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=6646be1cdca652f39dd85ba9`,
+        );
+        console.log(response, "response dude");
+        setTestContent(response.data.content);
         // Assuming response.data has the structure { data: { content: "..." } }
         setData(response.data);
         setLoading(false);
@@ -52,15 +53,16 @@ const App: React.FC = () => {
     fetchData();
   }, [API_BASE_URL]);
 
-
-
   return (
     <MyErrorBoundary fallback={"There was an error"}>
       {loading ? (
         <SkeletonLoader />
       ) : (
-        <div>
-          <Tiptap initialContent={testContent} setDescription={setDescription} />
+        <div className="ProseBackground">
+          <Tiptap
+            initialContent={testContent}
+            setDescription={setDescription}
+          />
         </div>
       )}
     </MyErrorBoundary>
@@ -68,7 +70,6 @@ const App: React.FC = () => {
 };
 
 export default App;
-
 
 // import React, { useEffect, useState, useRef } from "react";
 // import axios from "axios";
@@ -94,7 +95,6 @@ export default App;
 //   const [description, setDescription] = useState("");
 //   const [testContent, setTestContent] = useState<any[]>([])
 //   const API_BASE_URL = getApiBaseUrl();
-
 
 //   useEffect(() => {
 //     const fetchData = async () => {
@@ -131,7 +131,7 @@ export default App;
 //     };
 
 //     fetchData();
-//   }, []); 
+//   }, []);
 
 //   useEffect(() => {
 //     const fetchData = async () => {

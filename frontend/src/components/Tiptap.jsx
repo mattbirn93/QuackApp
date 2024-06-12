@@ -444,11 +444,10 @@ const extensions = [
 ];
 
 export const Tiptap = ({ initialContent, setDescription }) => {
-
   const [recordingState, setRecordingState] = useState("stop");
   const [listening, setListening] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  console.log(initialContent, "initial content")
+  console.log(initialContent, "initial content");
 
   const toggleRecording = () => {
     setRecordingState((prev) => {
@@ -483,7 +482,6 @@ export const Tiptap = ({ initialContent, setDescription }) => {
     }
   };
 
-
   // Update editor content when initialContent changes
   useEffect(() => {
     if (editor && initialContent) {
@@ -491,17 +489,20 @@ export const Tiptap = ({ initialContent, setDescription }) => {
     }
   }, [initialContent, editor]);
 
-    const updateContent = async () => {
+  const updateContent = async () => {
     if (editor) {
       const newContent = editor.getJSON();
       try {
-        const response = await fetch(`https://localhost:5001/api/scenes/updateScriptsContent?scriptId=6646be1cdca652f39dd85ba9`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `https://localhost:5001/api/scenes/updateScriptsContent?scriptId=6646be1cdca652f39dd85ba9`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ newContent: newContent }),
           },
-          body: JSON.stringify({ newContent: newContent }),
-        });
+        );
 
         const data = await response.json();
         if (response.ok) {
@@ -514,7 +515,6 @@ export const Tiptap = ({ initialContent, setDescription }) => {
       }
     }
   };
-
 
   return (
     <div>
