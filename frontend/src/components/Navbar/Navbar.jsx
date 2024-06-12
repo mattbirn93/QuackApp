@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 function Navbar() {
   return (
-    <div>
-      <p>Here is the best looking Navbar placeholder you have ever seen!</p>
-      <Link to="/"></Link>
-      <Link to="/home">Home</Link>
+    <div className="navbar">
+      <Link to="/">ScriptsInterface</Link>
       <Link to="/scriptslibrary">ScriptsLibrary</Link>
     </div>
   );
