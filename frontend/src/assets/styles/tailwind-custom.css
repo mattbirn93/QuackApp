@@ -119,9 +119,10 @@
 }
 
 .ProseBackground {
-    background-color: black;
+    /* background-color: black; */
     width: 810px;
     margin: 0 auto;
+    background-color: #403f3e;
 }
 
 .ProseMirror {
@@ -321,6 +322,40 @@ body {
     line-height: 1.1;
 }
 
+/* NodeButton styles */
+.nodeButton1 {
+    @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+}
+
+.icon-inverted {
+    filter: invert(100%);
+}
+
+.hamburgerMenu {
+    color: white;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 12px;
+    right: 555px;
+}
+
+.mainNavbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 8px;
+    right: 750px;
+    /* background-color: red; */
+}
+
 /* Responsive adjustments */
 @media (orientation: portrait) {
 
@@ -341,6 +376,15 @@ body {
 
     .ProseBackground {
         width: 400px;
+    }
+
+    .hamburgerMenu {
+            right: 30px;
+    }
+
+    .mainNavbar {
+            top: 0px;
+            right: 50px;
     }
 }
 
@@ -381,31 +425,3 @@ body {
     }
 }
 
-/* NodeButton styles */
-.nodeButton1 {
-    @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
-}
-
-.hamburger-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    padding: 10px;
-}
-
-.hamburger-menu {
-    position: absolute;
-    top: 50px;
-    /* Adjust as needed */
-    left: 0;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 20px;
-}
-
-.hamburger-menu .menuBar {
-    display: flex;
-    flex-direction: column;
-}
