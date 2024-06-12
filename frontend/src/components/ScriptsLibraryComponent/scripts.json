@@ -1,50 +1,411 @@
 [
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-{ "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" },
-  { "title": "Scream For Ice Cream" },
-  { "title": "Matt's Kitty" },
-  { "title": "Toxic Positivity" }
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "The Blue Ribbon Killer",
+    "written_by": "Michael Filoramo",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Matt's Kitty",
+    "author": "John Doe",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  },
+  {
+    "title": "Toxic Positivity",
+    "author": "Jane Smith",
+    "address": "248 Wood",
+    "phone_number": "123-456-7890",
+    "dateCreated": "2020-10-05",
+    "dateModified": "2024-10-05"
+  }
 ]
