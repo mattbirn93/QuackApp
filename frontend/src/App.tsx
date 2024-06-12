@@ -4,7 +4,7 @@ import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
-import { Tiptap } from "./components/Tiptap";
+import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
 
 const getApiBaseUrl = () => {
   const hostname = window.location.hostname;
@@ -55,16 +55,9 @@ const App: React.FC = () => {
 
   return (
     <MyErrorBoundary fallback={"There was an error"}>
-      {loading ? (
-        <SkeletonLoader />
-      ) : (
-        <div className="ProseBackground">
-          <Tiptap
-            initialContent={testContent}
-            setDescription={setDescription}
-          />
-        </div>
-      )}
+      <div className="ProseBackground">
+        <Tiptap initialContent={testContent} setDescription={setDescription} />
+      </div>
     </MyErrorBoundary>
   );
 };

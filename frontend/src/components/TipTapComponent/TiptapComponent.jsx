@@ -322,11 +322,12 @@ import Collaboration from "@tiptap/extension-collaboration";
 import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
-import { Action, SceneHeader, Character, Dialogue } from "./nodes/customNodes";
-import NodeButton from "./Button/NodeButton";
-import SpeechToText from "./SpeechToText/SpeechToText-EXAMPLE";
-import MicOn from "../assets/images/icons8-microphone-On.png";
-import MicOff from "../assets/images/icons8-microphone-Off.png";
+import { Action, SceneHeader, Character, Dialogue } from "../nodes/customNodes";
+import NodeButton from "../nodes/NodeButton";
+import SpeechToText from "../SpeechToTextComponent/SpeechToTextComponent";
+import MicOn from "../../assets/images/icons8-microphone-On.png";
+import MicOff from "../../assets/images/icons8-microphone-Off.png";
+import "./tiptap.css";
 
 import {
   FaBold,
