@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import scripts from "./scripts.json";
 import PageIcon1 from "../../assets/images/PageIcon1.png";
 import Button1 from "../Button/Button1";
+import ScriptsLibraryInfoModal from "./modals/ScriptsLibraryInfoModal";
+import AddScriptModal from "./modals/AddScriptModal";
 import "./ScriptsLibraryComponent.css";
 
 interface Script {
@@ -11,10 +13,8 @@ interface Script {
 const ScriptsLibraryComponent: React.FC = () => {
   const [scriptList, setScriptList] = useState<Script[]>(scripts);
   const [loading, setLoading] = useState(true);
-
-  const handleClick = () => {
-    console.log("I was clicked!");
-  };
+  const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
+  const [isAddScriptModalVisible, setIsAddScriptModalVisible] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,10 +22,26 @@ const ScriptsLibraryComponent: React.FC = () => {
     }, 1000);
   }, []);
 
+  const handleScriptClick = () => {
+    setIsInfoModalVisible(true);
+  };
+
+  const handleAddScriptClick = () => {
+    setIsAddScriptModalVisible(true);
+  };
+
+  const handleCloseInfoModal = () => {
+    setIsInfoModalVisible(false);
+  };
+
+  const handleCloseAddScriptModal = () => {
+    setIsAddScriptModalVisible(false);
+  };
+
   return (
-    <>
+    <div className="scripts-library-component">
       <div className="scriptsButtonContainer">
-        <Button1 onClick={handleClick} variant="tertiary" size="small">
+        <Button1 onClick={handleAddScriptClick} variant="tertiary" size="small">
           Add Scripts +
         </Button1>
       </div>
@@ -33,19 +49,31 @@ const ScriptsLibraryComponent: React.FC = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          scriptList.map((scripts, index) => (
-            <div className="script-container" key={index}>
+          scriptList.map((script, index) => (
+            <div
+              className="script-container"
+              key={index}
+              onClick={handleScriptClick}
+            >
               <img
                 src={PageIcon1}
                 alt="Script Icon"
                 className="script-icon-image"
               />
-              <p className="script-title">{scripts.title}</p>
+              <p className="script-title">{script.title}</p>
             </div>
           ))
         )}
       </div>
-    </>
+      <ScriptsLibraryInfoModal
+        isVisible={isInfoModalVisible}
+        onClose={handleCloseInfoModal}
+      />
+      <AddScriptModal
+        isVisible={isAddScriptModalVisible}
+        onClose={handleCloseAddScriptModal}
+      />
+    </div>
   );
 };
 
