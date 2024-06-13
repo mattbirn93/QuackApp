@@ -102,3 +102,43 @@
 .modal-actions button:hover {
     opacity: 0.9;
 }
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-confirmation {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 2rem;
+    /* background-color: purple; */
+}
+
+.confirm-delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-delete {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}

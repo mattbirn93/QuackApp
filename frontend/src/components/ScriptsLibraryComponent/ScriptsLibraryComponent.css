@@ -20,14 +20,14 @@
 .script-icons-container {
     display: flex;
     position: absolute;
-    top: 50px;
+    top: 7px;
     left: 29px;
     /* background-color: red;  */
 }
 
 .icon {
-    height: 40px;
-    width: 40px;
+    height: 25px;
+    width: 25px;
     margin-left: .5rem;
 }
 
