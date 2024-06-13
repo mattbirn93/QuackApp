@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ModalProps } from "./AddScriptModalInterface";
 import styles from "./AddScriptModal.module.css";
-
-interface ModalProps {
-  isVisible: boolean;
-  onClose: () => void;
-  onAdd: (
-    newTitle: string,
-    newWrittenBy: string,
-    newAddress: string,
-    newPhoneNumber: string,
-  ) => void;
-}
 
 const AddScriptModal: React.FC<ModalProps> = ({
   isVisible,
