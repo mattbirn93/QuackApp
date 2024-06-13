@@ -1,16 +1,27 @@
+// src/components/ScriptsLibraryComponent/modals/AddScriptModal.tsx
 import React, { useState, useEffect } from "react";
 import "./AddScriptModal.css";
 
 interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
+  onAdd: (
+    newTitle: string,
+    newWrittenBy: string,
+    newAddress: string,
+    newPhoneNumber: string,
+  ) => void;
 }
 
-const AddScriptModal: React.FC<ModalProps> = ({ isVisible, onClose }) => {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [dateCreated, setDateCreated] = useState("");
-  const [dateModified, setDateModified] = useState("");
+const AddScriptModal: React.FC<ModalProps> = ({
+  isVisible,
+  onClose,
+  onAdd,
+}) => {
+  const [newTitle, setNewTitle] = useState("");
+  const [newWrittenBy, setNewWrittenBy] = useState("");
+  const [newAddress, setNewAddress] = useState("");
+  const [newPhoneNumber, setNewPhoneNumber] = useState("");
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -28,12 +39,6 @@ const AddScriptModal: React.FC<ModalProps> = ({ isVisible, onClose }) => {
     };
   }, [isVisible, onClose]);
 
-  useEffect(() => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    setDateCreated(currentDate);
-    setDateModified(currentDate);
-  }, [isVisible]);
-
   if (!isVisible) return null;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -42,9 +47,8 @@ const AddScriptModal: React.FC<ModalProps> = ({ isVisible, onClose }) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ title, author, dateCreated, dateModified });
+  const handleSave = () => {
+    onAdd(newTitle, newWrittenBy, newAddress, newPhoneNumber);
     onClose();
   };
 
@@ -54,31 +58,51 @@ const AddScriptModal: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         <div className="close-button">
           <button onClick={onClose}>X</button>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="title">Title:</label>
+        <h2>Add New Script</h2>
+        <div>
+          <label>
+            Title:
             <input
               type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="author">Written By:</label>
+          </label>
+        </div>
+        <div>
+          <label>
+            Written by:
             <input
               type="text"
-              id="author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              required
+              value={newWrittenBy}
+              onChange={(e) => setNewWrittenBy(e.target.value)}
             />
-          </div>
-          <div className="button-container">
-            <button type="submit">Add Script</button>
-          </div>
-        </form>
+          </label>
+        </div>
+        <div>
+          <label>
+            Address:
+            <input
+              type="text"
+              value={newAddress}
+              onChange={(e) => setNewAddress(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Phone Number:
+            <input
+              type="text"
+              value={newPhoneNumber}
+              onChange={(e) => setNewPhoneNumber(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="modal-actions">
+          <button onClick={handleSave}>Save</button>
+          <button onClick={onClose}>Cancel</button>
+        </div>
       </div>
     </div>
   );
