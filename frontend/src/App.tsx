@@ -5,7 +5,7 @@ import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 
-import { Tiptap } from "./components/TipTapComponent/TiptapComponent"
+import { Tiptap } from "./components/TiptapComponent/TiptapComponent";
 import { useParams } from "react-router-dom";
 const getApiBaseUrl = () => {
   const hostname = window.location.hostname;
@@ -32,10 +32,10 @@ const App: React.FC = () => {
 
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`
+          `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`,
         );
         console.log(response, "response dude");
-      setTestContent(response.data.content)
+        setTestContent(response.data.content);
         // Assuming response.data has the structure { data: { content: "..." } }
         setData(response.data);
         setLoading(false);
@@ -59,8 +59,11 @@ const App: React.FC = () => {
   return (
     <MyErrorBoundary fallback={"There was an error"}>
       <div className="ProseBackground">
-        <Tiptap initialContent={testContent} setDescription={setDescription} scriptId={scriptId}
-/>
+        <Tiptap
+          initialContent={testContent}
+          setDescription={setDescription}
+          scriptId={scriptId}
+        />
       </div>
     </MyErrorBoundary>
   );

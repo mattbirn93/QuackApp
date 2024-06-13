@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AddScriptModal.css";
+import styles from "./AddScriptModal.module.css";
 
 interface ModalProps {
   isVisible: boolean;
@@ -8,7 +8,7 @@ interface ModalProps {
     newTitle: string,
     newWrittenBy: string,
     newAddress: string,
-    newPhoneNumber: string
+    newPhoneNumber: string,
   ) => void;
 }
 
@@ -41,7 +41,7 @@ const AddScriptModal: React.FC<ModalProps> = ({
   if (!isVisible) return null;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    if ((e.target as Element).classList.contains("modal-overlay")) {
+    if ((e.target as Element).classList.contains(styles.modalOverlay)) {
       onClose();
     }
   };
@@ -52,55 +52,67 @@ const AddScriptModal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal-content">
-        <div className="close-button">
-          <button onClick={onClose}>X</button>
+    <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+      <div className={styles.modalContent}>
+        <div className={styles.closeButton}>
+          <button className={styles.closeButtonBtn} onClick={onClose}>
+            X
+          </button>
         </div>
-        <h2>Add New Script</h2>
-        <div>
-          <label>
+
+        <h2 className={styles.h2}>Add New Script</h2>
+
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>
             Title:
             <input
+              className={styles.formInput}
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
             />
           </label>
         </div>
-        <div>
-          <label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>
             Written by:
             <input
+              className={styles.formInput}
               type="text"
               value={newWrittenBy}
               onChange={(e) => setNewWrittenBy(e.target.value)}
             />
           </label>
         </div>
-        <div>
-          <label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>
             Address:
             <input
+              className={styles.formInput}
               type="text"
               value={newAddress}
               onChange={(e) => setNewAddress(e.target.value)}
             />
           </label>
         </div>
-        <div>
-          <label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>
             Phone Number:
             <input
+              className={styles.formInput}
               type="text"
               value={newPhoneNumber}
               onChange={(e) => setNewPhoneNumber(e.target.value)}
             />
           </label>
         </div>
-        <div className="modal-actions">
-          <button onClick={handleSave}>Save</button>
-          <button onClick={onClose}>Cancel</button>
+        <div className={styles.buttonContainer}>
+          <button className={styles.submitButton} onClick={handleSave}>
+            Save
+          </button>
+          <button className={styles.cancelButton} onClick={onClose}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
