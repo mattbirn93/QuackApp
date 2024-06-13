@@ -444,7 +444,7 @@ const extensions = [
   Dialogue,
 ];
 
-export const Tiptap = ({ initialContent, setDescription }) => {
+export const Tiptap = ({ initialContent, setDescription, scriptId }) => {
   const [recordingState, setRecordingState] = useState("stop");
   const [listening, setListening] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -496,7 +496,7 @@ export const Tiptap = ({ initialContent, setDescription }) => {
       const newContent = editor.getJSON();
       try {
         const response = await fetch(
-          `https://localhost:5001/api/scenes/updateScriptsContent?scriptId=6646be1cdca652f39dd85ba9`,
+          `https://localhost:5001/api/scenes/updateScriptsContent?scriptId=${scriptId}`,
           {
             method: "PUT",
             headers: {

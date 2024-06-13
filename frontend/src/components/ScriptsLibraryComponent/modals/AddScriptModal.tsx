@@ -1,4 +1,3 @@
-// src/components/ScriptsLibraryComponent/modals/AddScriptModal.tsx
 import React, { useState, useEffect } from "react";
 import "./AddScriptModal.css";
 
@@ -9,7 +8,7 @@ interface ModalProps {
     newTitle: string,
     newWrittenBy: string,
     newAddress: string,
-    newPhoneNumber: string,
+    newPhoneNumber: string
   ) => void;
 }
 

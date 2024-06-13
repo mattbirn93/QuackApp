@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import scripts from "./scripts.json";
 import PageIcon1 from "../../assets/images/PageIcon1.png";
 import EditScriptModal from "./modals/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal";
@@ -8,6 +7,8 @@ import "./ScriptsLibraryComponent.css";
 import editIcon from "../../assets/images/editIcon.png";
 
 interface Script {
+  [x: string]: any;
+  _id: string;
   title: string;
   writtenBy: string;
   address: string;
@@ -15,24 +16,71 @@ interface Script {
   dateCreated: string;
   dateModified: string;
 }
+interface UserData {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  scripts_id_array: string[];
+  time_stamp: string;
+  __v: number;
+}
 
 const ScriptsLibraryComponent: React.FC = () => {
-  const [scriptList, setScriptList] = useState<Script[]>(scripts);
+  const [scriptList, setScriptList] = useState<Script[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddScriptModalVisible, setIsAddScriptModalVisible] = useState(false);
   const [selectedScript, setSelectedScript] = useState<Script | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("https://localhost:5001/api/users/fetchUserById?id=665e216400d6dea884b3af23");
+        if (response.ok) {
+          const data: UserData = await response.json();
+          setUserData(data);
+        } else {
+          console.error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  const handleScriptClick = () => {
-    navigate("/"); // Redirect to home page
+  useEffect(() => {
+    const fetchScriptsData = async () => {
+      if (userData && userData.scripts_id_array.length > 0) {
+        const scriptIds = userData.scripts_id_array.join(",");
+        try {
+          const response = await fetch(`https://localhost:5001/api/scripts/fetchScriptsById?ids=${scriptIds}`);
+          if (response.ok) {
+            const data = await response.json();
+            setScriptList(data);
+          } else {
+            console.error("Failed to fetch scripts data");
+          }
+        } catch (error) {
+          console.error("Error fetching scripts data:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false); // Stop loading if there are no scripts
+      }
+    };
+
+    fetchScriptsData();
+  }, [userData]);
+
+  const handleScriptClick = (id: string) => {
+    navigate(`/app/${id}`); // Redirect to App component with script ID
   };
 
   const handleEditClick = (script: Script) => {
@@ -56,7 +104,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     newTitle: string,
     newWrittenBy: string,
     newAddress: string,
-    newPhoneNumber: string,
+    newPhoneNumber: string
   ) => {
     if (selectedScript) {
       setScriptList((prevList) =>
@@ -70,36 +118,58 @@ const ScriptsLibraryComponent: React.FC = () => {
                 phoneNumber: newPhoneNumber,
                 dateModified: new Date().toISOString().split("T")[0],
               }
-            : script,
-        ),
+            : script
+        )
       );
       setIsEditModalVisible(false);
     }
   };
 
-  const handleAddScript = (
+  const handleAddScript = async (
     newTitle: string,
     newWrittenBy: string,
     newAddress: string,
-    newPhoneNumber: string,
+    newPhoneNumber: string
   ) => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    const newScript = {
-      title: newTitle,
-      writtenBy: newWrittenBy,
-      address: newAddress,
-      phoneNumber: newPhoneNumber,
-      dateCreated: currentDate,
-      dateModified: currentDate,
-    };
-    setScriptList((prevList) => [newScript, ...prevList]); // Add the new script to the top of the list
+    if (userData) {
+      const newScript = {
+        title: newTitle,
+        title_page: {
+          title: newTitle,
+          written_by: newWrittenBy,
+          address: newAddress,
+          phone_number: newPhoneNumber,
+        },
+        users_id: userData._id,
+      };
+
+      try {
+        const response = await fetch("https://localhost:5001/api/scripts/createNewScript", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newScript),
+        });
+
+        if (response.ok) {
+          const savedScript = await response.json();
+          setScriptList((prevList) => [savedScript.script, ...prevList]); // Add the new script to the top of the list
+        } else {
+          console.error("Failed to create new script");
+        }
+      } catch (error) {
+        console.error("Error creating new script:", error);
+      }
+    }
+
     setIsAddScriptModalVisible(false);
   };
 
   const handleDeleteScript = () => {
     if (selectedScript) {
       setScriptList((prevList) =>
-        prevList.filter((script) => script.title !== selectedScript.title),
+        prevList.filter((script) => script.title !== selectedScript.title)
       );
       setIsEditModalVisible(false);
     }
@@ -134,7 +204,7 @@ const ScriptsLibraryComponent: React.FC = () => {
                 src={PageIcon1}
                 alt="Script Icon"
                 className="script-icon-image"
-                onClick={handleScriptClick}
+                onClick={() => handleScriptClick(script._id)}
               />
               <p className="script-title">{script.title}</p>
             </div>
@@ -147,12 +217,10 @@ const ScriptsLibraryComponent: React.FC = () => {
           onClose={handleCloseEditModal}
           onEdit={handleEditScript}
           onDelete={handleDeleteScript}
-          title={selectedScript.title}
-          writtenBy={selectedScript.writtenBy}
-          address={selectedScript.address}
-          phoneNumber={selectedScript.phoneNumber}
-          dateCreated={selectedScript.dateCreated}
-          dateModified={selectedScript.dateModified}
+          title={selectedScript.title_page.title}
+          writtenBy={selectedScript.title_page.written_by}
+          address={selectedScript.title_page.address}
+          phoneNumber={selectedScript.title_page.phone_number}
         />
       )}
       <AddScriptModal
@@ -165,6 +233,7 @@ const ScriptsLibraryComponent: React.FC = () => {
 };
 
 export default ScriptsLibraryComponent;
+
 
 /////////////////////////////////////
 

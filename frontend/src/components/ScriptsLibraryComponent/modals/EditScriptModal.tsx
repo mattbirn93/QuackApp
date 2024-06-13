@@ -8,8 +8,6 @@ interface ModalProps {
   writtenBy: string;
   address: string;
   phoneNumber: string;
-  dateCreated: string;
-  dateModified: string;
   onEdit: (
     newTitle: string,
     newWrittenBy: string,
@@ -26,8 +24,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
   writtenBy,
   address,
   phoneNumber,
-  dateCreated,
-  dateModified,
+
   onEdit,
   onDelete,
 }) => {
@@ -134,8 +131,8 @@ const EditScriptModal: React.FC<ModalProps> = ({
           </label>
         </div>
         <div>
-          <p>Date Created: {dateCreated}</p>
-          <p>Date Modified: {dateModified}</p>
+          {/* <p>Date Created: {dateCreated}</p>
+          <p>Date Modified: {dateModified}</p> */}
         </div>
         <div className="modal-actions">
           <button onClick={handleSave}>Save</button>

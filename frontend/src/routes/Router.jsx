@@ -23,6 +23,14 @@ const routes = [
     ),
   },
   {
+    path: "/app/:scriptId",
+    element: (
+      <MainLayout>
+        <App />
+      </MainLayout>
+    ),
+  },
+  {
     path: "*",
     element: (
       <MainLayout>

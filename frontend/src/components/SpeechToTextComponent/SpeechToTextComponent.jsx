@@ -26,10 +26,8 @@ const SpeechToText = ({ recordingState, onSpeechText }) => {
           const finalTranscript = event.results[i][0].transcript;
           setText((prevText) => prevText + finalTranscript + ". ");
           interimTranscriptRef.current = ""; // Clear interim transcript on final result
-          console.log("Final transcript:", finalTranscript);
         } else {
           interimTranscript += event.results[i][0].transcript;
-          console.log("Interim transcript:", interimTranscript);
         }
       }
       interimTranscriptRef.current = interimTranscript;

@@ -18,7 +18,7 @@ const scriptFullSchema: Schema = new Schema({
     required: false,
     ref: 'Character',
   },
-  content: {type: Object, required: true},
+  content: {type: Object, required: false},
   time_stamp: { type: Date, default: Date.now },
 });
 
