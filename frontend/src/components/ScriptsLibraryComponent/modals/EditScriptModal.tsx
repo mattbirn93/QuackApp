@@ -1,3 +1,4 @@
+// src/components/ScriptsLibraryComponent/modals/EditScriptModal.tsx
 import React, { useState, useEffect } from "react";
 import "./EditScriptModal.css";
 
@@ -5,23 +6,34 @@ interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
   title: string;
-  author: string;
+  writtenBy: string;
+  address: string;
+  phoneNumber: string;
   dateCreated: string;
   dateModified: string;
-  onEdit: (newTitle: string, newAuthor: string) => void;
+  onEdit: (
+    newTitle: string,
+    newWrittenBy: string,
+    newAddress: string,
+    newPhoneNumber: string,
+  ) => void;
 }
 
 const EditScriptModal: React.FC<ModalProps> = ({
   isVisible,
   onClose,
   title,
-  author,
+  writtenBy,
+  address,
+  phoneNumber,
   dateCreated,
   dateModified,
   onEdit,
 }) => {
   const [newTitle, setNewTitle] = useState(title);
-  const [newAuthor, setNewAuthor] = useState(author);
+  const [newWrittenBy, setNewWrittenBy] = useState(writtenBy);
+  const [newAddress, setNewAddress] = useState(address);
+  const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -41,8 +53,10 @@ const EditScriptModal: React.FC<ModalProps> = ({
 
   useEffect(() => {
     setNewTitle(title);
-    setNewAuthor(author);
-  }, [title, author]);
+    setNewWrittenBy(writtenBy);
+    setNewAddress(address);
+    setNewPhoneNumber(phoneNumber);
+  }, [title, writtenBy, address, phoneNumber]);
 
   if (!isVisible) return null;
 
@@ -53,7 +67,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
   };
 
   const handleSave = () => {
-    onEdit(newTitle, newAuthor);
+    onEdit(newTitle, newWrittenBy, newAddress, newPhoneNumber);
     onClose();
   };
 
@@ -79,13 +93,35 @@ const EditScriptModal: React.FC<ModalProps> = ({
             Written by:
             <input
               type="text"
-              value={newAuthor}
-              onChange={(e) => setNewAuthor(e.target.value)}
+              value={newWrittenBy}
+              onChange={(e) => setNewWrittenBy(e.target.value)}
             />
           </label>
         </div>
-        <p>Date Created: {dateCreated}</p>
-        <p>Date Modified: {dateModified}</p>
+        <div>
+          <label>
+            Address:
+            <input
+              type="text"
+              value={newAddress}
+              onChange={(e) => setNewAddress(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Phone Number:
+            <input
+              type="text"
+              value={newPhoneNumber}
+              onChange={(e) => setNewPhoneNumber(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <p>Date Created: {dateCreated}</p>
+          <p>Date Modified: {dateModified}</p>
+        </div>
         <div className="modal-actions">
           <button onClick={handleSave}>Save</button>
           <button onClick={onClose}>Cancel</button>

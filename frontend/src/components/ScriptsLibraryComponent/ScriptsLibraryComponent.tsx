@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import scripts from "./scripts.json";
 import PageIcon1 from "../../assets/images/PageIcon1.png";
 import Button1 from "../Button/Button1";
+import EditScriptModal from "./modals/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal";
 import DeleteScriptModal from "./modals/DeleteScriptModal";
-import EditScriptModal from "./modals/EditScriptModal";
 import "./ScriptsLibraryComponent.css";
-import editIcon from "../../assets/images/editIcon.png"; // Add your edit icon image
-import deleteIcon from "../../assets/images/deleteIcon.png"; // Add your delete icon image
+import editIcon from "../../assets/images/editIcon.png";
+import deleteIcon from "../../assets/images/deleteIcon.png";
 
 interface Script {
   title: string;
-  author: string;
+  writtenBy: string;
+  address: string;
+  phoneNumber: string;
   dateCreated: string;
   dateModified: string;
 }
@@ -20,7 +22,7 @@ interface Script {
 const ScriptsLibraryComponent: React.FC = () => {
   const [scriptList, setScriptList] = useState<Script[]>(scripts);
   const [loading, setLoading] = useState(true);
-  const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isAddScriptModalVisible, setIsAddScriptModalVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [selectedScript, setSelectedScript] = useState<Script | null>(null);
@@ -39,7 +41,7 @@ const ScriptsLibraryComponent: React.FC = () => {
 
   const handleEditClick = (script: Script) => {
     setSelectedScript(script);
-    setIsInfoModalVisible(true);
+    setIsEditModalVisible(true);
   };
 
   const handleDeleteClick = (script: Script) => {
@@ -51,8 +53,8 @@ const ScriptsLibraryComponent: React.FC = () => {
     setIsAddScriptModalVisible(true);
   };
 
-  const handleCloseInfoModal = () => {
-    setIsInfoModalVisible(false);
+  const handleCloseEditModal = () => {
+    setIsEditModalVisible(false);
   };
 
   const handleCloseAddScriptModal = () => {
@@ -63,16 +65,27 @@ const ScriptsLibraryComponent: React.FC = () => {
     setIsDeleteModalVisible(false);
   };
 
-  const handleEditScript = (newTitle: string, newAuthor: string) => {
+  const handleEditScript = (
+    newTitle: string,
+    newWrittenBy: string,
+    newAddress: string,
+    newPhoneNumber: string,
+  ) => {
     if (selectedScript) {
       setScriptList((prevList) =>
         prevList.map((script) =>
           script.title === selectedScript.title
-            ? { ...script, title: newTitle, author: newAuthor }
+            ? {
+                ...script,
+                title: newTitle,
+                writtenBy: newWrittenBy,
+                address: newAddress,
+                phoneNumber: newPhoneNumber,
+              }
             : script,
         ),
       );
-      setIsInfoModalVisible(false);
+      setIsEditModalVisible(false);
     }
   };
 
@@ -125,11 +138,13 @@ const ScriptsLibraryComponent: React.FC = () => {
       </div>
       {selectedScript && (
         <EditScriptModal
-          isVisible={isInfoModalVisible}
-          onClose={handleCloseInfoModal}
+          isVisible={isEditModalVisible}
+          onClose={handleCloseEditModal}
           onEdit={handleEditScript}
           title={selectedScript.title}
-          author={selectedScript.author}
+          writtenBy={selectedScript.writtenBy}
+          address={selectedScript.address}
+          phoneNumber={selectedScript.phoneNumber}
           dateCreated={selectedScript.dateCreated}
           dateModified={selectedScript.dateModified}
         />
