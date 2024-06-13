@@ -327,7 +327,7 @@ import NodeButton from "../nodes/NodeButton";
 import SpeechToText from "../SpeechToTextComponent/SpeechToTextComponent";
 import MicOn from "../../assets/images/icons8-microphone-On.png";
 import MicOff from "../../assets/images/icons8-microphone-Off.png";
-import "./Tiptap.css";
+import "./tiptap.css"
 
 import {
   FaBold,

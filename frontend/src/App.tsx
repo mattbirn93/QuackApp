@@ -4,8 +4,8 @@ import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
-import { Tiptap } from "./components/TiptapComponent/TiptapComponent";
 
+import { Tiptap } from "./components/TipTapComponent/TiptapComponent"
 const getApiBaseUrl = () => {
   const hostname = window.location.hostname;
   if (hostname === "localhost" || hostname === "127.0.0.1") {
