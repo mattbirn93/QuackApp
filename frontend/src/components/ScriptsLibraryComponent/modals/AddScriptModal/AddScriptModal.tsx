@@ -35,7 +35,7 @@ const AddScriptModal: React.FC<ModalProps> = ({
   };
 
   return (
-    <Modal isVisible={isVisible} onClose={onClose} title="Add New Script">
+    <Modal isVisible={isVisible} onClose={onClose} title="Create Script">
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>
           Title:

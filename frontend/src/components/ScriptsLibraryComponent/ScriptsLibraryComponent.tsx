@@ -224,7 +224,7 @@ const ScriptsLibraryComponent: React.FC = () => {
               onClick={() => handleScriptTap(script)}
             >
               <div className={styles.scriptIconsContainer}>
-                <img
+                {/* <img
                   src={editIcon}
                   alt="Edit Icon"
                   className={styles.icon}
@@ -232,7 +232,7 @@ const ScriptsLibraryComponent: React.FC = () => {
                     e.stopPropagation();
                     handleEditClick(script);
                   }}
-                />
+                /> */}
               </div>
               <img
                 src={PageIcon1}
