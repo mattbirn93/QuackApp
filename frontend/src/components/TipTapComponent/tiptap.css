@@ -260,7 +260,6 @@ body {
     font-weight: 550;
     line-height: 1.1;
 }
-
 /* NodeButton styles */
 .nodeButton1 {
     @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
