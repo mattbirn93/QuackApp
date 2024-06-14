@@ -121,7 +121,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
         </button>
       </div>
       <hr className={styles.divider} />
-      <p className={styles.deleteText}>Do you want to delete script?</p>
+      <p className={styles.deleteText}>Do you want to delete this script?</p>
       <div className={styles.deleteButtonContainer}>
         <button
           className={`${styles.button} ${styles.deleteButton}`}
@@ -132,7 +132,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
       </div>
       {showDeleteConfirmation && (
         <div className={styles.deleteConfirmation}>
-          <p>Are you sure you want to delete this script?</p>
+          <p>This is permanent and can't be undone!</p>
           <div className={styles.confirmationActions}>
             <button
               className={`${styles.confirmButton} ${styles.confirmDelete}`}
