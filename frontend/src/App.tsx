@@ -5,7 +5,7 @@ import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 import { getApiBaseUrl } from "./utils/getApiBaseUrl";
-import { Tiptap } from "./components/TiptapComponent/TiptapComponent";
+import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
 import { useParams } from "react-router-dom";
 import styles from "./App.module.css";
 
