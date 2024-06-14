@@ -62,7 +62,6 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 connectDB();
 
-
 // Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);
@@ -178,6 +177,8 @@ io.on("connection", (socket) => {
 server.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on https://localhost:${PORT}`);
 });
+
+console.log("LOOK AT ME FOR A TEST");
 
 //////////////////////////////////////////////////
 
