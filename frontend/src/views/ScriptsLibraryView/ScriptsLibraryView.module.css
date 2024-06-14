@@ -3,7 +3,7 @@
 }
 
 .mainContainer {
-    @apply flex relative justify-center flex-col mx-auto bg-white;
+    @apply flex relative justify-center flex-col mx-auto bg-[white];
 }
 
 .proseBackground2 {

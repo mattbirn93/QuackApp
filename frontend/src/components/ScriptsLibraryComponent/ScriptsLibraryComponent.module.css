@@ -3,7 +3,7 @@
 }
 
 .scriptsLibraryContainer {
-    @apply grid mx-auto pr-[10px] w-[50.5rem] box-border mt-[1rem] bg-white;
+    @apply grid mx-auto pr-[10px] w-[50.5rem] box-border mt-[1rem] bg-[white];
     @apply sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
 }
 
