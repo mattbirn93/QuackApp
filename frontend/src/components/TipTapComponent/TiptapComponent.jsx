@@ -12,7 +12,7 @@ import SpeechToText from "../SpeechToTextComponent/SpeechToTextComponent";
 import MicOn from "../../assets/images/icons8-microphone-On.png";
 import MicOff from "../../assets/images/icons8-microphone-Off.png";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
-import "./tiptap.css";
+import "./Tiptap.css";
 
 import {
   FaBold,
