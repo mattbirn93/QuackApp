@@ -107,14 +107,20 @@ const EditScriptModal: React.FC<ModalProps> = ({
         </label>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.submitButton} onClick={handleSave}>
+        <button
+          className={`${styles.button} ${styles.submitButton}`}
+          onClick={handleSave}
+        >
           Save
         </button>
-        <button className={styles.cancelButton} onClick={onClose}>
+        <button
+          className={`${styles.button} ${styles.cancelButton}`}
+          onClick={onClose}
+        >
           Cancel
         </button>
         <button
-          className={`${styles.submitButton} ${styles.deleteButton}`}
+          className={`${styles.button} ${styles.deleteButton}`}
           onClick={handleDeleteClick}
         >
           Delete
@@ -124,10 +130,16 @@ const EditScriptModal: React.FC<ModalProps> = ({
         <div className={styles.deleteConfirmation}>
           <p>Are you sure you want to delete this script?</p>
           <div className={styles.confirmationActions}>
-            <button className={styles.confirmDelete} onClick={confirmDelete}>
+            <button
+              className={`${styles.confirmButton} ${styles.confirmDelete}`}
+              onClick={confirmDelete}
+            >
               Yes
             </button>
-            <button className={styles.cancelDelete} onClick={cancelDelete}>
+            <button
+              className={`${styles.confirmButton} ${styles.cancelDelete}`}
+              onClick={cancelDelete}
+            >
               No
             </button>
           </div>

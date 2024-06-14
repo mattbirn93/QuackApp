@@ -30,6 +30,10 @@
     @apply bg-none border-none text-2xl cursor-pointer text-gray-400 hover:text-gray-200 transition-colors duration-200 ease-in-out;
 }
 
+.closeIcon {
+    @apply bg-transparent rounded-full p-2 w-6 h-6 flex items-center justify-center text-xl text-white cursor-pointer;
+}
+
 .h2 {
     @apply text-center text-2xl font-light mb-4 text-white;
 }
@@ -53,26 +57,25 @@
 }
 
 .cancelButton {
-    @apply bg-transparent text-white py-2 px-6 rounded-full cursor-pointer text-base shadow-md hover:bg-purple-700 transition-all duration-300 ease-in-out w-28 font-semibold border-2 border-white;
+    @apply bg-transparent text-white py-2 px-6 rounded-full cursor-pointer text-base shadow-md hover:bg-purple-700 transition-all duration-300 ease-in-out w-28 font-semibold border-[1px] border-white;
 }
 
 .deleteButton {
-    @apply bg-[#b710b7] text-white py-2 px-6 border-none rounded-[20px] cursor-pointer text-base shadow-md hover:bg-purple-700 transition-all duration-300 ease-in-out w-[7rem] font-[600];
+    @apply bg-[red] text-white py-2 px-6 border-none rounded-[20px] cursor-pointer text-base shadow-md hover:bg-purple-700 transition-all duration-300 ease-in-out w-[7rem] font-[600];
 }
 
 .deleteConfirmation {
     @apply mt-4 text-center;
 }
 
-
 .confirmationActions {
     @apply flex justify-center mt-4 gap-8;
 }
 
 .confirmDelete {
-    @apply bg-red-500 text-white border-none p-2 rounded-lg cursor-pointer hover:bg-red-600 transition-all duration-300 ease-in-out;
+    @apply bg-transparent text-white w-28 py-2 rounded-full cursor-pointer hover:bg-red-600 transition-all duration-300 ease-in-out border-[1px] border-white;
 }
 
 .cancelDelete {
-    @apply bg-gray-500 text-white border-none p-2 rounded-lg cursor-pointer hover:bg-gray-600 transition-all duration-300 ease-in-out;
+    @apply bg-transparent text-white w-28 py-2 rounded-full cursor-pointer hover:bg-gray-600 transition-all duration-300 ease-in-out border-[1px] border-white;
 }

@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
       <div className={styles.modalContent}>
         <div className={styles.closeButton}>
           <button className={styles.closeButtonBtn} onClick={onClose}>
-            X
+            <span className={styles.closeIcon}>×</span>
           </button>
         </div>
         <h2 className={styles.h2}>{title}</h2>
