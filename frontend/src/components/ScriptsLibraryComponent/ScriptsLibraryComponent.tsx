@@ -63,9 +63,11 @@ const ScriptsLibraryComponent: React.FC = () => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
         const scriptIds = userData.scripts_id_array.join(",");
+        console.log("scriptIds", scriptIds)
+
         try {
           const response = await fetch(
-            `${API_BASE_URL}/api/scripts/fetchScriptsById?ids=${scriptIds}`,
+            `${API_BASE_URL}/api/scenes/fetchScriptsById?ids=${scriptIds}`,
           );
           if (response.ok) {
             const data = await response.json();
@@ -170,7 +172,7 @@ const ScriptsLibraryComponent: React.FC = () => {
 
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/scripts/createNewScript`,
+          `${API_BASE_URL}/api/scenes/createNewScript`,
           {
             method: "POST",
             headers: {
