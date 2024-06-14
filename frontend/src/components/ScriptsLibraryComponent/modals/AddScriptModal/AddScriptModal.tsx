@@ -65,7 +65,7 @@ const AddScriptModal: React.FC<ModalProps> = ({
         </div>
         <div className={styles.formGroup}>
           <label className={styles.formLabel}>
-            Written by:
+            Written By:
             <input
               className={styles.formInput}
               type="text"

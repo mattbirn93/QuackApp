@@ -1,0 +1,43 @@
+.wrapper {
+    @apply flex flex-col justify-center w-full;
+}
+
+.mainContainer {
+    @apply flex relative justify-center flex-col mx-auto bg-white;
+}
+
+.proseBackground2 {
+    @apply mx-auto;
+    width: 810px;
+}
+
+.scriptsLibraryBackground {
+    @apply bg-gray-100;
+}
+
+.topContainer {
+    @apply border-b border-black
+}
+
+.heading1 {
+    @apply text-2xl text-center text-black p-[2.5] bg-white;
+}
+
+.scriptsDocumentContainer {
+    @apply p-[1.25];
+}
+
+/* Responsive adjustments */
+@media (orientation: portrait) {
+   
+}
+
+@media (orientation: landscape) {
+}
+
+/* Additional adjustments for smaller screens */
+@media (max-width: 800px) {
+    /* .proseBackground {
+        @apply w-[100%];
+    } */
+}

@@ -1,0 +1,62 @@
+.scriptsLibraryComponent {
+    /* @apply flex flex-col justify-center w-full; */
+}
+
+.scriptsLibraryContainer {
+    @apply grid mx-auto pr-[10px] w-[50.5rem] box-border mt-[1rem] bg-white;
+    @apply sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+}
+
+.scriptContainer {
+    @apply relative w-[175px] h-[200px] flex flex-col items-center cursor-pointer p-4;
+}
+
+.scriptIconImage {
+    @apply w-40;
+}
+
+.scriptIconsContainer {
+    @apply flex absolute top-2 left-7;
+}
+
+.icon {
+    @apply h-6 w-6 ml-4 mt-4;
+}
+
+.scriptTitle {
+    @apply text-center text-black text-base;
+}
+
+.scriptsButtonContainer {
+    @apply text-center;
+}
+
+.addScriptContainer {
+    @apply relative w-[175px] h-[200px] flex flex-col items-center cursor-pointer text-center p-4;
+}
+
+.addScriptContent {
+    @apply relative w-[120px] h-[145px] flex flex-col items-center cursor-pointer p-6 text-black border-4 border-black rounded-lg;
+}
+
+.addScriptPlus {
+    @apply text-2xl m-0;
+}
+
+.addScriptText {
+    @apply m-0;
+}
+
+/* Responsive adjustments */
+@media (orientation: portrait) {}
+
+@media (orientation: landscape) {}
+
+/* Additional adjustments for smaller screens */
+@media (max-width: 600px) {
+    .scriptsLibraryContainer {
+        @apply w-[calc(100%-20px)];
+        grid-template-columns: repeat(2, 1fr);
+        /* Single column for very small screens */
+    }
+}

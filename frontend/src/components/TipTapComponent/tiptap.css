@@ -1,3 +1,31 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    /* background-color: blue; */
+}
+
+.mainContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50.5rem;
+    background-color: grey;
+}
+
+.mainNavbar {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    /* background-color: red; */
+    top: 8px;
+    left: 0;
+    right: 0;
+}
+
 .menuBar {
     padding-bottom: 5px;
     display: flex;
@@ -27,40 +55,46 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 45px;
-    right: 555px;
-}
-
-/* NodeButton styles */
-.nodeButton1 {
-    @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
+    top: 13px;
+    right: 1rem;
 }
 
 .icon {
     width: 35px;
     height: 35px;
     margin-top: 5px;
+    margin-left: 1rem;
 }
 
 .icon-inverted {
     filter: invert(100%);
 }
 
-.ProseBackground {
-    /* background-color: black; */
-    width: 810px;
-    margin: 0 auto;
-    background-color: #403f3e;
+.contentUpdateButton {
+    position: absolute;
+    top: 10px;
+    left: 5rem;
+    z-index: 20;
+    background-color: blue;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: .875rem;
 }
 
 .ProseMirror {
-    background-color: white;
     color: black;
+    background-color: white;
     font-size: 1.0rem;
     padding: 0.75rem;
-    height: 100rem;
+    height: 100vh;
     outline: none;
     padding-top: 5.5rem;
+}
+
+.ProseBackground {
+    /* width: 810px;
+    margin: 0 auto;
+    background-color: #403f3e; */
 }
 
 .collaboration-cursor__caret {
@@ -227,82 +261,18 @@ body {
     line-height: 1.1;
 }
 
-.mainNavbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 40px;
-    right: 750px;
-    /* background-color: red; */
+/* NodeButton styles */
+.nodeButton1 {
+    @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold;
 }
-
 
 /* Responsive adjustments */
 @media (orientation: portrait) {
-
-    .action,
-    .scene-header,
-    .character,
-    .dialogue {
-        @apply ml-12 mr-8;
-    }
-
-    .character {
-        @apply ml-auto mr-auto text-center;
-    }
-
-    .dialogue {
-        @apply ml-24 mr-8;
-    }
-
-    .ProseBackground {
-        width: 400px;
-    }
-
-    .hamburgerMenu {
-        right: 30px;
-    }
-
-    .mainNavbar {
-        top: 30px;
-        right: 50px;
-    }
 }
 
 @media (orientation: landscape) {
-
-    .action,
-    .scene-header,
-    .character,
-    .dialogue {
-        @apply ml-12 mr-8;
-    }
-
-    .character {
-        @apply ml-auto mr-auto text-center;
-    }
-
-    .dialogue {
-        @apply ml-24 mr-8;
-    }
 }
 
 /* Additional adjustments for smaller screens */
 @media (max-width: 600px) {
-
-    .action,
-    .scene-header,
-    .character,
-    .dialogue {
-        @apply ml-4 mr-2;
-    }
-
-    .character {
-        @apply ml-auto mr-auto text-center;
-    }
-
-    .dialogue {
-        @apply ml-6 mr-2;
-    }
 }

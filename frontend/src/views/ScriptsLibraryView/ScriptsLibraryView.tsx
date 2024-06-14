@@ -1,15 +1,17 @@
 import React from "react";
 import ScriptsLibraryComponent from "../../components/ScriptsLibraryComponent/ScriptsLibraryComponent";
-import "./ScriptsLibraryView.css";
+import styles from "./ScriptsLibraryView.module.css";
 
 const ScriptsLibraryView: React.FC = () => {
   return (
-    <div className="ProseBackground scripts-library-background">
-      <div className="top-container">
-        <h1 className="heading1">Scripts Library View</h1>
-      </div>
-      <div className="scripts-document-container">
-        <ScriptsLibraryComponent />
+    <div className={styles.wrapper}>
+      <div className={styles.mainContainer}>
+        <div className={styles.topContainer}>
+          <h1 className={styles.heading1}>Scripts Library View</h1>
+        </div>
+        <div className={styles.scriptsDocumentContainer}>
+          <ScriptsLibraryComponent />
+        </div>
       </div>
     </div>
   );

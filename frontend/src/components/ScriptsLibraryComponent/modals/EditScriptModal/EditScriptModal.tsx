@@ -129,7 +129,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
             Save
           </button>
           <button
-            className={`${styles.modalActionsBtn} ${styles.modalActionsBtnSecondary}`}
+            className={`${styles.modalActionsBtnSecondary}`}
             onClick={onClose}
           >
             Cancel

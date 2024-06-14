@@ -7,6 +7,7 @@ import { AppDataInterface } from "./interfaces/interfaces";
 import { getApiBaseUrl } from "./utils/getApiBaseUrl";
 import { Tiptap } from "./components/TiptapComponent/TiptapComponent";
 import { useParams } from "react-router-dom";
+import styles from "./App.module.css";
 
 const App: React.FC = () => {
   const { scriptId } = useParams<{ scriptId: string }>();
@@ -50,7 +51,7 @@ const App: React.FC = () => {
 
   return (
     <MyErrorBoundary fallback={"There was an error"}>
-      <div className="ProseBackground">
+      <div>
         <Tiptap
           initialContent={testContent}
           setDescription={setDescription}

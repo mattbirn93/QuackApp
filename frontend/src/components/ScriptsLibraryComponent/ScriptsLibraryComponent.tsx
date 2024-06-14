@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import PageIcon1 from "../../assets/images/PageIcon1.png";
-import EditScriptModal from "./modals/EditScriptModal";
-import AddScriptModal from "./modals/AddScriptModal";
-import "./ScriptsLibraryComponent.css";
+import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
+import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
+import styles from "./ScriptsLibraryComponent.module.css";
 import editIcon from "../../assets/images/editIcon.png";
 
 interface Script {
@@ -56,7 +56,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     };
 
     fetchUserData();
-  }, []);
+  }, [API_BASE_URL]);
 
   useEffect(() => {
     const fetchScriptsData = async () => {
@@ -83,7 +83,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     };
 
     fetchScriptsData();
-  }, [userData]);
+  }, [userData, API_BASE_URL]);
 
   const handleScriptClick = (id: string) => {
     navigate(`/app/${id}`); // Redirect to App component with script ID
@@ -185,24 +185,27 @@ const ScriptsLibraryComponent: React.FC = () => {
   };
 
   return (
-    <div className="scripts-library-component">
-      <div className="scripts-library-container">
-        <div className="add-script-container">
-          <div className="add-script-content" onClick={handleAddScriptClick}>
-            <p className="add-script-plus">+</p>
-            <p className="add-script-text">Add Script</p>
+    <div className={styles.scriptsLibraryComponent}>
+      <div className={styles.scriptsLibraryContainer}>
+        <div className={styles.addScriptContainer}>
+          <div
+            className={styles.addScriptContent}
+            onClick={handleAddScriptClick}
+          >
+            <p className={styles.addScriptPlus}>+</p>
+            <p className={styles.addScriptText}>Add Script</p>
           </div>
         </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
           scriptList.map((script, index) => (
-            <div className="script-container" key={index}>
-              <div className="script-icons-container">
+            <div className={styles.scriptContainer} key={index}>
+              <div className={styles.scriptIconsContainer}>
                 <img
                   src={editIcon}
                   alt="Edit Icon"
-                  className="icon"
+                  className={styles.icon}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleEditClick(script);
@@ -212,10 +215,10 @@ const ScriptsLibraryComponent: React.FC = () => {
               <img
                 src={PageIcon1}
                 alt="Script Icon"
-                className="script-icon-image"
+                className={styles.scriptIconImage}
                 onClick={() => handleScriptClick(script._id)}
               />
-              <p className="script-title">{script.title}</p>
+              <p className={styles.scriptTitle}>{script.title}</p>
             </div>
           ))
         )}

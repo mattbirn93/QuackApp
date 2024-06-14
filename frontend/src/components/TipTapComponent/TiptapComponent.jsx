@@ -205,54 +205,57 @@ export const Tiptap = ({ initialContent, setDescription, scriptId }) => {
   };
 
   return (
-    <div>
-      <button onClick={updateContent}>Update Content</button>
-
-      <div className="mainNavbar">
-        <NodeButton
-          editor={editor}
-          command="setAction"
-          label="Action"
-          className="nodeButton1"
-        />
-        <NodeButton
-          editor={editor}
-          command="setSceneHeader"
-          label="Scene Header"
-          className="nodeButton1"
-        />
-        <NodeButton
-          editor={editor}
-          command="setCharacter"
-          label="Character"
-          className="nodeButton1"
-        />
-        <NodeButton
-          editor={editor}
-          command="setDialogue"
-          label="Dialogue"
-          className="nodeButton1"
-        />
-      </div>
-
-      <div>
-        <SpeechToText
-          recordingState={recordingState}
-          onSpeechText={handleSpeechText}
-        />
-        <button onClick={toggleRecording}>
-          <img
-            src={recordingState === "start" ? MicOff : MicOn}
-            alt="Mic Icon"
-            className="icon icon-inverted"
+    <div className="wrapper">
+      <div className="mainContainer">
+        <button className="contentUpdateButton" onClick={updateContent}>
+          Update Content
+        </button>
+        <div className="mainNavbar">
+          <NodeButton
+            editor={editor}
+            command="setAction"
+            label="Action"
+            className="nodeButton1"
           />
-        </button>
+          <NodeButton
+            editor={editor}
+            command="setSceneHeader"
+            label="Scene Header"
+            className="nodeButton1"
+          />
+          <NodeButton
+            editor={editor}
+            command="setCharacter"
+            label="Character"
+            className="nodeButton1"
+          />
+          <NodeButton
+            editor={editor}
+            command="setDialogue"
+            label="Dialogue"
+            className="nodeButton1"
+          />
+        </div>
 
-        <button onClick={toggleMenu}>
-          <FaBars className="hamburgerMenu" />
-        </button>
-        {menuVisible && <MenuBar editor={editor} />}
-        <EditorContent editor={editor} />
+        <div>
+          <SpeechToText
+            recordingState={recordingState}
+            onSpeechText={handleSpeechText}
+          />
+          <button onClick={toggleRecording}>
+            <img
+              src={recordingState === "start" ? MicOff : MicOn}
+              alt="Mic Icon"
+              className="icon icon-inverted"
+            />
+          </button>
+
+          <button onClick={toggleMenu}>
+            <FaBars className="hamburgerMenu" />
+          </button>
+          {menuVisible && <MenuBar editor={editor} />}
+          <EditorContent editor={editor} />
+        </div>
       </div>
     </div>
   );
