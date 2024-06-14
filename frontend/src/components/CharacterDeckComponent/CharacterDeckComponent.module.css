@@ -1,3 +1,15 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
 
+.mainContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50.5rem;
 }
