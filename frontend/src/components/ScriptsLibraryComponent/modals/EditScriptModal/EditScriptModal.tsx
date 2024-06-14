@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ModalProps } from "./EditScriptModalInterface";
-import styles from "./EditScriptModal.module.css";
+import Modal from "../../../common/Modal";
+import styles from "../../../common/Modal.module.css";
 
 const EditScriptModal: React.FC<ModalProps> = ({
   isVisible,
@@ -9,7 +10,6 @@ const EditScriptModal: React.FC<ModalProps> = ({
   writtenBy,
   address,
   phoneNumber,
-
   onEdit,
   onDelete,
 }) => {
@@ -42,14 +42,6 @@ const EditScriptModal: React.FC<ModalProps> = ({
     setNewPhoneNumber(phoneNumber);
   }, [title, writtenBy, address, phoneNumber]);
 
-  if (!isVisible) return null;
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if ((e.target as Element).classList.contains(styles.modalOverlay)) {
-      onClose();
-    }
-  };
-
   const handleSave = () => {
     onEdit(newTitle, newWrittenBy, newAddress, newPhoneNumber);
     onClose();
@@ -69,93 +61,79 @@ const EditScriptModal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className={styles.modalOverlay} onClick={handleOverlayClick}>
-      <div className={styles.modalContent}>
-        <div className={styles.closeButton}>
-          <button className={styles.closeButtonBtn} onClick={onClose}>
-            X
-          </button>
-        </div>
-        <h2 className={styles.modalContentH2}>Edit Script</h2>
-        <div>
-          <label className={styles.modalContentLabel}>
-            Title:
-            <input
-              className={styles.modalContentInput}
-              type="text"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label className={styles.modalContentLabel}>
-            Written by:
-            <input
-              className={styles.modalContentInput}
-              type="text"
-              value={newWrittenBy}
-              onChange={(e) => setNewWrittenBy(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label className={styles.modalContentLabel}>
-            Address:
-            <input
-              className={styles.modalContentInput}
-              type="text"
-              value={newAddress}
-              onChange={(e) => setNewAddress(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label className={styles.modalContentLabel}>
-            Phone Number:
-            <input
-              className={styles.modalContentInput}
-              type="text"
-              value={newPhoneNumber}
-              onChange={(e) => setNewPhoneNumber(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className={styles.modalActions}>
-          <button
-            className={`${styles.modalActionsBtn} ${styles.modalActionsBtnPrimary}`}
-            onClick={handleSave}
-          >
-            Save
-          </button>
-          <button
-            className={`${styles.modalActionsBtnSecondary}`}
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button
-            className={`${styles.modalActionsBtn} ${styles.deleteButton}`}
-            onClick={handleDeleteClick}
-          >
-            Delete
-          </button>
-        </div>
-        {showDeleteConfirmation && (
-          <div className={styles.deleteConfirmation}>
-            <p>Are you sure you want to delete this script?</p>
-            <div className={styles.confirmationActions}>
-              <button className={styles.confirmDelete} onClick={confirmDelete}>
-                Yes
-              </button>
-              <button className={styles.cancelDelete} onClick={cancelDelete}>
-                No
-              </button>
-            </div>
-          </div>
-        )}
+    <Modal isVisible={isVisible} onClose={onClose} title="Edit Script">
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Title:
+          <input
+            className={styles.formInput}
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+          />
+        </label>
       </div>
-    </div>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Written by:
+          <input
+            className={styles.formInput}
+            type="text"
+            value={newWrittenBy}
+            onChange={(e) => setNewWrittenBy(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Address:
+          <input
+            className={styles.formInput}
+            type="text"
+            value={newAddress}
+            onChange={(e) => setNewAddress(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          Phone Number:
+          <input
+            className={styles.formInput}
+            type="text"
+            value={newPhoneNumber}
+            onChange={(e) => setNewPhoneNumber(e.target.value)}
+          />
+        </label>
+      </div>
+      <div className={styles.buttonContainer}>
+        <button className={styles.submitButton} onClick={handleSave}>
+          Save
+        </button>
+        <button className={styles.cancelButton} onClick={onClose}>
+          Cancel
+        </button>
+        <button
+          className={`${styles.submitButton} ${styles.deleteButton}`}
+          onClick={handleDeleteClick}
+        >
+          Delete
+        </button>
+      </div>
+      {showDeleteConfirmation && (
+        <div className={styles.deleteConfirmation}>
+          <p>Are you sure you want to delete this script?</p>
+          <div className={styles.confirmationActions}>
+            <button className={styles.confirmDelete} onClick={confirmDelete}>
+              Yes
+            </button>
+            <button className={styles.cancelDelete} onClick={cancelDelete}>
+              No
+            </button>
+          </div>
+        </div>
+      )}
+    </Modal>
   );
 };
 

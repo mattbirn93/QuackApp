@@ -24,18 +24,15 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className={styles.modalOverlay} onClick={handleOverlayClick}>
-      {" "}
       <div className={styles.modalContent}>
-        {" "}
         <div className={styles.closeButton}>
-          {" "}
           <button className={styles.closeButtonBtn} onClick={onClose}>
-            {" "}
-            X{" "}
-          </button>{" "}
-        </div>{" "}
-        <h2 className={styles.h2}> {title}</h2> {children}
-      </div>{" "}
+            X
+          </button>
+        </div>
+        <h2 className={styles.h2}>{title}</h2>
+        {children}
+      </div>
     </div>
   );
 };
