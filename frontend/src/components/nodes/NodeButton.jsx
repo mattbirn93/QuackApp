@@ -1,13 +1,16 @@
-// src/components/NodeButton.jsx
 import React from "react";
 
-const NodeButton = ({ editor, command, label, className }) => {
+const NodeButton = ({ editor, command, label, className, onClick }) => {
   if (!editor) {
     return null;
   }
 
   const handleClick = () => {
-    editor.chain().focus()[command]().run();
+    if (onClick) {
+      onClick();  // Use the provided onClick function
+    } else {
+      editor.chain().focus()[command]().run();  // Default behavior
+    }
   };
 
   return (

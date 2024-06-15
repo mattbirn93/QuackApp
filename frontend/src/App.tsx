@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [description, setDescription] = useState("");
   const [testContent, setTestContent] = useState();
+  const [characterArrayData, setCharacterArrayData] =  useState<string[]>([]);
   const API_BASE_URL = getApiBaseUrl();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         );
         console.log(response, "response dude");
         setTestContent(response.data.content);
+        setCharacterArrayData(response.data.characters)
         // Assuming response.data has the structure { data: { content: "..." } }
         setData(response.data);
         setLoading(false);
@@ -56,6 +58,7 @@ const App: React.FC = () => {
           initialContent={testContent}
           setDescription={setDescription}
           scriptId={scriptId}
+          characterArray={characterArrayData}
         />
       </div>
     </MyErrorBoundary>
