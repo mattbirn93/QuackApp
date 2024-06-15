@@ -64,6 +64,163 @@ const App: React.FC = () => {
 
 export default App;
 
+////////////////
+
+// import React, { useEffect, useState, useRef } from "react";
+// import axios from "axios";
+// import { io, Socket } from "socket.io-client";
+// import MyErrorBoundary from "./MyErrorBoundary";
+// import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
+// import { AppDataInterface } from "./interfaces/interfaces";
+// import { getApiBaseUrl } from "./utils/getApiBaseUrl";
+// import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
+// import { useParams } from "react-router-dom";
+
+// const App: React.FC = () => {
+//   const { scriptId } = useParams<{ scriptId: string }>();
+
+//   const socketRef = useRef<Socket | null>(null);
+//   const [data, setData] = useState<AppDataInterface | null>(null);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [description, setDescription] = useState("");
+//   const [testContent, setTestContent] = useState();
+//   const API_BASE_URL = getApiBaseUrl();
+//   const [isDarkMode, setIsDarkMode] = useState(() => {
+//     // Get the initial mode from localStorage or default to false
+//     const savedMode = localStorage.getItem("darkMode");
+//     return savedMode ? JSON.parse(savedMode) : false;
+//   });
+
+//   useEffect(() => {
+//     // Apply the dark class to the html element
+//     if (isDarkMode) {
+//       document.documentElement.classList.add("dark");
+//     } else {
+//       document.documentElement.classList.remove("dark");
+//     }
+
+//     // Save the current mode to localStorage
+//     localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+//   }, [isDarkMode]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const start = performance.now();
+
+//       try {
+//         const response = await axios.get(
+//           `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`,
+//         );
+//         console.log(response, "response dude");
+//         setTestContent(response.data.content);
+//         // Assuming response.data has the structure { data: { content: "..." } }
+//         setData(response.data);
+//         setLoading(false);
+//       } catch (error: any) {
+//         const end = performance.now();
+//         console.log(`Axios request took ${end - start} ms (with error)`);
+
+//         if (error.response) {
+//           console.error("Error response:", error.response.data);
+//         } else if (error.request) {
+//           console.error("Error request:", error.request);
+//         } else {
+//           console.error("Error:", error.message);
+//         }
+//       }
+//     };
+
+//     fetchData();
+//   }, [API_BASE_URL]);
+
+//   return (
+//     <MyErrorBoundary fallback={"There was an error"}>
+//       <div className={isDarkMode ? "dark" : ""}>
+//         <button onClick={() => setIsDarkMode(!isDarkMode)}>
+//           Toggle Dark Mode
+//         </button>
+//         <div className="app-content">
+//           <Tiptap
+//             initialContent={testContent}
+//             setDescription={setDescription}
+//             scriptId={scriptId}
+//           />
+//         </div>
+//       </div>
+//     </MyErrorBoundary>
+//   );
+// };
+
+// export default App;
+
+///////////////////////////////
+
+// import React, { useEffect, useState, useRef } from "react";
+// import axios from "axios";
+// import { io, Socket } from "socket.io-client";
+// import MyErrorBoundary from "./MyErrorBoundary";
+// import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
+// import { AppDataInterface } from "./interfaces/interfaces";
+// import { getApiBaseUrl } from "./utils/getApiBaseUrl";
+// import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
+// import { useParams } from "react-router-dom";
+// import styles from "./App.module.css";
+
+// const App: React.FC = () => {
+//   const { scriptId } = useParams<{ scriptId: string }>();
+
+//   const socketRef = useRef<Socket | null>(null);
+//   const [data, setData] = useState<AppDataInterface | null>(null);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [description, setDescription] = useState("");
+//   const [testContent, setTestContent] = useState();
+//   const API_BASE_URL = getApiBaseUrl();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const start = performance.now();
+
+//       try {
+//         const response = await axios.get(
+//           `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`,
+//         );
+//         console.log(response, "response dude");
+//         setTestContent(response.data.content);
+//         // Assuming response.data has the structure { data: { content: "..." } }
+//         setData(response.data);
+//         setLoading(false);
+//       } catch (error: any) {
+//         const end = performance.now();
+//         console.log(`Axios request took ${end - start} ms (with error)`);
+
+//         if (error.response) {
+//           console.error("Error response:", error.response.data);
+//         } else if (error.request) {
+//           console.error("Error request:", error.request);
+//         } else {
+//           console.error("Error:", error.message);
+//         }
+//       }
+//     };
+
+//     fetchData();
+//   }, [API_BASE_URL]);
+
+//   return (
+//     <MyErrorBoundary fallback={"There was an error"}>
+//       <div>
+//         <Tiptap
+//           initialContent={testContent}
+//           setDescription={setDescription}
+//           scriptId={scriptId}
+//         />
+//       </div>
+//     </MyErrorBoundary>
+//   );
+// };
+
+// export default App;
+
 ///////////////////////////////
 
 // import React, { useEffect, useState, useRef } from "react";

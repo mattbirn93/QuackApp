@@ -1,62 +1,103 @@
-.scriptsLibraryComponent {
-    /* @apply flex flex-col justify-center w-full; */
+.wrapper {
+    /* background-color: pink; */
 }
 
-.scriptsLibraryContainer {
-    @apply grid mx-auto pr-[10px] w-[50.5rem] box-border mt-[1rem] bg-[white];
-    @apply sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+.mainContainer {
+   display: flex;
+   position: relative;
+   justify-content: center;
+   background-color: black;
+   flex-direction: row;
+   flex-wrap: wrap;
+   padding-top: 1rem;
 }
 
-.scriptContainer {
-    @apply relative w-[175px] h-[200px] flex flex-col items-center cursor-pointer p-4;
+.allScriptsContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    /* background-color: blue; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    gap: 10px;
+}
+
+.inidvidualScriptsContainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    background-color: #222222;
+    flex-direction: column;  
+    width: 11rem; 
+    height: 12.5rem;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .scriptIconImage {
-    @apply w-40;
-}
-
-.scriptIconsContainer {
-    @apply flex absolute top-2 left-7;
-}
-
-.icon {
-    @apply h-6 w-6 ml-4 mt-4;
+    @apply w-[6rem] flex justify-center;
 }
 
 .scriptTitle {
-    @apply text-center text-black text-base;
+    @apply text-center text-white text-base font-[600] text-[.875rem] mt-[.5rem] line-clamp-2;
 }
 
 .scriptsButtonContainer {
     @apply text-center;
-}
+} 
 
 .addScriptContainer {
-    @apply relative w-[175px] h-[200px] flex flex-col items-center cursor-pointer text-center p-4;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #222222;
+    flex-direction: column;
+    width: 11rem;
+    height: 12.5rem;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .addScriptContent {
-    @apply relative w-[120px] h-[145px] flex flex-col items-center cursor-pointer p-6 text-black border-4 border-black rounded-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .addScriptPlus {
     @apply text-2xl m-0;
+    background-color: white;
+    color: #222222;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .addScriptText {
-    @apply m-0;
+    @apply m-0 text-white;
 }
 
 /* Responsive adjustments */
-@media (orientation: portrait) {}
+/* @media (orientation: portrait) {}
 
 @media (orientation: landscape) {}
 
 /* Additional adjustments for smaller screens */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .scriptsLibraryContainer {
-        @apply w-[calc(100%-20px)];
+        @apply w-[100%];
         grid-template-columns: repeat(2, 1fr);
-        /* Single column for very small screens */
     }
-}
+
+    .scriptContainer {
+        @apply w-full;
+    } */
+/* } */ 

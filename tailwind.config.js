@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./frontend/src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class", // Use 'media' or 'class' for dark mode
+  darkMode: "class",
   theme: {
     extend: {
       // Custom Colors
@@ -291,6 +291,13 @@ export default {
         96: "24rem", // 384px
         128: "32rem", // 512px
         144: "36rem", // 576px
+      },
+
+      // Custom Filter for Invert
+      invert: {
+        0: "0",
+        50: ".5",
+        100: "1",
       },
     },
   },

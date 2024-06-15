@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
-import PageIcon1 from "../../assets/images/PageIcon1.png";
+// import PageIcon1 from "../../assets/images/PageIcon1.png";
+import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
 import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
 import styles from "./ScriptsLibraryComponent.module.css";
-import editIcon from "../../assets/images/editIcon.png";
+// import editIcon from "../../assets/images/editIcon.png";
 
 interface Script {
   [x: string]: any;
@@ -63,7 +64,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
         const scriptIds = userData.scripts_id_array.join(",");
-        console.log("scriptIds", scriptIds)
+        console.log("scriptIds", scriptIds);
 
         try {
           const response = await fetch(
@@ -205,68 +206,57 @@ const ScriptsLibraryComponent: React.FC = () => {
   };
 
   return (
-    <div className={styles.scriptsLibraryComponent}>
-      <div className={styles.scriptsLibraryContainer}>
-        <div className={styles.addScriptContainer}>
-          <div
-            className={styles.addScriptContent}
-            onClick={handleAddScriptClick}
-          >
-            <p className={styles.addScriptPlus}>+</p>
-            <p className={styles.addScriptText}>Add Script</p>
-          </div>
-        </div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          scriptList.map((script, index) => (
+    <div className={styles.wrapper}>
+      <div className={styles.mainContainer}>
+        <div className={styles.allScriptsContainer}>
+          <div className={styles.addScriptContainer}>
             <div
-              className={styles.scriptContainer}
-              key={index}
-              onClick={() => handleScriptTap(script)}
+              className={styles.addScriptContent}
+              onClick={handleAddScriptClick}
             >
-              <div className={styles.scriptIconsContainer}>
-                {/* <img
-                  src={editIcon}
-                  alt="Edit Icon"
-                  className={styles.icon}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleEditClick(script);
-                  }}
-                /> */}
-              </div>
-              <img
-                src={PageIcon1}
-                alt="Script Icon"
-                className={styles.scriptIconImage}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleScriptTap(script);
-                }}
-              />
-              <p className={styles.scriptTitle}>{script.title}</p>
+              <p className={styles.addScriptPlus}>+</p>
+              <p className={styles.addScriptText}>Create Script</p>
             </div>
-          ))
+          </div>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            scriptList.map((script, index) => (
+              <div key={index} onClick={() => handleScriptTap(script)}>
+                <div className={styles.inidvidualScriptsContainer}>
+                  <img
+                    src={PageIcon1}
+                    alt="Script Icon"
+                    className={`${styles.scriptIconImage}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleScriptTap(script);
+                    }}
+                  />
+                  <p className={styles.scriptTitle}>{`${script.title}`}</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+        {selectedScript && (
+          <EditScriptModal
+            isVisible={isEditModalVisible}
+            onClose={handleCloseEditModal}
+            onEdit={handleEditScript}
+            onDelete={handleDeleteScript}
+            title={selectedScript.title_page.title}
+            writtenBy={selectedScript.title_page.written_by}
+            address={selectedScript.title_page.address}
+            phoneNumber={selectedScript.title_page.phone_number}
+          />
         )}
-      </div>
-      {selectedScript && (
-        <EditScriptModal
-          isVisible={isEditModalVisible}
-          onClose={handleCloseEditModal}
-          onEdit={handleEditScript}
-          onDelete={handleDeleteScript}
-          title={selectedScript.title_page.title}
-          writtenBy={selectedScript.title_page.written_by}
-          address={selectedScript.title_page.address}
-          phoneNumber={selectedScript.title_page.phone_number}
+        <AddScriptModal
+          isVisible={isAddScriptModalVisible}
+          onClose={handleCloseAddScriptModal}
+          onAdd={handleAddScript}
         />
-      )}
-      <AddScriptModal
-        isVisible={isAddScriptModalVisible}
-        onClose={handleCloseAddScriptModal}
-        onAdd={handleAddScript}
-      />
+      </div>
     </div>
   );
 };
