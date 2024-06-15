@@ -242,9 +242,9 @@ export const Tiptap = ({
         stopRecording();
         setTimeout(() => {
           insertNewLine();
-          insertNewLine();
           editor.chain().focus().setNode("action").run();
           setTimeout(() => {
+            insertNewLine();
             startRecording();
           }, 500);
         }, 500);
@@ -267,10 +267,9 @@ export const Tiptap = ({
         stopRecording();
         setTimeout(() => {
           insertNewLine();
-          insertNewLine();
-
           editor.chain().focus().setNode("sceneHeader").run();
           setTimeout(() => {
+            insertNewLine();
             startRecording();
           }, 500);
         }, 500);
@@ -285,12 +284,52 @@ export const Tiptap = ({
     }
   };
 
+  const handleDialogueButtonClick = () => {
+    console.log("Dialogue button clicked");
+
+    if (editor) {
+      if (listening) {
+        stopRecording();
+        setTimeout(() => {
+          insertNewLine();
+          editor.chain().focus().setNode("dialogue").run();
+          setTimeout(() => {
+            insertNewLine();
+            startRecording();
+          }, 500);
+        }, 500);
+      } else {
+        insertNewLine();
+        editor.chain().focus().setNode("dialogue").run();
+        setTimeout(() => {
+          insertNewLine();
+          startRecording();
+        }, 500);
+      }
+    }
+  };
+
   // Update editor content when initialContent changes
   useEffect(() => {
     if (editor && initialContent) {
       editor.commands.setContent(initialContent);
     }
   }, [initialContent, editor]);
+
+  // Add event listener for Shift key
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Shift") {
+        handleActionButtonClick();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [editor, listening]);
 
   // Responsible for updating content
   const updateContent = async () => {
@@ -353,6 +392,7 @@ export const Tiptap = ({
             command="setDialogue"
             label="Dialogue"
             className="nodeButton1"
+            onClick={handleDialogueButtonClick}
           />
         </div>
 
