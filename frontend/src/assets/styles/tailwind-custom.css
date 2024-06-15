@@ -104,6 +104,16 @@
     }
 }
 
+.paddingHorizontal {
+    /* padding-left: 1.5rem;
+    padding-right: 1.5rem; */
+}
+
+.paddingVertical {
+    /* padding-top: 1.5rem;
+    padding-bottom: 1.5rem; */
+}
+
 /* Responsive adjustments */
 @media (orientation: portrait) {}
 
@@ -111,3 +121,50 @@
 
 /* Additional adjustments for smaller screens */
 @media (max-width: 600px) {}
+
+
+
+
+
+
+/* xx-large devices (larger desktops) @media (max-width: 1440px and up) */
+/* @media screen and (max-width:90rem) {
+    html {
+        font-size: calc(0.7241091314031181rem + 0.4454342984409799vw);
+    }
+} */
+
+/* x-large devices (large desktops) @media (max-width: 1200px and up) */
+/* @media screen and (max-width:75rem) {
+    html {
+        font-size: calc(0.7241091314031181rem + 0.4454342984409799vw);
+    }
+} */
+
+/* large devices (desktops) @media (max-width: 992px and up) */
+/* @media screen and (max-width:62rem) {
+    html {
+        font-size: calc(0.5094866071428572rem + 0.8928571428571428vw);
+    }
+} */
+
+/* medium devices (tablets) @media (max-width: 768px and up) */
+/* @media screen and (max-width:48rem) {
+    html {
+        font-size: calc(0.8748368146214099rem + 0.2610966057441253vw);
+    }
+} */
+
+/* small devices (landscape phones) @media (max-width: 576px and up) */
+/* @media screen and (max-width:36rem) {
+    html {
+        font-size: calc(0.8748368146214099rem + 0.2610966057441253vw);
+    }
+} */
+
+/* x-small devices (landscape phones) @media (max-width: 280px and up) */
+/* @media screen and (max-width:17.5rem) {
+    html {
+        font-size: calc(0.8748368146214099rem + 0.2610966057441253vw);
+    }
+} */
