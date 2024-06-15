@@ -234,6 +234,57 @@ export const Tiptap = ({
     }
   };
 
+  const handleActionButtonClick = () => {
+    console.log("Action button clicked");
+
+    if (editor) {
+      if (listening) {
+        stopRecording();
+        setTimeout(() => {
+          insertNewLine();
+          insertNewLine();
+          editor.chain().focus().setNode("action").run();
+          setTimeout(() => {
+            startRecording();
+          }, 500);
+        }, 500);
+      } else {
+        insertNewLine();
+        editor.chain().focus().setNode("action").run();
+        setTimeout(() => {
+          insertNewLine();
+          startRecording();
+        }, 500);
+      }
+    }
+  };
+
+  const handleSceneHeaderButtonClick = () => {
+    console.log("Scene Header button clicked");
+
+    if (editor) {
+      if (listening) {
+        stopRecording();
+        setTimeout(() => {
+          insertNewLine();
+          insertNewLine();
+
+          editor.chain().focus().setNode("sceneHeader").run();
+          setTimeout(() => {
+            startRecording();
+          }, 500);
+        }, 500);
+      } else {
+        insertNewLine();
+        editor.chain().focus().setNode("sceneHeader").run();
+        setTimeout(() => {
+          insertNewLine();
+          startRecording();
+        }, 500);
+      }
+    }
+  };
+
   // Update editor content when initialContent changes
   useEffect(() => {
     if (editor && initialContent) {
@@ -281,18 +332,21 @@ export const Tiptap = ({
             command="setAction"
             label="Action"
             className="nodeButton1"
+            onClick={handleActionButtonClick}
           />
           <NodeButton
             editor={editor}
             command="setSceneHeader"
             label="Scene Header"
             className="nodeButton1"
+            onClick={handleSceneHeaderButtonClick}
           />
           <NodeButton
             editor={editor}
             command="setCharacter"
             label="Character"
             className="nodeButton1"
+            onClick={handleCharacterButtonClick}
           />
           <NodeButton
             editor={editor}
