@@ -9,9 +9,7 @@ const ScriptsLibraryView: React.FC = () => {
         <div className={styles.topContainer}>
           <h1 className={styles.heading1}>Scripts Library View</h1>
         </div>
-        <div className={styles.scriptsDocumentContainer}>
-          <ScriptsLibraryComponent />
-        </div>
+        <ScriptsLibraryComponent />
       </div>
     </div>
   );

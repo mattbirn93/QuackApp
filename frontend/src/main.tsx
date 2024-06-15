@@ -4,8 +4,8 @@ import { RouterProvider } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import "./assets/styles/index.css";
 import { router } from "./routes/Router";
+import "./assets/styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
