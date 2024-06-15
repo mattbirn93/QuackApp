@@ -1,0 +1,13 @@
+.characterDeckButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+  }
+  
