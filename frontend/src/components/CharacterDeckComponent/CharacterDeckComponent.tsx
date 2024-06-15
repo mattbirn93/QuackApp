@@ -1,13 +1,32 @@
 import React from "react";
+import CharacterDeckButton from "./CharacterDeckButton";
 import styles from "./CharacterDeckComponent.module.css";
 
-const CharacterDeckComponent = () => {
+interface CharacterDeckComponentProps {
+  characterArray: string[];
+  onCharacterButtonClick: (character: string) => void;
+}
+
+const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
+  characterArray,
+  onCharacterButtonClick,
+}) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
-        <div>
-          Hello From The Character Deck Component Add all logic below here
-        </div>
+        {characterArray.map((character, index) => (
+          <CharacterDeckButton
+            key={index}
+            letter={character[0]}
+            color="pink"
+            onClick={() => onCharacterButtonClick(character)}
+          />
+        ))}
+          <CharacterDeckButton letter={"+"}
+             onClick={() => console.log("hi")}
+
+            color="pink"></CharacterDeckButton>
+
       </div>
     </div>
   );
