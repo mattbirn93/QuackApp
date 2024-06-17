@@ -22,11 +22,11 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
             onClick={() => onCharacterButtonClick(character)}
           />
         ))}
-          <CharacterDeckButton letter={"+"}
-             onClick={() => console.log("hi")}
-
-            color="pink"></CharacterDeckButton>
-
+        <CharacterDeckButton
+          letter={"+"}
+          onClick={() => console.log("hi")}
+          color="pink"
+        ></CharacterDeckButton>
       </div>
     </div>
   );
