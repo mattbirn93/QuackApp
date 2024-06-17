@@ -344,7 +344,7 @@ export const Tiptap = ({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ newContent: newContent }),
-          }
+          },
         );
 
         const data = await response.json();
