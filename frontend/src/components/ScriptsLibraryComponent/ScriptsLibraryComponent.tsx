@@ -4,6 +4,7 @@ import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
 import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
+import { motion } from "framer-motion";
 import styles from "./ScriptsLibraryComponent.module.css";
 
 interface Script {
@@ -223,7 +224,15 @@ const ScriptsLibraryComponent: React.FC = () => {
             <p>Loading...</p>
           ) : (
             scriptList.map((script, index) => (
-              <div key={index} onClick={() => handleScriptTap(script)}>
+              <motion.div
+                key={index}
+                onClick={() => handleScriptTap(script)}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  transition: { type: "spring", stiffness: 300 },
+                }}
+              >
                 <div className={styles.inidvidualScriptsContainer}>
                   <img
                     src={PageIcon1}
@@ -236,7 +245,7 @@ const ScriptsLibraryComponent: React.FC = () => {
                   />
                   <p className={styles.scriptTitle}>{`${script.title}`}</p>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
         </div>
