@@ -30,7 +30,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 1rem;
-    overflow: auto;
+    overflow: hidden;
     min-height: 5rem;
     max-height: 20rem;
 }
@@ -41,13 +41,13 @@
     background: grey;
     cursor: ns-resize;
     position: absolute;
-    top: 2px;
-    right: 0px;
+    top: 10px;
+    right: 10px;
     z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     background-color: black;
     color: white;
     font-size: 1rem;
@@ -58,3 +58,33 @@
     font-size: 1.0rem;
     line-height: 1;
 }
+
+/* Responsive adjustments */
+@media (orientation: portrait) {}
+
+@media (orientation: landscape) {}
+
+/* Additional adjustments for smaller screens */
+@media (max-width: 600px) {
+    .characterDeck {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        overflow: none; 
+    }
+
+        .resizeHandle {
+            top: 10px;
+            right: 10px;
+            padding: 0.9rem;
+        }
+
+           .plusSign {
+               font-size: 1.2rem;
+               line-height: 1;
+           }
+}
+
+       
