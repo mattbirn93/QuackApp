@@ -14,30 +14,67 @@
    width: 100%;
    max-width: 1920px;
    margin-inline: auto;
+   background-color: black;
+   /* background-image: url('../../assets/images/background1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
 }
 
 .allScriptsContainer {
     display: flex;
     position: relative;
     justify-content: center;
-    /* background-color: blue; */
+    background-color: black;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 1000%;
+    width: 70%;
     gap: 10px;
     padding: 10px;
+    padding: 0rem rem;
+    border-radius: 15px;
+    margin-top: 0rem;
 }
 
 .inidvidualScriptsContainer {
     display: flex;
     position: relative;
     align-items: center;
-    background-color: #222222;
     flex-direction: column;  
     width: 11rem; 
     height: 12.5rem;
     border-radius: 20px;
     padding: 10px;
+      background-color: #2f2f2f;
+      border: 1px solid #2992f8;
+    /* background: #313131; */
+    /* background: blue; */
+    /* background-image: url('../../assets/images/AIScript1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+     */
+}
+
+.inidvidualScriptsContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.0);
+
+    border-radius: 20px;
+    /* Match the border radius of the container */
+    z-index: 1;
+    /* Ensure the overlay is on top */
+}
+
+.inidvidualScriptsContainer>* {
+    position: relative;
+    z-index: 2;
+    /* Ensure the content is above the overlay */
 }
 
 .scriptIconImage {
@@ -45,7 +82,7 @@
 }
 
 .scriptTitle {
-    @apply text-center text-white text-base font-[600] text-[.875rem] mt-[.5rem] line-clamp-2;
+    @apply text-center text-[#ffffff] text-base font-[600] text-[.875rem] mt-[.5rem] line-clamp-2;
 }
 
 .scriptsButtonContainer {
@@ -91,12 +128,12 @@
 }
 
 /* Responsive adjustments */
-/* @media (orientation: portrait) {}
+@media (orientation: portrait) {}
 
 @media (orientation: landscape) {}
 
 /* Additional adjustments for smaller screens */
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
     .scriptsLibraryContainer {
         @apply w-[100%];
         grid-template-columns: repeat(2, 1fr);
@@ -104,5 +141,10 @@
 
     .scriptContainer {
         @apply w-full;
-    } */
-/* } */ 
+    } 
+
+    .allScriptsContainer {
+        margin-top: 0rem;
+        width: 100%;
+    }
+}
