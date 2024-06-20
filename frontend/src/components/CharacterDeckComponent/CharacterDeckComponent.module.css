@@ -8,10 +8,10 @@
 .mainContainer {
     display: flex;
     position: relative;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5em;
     justify-content: space-around;
-
     flex-direction: row;
     margin: 0 auto;
-    width: 50.5rem;
+    padding: 1rem 4rem;
 }

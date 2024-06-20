@@ -272,4 +272,39 @@ body {
 @media (orientation: landscape) {}
 
 /* Additional adjustments for smaller screens */
-@media (max-width: 600px) {}
+@media (max-width: 600px) {
+
+    .mainContainer {
+            
+            width: 100%;
+
+        }
+
+    .action {
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+          
+        }
+    
+
+        .scene-header {
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            margin-top: 25px;
+            
+        }
+    
+
+        .character {
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+    
+   
+        .dialogue {
+            margin-left: 80px !important;
+            margin-right: 80px !important;
+            
+        }
+}

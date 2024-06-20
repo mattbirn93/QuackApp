@@ -18,14 +18,14 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
           <CharacterDeckButton
             key={index}
             letter={character[0]}
-            color="pink"
+            color="#9b439a"
             onClick={() => onCharacterButtonClick(character)}
           />
         ))}
         <CharacterDeckButton
           letter={"+"}
           onClick={() => console.log("hi")}
-          color="pink"
+          color="#9b439a"
         ></CharacterDeckButton>
       </div>
     </div>
