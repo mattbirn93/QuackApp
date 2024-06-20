@@ -12,7 +12,7 @@ import MicOn from "../../assets/images/icons8-microphone-On.png";
 import MicOff from "../../assets/images/icons8-microphone-Off.png";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import CharacterDeckView from "../CharacterDeckComponent/CharacterDeckView";
-import "./Tiptap.css";
+import "./tiptap.css";
 
 import {
   FaBold,
