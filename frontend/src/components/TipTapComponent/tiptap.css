@@ -14,16 +14,6 @@
     margin: 0 auto;
     width: 50.5rem;
     background-color: grey;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.page-break {
-    display: block;
-    height: 1px;
-    margin: 24px 0;
-    border-top: 2px solid #f20606;
-    page-break-after: always;
 }
 
 .mainNavbar {
@@ -88,7 +78,7 @@
     background-color: blue;
     padding: 2px 7px;
     border-radius: 5px;
-    font-size: 0.875rem;
+    font-size: .875rem;
 }
 
 .ProseMirror {
@@ -96,15 +86,15 @@
     background-color: white;
     font-size: 1.0rem;
     padding: 0.75rem;
+    height: 100vh;
     outline: none;
     padding-top: 5.5rem;
-    overflow-y: auto;
 }
 
 .ProseBackground {
     /* width: 810px;
-  margin: 0 auto;
-  background-color: #403f3e; */
+    margin: 0 auto;
+    background-color: #403f3e; */
 }
 
 .collaboration-cursor__caret {
@@ -209,6 +199,7 @@
     border-top: 3px solid black;
 }
 
+
 .heading3 {
     font-size: 15px;
 }
@@ -257,7 +248,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
-    margin-bottom: -0.2rem;
+    margin-bottom: -.2rem;
 }
 
 /* Style for dialogue */
