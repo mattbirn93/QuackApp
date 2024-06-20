@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
+// import PageIcon1 from "../../assets/images/AIScript1.webp";
 import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
 import { motion } from "framer-motion";
