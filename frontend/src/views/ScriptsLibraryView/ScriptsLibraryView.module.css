@@ -1,5 +1,5 @@
 .wrapper {
-    @apply flex flex-col justify-center w-full bg-black;
+    @apply flex flex-col justify-center w-full bg-[black];
 }
 
 .mainContainer {
