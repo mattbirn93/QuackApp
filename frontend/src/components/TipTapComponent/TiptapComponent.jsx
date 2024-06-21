@@ -362,9 +362,9 @@ export const Tiptap = ({
   return (
     <div className="wrapper">
       <div className="mainContainer">
-        <button className="contentUpdateButton" onClick={updateContent}>
+        {/* <button className="contentUpdateButton" onClick={updateContent}>
           Update Content
-        </button>
+        </button> */}
         <div className="mainNavbar">
           <NodeButton
             editor={editor}
@@ -376,7 +376,7 @@ export const Tiptap = ({
           <NodeButton
             editor={editor}
             command="setSceneHeader"
-            label="Scene Header"
+            label="Scene"
             className="nodeButton1"
             onClick={handleSceneHeaderButtonClick}
           />
