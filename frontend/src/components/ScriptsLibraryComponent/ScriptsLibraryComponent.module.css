@@ -64,17 +64,13 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.0);
-
     border-radius: 20px;
-    /* Match the border radius of the container */
     z-index: 1;
-    /* Ensure the overlay is on top */
 }
 
 .inidvidualScriptsContainer>* {
     position: relative;
     z-index: 2;
-    /* Ensure the content is above the overlay */
 }
 
 .scriptIconImage {
