@@ -62,7 +62,6 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 connectDB();
 
-
 // Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/users/fetchUserById", userRoutes);

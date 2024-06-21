@@ -1,5 +1,6 @@
 .navbar {
     display: flex;
+    position: fixed;
     justify-content: start;
     gap: 1rem;
 }
