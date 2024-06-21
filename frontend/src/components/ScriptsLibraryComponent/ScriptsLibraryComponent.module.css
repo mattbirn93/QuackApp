@@ -14,7 +14,8 @@
    width: 100%;
    max-width: 1920px;
    margin-inline: auto;
-   background-color: black;
+   background-color: #000000;
+   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
    /* background-image: url('../../assets/images/background1.jpg');
     background-size: cover;
     background-position: center;
@@ -30,10 +31,10 @@
     flex-wrap: wrap;
     width: 70%;
     gap: 10px;
-    padding: 10px;
-    padding: 0rem rem;
-    border-radius: 15px;
-    margin-top: 0rem;
+    padding: 1rem;
+    border-radius: 30px;
+    margin-top: 1.5rem;
+    border: 1px solid #B344FF;
 }
 
 .inidvidualScriptsContainer {
@@ -45,8 +46,8 @@
     height: 12.5rem;
     border-radius: 20px;
     padding: 10px;
-      background-color: #2f2f2f;
-      border: 1px solid #8a2be2;
+    background-color: #2c2c2c;
+    /* border: 1px solid #8a2be2; */
     /* background: #313131; */
     /* background: blue; */
     /* background-image: url('../../assets/images/AIScript1.webp');
@@ -78,7 +79,8 @@
 }
 
 .scriptTitle {
-    @apply text-center text-[#ffffff] text-base font-[600] text-[.875rem] mt-[.5rem] line-clamp-2;
+    @apply text-center text-base font-[600] text-[.875rem] mt-[.5rem] line-clamp-2;
+    color: rgba(255, 255, 255, 1.0);
 }
 
 .scriptsButtonContainer {
@@ -140,7 +142,7 @@
     } 
 
     .allScriptsContainer {
-        margin-top: 0rem;
+        margin-top: .5rem;
         width: 100%;
     }
 }

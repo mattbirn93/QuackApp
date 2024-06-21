@@ -3,28 +3,144 @@
 }
 
 .mainContainer {
-   
+    @apply w-full flex flex-col items-center;
+    /* background-color: blue; */
 }
 
 .topContainer {
-  
+    @apply flex flex-col items-center mt-16;
+    width: 100%;
+    /* background-color: red; */
 }
 
 .heading1 {
-    @apply text-[1.5rem] text-center text-[#8a2be2] p-[2.5] pt-[1rem] font-[600] mb-[1rem];
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3.2rem;
+    text-align: center;
+    background: linear-gradient(145deg, #FFB6FF, #B344FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+
+.heading2 {
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.searchBarContainer {
+    @apply absolute top-0 right-0 mt-4 mr-[18rem] flex items-center;
+}
+
+.searchBarWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.searchBar {
+    background-color: black !important;
+    color: #9b9b9b !important;
+    padding: 3px 10px !important;
+    border: 1px solid white !important;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    cursor: text !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    width: 200px !important;
+    padding-left: 30px !important;
+    border-radius: 5px !important;
+}
+
+.searchBar::placeholder {
+    color: rgba(235, 235, 245, 0.6) !important;
+}
+
+.searchIcon {
+    position: absolute !important;
+    left: 10px !important;
+    color: #9b9b9b !important;
+    pointer-events: none !important;
+}
+
+.signInButtonContainer {
+    @apply flex items-center;
+}
+
+.signInButton {
+    background-color: #007aff;
+    color: white;
+    padding: 7px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signInButton:hover {
+    background-color: #005bb5;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.signInButton:active {
+    background-color: #004085;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
+.signInButtonIcon {
+    margin-right: 8px;
+    font-size: 0.8rem;
 }
 
 /* Responsive adjustments */
-@media (orientation: portrait) {
-   
-}
+@media (max-width: 600px) {
+    .heading1 {
+        font-size: 2.5rem;
+    }
 
-@media (orientation: landscape) {
-}
+    .heading2 {
+        font-size: 1.3rem;
+    }
 
-/* Additional adjustments for smaller screens */
-@media (max-width: 800px) {
-    /* .proseBackground {
-        @apply w-[100%];
-    } */
+    .searchBarContainer {
+        @apply mr-[1rem] mt-[0.7rem];
+    }
+
+    .searchBarWrapper {
+        margin-right: 1rem;
+        margin-top: 0.45rem;
+    }
+
+    .searchBar {
+        width: 150px;
+        margin-top: -0.2rem;
+        /* Adds spacing between search bar and sign-in button on mobile */
+    }
+
+    .signInButtonContainer {
+        @apply flex justify-center;
+    }
 }
