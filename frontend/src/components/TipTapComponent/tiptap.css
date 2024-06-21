@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    /* background-color: blue; */
 }
 
 .mainContainer {
@@ -13,7 +12,6 @@
     flex-direction: column;
     margin: 0 auto;
     width: 50.5rem;
-    /* background-color: grey; */
 }
 
 .mainNavbar {
@@ -65,7 +63,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: yellow; */
 }
 
 .hamburgerMenu {
@@ -75,6 +72,40 @@
     height: 20px;
     top: 0.7rem;
     right: 1rem;
+}
+
+.stylingIcon {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0.3rem;
+    right: 3rem;
+}
+
+.settingsMenuIcon {
+    margin-top: 0.25em;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.settingsMenuContainer {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.settingsMenu {
+    position: absolute;
+    top: 2.7rem;
+    right: 0;
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 40;
 }
 
 .icon {
@@ -90,14 +121,13 @@
 }
 
 .contentUpdateButton {
-    position: absolute;
-    top: 10px;
-    left: 5rem;
-    z-index: 20;
     background-color: blue;
-    padding: 2px 7px;
+    color: white;
+    padding: 5px 10px;
+    border: none;
     border-radius: 5px;
     font-size: .875rem;
+    cursor: pointer;
 }
 
 .ProseMirror {
@@ -110,11 +140,7 @@
     padding-top: 5.5rem;
 }
 
-.ProseBackground {
-    /* width: 810px;
-    margin: 0 auto;
-    background-color: #403f3e; */
-}
+.ProseBackground {}
 
 .collaboration-cursor__caret {
     position: relative;
@@ -146,9 +172,7 @@
     outline: 1px solid aqua;
 }
 
-.ProseMirror>*+* {
-    /* margin-top: 0.75em; */
-}
+.ProseMirror>*+* {}
 
 .ProseMirror ul,
 .ProseMirror ol {
@@ -200,7 +224,6 @@
     margin: 2rem 0;
 }
 
-/* ............................ */
 .textEditor {
     border-radius: 0px;
     border: 1px solid grey;
@@ -218,7 +241,6 @@
     border-top: 3px solid black;
 }
 
-
 .heading3 {
     font-size: 15px;
 }
@@ -229,14 +251,6 @@ button.is_active {
     border-radius: 2px;
 }
 
-/* General settings for better readability and spacing */
-body {
-    /* font-family: 'Courier New', Courier, monospace; */
-    /* font-size: 12pt;
-    line-height: 1.5; */
-}
-
-/* Style for action */
 .action {
     margin-left: 140px !important;
     margin-right: 140px !important;
@@ -245,7 +259,6 @@ body {
     font-weight: 550;
 }
 
-/* Style for scene header */
 .scene-header {
     margin-left: 140px !important;
     margin-right: 140px !important;
@@ -256,7 +269,6 @@ body {
     font-weight: 550;
 }
 
-/* Style for character */
 .character {
     font-family: 'Courier New', Courier, monospace;
     font-size: 12pt;
@@ -270,7 +282,6 @@ body {
     margin-bottom: -.2rem;
 }
 
-/* Style for dialogue */
 .dialogue {
     margin-left: 240px !important;
     margin-right: 240px !important;
@@ -280,48 +291,41 @@ body {
     line-height: 1.1;
 }
 
-/* NodeButton styles */
 .nodeButton1 {
     @apply ml-[1rem] px-[10px] py-[5px] bg-[purple] text-white rounded hover:bg-blue-600 text-[.8rem] font-semibold w-[5rem];
 }
 
-/* Responsive adjustments */
-@media (orientation: portrait) {}
-
-@media (orientation: landscape) {}
-
-/* Additional adjustments for smaller screens */
 @media (max-width: 600px) {
     .mainContainer {
-            width: 100%;
-        }
+        width: 100%;
+    }
 
-        .mainNavbar {
-            width: 100%;
-        }
-    
-        .menuBar {
-            flex-wrap: wrap;
-        }
+    .mainNavbar {
+        width: 100%;
+    }
+
+    .menuBar {
+        flex-wrap: wrap;
+    }
 
     .action {
-            margin-left: 20px !important;
-            margin-right: 20px !important;
-        }
-    
-        .scene-header {
-            margin-left: 10px !important;
-            margin-right: 10px !important;
-            margin-top: 25px;  
-        }
-    
-        .character {
-            margin-left: auto;
-            margin-right: auto;   
-        }
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
 
-        .dialogue {
-            margin-left: 80px !important;
-            margin-right: 80px !important;   
-        }
+    .scene-header {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        margin-top: 25px;
+    }
+
+    .character {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .dialogue {
+        margin-left: 80px !important;
+        margin-right: 80px !important;
+    }
 }
