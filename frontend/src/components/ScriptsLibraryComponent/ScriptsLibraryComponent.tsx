@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import styles from "./ScriptsLibraryComponent.module.css";
 
 interface Script {
+  title_page: any;
   _id: string;
   title: string;
   writtenBy: string;
