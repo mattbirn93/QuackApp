@@ -6,17 +6,17 @@
 }
 
 .mainContainer {
-   display: flex;
-   position: relative;
-   justify-content: center;
-   flex-direction: row;
-   flex-wrap: wrap;
-   width: 100%;
-   max-width: 1920px;
-   margin-inline: auto;
-   background-color: #000000;
-   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-   /* background-image: url('../../assets/images/background1.jpg');
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1920px;
+    margin-inline: auto;
+    background-color: #000000;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* background-image: url('../../assets/images/background1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; */
@@ -41,20 +41,18 @@
     display: flex;
     position: relative;
     align-items: center;
-    flex-direction: column;  
-    width: 11rem; 
+    flex-direction: column;
+    width: 11rem;
     height: 12.5rem;
     border-radius: 20px;
     padding: 10px;
     background-color: #343434;
     border: 1.0px solid #B344FF;
-    /* background: #313131; */
-    /* background: blue; */
-    /* background-image: url('../../assets/images/AIScript1.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-     */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.inidvidualScriptsContainer:hover {
+    box-shadow: 0 4px 8px rgb(92, 92, 92);
 }
 
 .inidvidualScriptsContainer::before {
@@ -85,7 +83,7 @@
 
 .scriptsButtonContainer {
     @apply text-center;
-} 
+}
 
 .addScriptContainer {
     display: flex;
@@ -139,7 +137,7 @@
 
     .scriptContainer {
         @apply w-full;
-    } 
+    }
 
     .allScriptsContainer {
         margin-top: .5rem;

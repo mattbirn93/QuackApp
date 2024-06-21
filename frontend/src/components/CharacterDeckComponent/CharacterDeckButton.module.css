@@ -18,7 +18,7 @@
 .characterDeckButton:hover {
   background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
   /* Change gradient on hover */
-  box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0;
+  /* box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0; */
   /* Slightly stronger shadow on hover */
 }
 
@@ -49,7 +49,7 @@
 .characterDeckButtonAdd:hover {
   background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
   /* Change gradient on hover */
-  box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0;
+  /* box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0; */
   /* Slightly stronger shadow on hover */
 }
 

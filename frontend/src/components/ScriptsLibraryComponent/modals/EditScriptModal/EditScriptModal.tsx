@@ -132,7 +132,7 @@ const EditScriptModal: React.FC<ModalProps> = ({
       </div>
       {showDeleteConfirmation && (
         <div className={styles.deleteConfirmation}>
-          <p>This is permanent and can't be undone!</p>
+          <p>Deleting a script is permanent!</p>
           <div className={styles.confirmationActions}>
             <button
               className={`${styles.confirmButton} ${styles.confirmDelete}`}
