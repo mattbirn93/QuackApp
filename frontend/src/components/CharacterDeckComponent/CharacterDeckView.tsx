@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import CharacterDeckComponent from "./CharacterDeckComponent";
 import styles from "./CharacterDeckView.module.css";
 
@@ -11,74 +11,73 @@ const CharacterDeckView: React.FC<CharacterDeckViewProps> = ({
   characterArray,
   onCharacterButtonClick,
 }) => {
-  const [height, setHeight] = useState(150); // Initial height of the characterDeck in pixels
-  const isResizing = useRef(false);
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    isResizing.current = true;
-    document.body.style.cursor = "ns-resize";
-  };
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    isResizing.current = true;
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isResizing.current) return;
-    const newHeight = window.innerHeight - e.clientY;
-    if (newHeight >= 80 && newHeight <= 320) {
-      setHeight(newHeight);
-    }
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isResizing.current) return;
-    const touch = e.touches[0];
-    const newHeight = window.innerHeight - touch.clientY;
-    if (newHeight >= 80 && newHeight <= 320) {
-      setHeight(newHeight);
-    }
-  };
-
-  const handleMouseUp = () => {
-    isResizing.current = false;
-    document.body.style.cursor = "default";
-  };
-
-  const handleTouchEnd = () => {
-    isResizing.current = false;
-  };
+  const deckRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("touchmove", handleTouchMove);
-    document.addEventListener("touchend", handleTouchEnd);
+    const deckElement = deckRef.current;
+    let startY = 0;
+    let startHeight = 0;
+
+    const onMouseMove = (e: MouseEvent) => {
+      const newHeight = startHeight - (e.clientY - startY); // Invert scroll direction
+      if (deckElement) {
+        deckElement.style.height = `${newHeight}px`;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const newHeight = startHeight - (touch.clientY - startY); // Invert scroll direction
+      if (deckElement) {
+        deckElement.style.height = `${newHeight}px`;
+      }
+    };
+
+    const stopResizing = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener("mouseup", stopResizing);
+      document.removeEventListener("touchend", stopResizing);
+      document.removeEventListener("touchcancel", stopResizing);
+    };
+
+    const startResizing = (e: MouseEvent | TouchEvent) => {
+      if (e instanceof MouseEvent) {
+        startY = e.clientY;
+      } else {
+        startY = e.touches[0].clientY;
+      }
+      startHeight = deckElement?.offsetHeight || 0;
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("touchmove", onTouchMove);
+      document.addEventListener("mouseup", stopResizing);
+      document.addEventListener("touchend", stopResizing);
+      document.addEventListener("touchcancel", stopResizing);
+      e.preventDefault();
+    };
+
+    const handleElement = deckElement?.querySelector(`.${styles.resizeHandle}`);
+    handleElement?.addEventListener("mousedown", startResizing);
+    handleElement?.addEventListener("touchstart", startResizing);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
+      handleElement?.removeEventListener("mousedown", startResizing);
+      handleElement?.removeEventListener("touchstart", startResizing);
     };
   }, []);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
-        <div className={styles.characterDeck} style={{ height: `${height}px` }}>
-          <div
-            className={styles.resizeHandle}
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
-          >
-            <div className={styles.resizeIcon}></div>
-            <span className={styles.plusSign}>+</span>
-          </div>
+        <div className={styles.characterDeck} ref={deckRef}>
+          <div className={styles.characterDeckTitle}>Character Deck</div>
           <CharacterDeckComponent
             characterArray={characterArray}
             onCharacterButtonClick={onCharacterButtonClick}
           />
+          <div className={styles.resizeHandle}>
+            <span className={styles.plusSign}>⇕</span>
+          </div>
         </div>
       </div>
     </div>

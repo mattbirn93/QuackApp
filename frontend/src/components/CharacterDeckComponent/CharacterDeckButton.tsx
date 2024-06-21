@@ -3,24 +3,27 @@ import styles from "./CharacterDeckButton.module.css";
 
 interface CharacterDeckButtonProps {
   letter: string;
-  color: string;
   onClick: () => void;
 }
 
-const CharacterDeckButton: React.FC<CharacterDeckButtonProps> = ({
+export const CharacterDeckButton: React.FC<CharacterDeckButtonProps> = ({
   letter,
-  color,
   onClick,
 }) => {
   return (
-    <button
-      className={styles.characterDeckButton}
-      style={{ backgroundColor: color }}
-      onClick={onClick}
-    >
+    <button className={styles.characterDeckButton} onClick={onClick}>
       {letter}
     </button>
   );
 };
 
-export default CharacterDeckButton;
+export const CharacterDeckButtonAdd: React.FC<CharacterDeckButtonProps> = ({
+  letter,
+  onClick,
+}) => {
+  return (
+    <button className={styles.characterDeckButtonAdd} onClick={onClick}>
+      {letter}
+    </button>
+  );
+};
