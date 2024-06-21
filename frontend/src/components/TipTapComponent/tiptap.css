@@ -13,26 +13,37 @@
     flex-direction: column;
     margin: 0 auto;
     width: 50.5rem;
-    background-color: grey;
+    /* background-color: grey; */
 }
 
 .mainNavbar {
     display: flex;
     justify-content: center;
-    position: absolute;
-    /* background-color: red; */
-    top: 8px;
+    position: fixed;
+    background-color: grey;
+    width: 50.5rem;
+    top: 0;
     left: 0;
     right: 0;
+    padding: .5rem;
+    z-index: 30;
+    margin: 0 auto;
 }
 
 .menuBar {
+    margin-top: 1.3rem;
     padding-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     border-bottom: 1px solid black;
+    position: fixed;
+    width: 50.5rem;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
 }
 
 .menuBar button {
@@ -50,20 +61,28 @@
     margin-right: 7px;
 }
 
+.menuBarButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow; */
+}
+
 .hamburgerMenu {
+    position: absolute;
     color: white;
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 13px;
+    top: 0.7rem;
     right: 1rem;
 }
 
 .icon {
-    width: 35px;
-    height: 35px;
-    margin-top: 5px;
-    margin-left: 1rem;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0.5rem;
+    left: .5rem;
 }
 
 .icon-inverted {
@@ -275,6 +294,14 @@ body {
 @media (max-width: 600px) {
     .mainContainer {
             width: 100%;
+        }
+
+        .mainNavbar {
+            width: 100%;
+        }
+    
+        .menuBar {
+            flex-wrap: wrap;
         }
 
     .action {
