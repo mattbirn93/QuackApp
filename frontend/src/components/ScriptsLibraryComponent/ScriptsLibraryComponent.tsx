@@ -250,7 +250,7 @@ const ScriptsLibraryComponent: React.FC = () => {
                 variants={scriptVariants}
                 onClick={() => handleScriptTap(script)}
                 whileHover={{
-                  scale: 1.05,
+                  scale: 1.03,
                   rotateY: 5,
                   transition: { type: "spring", stiffness: 300 },
                 }}
