@@ -9,8 +9,8 @@ const ScriptsLibraryView: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
-        <img src={Duck} className={styles.quackIcon} />
-        <p className={styles.quackTitle}>Quack</p>
+        {/* <img src={Duck} className={styles.quackIcon} />
+        <p className={styles.quackTitle}>Quack</p> */}
         <div className={styles.searchBarContainer}>
           <div className={styles.searchBarWrapper}>
             <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
