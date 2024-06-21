@@ -10,8 +10,8 @@
   color: black;
   font-size: 24px;
   cursor: pointer;
-  background: linear-gradient(145deg, #7c01ff, #ba79ff);
-  box-shadow: 4px 4px 8px #999, -2px -2px 4px #ffffff;
+  background: linear-gradient(145deg, #B344FF, #ba79ff);
+  box-shadow: 2px 2px 4px #999, -1px -1px 4px #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
@@ -41,8 +41,8 @@
   color: black;
   font-size: 24px;
   cursor: pointer;
-  background: linear-gradient(145deg, #0000ff, #6e7083);
-  box-shadow: 4px 4px 8px #999, -2px -2px 4px #ffffff;
+  background: linear-gradient(145deg, #0000ff, #343c84);
+   box-shadow: 2px 2px 4px #999, -1px -1px 2px #ffffff;
   transition: all 0.2s ease-in-out;
 }
 

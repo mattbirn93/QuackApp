@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    background-color: black;
 }
 
 .mainContainer {
@@ -18,7 +19,7 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    background-color: grey;
+    background-color: #343434;
     width: 50.5rem;
     top: 0;
     left: 0;
@@ -34,14 +35,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: #343434;
     border-bottom: 1px solid black;
     position: fixed;
     width: 50.5rem;
-    top: 2rem;
+    top: 1.49rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
+    border-top: 1px solid white;
 }
 
 .menuBar button {
@@ -51,7 +53,7 @@
     outline: none;
     border: none;
     background: none;
-    color: rgb(70, 70, 70);
+    color: white;
     cursor: pointer;
 }
 
@@ -101,26 +103,33 @@
     position: absolute;
     top: 2.3rem;
     left: -0.5rem;
-    background-color: white;
+    background-color: #343434;
     padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #6a6a6a;
+    border-radius: 0px 0px 5px 0;
     z-index: 40;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     width: 10rem;
+    color: white;
 }
 
 .settingsMenu ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 0.875rem;
 }
 
 .settingsMenu li {
     padding: 0.5rem;
     cursor: pointer;
     transition: background 0.3s;
+    border-bottom: 1px solid #6a6a6a;
+}
+
+.settingsMenu li:last-child {
+    border-bottom: none;
 }
 
 .settingsMenu li:hover {
@@ -136,8 +145,8 @@
     position: absolute;
     width: 30px;
     height: 30px;
-        top: 0.5rem;
-            right: 0.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
 }
 
 .icon-inverted {
@@ -315,16 +324,16 @@ button.is_active {
 
 .nodeButton1 {
     margin-left: 1rem;
-    padding: 4px 20px;
-    background: linear-gradient(145deg, #8a2be2, #6a0dad);
+    padding: 4px 0px;
+    background: linear-gradient(145deg, #B344FF, #B344FF);
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 1.0rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    /* width: 2rem; */
+    width: 6rem;
     text-align: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -3px 1px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -3px 1px rgba(0, 0, 0, 0.3); */
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -348,10 +357,12 @@ button.is_active {
 
     .mainNavbar {
         width: 100%;
+        height: 5.5em;
     }
 
     .menuBar {
         flex-wrap: wrap;
+        margin-top: 4.49rem;
     }
 
     .action {
@@ -374,4 +385,12 @@ button.is_active {
         margin-left: 80px !important;
         margin-right: 80px !important;
     }
+
+        .nodeButton1 {
+            margin-top: 2.2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            width: 5rem;
+    
+        }
 }

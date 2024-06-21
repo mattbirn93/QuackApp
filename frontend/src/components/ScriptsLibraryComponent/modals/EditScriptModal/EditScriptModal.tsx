@@ -138,13 +138,13 @@ const EditScriptModal: React.FC<ModalProps> = ({
               className={`${styles.confirmButton} ${styles.confirmDelete}`}
               onClick={confirmDelete}
             >
-              Yes
+              Confirm
             </button>
             <button
               className={`${styles.confirmButton} ${styles.cancelDelete}`}
               onClick={cancelDelete}
             >
-              No
+              Cancel
             </button>
           </div>
         </div>

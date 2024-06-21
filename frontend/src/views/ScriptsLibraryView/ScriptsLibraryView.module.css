@@ -40,7 +40,7 @@
 }
 
 .searchBarContainer {
-    @apply absolute top-0 right-0 mt-4 mr-[18rem] flex items-center;
+    @apply absolute top-0 right-0 mt-4 mr-[19rem] flex items-center;
 }
 
 .searchBarWrapper {
