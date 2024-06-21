@@ -70,8 +70,8 @@
     color: white;
     width: 20px;
     height: 20px;
-    top: 0.7rem;
-    right: 1rem;
+    top: 0.3rem;
+    left: 0.5rem;
 }
 
 .stylingIcon {
@@ -94,26 +94,45 @@
 .settingsMenuContainer {
     position: absolute;
     top: 0.5rem;
-    right: 0.5rem;
+    left: .5rem;
 }
 
 .settingsMenu {
     position: absolute;
-    top: 2.7rem;
-    right: 0;
+    top: 2.3rem;
+    left: -0.5rem;
     background-color: white;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     z-index: 40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    width: 10rem;
+}
+
+.settingsMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settingsMenu li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.settingsMenu li:hover {
+    background: #f0f0f0;
 }
 
 .icon {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 0.5rem;
-    left: .5rem;
+        top: 0.5rem;
+            right: 0.5rem;
 }
 
 .icon-inverted {
@@ -121,12 +140,9 @@
 }
 
 .contentUpdateButton {
-    background-color: blue;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: .875rem;
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
     cursor: pointer;
 }
 

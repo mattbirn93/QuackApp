@@ -24,6 +24,7 @@ import {
   FaStrikethrough,
   FaUnderline,
   FaUndo,
+  FaCog,
   FaBars,
 } from "react-icons/fa";
 
@@ -345,6 +346,24 @@ export const Tiptap = ({
     <div className="wrapper">
       <div className="mainContainer">
         <div className="mainNavbar">
+          <div className="settingsMenuContainer">
+            <button onClick={toggleExtraMenu}>
+              {/* <FaCog className="settingsMenuIcon" /> */}
+              <FaBars className="hamburgerMenu" />
+            </button>
+            {extraMenuVisible && (
+              <div className="settingsMenu">
+                <ul>
+                  <li>
+                    <button onClick={updateContent}>Save</button>
+                  </li>
+                  <li>
+                    <a href="/scriptLibrary">Script Library</a>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
           <SpeechToText
             recordingState={recordingState}
             onSpeechText={handleSpeechText}
@@ -386,26 +405,12 @@ export const Tiptap = ({
               onClick={handleDialogueButtonClick}
             />
           </div>
-          <div className="settingsMenuContainer">
-            <button onClick={toggleExtraMenu}>
-              <FaBars className="settingsMenuIcon" />
-            </button>
-            {extraMenuVisible && (
-              <div className="settingsMenu">
-                <button className="contentUpdateButton" onClick={updateContent}>
-                  Save
-                </button>
-              </div>
-            )}
-          </div>
           <button onClick={toggleMenu}>
             <p className="stylingIcon">S</p>
           </button>
         </div>
-        <div>
-          {menuVisible && <MenuBar editor={editor} />}
-          <EditorContent editor={editor} />
-        </div>
+        <div>{menuVisible && <MenuBar editor={editor} />}</div>
+        <EditorContent editor={editor} />
       </div>
       <CharacterDeckView
         characterArray={characterArray}
