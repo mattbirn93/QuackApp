@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
-// import PageIcon1 from "../../assets/images/AIScript1.webp";
 import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
 import { motion } from "framer-motion";
 import styles from "./ScriptsLibraryComponent.module.css";
 
 interface Script {
-  [x: string]: any;
   _id: string;
   title: string;
   writtenBy: string;
@@ -208,10 +206,31 @@ const ScriptsLibraryComponent: React.FC = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const scriptVariants = {
+    hidden: { opacity: 0, x: 100 },
+    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 50 } },
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
-        <div className={styles.allScriptsContainer}>
+        <motion.div
+          key={JSON.stringify(scriptList)} // Ensure the component remounts
+          className={styles.allScriptsContainer}
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
           <div className={styles.addScriptContainer}>
             <div
               className={styles.addScriptContent}
@@ -227,6 +246,7 @@ const ScriptsLibraryComponent: React.FC = () => {
             scriptList.map((script, index) => (
               <motion.div
                 key={index}
+                variants={scriptVariants}
                 onClick={() => handleScriptTap(script)}
                 whileHover={{
                   scale: 1.05,
@@ -249,7 +269,7 @@ const ScriptsLibraryComponent: React.FC = () => {
               </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
         {selectedScript && (
           <EditScriptModal
             isVisible={isEditModalVisible}
