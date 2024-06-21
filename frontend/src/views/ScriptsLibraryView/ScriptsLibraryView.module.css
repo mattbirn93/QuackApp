@@ -11,7 +11,7 @@
 }
 
 .heading1 {
-    @apply text-[1.5rem] text-center text-[#2992f8] p-[2.5] pt-[1rem] font-[600] mb-[1rem];
+    @apply text-[1.5rem] text-center text-[#8a2be2] p-[2.5] pt-[1rem] font-[600] mb-[1rem];
 }
 
 /* Responsive adjustments */

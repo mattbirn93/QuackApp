@@ -358,7 +358,9 @@ export const Tiptap = ({
                     <button onClick={updateContent}>Save</button>
                   </li>
                   <li>
-                    <a href="/scriptLibrary">Script Library</a>
+                    <a href="/scriptsLibrary" className="scriptLibraryLink">
+                      Scripts Library
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -379,28 +381,28 @@ export const Tiptap = ({
             <NodeButton
               editor={editor}
               command="setAction"
-              label="Action"
+              label="A"
               className="nodeButton1"
               onClick={handleActionButtonClick}
             />
             <NodeButton
               editor={editor}
               command="setSceneHeader"
-              label="Scene"
+              label="S"
               className="nodeButton1"
               onClick={handleSceneHeaderButtonClick}
             />
             <NodeButton
               editor={editor}
               command="setCharacter"
-              label="Character"
+              label="C"
               className="nodeButton1"
               onClick={handleCharacterButtonClick}
             />
             <NodeButton
               editor={editor}
               command="setDialogue"
-              label="Dialogue"
+              label="D"
               className="nodeButton1"
               onClick={handleDialogueButtonClick}
             />
