@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import CharacterDeckComponent from "./CharacterDeckComponent";
 import styles from "./CharacterDeckView.module.css";
 
@@ -12,14 +12,30 @@ const CharacterDeckView: React.FC<CharacterDeckViewProps> = ({
   onCharacterButtonClick,
 }) => {
   const deckRef = useRef<HTMLDivElement>(null);
+  const [maxHeight, setMaxHeight] = useState(0);
+
+  useEffect(() => {
+    const calculateMaxHeight = () => {
+      if (deckRef.current) {
+        const contentHeight = deckRef.current.scrollHeight;
+        setMaxHeight(contentHeight);
+      }
+    };
+
+    calculateMaxHeight();
+  }, [characterArray]);
 
   useEffect(() => {
     const deckElement = deckRef.current;
+    if (deckElement) {
+      deckElement.style.height = "7.5rem";
+    }
+
     let startY = 0;
     let startHeight = 0;
 
     const onMouseMove = (e: MouseEvent) => {
-      const newHeight = startHeight - (e.clientY - startY); // Invert scroll direction
+      const newHeight = Math.min(startHeight - (e.clientY - startY), maxHeight);
       if (deckElement) {
         deckElement.style.height = `${newHeight}px`;
       }
@@ -27,7 +43,10 @@ const CharacterDeckView: React.FC<CharacterDeckViewProps> = ({
 
     const onTouchMove = (e: TouchEvent) => {
       const touch = e.touches[0];
-      const newHeight = startHeight - (touch.clientY - startY); // Invert scroll direction
+      const newHeight = Math.min(
+        startHeight - (touch.clientY - startY),
+        maxHeight,
+      );
       if (deckElement) {
         deckElement.style.height = `${newHeight}px`;
       }
@@ -64,7 +83,7 @@ const CharacterDeckView: React.FC<CharacterDeckViewProps> = ({
       handleElement?.removeEventListener("mousedown", startResizing);
       handleElement?.removeEventListener("touchstart", startResizing);
     };
-  }, []);
+  }, [maxHeight]);
 
   return (
     <div className={styles.wrapper}>

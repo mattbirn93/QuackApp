@@ -7,9 +7,9 @@ const NodeButton = ({ editor, command, label, className, onClick }) => {
 
   const handleClick = () => {
     if (onClick) {
-      onClick();  // Use the provided onClick function
+      onClick();
     } else {
-      editor.chain().focus()[command]().run();  // Default behavior
+      editor.chain().focus()[command]().run();
     }
   };
 
