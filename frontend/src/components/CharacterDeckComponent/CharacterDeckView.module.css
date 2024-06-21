@@ -19,7 +19,9 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(148, 148, 148, 0.5);
+    /* background-color: rgba(148, 148, 148, 0.5); */
+    /* background-color: rgba(45, 45, 45, 1.0); */
+    background-color: #343434;
     width: 50.5rem;
     color: black;
     text-align: center;
@@ -28,10 +30,10 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     padding: .5rem 1rem;
     overflow: hidden;
-    /* min-height: 5rem; */
+    min-height: 2.7rem;
     resize: vertical;
 }
 
@@ -59,7 +61,7 @@
 }
 
 .characterDeckTitle {
-    color: black;
+    color: white;
     font-weight: 600;
     font-size: 1rem;
 }
