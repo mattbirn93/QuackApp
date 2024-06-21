@@ -190,8 +190,8 @@
 }
 
 .ProseMirror:focus {
-    border: none;
-    outline: 1px solid aqua;
+    /* border: none;
+    outline: 1px solid aqua; */
 }
 
 .ProseMirror>*+* {}
