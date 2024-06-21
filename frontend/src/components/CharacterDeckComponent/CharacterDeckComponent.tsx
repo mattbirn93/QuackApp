@@ -1,5 +1,6 @@
 import React from "react";
-import CharacterDeckButton from "./CharacterDeckButton";
+import { CharacterDeckButton } from "./CharacterDeckButton";
+import { CharacterDeckButtonAdd } from "./CharacterDeckButton";
 import styles from "./CharacterDeckComponent.module.css";
 
 interface CharacterDeckComponentProps {
@@ -14,19 +15,17 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
+        <CharacterDeckButtonAdd
+          letter={"+"}
+          onClick={() => console.log("hi")}
+        />
         {characterArray.map((character, index) => (
           <CharacterDeckButton
             key={index}
             letter={character[0]}
-            color="#9b439a"
             onClick={() => onCharacterButtonClick(character)}
           />
         ))}
-        <CharacterDeckButton
-          letter={"+"}
-          onClick={() => console.log("hi")}
-          color="#9b439a"
-        ></CharacterDeckButton>
       </div>
     </div>
   );

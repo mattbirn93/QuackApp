@@ -1,14 +1,61 @@
 .characterDeckButton {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    
-  }
-  
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #555;
+  /* Slightly darker border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #7c01ff, #ba79ff);
+  box-shadow: 4px 4px 8px #999, -2px -2px 4px #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.characterDeckButton:hover {
+  background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+  /* Change gradient on hover */
+  box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0;
+  /* Slightly stronger shadow on hover */
+}
+
+.characterDeckButton:active {
+  background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+  /* Darker gradient on click */
+  box-shadow: inset 4px 4px 8px #555, inset -2px -2px 4px #999;
+  /* Inset shadow for pressed effect */
+}
+
+.characterDeckButtonAdd {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #555;
+  /* Slightly darker border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #0000ff, #6e7083);
+  box-shadow: 4px 4px 8px #999, -2px -2px 4px #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.characterDeckButtonAdd:hover {
+  background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+  /* Change gradient on hover */
+  box-shadow: 4px 4px 8px #888, -2px -2px 4px #d0d0d0;
+  /* Slightly stronger shadow on hover */
+}
+
+.characterDeckButtonAdd:active {
+  background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+  /* Darker gradient on click */
+  box-shadow: inset 4px 4px 8px #555, inset -2px -2px 4px #999;
+  /* Inset shadow for pressed effect */
+}

@@ -19,7 +19,7 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(148, 148, 148, 0.5);
     width: 50.5rem;
     color: black;
     text-align: center;
@@ -29,10 +29,11 @@
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    padding: 1rem;
+    padding: .5rem 1rem;
     overflow: hidden;
     min-height: 5rem;
     max-height: 20rem;
+    resize: vertical;
 }
 
 .resizeHandle {
@@ -47,44 +48,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border-radius: 50%; */
     background-color: black;
     color: white;
     font-size: 1rem;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .plusSign {
-    font-size: 1.0rem;
+    font-size: 1rem;
     line-height: 1;
 }
 
-/* Responsive adjustments */
-@media (orientation: portrait) {}
-
-@media (orientation: landscape) {}
-
-/* Additional adjustments for smaller screens */
-@media (max-width: 600px) {
-    .characterDeck {
-        position: fixed;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        overflow: none; 
-    }
-
-        .resizeHandle {
-            top: 10px;
-            right: 10px;
-            padding: 0.9rem;
-        }
-
-           .plusSign {
-               font-size: 1.2rem;
-               line-height: 1;
-           }
+.characterDeckTitle {
+    color: black;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
-       
+@media (max-width: 600px) {
+    .characterDeck {
+        width: 100%;
+    }
+
+    .resizeHandle {
+        padding: 0.9rem;
+    }
+
+    .plusSign {
+        font-size: 1.2rem;
+    }
+}
