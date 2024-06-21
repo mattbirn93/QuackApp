@@ -13,6 +13,22 @@
     /* background-color: red; */
 }
 
+.quackIcon {
+    height: 30px;
+    width: 30px;
+    margin-right: 79rem;
+    margin-top: 1.0rem;
+}
+
+.quackTitle {
+    color: #acacac;
+    font-size: 1.1rem;
+    margin-top: -1.87rem;
+    margin-right: 73rem;
+    font-weight: 600;
+}
+
+
 .heading1 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 3.2rem;
