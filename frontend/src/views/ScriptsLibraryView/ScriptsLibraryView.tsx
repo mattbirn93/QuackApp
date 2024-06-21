@@ -2,12 +2,15 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import ScriptsLibraryComponent from "../../components/ScriptsLibraryComponent/ScriptsLibraryComponent";
+import Duck from "../../assets/images/duck1.png";
 import styles from "./ScriptsLibraryView.module.css";
 
 const ScriptsLibraryView: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
+        <img src={Duck} className={styles.quackIcon} />
+        <p className={styles.quackTitle}>Quack</p>
         <div className={styles.searchBarContainer}>
           <div className={styles.searchBarWrapper}>
             <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
