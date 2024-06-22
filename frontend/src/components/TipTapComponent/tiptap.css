@@ -102,9 +102,7 @@
 }
 
 .fileMenuContainer {
-    /* position: absolute;
-    top: 0.5rem;
-    left: .5rem; */
+
 }
 
 .fileMenu {
@@ -164,7 +162,7 @@
 
 .editMenu {
     position: absolute;
-    top: 2.3rem;
+    top: 2.0rem;
     left: 4.0rem;
     background-color: #222222;
     padding: 0.5rem;
@@ -203,13 +201,28 @@
 
 .stylingIcon {
     color: white;
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 400;
+    padding-top: .07rem;
+}
+
+.whiteButton {
+    color: white;
+    font-size: 0.7rem;
 }
 
 .scriptLibraryLink {
     color: inherit;
     text-decoration: none;
+}
+
+.no-visited-style {
+    color: inherit;
+    text-decoration: none;
+}
+
+.no-visited-style:visited {
+    color: inherit;
 }
 
 .icon {
@@ -428,12 +441,12 @@ button.is_active {
 
     .mainNavbar {
         width: 100%;
-        height: 5.2rem;
+        height: 5.9rem;
     }
 
     .menuBar {
         flex-wrap: wrap;
-        margin-top: 3.42rem;
+        margin-top: 4.0rem;
     }
 
     .action {
@@ -458,10 +471,10 @@ button.is_active {
     }
 
     .nodeButton1 {
-            margin-top: 2.2rem;
+            margin-top: 2.5rem;
+            /* margin-bottom: 1.0rem; */
             font-size: 0.875rem;
             font-weight: 600;
             width: 5rem;
-    
     }
 }
