@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    background-color: black;
+    /* background-color: black; */
+    background-color: #5a5a5a;
 }
 
 .mainContainer {
@@ -13,20 +14,23 @@
     flex-direction: column;
     margin: 0 auto;
     width: 50.5rem;
+    max-width: 1920px;
 }
 
 .mainNavbar {
     display: flex;
     justify-content: center;
     position: fixed;
-    background-color: #2c2c2c;
-    width: 50.5rem;
+    background-color: #222222;
+    width: 100%;
+    /* width: 50.5rem; */
     top: 0;
     left: 0;
     right: 0;
     padding: 10px 0;
     z-index: 30;
     margin: 0 auto;
+    border-bottom: 1px solid grey;
 }
 
 .menuBar {
@@ -35,11 +39,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2c2c2c;
+    background-color: #222222;
     border-bottom: 1px solid black;
     position: fixed;
-    width: 50.5rem;
-    top: 1.75rem;
+    width: 100%;
+    /* width: 50.5rem; */
+    top: 1.65rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
@@ -47,7 +52,7 @@
 }
 
 .menuBar button {
-    font-size: 10px;
+    font-size: 15px;
     margin: 7px;
     margin-right: 15px;
     outline: none;
@@ -55,6 +60,7 @@
     background: none;
     color: white;
     cursor: pointer;
+    font-weight: 100 !important;
 }
 
 .menuBar button:last-child {
@@ -67,45 +73,102 @@
     align-items: center;
 }
 
-.hamburgerMenu {
-    position: absolute;
-    color: white;
-    width: 20px;
-    height: 20px;
-    top: 0.4rem;
-    left: 0.5rem;
+.controlButtonsWrapper {
+    display: flex;
+    position: absolute;;
+    top: 0.7rem;
+    left: 2rem;
+    /* background-color: red; */
 }
 
-.stylingIcon {
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 500;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 0.5rem;
-    left: 3.5rem;
+.controlButtonsContainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: blue; */
+    gap: 3rem;
 }
 
-.settingsMenuIcon {
-    margin-top: 0.25em;
+.fileButton {
+    color: white;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.fileMenuIcon {
     color: white;
     font-size: 1.3rem;
 }
 
-.settingsMenuContainer {
-    position: absolute;
+.fileMenuContainer {
+    /* position: absolute;
     top: 0.5rem;
-    left: .5rem;
+    left: .5rem; */
 }
 
-.settingsMenu {
+.fileMenu {
+    position: absolute;
+    top: 2.rem;
+    left: -0.5rem;
+    background-color: #222222;
+    padding: 0.5rem;
+    /* border: 1px solid #6a6a6a; */
+    border-radius: 0px 0px 5px 0;
+    z-index: 40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    width: 10rem;
+    color: white;
+    /* background-color: red; */
+}
+
+.fileMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.fileMenu li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    /* border-bottom: 1px solid #6a6a6a; */
+}
+
+.fileMenu li:last-child {
+    border-bottom: none;
+}
+
+.fileMenu li:hover {
+    background: #007aff;
+    color: white;
+    /* border-radius: 5px; */
+}
+
+.editButton {
+    color: white;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.editMenuIcon {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.editMenuContainer {
+
+}
+
+.editMenu {
     position: absolute;
     top: 2.3rem;
-    left: -0.5rem;
-    background-color: #343434;
+    left: 4.0rem;
+    background-color: #222222;
     padding: 0.5rem;
-    border: 1px solid #6a6a6a;
+    /* border: 1px solid #6a6a6a; */
     border-radius: 0px 0px 5px 0;
     z-index: 40;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -114,28 +177,34 @@
     color: white;
 }
 
-.settingsMenu ul {
+.editMenu ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
 }
 
-.settingsMenu li {
+.editMenu li {
     padding: 0.5rem;
     cursor: pointer;
     transition: background 0.3s;
-    border-bottom: 1px solid #6a6a6a;
+    /* border-bottom: 1px solid #6a6a6a; */
 }
 
-.settingsMenu li:last-child {
+.editMenu li:last-child {
     border-bottom: none;
 }
 
-.settingsMenu li:hover {
+.editMenu li:hover {
     background: #007aff;
     color: white;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+}
+
+.stylingIcon {
+    color: white;
+    font-size: .9rem;
+    font-weight: 400;
 }
 
 .scriptLibraryLink {
@@ -147,8 +216,8 @@
     position: absolute;
     width: 26px;
     height: 26px;
-    top: 0.75rem;
-    right: 0.5rem;
+    top: 0.70rem;
+    right: 1.5rem;
 }
 
 .icon-inverted {
@@ -327,13 +396,13 @@ button.is_active {
 .nodeButton1 {
     margin-left: 1rem;
     padding: 5px 0px;
-    background: linear-gradient(145deg, #B344FF, #9507f3);
+    background: #B344FF;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 0.813rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
     font-weight: 600;
-    width: 5rem;
+    width: 5.5rem;
     text-align: center;
     /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -3px 1px rgba(0, 0, 0, 0.3); */
     transition: all 0.3s ease;
@@ -341,14 +410,14 @@ button.is_active {
 }
 
 .nodeButton1:hover {
-    background: linear-gradient(145deg, #B344FF, #B344FF);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), inset 0 -3px 1px rgba(0, 0, 0, 0.1);
+    background:  #B344FF;
+    /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), inset 0 -3px 1px rgba(0, 0, 0, 0.1); */
     transform: translateY(-41x);
 }
 
 .nodeButton1:active {
-    background: linear-gradient(145deg, #5e0c8a, #7a1cc2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 3px 3px rgba(0, 0, 0, 0.3);
+    background: #5e0c8a,;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 3px 3px rgba(0, 0, 0, 0.3); */
     transform: translateY(2px);
 }
 

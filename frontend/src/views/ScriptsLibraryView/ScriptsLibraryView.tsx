@@ -30,8 +30,8 @@ const ScriptsLibraryView: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className={styles.secondDownContainer}>
-          <h1 className={styles.heading1}>Scripts Library View</h1>
+        <div className={styles.headingsContainer}>
+          <h1 className={styles.heading1}>Scripts Library Home</h1>
           <h2 className={styles.heading2}>Open up a script to get started</h2>
         </div>
 
