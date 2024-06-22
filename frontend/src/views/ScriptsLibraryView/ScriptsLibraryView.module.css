@@ -98,7 +98,7 @@
     @apply flex flex-col items-center;
     width: 100%;
     padding: 1rem 0;
-    background-color: #141414;
+    /* background-color: #141414; */
     gap: 1rem;
 }
 
