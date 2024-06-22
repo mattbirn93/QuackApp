@@ -92,12 +92,6 @@ const MenuBar = ({ editor }) => {
       >
         <FaQuoteLeft />
       </button>
-      <button onClick={() => editor.chain().focus().undo().run()}>
-        <FaUndo />
-      </button>
-      <button onClick={() => editor.chain().focus().redo().run()}>
-        <FaRedo />
-      </button>
     </div>
   );
 };
@@ -389,7 +383,10 @@ export const Tiptap = ({
                         <button onClick={updateContent}>Save</button>
                       </li>
                       <li>
-                        <a href="/scriptsLibrary" className="scriptLibraryLink">
+                        <a
+                          href="/scriptsLibrary"
+                          className="scriptLibraryLink no-visited-style"
+                        >
                           Scripts Library
                         </a>
                       </li>
@@ -424,7 +421,19 @@ export const Tiptap = ({
                 )}
               </div>
               <button onClick={toggleMenu}>
-                <p className="stylingIcon">S</p>
+                <p className="stylingIcon">Styles</p>
+              </button>
+              <button
+                onClick={() => editor.chain().focus().undo().run()}
+                className="whiteButton"
+              >
+                <FaUndo />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().redo().run()}
+                className="whiteButton"
+              >
+                <FaRedo />
               </button>
             </div>
           </div>
