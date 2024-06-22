@@ -9,16 +9,16 @@ const ScriptsLibraryView: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
-        {/* <img src={Duck} className={styles.quackIcon} />
-        <p className={styles.quackTitle}>Quack</p> */}
-        <div className={styles.searchBarContainer}>
-          <div className={styles.searchBarWrapper}>
-            <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
-            <input
-              type="text"
-              placeholder="Search"
-              className={styles.searchBar}
-            />
+        <div className={styles.navContainer}>
+          <div className={styles.searchBarContainer}>
+            <div className={styles.searchBarWrapper}>
+              <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
+              <input
+                type="text"
+                placeholder="Search"
+                className={styles.searchBar}
+              />
+            </div>
           </div>
           <div className={styles.signInButtonContainer}>
             <button className={styles.signInButton}>
@@ -30,10 +30,11 @@ const ScriptsLibraryView: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className={styles.topContainer}>
+        <div className={styles.secondDownContainer}>
           <h1 className={styles.heading1}>Scripts Library View</h1>
           <h2 className={styles.heading2}>Open up a script to get started</h2>
         </div>
+
         <ScriptsLibraryComponent />
       </div>
     </div>

@@ -1,108 +1,31 @@
 .wrapper {
-    @apply flex flex-col justify-center w-full bg-[black];
+    @apply flex flex-col justify-center w-full bg-[black] relative;
 }
 
 .mainContainer {
-    @apply w-full flex flex-col items-center;
-    /* background-color: blue; */
+    @apply w-full flex flex-col items-center relative;
 }
 
-.topContainer {
-    @apply flex flex-col items-center mt-16;
+.navContainer {
+    display: flex;
+    position: relative;
+    justify-content: end;
+    padding: 10px;
     width: 100%;
+    padding-right: 19.0rem;
     /* background-color: red; */
 }
 
-.quackIcon {
-    height: 30px;
-    width: 30px;
-    margin-right: 79rem;
-    margin-top: 1.0rem;
-}
-
-.quackTitle {
-    color: #acacac;
-    font-size: 1.1rem;
-    margin-top: -1.87rem;
-    margin-right: 73rem;
-    font-weight: 600;
-}
-
-
-.heading1 {
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 3.2rem;
-    text-align: center;
-    background: linear-gradient(145deg, #FFB6FF, #B344FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: .5rem;
-    font-weight: 600;
-}
-
-.heading2 {
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.5rem;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.92);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-}
-
-.searchBarContainer {
-    @apply absolute top-0 right-0 mt-4 mr-[19rem] flex items-center;
-}
-
-.searchBarWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-}
-
-.searchBar {
-    background-color: black !important;
-    color: #9b9b9b !important;
-    padding: 3px 10px !important;
-    border: 1px solid white !important;
-    border-radius: 10px !important;
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    cursor: text !important;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-    width: 200px !important;
-    padding-left: 30px !important;
-    border-radius: 5px !important;
-}
-
-.searchBar::placeholder {
-    color: rgba(235, 235, 245, 0.6) !important;
-}
-
-.searchIcon {
-    position: absolute !important;
-    left: 10px !important;
-    color: #9b9b9b !important;
-    pointer-events: none !important;
-}
-
 .signInButtonContainer {
-    @apply flex items-center;
+   
 }
 
 .signInButton {
     background-color: #007aff;
     color: white;
-    padding: 7px 18px;
+    padding: 5px 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -127,36 +50,105 @@
 }
 
 .signInButtonIcon {
-    margin-right: 8px;
-    font-size: 0.8rem;
+    margin-right: 5px;
+    font-size: 0.7rem;
+}
+
+.searchBarContainer {
+}
+
+.searchBarWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.7rem;
+}
+
+.searchBar {
+    background-color: black !important;
+    color: #9b9b9b !important;
+    padding: 2px 10px !important;
+    border: 1px solid white !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    cursor: text !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    width: 175px !important;
+    padding-left: 30px !important;
+    border-radius: 5px !important;
+}
+
+.searchBar::placeholder {
+    color: rgba(235, 235, 245, 0.6) !important;
+}
+
+.searchIcon {
+    position: absolute !important;
+    left: 10px !important;
+    color: #9b9b9b !important;
+    pointer-events: none !important;
+}
+
+.secondDownContainer {
+    @apply flex flex-col items-center;
+    width: 100vw;
+    padding: 10px 0;
+    /* background-color: pink; */
+}
+
+.quackIcon {
+    height: 30px;
+    width: 30px;
+    margin-right: 79rem;
+    margin-top: 1.0rem;
+}
+
+.quackTitle {
+    color: #acacac;
+    font-size: 1.1rem;
+    margin-top: -1.87rem;
+    margin-right: 73rem;
+    font-weight: 600;
+}
+
+.heading1 {
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3.2rem;
+    text-align: center;
+    background: linear-gradient(145deg, #FFB6FF, #B344FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.heading2 {
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
+
+    .navContainer {  
+        padding-right: 4.0rem;
+    }
+
     .heading1 {
         font-size: 2.5rem;
     }
 
     .heading2 {
         font-size: 1.3rem;
-    }
-
-    .searchBarContainer {
-        @apply mr-[1rem] mt-[0.7rem];
-    }
-
-    .searchBarWrapper {
-        margin-right: 1rem;
-        margin-top: 0.45rem;
-    }
-
-    .searchBar {
-        width: 150px;
-        margin-top: -0.2rem;
-        /* Adds spacing between search bar and sign-in button on mobile */
-    }
-
-    .signInButtonContainer {
-        @apply flex justify-center;
     }
 }

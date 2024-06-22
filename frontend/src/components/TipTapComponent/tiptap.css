@@ -24,7 +24,7 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: .5rem;
+    padding: 8px;
     z-index: 30;
     margin: 0 auto;
 }
@@ -324,14 +324,14 @@ button.is_active {
 
 .nodeButton1 {
     margin-left: 1rem;
-    padding: 4px 0px;
+    padding: 2px 0px;
     background: linear-gradient(145deg, #B344FF, #9507f3);
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 0.875rem;
+    font-size: 0.813rem;
     font-weight: 600;
-    width: 6rem;
+    width: 5rem;
     text-align: center;
     /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -3px 1px rgba(0, 0, 0, 0.3); */
     transition: all 0.3s ease;
