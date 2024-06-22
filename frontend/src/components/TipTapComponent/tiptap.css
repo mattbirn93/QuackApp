@@ -88,11 +88,57 @@
     justify-content: center;
     align-items: center;
     /* background-color: blue; */
-    gap: 3rem;
+    gap: 1rem;
+}
+
+/* Menu Styling */
+.menu {
+    position: absolute;
+    top: 3.0rem;
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    z-index: 40;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    width: 12rem;
+    color: black;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.menu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu li:last-child {
+    border-bottom: none;
+}
+
+.menu li:hover {
+    background: #007aff;
+    color: white;
+}
+
+.hotkey {
+    color: grey;
+    font-size: 0.85rem;
 }
 
 .fileButton {
-    color: #b8b8ba !important;
+    color: white !important;
+    /* color: #b8b8ba !important; */
     font-size: 0.875rem !important;
     font-weight: 400;
 }
@@ -109,14 +155,13 @@
     position: absolute;
     top: 3.0rem;
     left: 0.0rem;
-    background-color: #222222;
-    padding: 0.5rem;
-    /* border: 1px solid #6a6a6a; */
-    border-radius: 0px 0px 5px 0;
+    background-color: #2e2e2e;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
     z-index: 40;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    width: 10rem;
+    width: 14.3rem;
     color: white;
     /* background-color: red; */
 }
@@ -125,11 +170,11 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .fileMenu li {
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -145,7 +190,8 @@
 }
 
 .editButton {
-    color: #b8b8ba !important;
+    color: white !important;
+        /* color: #b8b8ba !important; */
     font-size: 0.875rem !important;
     font-weight: 400;
 }
@@ -161,30 +207,29 @@
 .editMenu {
     position: absolute;
     top: 3.0rem;
-    left: 6.3rem;
-    background-color: #222222;
-    padding: 0.5rem;
-    /* border: 1px solid #6a6a6a; */
-    border-radius: 0px 0px 5px 0;
+    left: 4.3rem;
+    background-color: #2e2e2e;
+    border: 1px solid #4d4d4d;
+    border-radius: 10px;
     z-index: 40;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    width: 10rem;
+    width: 14.3rem;
     color: white;
+    /* background-color: red; */
 }
 
 .editMenu ul {
-    list-style: none;
+list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .editMenu li {
-    padding: 0.5rem;
+/* padding: 0.5rem; */
     cursor: pointer;
     transition: background 0.3s;
-    /* border-bottom: 1px solid #6a6a6a; */
 }
 
 .editMenu li:last-child {
@@ -197,16 +242,18 @@
     /* border-radius: 5px; */
 }
 
+/* File and Edit Button Styling */
 .fileButton,
 .editButton {
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     font-weight: 400;
     background-color: transparent;
     border: none;
     outline: none;
     padding: 0.5rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .fileButton:focus,
@@ -214,17 +261,21 @@
     background-color: grey;
     color: white;
     outline: none;
-    /* Remove the default focus outline */
+    padding: 5px;
+    height: auto;
+    border-radius: 5px;
 }
 
 .stylingIcon {
-    color: #b8b8ba !important;
+    color: white !important;
+        /* color: #b8b8ba !important; */
     font-size: 0.875rem !important;
     font-weight: 400;
 }
 
 .whiteButton {
-    color: #b8b8ba !important;
+    color: white !important;
+        /* color: #b8b8ba !important; */
     font-size: 0.7rem;
     margin-left: 1rem;
 }
