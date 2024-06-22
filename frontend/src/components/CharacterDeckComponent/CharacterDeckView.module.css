@@ -21,7 +21,7 @@
     transform: translateX(-50%);
     /* background-color: rgba(148, 148, 148, 0.5); */
     /* background-color: rgba(45, 45, 45, 1.0); */
-    background-color: #343434;
+    background-color: #2c2c2c;
     width: 50.5rem;
     color: black;
     text-align: center;
@@ -34,7 +34,7 @@
     padding: .5rem 1rem;
     overflow: hidden;
     min-height: 2.7rem;
-    resize: vertical;
+    /* resize: vertical; */
 }
 
 .resizeHandle {
