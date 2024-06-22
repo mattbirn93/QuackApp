@@ -76,7 +76,7 @@
 .controlButtonsWrapper {
     display: flex;
     position: absolute;;
-    top: 0.7rem;
+    top: 0rem;
     left: 2rem;
     /* background-color: red; */
 }
@@ -84,7 +84,7 @@
 .controlButtonsContainer {
     display: flex;
     position: relative;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     /* background-color: blue; */
     gap: 3rem;
@@ -107,8 +107,8 @@
 
 .fileMenu {
     position: absolute;
-    top: 2.rem;
-    left: -0.5rem;
+    top: 3.0rem;
+    left: 0.0rem;
     background-color: #222222;
     padding: 0.5rem;
     /* border: 1px solid #6a6a6a; */
@@ -132,7 +132,6 @@
     padding: 0.5rem;
     cursor: pointer;
     transition: background 0.3s;
-    /* border-bottom: 1px solid #6a6a6a; */
 }
 
 .fileMenu li:last-child {
@@ -162,8 +161,8 @@
 
 .editMenu {
     position: absolute;
-    top: 2.0rem;
-    left: 4.0rem;
+    top: 3.0rem;
+    left: 6.3rem;
     background-color: #222222;
     padding: 0.5rem;
     /* border: 1px solid #6a6a6a; */
@@ -199,16 +198,36 @@
     /* border-radius: 5px; */
 }
 
+.fileButton,
+.editButton {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.fileButton:focus,
+.editButton:focus {
+    background-color: grey;
+    color: white;
+    outline: none;
+    /* Remove the default focus outline */
+}
+
 .stylingIcon {
     color: white;
     font-size: .8rem;
     font-weight: 400;
-    padding-top: .07rem;
 }
 
 .whiteButton {
     color: white;
     font-size: 0.7rem;
+    margin-left: 1rem;
 }
 
 .scriptLibraryLink {
@@ -471,10 +490,13 @@ button.is_active {
     }
 
     .nodeButton1 {
-            margin-top: 2.5rem;
-            /* margin-bottom: 1.0rem; */
-            font-size: 0.875rem;
-            font-weight: 600;
-            width: 5rem;
+        margin-top: 2.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        width: 5rem;
     }
+
+        .controlButtonsContainer {
+            gap: 1.5rem;
+        }
 }
