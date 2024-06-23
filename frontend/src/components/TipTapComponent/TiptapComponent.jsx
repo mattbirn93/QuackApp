@@ -24,8 +24,8 @@ import {
   FaStrikethrough,
   FaUnderline,
   FaUndo,
-  FaCog,
   FaBars,
+  FaAngleRight,
 } from "react-icons/fa";
 
 const ydoc = new Y.Doc();
@@ -96,6 +96,56 @@ const MenuBar = ({ editor }) => {
   );
 };
 
+const HamburgerMenu = ({
+  toggleFileMenu,
+  toggleEditMenu,
+  fileMenuVisible,
+  editMenuVisible,
+}) => (
+  <div className="hamburgerMenu">
+    <button onClick={toggleFileMenu}>
+      File <FaAngleRight />
+    </button>
+    {fileMenuVisible && (
+      <div className="submenu">
+        <ul>
+          <li>
+            <button>Save</button>
+            <span className="hotkey">⌘S</span>
+          </li>
+          <li>
+            <a
+              href="/scriptsLibrary"
+              className="scriptLibraryLink no-visited-style"
+            >
+              Scripts Library
+            </a>
+            <span className="hotkey">⌘L</span>
+          </li>
+        </ul>
+      </div>
+    )}
+    <button onClick={toggleEditMenu}>
+      Edit <FaAngleRight />
+    </button>
+    {editMenuVisible && (
+      <div className="submenu">
+        <ul>
+          <li>
+            <button>Undo</button>
+            <span className="hotkey">⌘Z</span>
+          </li>
+          <li>
+            <button>Redo</button>
+            <span className="hotkey">⌘⇧Z</span>
+          </li>
+        </ul>
+      </div>
+    )}
+    <button>Styles</button>
+  </div>
+);
+
 const extensions = [
   StarterKit,
   Collaboration.configure({ document: ydoc }),
@@ -120,6 +170,7 @@ export const Tiptap = ({
   const [menuVisible, setMenuVisible] = useState(false);
   const [fileMenuVisible, setFileMenuVisible] = useState(false);
   const [editMenuVisible, setEditMenuVisible] = useState(false);
+  const [hamburgerMenuVisible, setHamburgerMenuVisible] = useState(false);
 
   const fileMenuRef = useRef(null);
   const editMenuRef = useRef(null);
@@ -162,6 +213,10 @@ export const Tiptap = ({
       if (fileMenuVisible) setFileMenuVisible(false);
       return !prev;
     });
+  };
+
+  const toggleHamburgerMenu = () => {
+    setHamburgerMenuVisible(!hamburgerMenuVisible);
   };
 
   useEffect(() => {
@@ -370,6 +425,7 @@ export const Tiptap = ({
     callback();
     setFileMenuVisible(false);
     setEditMenuVisible(false);
+    setHamburgerMenuVisible(false);
   };
 
   return (
@@ -446,15 +502,17 @@ export const Tiptap = ({
                   <p className="stylingButton">Styles</p>
                 </button>
               </div>
+            </div>
+            <div className="undoRedoButtonContainer">
               <button
                 onClick={() => editor.chain().focus().undo().run()}
-                className="whiteButton"
+                className="undoRedoButton"
               >
                 <FaUndo />
               </button>
               <button
                 onClick={() => editor.chain().focus().redo().run()}
-                className="whiteButton"
+                className="undoRedoButton"
               >
                 <FaRedo />
               </button>
@@ -469,7 +527,7 @@ export const Tiptap = ({
             <img
               src={recordingState === "start" ? MicOff : MicOn}
               alt="Mic Icon"
-              className="icon icon-inverted"
+              className="micIcon micIcon-inverted"
             />
           </button>
           <div className="menuBarButtonContainer">
@@ -502,7 +560,18 @@ export const Tiptap = ({
               onClick={handleDialogueButtonClick}
             />
           </div>
+          <button className="hamburgerButton" onClick={toggleHamburgerMenu}>
+            <FaBars />
+          </button>
         </div>
+        {hamburgerMenuVisible && (
+          <HamburgerMenu
+            toggleFileMenu={toggleFileMenu}
+            toggleEditMenu={toggleEditMenu}
+            fileMenuVisible={fileMenuVisible}
+            editMenuVisible={editMenuVisible}
+          />
+        )}
         <div>{menuVisible && <MenuBar editor={editor} />}</div>
         <EditorContent editor={editor} />
       </div>
@@ -516,7 +585,7 @@ export const Tiptap = ({
 
 export default Tiptap;
 
-///////////////////////////
+////////////////////////////////////////////////////
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { useEditor, EditorContent } from "@tiptap/react";
@@ -886,6 +955,12 @@ export default Tiptap;
 //     }
 //   };
 
+//   const handleMenuClick = (callback) => {
+//     callback();
+//     setFileMenuVisible(false);
+//     setEditMenuVisible(false);
+//   };
+
 //   return (
 //     <div className="wrapper">
 //       <div className="mainContainer">
@@ -900,13 +975,16 @@ export default Tiptap;
 //                   <div className="menu fileMenu">
 //                     <ul>
 //                       <li>
-//                         <button onClick={updateContent}>Save</button>
+//                         <button onClick={() => handleMenuClick(updateContent)}>
+//                           Save
+//                         </button>
 //                         <span className="hotkey">⌘S</span>
 //                       </li>
 //                       <li>
 //                         <a
 //                           href="/scriptsLibrary"
 //                           className="scriptLibraryLink no-visited-style"
+//                           onClick={() => handleMenuClick(() => {})}
 //                         >
 //                           Scripts Library
 //                         </a>
@@ -926,7 +1004,11 @@ export default Tiptap;
 //                     <ul>
 //                       <li>
 //                         <button
-//                           onClick={() => editor.chain().focus().undo().run()}
+//                           onClick={() =>
+//                             handleMenuClick(() =>
+//                               editor.chain().focus().undo().run(),
+//                             )
+//                           }
 //                         >
 //                           Undo
 //                         </button>
@@ -934,7 +1016,11 @@ export default Tiptap;
 //                       </li>
 //                       <li>
 //                         <button
-//                           onClick={() => editor.chain().focus().redo().run()}
+//                           onClick={() =>
+//                             handleMenuClick(() =>
+//                               editor.chain().focus().redo().run(),
+//                             )
+//                           }
 //                         >
 //                           Redo
 //                         </button>
