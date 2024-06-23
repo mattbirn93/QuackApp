@@ -424,9 +424,11 @@ export const Tiptap = ({
                   </div>
                 )}
               </div>
-              <button onClick={toggleMenu}>
-                <p className="stylingIcon">Styles</p>
-              </button>
+              <div>
+                <button onClick={toggleMenu}>
+                  <p className="stylingButton">Styles</p>
+                </button>
+              </div>
               <button
                 onClick={() => editor.chain().focus().undo().run()}
                 className="whiteButton"
