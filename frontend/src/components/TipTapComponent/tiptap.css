@@ -69,6 +69,7 @@
     gap: 1rem;
 }
 
+
 .nodeButton1 {
     padding: 5px 0px;
     background: #b344ff;
@@ -247,6 +248,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 0.5rem;
+    /* background-color: blue; */
 }
 
 .undoRedoButton {
@@ -460,7 +462,7 @@ button.is_active {
 @media only screen and (max-width: 1024px) {
     .mainNavbar {
         width: 100%;
-        height: 4rem;
+        height: 3.5rem;
     }
 
     .menuBar {
@@ -490,6 +492,7 @@ button.is_active {
     }
 
     .nodeButton1 {
+        margin-top: 1.5rem;
         font-size: 0.875rem;
         font-weight: 600;
         width: 5rem;
@@ -526,7 +529,7 @@ button.is_active {
     }
 
     .menuBar {
-        top: 2.4rem;
+        top: -1.7rem;
         left: 50%;
     }
 
@@ -535,7 +538,7 @@ button.is_active {
     }
 
     .menuBarButtonContainer {
-        gap: 0.5rem;
+        gap: 0.3rem;
     }
 
     .undoRedoButton {
@@ -546,7 +549,7 @@ button.is_active {
 
     .undoRedoButtonContainer {
       margin-top: 0.9rem;
-      margin-left: 21.0rem;
+      margin-left: 20.5rem;
     }
 
     .undoRedoButton {
@@ -558,7 +561,7 @@ button.is_active {
         font-size: 0.6rem;
         font-weight: 400;
         width: 4rem;
-        margin-bottom: 1.3rem;
+        margin-bottom: 1.2rem;
     }
 
     .micIcon {

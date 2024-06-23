@@ -25,7 +25,6 @@ import {
   FaUnderline,
   FaUndo,
   FaBars,
-  FaAngleRight,
 } from "react-icons/fa";
 
 const ydoc = new Y.Doc();
@@ -96,53 +95,11 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const HamburgerMenu = ({
-  toggleFileMenu,
-  toggleEditMenu,
-  fileMenuVisible,
-  editMenuVisible,
-}) => (
+const HamburgerMenu = ({ toggleFileMenu, toggleEditMenu, toggleMenu }) => (
   <div className="hamburgerMenu">
-    <button onClick={toggleFileMenu}>
-      File <FaAngleRight />
-    </button>
-    {fileMenuVisible && (
-      <div className="submenu">
-        <ul>
-          <li>
-            <button>Save</button>
-            <span className="hotkey">⌘S</span>
-          </li>
-          <li>
-            <a
-              href="/scriptsLibrary"
-              className="scriptLibraryLink no-visited-style"
-            >
-              Scripts Library
-            </a>
-            <span className="hotkey">⌘L</span>
-          </li>
-        </ul>
-      </div>
-    )}
-    <button onClick={toggleEditMenu}>
-      Edit <FaAngleRight />
-    </button>
-    {editMenuVisible && (
-      <div className="submenu">
-        <ul>
-          <li>
-            <button>Undo</button>
-            <span className="hotkey">⌘Z</span>
-          </li>
-          <li>
-            <button>Redo</button>
-            <span className="hotkey">⌘⇧Z</span>
-          </li>
-        </ul>
-      </div>
-    )}
-    <button>Styles</button>
+    <button onClick={toggleFileMenu}>File</button>
+    <button onClick={toggleEditMenu}>Edit</button>
+    <button onClick={toggleMenu}>Styles</button>
   </div>
 );
 
@@ -502,20 +459,20 @@ export const Tiptap = ({
                   <p className="stylingButton">Styles</p>
                 </button>
               </div>
-            </div>
-            <div className="undoRedoButtonContainer">
-              <button
-                onClick={() => editor.chain().focus().undo().run()}
-                className="undoRedoButton"
-              >
-                <FaUndo />
-              </button>
-              <button
-                onClick={() => editor.chain().focus().redo().run()}
-                className="undoRedoButton"
-              >
-                <FaRedo />
-              </button>
+              <div className="undoRedoButtonContainer">
+                <button
+                  onClick={() => editor.chain().focus().undo().run()}
+                  className="undoRedoButton"
+                >
+                  <FaUndo />
+                </button>
+                <button
+                  onClick={() => editor.chain().focus().redo().run()}
+                  className="undoRedoButton"
+                >
+                  <FaRedo />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -523,13 +480,13 @@ export const Tiptap = ({
             recordingState={recordingState}
             onSpeechText={handleSpeechText}
           />
-          <button onClick={toggleRecording}>
+          {/* <button onClick={toggleRecording}>
             <img
               src={recordingState === "start" ? MicOff : MicOn}
               alt="Mic Icon"
-              className="micIcon micIcon-inverted"
+              className="icon icon-inverted"
             />
-          </button>
+          </button> */}
           <div className="menuBarButtonContainer">
             <NodeButton
               editor={editor}
@@ -568,8 +525,7 @@ export const Tiptap = ({
           <HamburgerMenu
             toggleFileMenu={toggleFileMenu}
             toggleEditMenu={toggleEditMenu}
-            fileMenuVisible={fileMenuVisible}
-            editMenuVisible={editMenuVisible}
+            toggleMenu={toggleMenu}
           />
         )}
         <div>{menuVisible && <MenuBar editor={editor} />}</div>
@@ -585,7 +541,7 @@ export const Tiptap = ({
 
 export default Tiptap;
 
-////////////////////////////////////////////////////
+/////////////////////////
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { useEditor, EditorContent } from "@tiptap/react";
