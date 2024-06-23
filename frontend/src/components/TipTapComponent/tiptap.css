@@ -144,6 +144,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
+    /* background-color: red; */
 }
 
 .menuBar button {
@@ -527,7 +528,7 @@ button.is_active {
     }
 
     .menuBar {
-        top: -1.7rem;
+        top: 2.3rem;
         left: 50%;
     }
 
