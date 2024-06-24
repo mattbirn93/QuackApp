@@ -4,8 +4,8 @@ import styles from "./CharacterDeckButton.module.css";
 interface CharacterDeckButtonProps {
   letter: string;
   onClick: () => void;
-  onDragStart: (character: string) => void;
-  onDragEnd: () => void;
+  onDragStart: () => void;
+  onDragEnd: (event: React.DragEvent<HTMLButtonElement>) => void;
 }
 
 export const CharacterDeckButton: React.FC<CharacterDeckButtonProps> = ({
@@ -19,7 +19,7 @@ export const CharacterDeckButton: React.FC<CharacterDeckButtonProps> = ({
       className={styles.characterDeckButton}
       onClick={onClick}
       draggable
-      onDragStart={() => onDragStart(letter)}
+      onDragStart={onDragStart}
       onDragEnd={onDragEnd}
     >
       {letter}
