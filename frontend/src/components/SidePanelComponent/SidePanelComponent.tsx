@@ -65,10 +65,26 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
   };
 
   const toggleSection = (section: string) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
+    interface ExpandedSections {
+      owners: boolean;
+      versions: boolean;
+      details: boolean;
+      characters: boolean;
+    }
+
+    const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
+      owners: false,
+      versions: false,
+      details: false,
+      characters: false,
+    });
+
+    const toggleSection = (section: keyof ExpandedSections) => {
+      setExpandedSections((prev) => ({
+        ...prev,
+        [section]: !prev[section],
+      }));
+    };
   };
 
   return (
