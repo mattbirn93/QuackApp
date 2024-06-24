@@ -12,6 +12,7 @@ import MicOn from "../../assets/images/icons8-microphone-On.png";
 import MicOff from "../../assets/images/icons8-microphone-Off.png";
 import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import CharacterDeckView from "../CharacterDeckComponent/CharacterDeckView";
+import Sidebar from "../SidebarComponent/SidebarComponent";
 import "./tiptap.css";
 import {
   FaBold,
@@ -405,6 +406,7 @@ export const Tiptap = ({
 
   return (
     <div className="wrapper">
+      <Sidebar />
       <div className="mainContainer">
         <div className="mainNavbar">
           <div className="controlButtonsWrapper">
