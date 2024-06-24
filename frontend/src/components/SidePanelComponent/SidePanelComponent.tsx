@@ -21,6 +21,11 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
     }
   };
 
+  const owners = [
+    { name: "Mike Giffin", isOnline: true },
+    { name: "Matt Buttholtz", isOnline: false },
+  ];
+
   return (
     <SidePanelView
       isOpen={isOpen}
@@ -29,11 +34,51 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
       scriptName={scriptName}
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
+      owners={owners}
     />
   );
 };
 
 export default SidePanel;
+
+//////////////
+
+// import React, { useState } from "react";
+// import SidePanelView from "./SidePanelView";
+
+// const SidePanel = ({ scriptName }: { scriptName: string }) => {
+//   const [isOpen, setIsOpen] = useState(true);
+//   const [isHovered, setIsHovered] = useState(false);
+
+//   const toggleSidePanel = () => {
+//     setIsOpen(!isOpen);
+//   };
+
+//   const handleMouseEnter = () => {
+//     if (!isOpen) {
+//       setIsHovered(true);
+//     }
+//   };
+
+//   const handleMouseLeave = () => {
+//     if (!isOpen) {
+//       setIsHovered(false);
+//     }
+//   };
+
+//   return (
+//     <SidePanelView
+//       isOpen={isOpen}
+//       isHovered={isHovered}
+//       toggleSidePanel={toggleSidePanel}
+//       scriptName={scriptName}
+//       handleMouseEnter={handleMouseEnter}
+//       handleMouseLeave={handleMouseLeave}
+//     />
+//   );
+// };
+
+// export default SidePanel;
 
 ///////////////////
 
