@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import SidePanelView from "./SidePanelView";
 
+interface Character {
+  name: string;
+}
+
 const SidePanel = ({ scriptName }: { scriptName: string }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -26,6 +30,24 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
     { name: "Matt Buttholtz", isOnline: false },
   ];
 
+  // Mock list of characters
+  const characterArray = [
+    { name: "Mike" },
+    { name: "Matt" },
+    { name: "Alice" },
+    { name: "Bob" },
+    { name: "Tim" },
+    { name: "Janet" },
+    { name: "Sally" },
+    { name: "Reed" },
+    { name: "Patrick" },
+    { name: "Simone" },
+    { name: "Peter" },
+    { name: "Valencia" },
+    { name: "Steve" },
+    { name: "York" },
+  ];
+
   return (
     <SidePanelView
       isOpen={isOpen}
@@ -35,6 +57,7 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
       owners={owners}
+      characters={characterArray}
     />
   );
 };
