@@ -17,6 +17,10 @@
     max-width: 1920px;
 }
 
+.sidPaneRender {
+   
+}
+
 .fileMenuContainer {
     /* background-color: red; */
 }
@@ -471,7 +475,11 @@ button.is_active {
 /* MEDIA QUERY BREAKPOINTS: */
 
 /* Extra Extra Large Devices (Large Desktops, 1400px and down) */
-@media only screen and (max-width: 1400px) {}
+@media only screen and (max-width: 1470px) {
+    .sidPaneRender {
+        display: none;
+    }
+}
 
 /* Extra Large Devices (Desktops, 1200px and down) */
 @media only screen and (max-width: 1200px) {}
@@ -631,6 +639,7 @@ button.is_active {
     .ProseMirror {
         margin-top: 3.4rem !important;
     }
+
 }
 
 /* Small Devices (Phones, 600px and down) */
