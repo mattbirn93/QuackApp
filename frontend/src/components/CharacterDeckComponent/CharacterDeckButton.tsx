@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "./CharacterDeckButton.module.css";
 
 interface CharacterDeckButtonProps {
@@ -6,26 +6,27 @@ interface CharacterDeckButtonProps {
   onClick: () => void;
   onDragStart: () => void;
   onDragEnd: (event: React.DragEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
 
-export const CharacterDeckButton: React.FC<CharacterDeckButtonProps> = ({
-  letter,
-  onClick,
-  onDragStart,
-  onDragEnd,
-}) => {
+export const CharacterDeckButton = forwardRef<
+  HTMLButtonElement,
+  CharacterDeckButtonProps
+>(({ letter, onClick, onDragStart, onDragEnd, className, ...props }, ref) => {
   return (
     <button
-      className={styles.characterDeckButton}
+      ref={ref}
+      className={`${styles.characterDeckButton} ${className}`}
       onClick={onClick}
       draggable
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
+      {...props}
     >
       {letter}
     </button>
   );
-};
+});
 
 export const CharacterDeckButtonAdd: React.FC<{
   letter: string;

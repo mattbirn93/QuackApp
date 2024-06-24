@@ -9,14 +9,14 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
-  background: linear-gradient(145deg, #B344FF, #ba79ff);
+  background: linear-gradient(145deg, #b344ff, #ba79ff);
   box-shadow: 2px 2px 4px #999, -1px -1px 4px #ffffff;
   transition: all 0.2s ease-in-out;
-  cursor: grab;
+  /* cursor: grab; */
 }
 
-.characterButtonAdd:active {
-  cursor: grabbing;
+.characterDeckButton:active {
+  /* cursor: grabbing; */
 }
 
 .characterDeckButton:hover {
@@ -42,11 +42,11 @@
   background: linear-gradient(145deg, #007aff, #007aff);
   box-shadow: 2px 2px 4px #999, -1px -1px 2px #ffffff;
   transition: all 0.2s ease-in-out;
-  cursor: grab;
+  /* cursor: grab; */
 }
 
-.characterButtonAdd:active {
-    cursor: grabbing;
+.characterDeckButtonAdd:active {
+  /* cursor: grabbing; */
 }
 
 .characterDeckButtonAdd:hover {
@@ -56,4 +56,8 @@
 .characterDeckButtonAdd:active {
   background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
   box-shadow: inset 4px 4px 8px #555, inset -2px -2px 4px #999;
+}
+
+.characterDeckButton.dragging {
+  opacity: 0.5;
 }
