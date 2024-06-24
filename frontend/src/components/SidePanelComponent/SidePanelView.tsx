@@ -8,6 +8,10 @@ interface Owner {
   isOnline: boolean;
 }
 
+interface Character {
+  name: string;
+}
+
 const SidePanelView = ({
   isOpen,
   isHovered,
@@ -16,6 +20,7 @@ const SidePanelView = ({
   handleMouseEnter,
   handleMouseLeave,
   owners,
+  characters,
 }: {
   isOpen: boolean;
   isHovered: boolean;
@@ -24,6 +29,7 @@ const SidePanelView = ({
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
   owners: Owner[];
+  characters: Character[];
 }) => {
   return (
     <div
@@ -91,6 +97,21 @@ const SidePanelView = ({
               <FaHashtag />
               <span>Pages</span>
             </div>
+          </div>
+
+          <div className="section">
+            <div className="sectionHeader">
+              <span>Characters</span>
+              <button className="addButton">
+                <AiOutlinePlus />
+              </button>
+            </div>
+            {characters.map((character) => (
+              <div className="sidebarItem" key={character.name}>
+                <FaHashtag />
+                <span>{character.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       )}
