@@ -1,5 +1,6 @@
+/* sidebar.css */
 .sidebar {
-    width: 20.0rem;
+    width: 20rem;
     background-color: #222222;
     color: white;
     height: 100vh;
@@ -9,4 +10,54 @@
     padding: 1rem;
     border: 1px solid rgb(74, 74, 74);
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 3rem;
+    padding: 1rem 0.5rem;
+}
+
+.toggleButtonContainer {
+    position: absolute;
+    top: 2.7rem;
+    right: -0.21rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggleButton {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #444444;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.toggleButton:hover {
+    background-color: #555555;
+}
+
+.toggleButton:focus {
+    outline: none;
+    border: none;
+}
+
+.toggleButton:active {
+    outline: none;
+    border: none;
 }
