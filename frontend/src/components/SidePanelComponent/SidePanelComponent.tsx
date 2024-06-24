@@ -6,7 +6,7 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     owners: true,
-    versions: true,
+    versions: false,
     details: true,
     characters: true,
   });
