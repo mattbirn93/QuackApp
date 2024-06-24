@@ -1,27 +1,30 @@
 .sidePanel {
     width: 20rem;
-    background-color: #222222;
+    background-color: #232527;
+    /* background: linear-gradient(180deg, #3a3a3a, #222222); */
     color: white;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     padding: 1rem;
-    border: 1px solid #3c3d3f;
+    border-right: 1px solid #3c3d3f;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: width 0.3s ease, padding 0.3s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidePanel.collapsed {
-    width: 3rem;
+    width: 3.5rem;
     padding: 1rem 0.5rem;
 }
 
 .toggleButtonContainer {
     position: absolute;
-    top: 2.7rem;
-    right: -0.21rem;
+    top: 2.8rem;
+    right: -0.3rem;
     width: 3rem;
     height: 3rem;
     display: flex;
@@ -32,7 +35,7 @@
 .toggleButton {
     background: none;
     border: none;
-    /* border-radius: 5px; */
+    border-radius: 0 0 0 5px;
     color: white;
     cursor: pointer;
     background-color: #444444;
@@ -51,28 +54,78 @@
     background-color: #555555;
 }
 
-.toggleButton:focus {
-    outline: none;
-    border: none;
-}
-
+.toggleButton:focus,
 .toggleButton:active {
     outline: none;
     border: none;
 }
 
 .sidePanelContent {
-    margin-top: 2rem;
+    margin-top: 3rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .titleContainer {
     border-bottom: 1px solid #3c3d3f;
     padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .scriptName {
-    margin-top: 5rem;
     font-weight: 600;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 1rem;
-    color: #ccc;
+    font-weight: 600;
+    color: #ffffff;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #3c3d3f;
+    margin-bottom: 0.5rem;
+}
+
+.addButton {
+    background: none;
+    border: none;
+    color: #b8b8b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addButton:hover {
+    color: white;
+}
+
+.sidebarItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebarItem:hover {
+    background: #555555;
+    color: #ffffff;
+}
+
+.sidebarItem svg {
+    margin-right: 0.5rem;
 }
