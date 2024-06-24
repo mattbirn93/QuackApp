@@ -121,6 +121,7 @@ export const Tiptap = ({
   initialContent,
   setDescription,
   scriptId,
+  scriptName,
   characterArray,
 }) => {
   const [recordingState, setRecordingState] = useState("stop");
@@ -406,8 +407,8 @@ export const Tiptap = ({
 
   return (
     <div className="wrapper">
-      <Sidebar />
       <div className="mainContainer">
+        <Sidebar scriptName={scriptName} />
         <div className="mainNavbar">
           <div className="controlButtonsWrapper">
             <div className="controlButtonsContainer">
@@ -556,7 +557,7 @@ export const Tiptap = ({
 
 export default Tiptap;
 
-////////////////////////////////////////////////
+////////////////////////////////////////
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { useEditor, EditorContent } from "@tiptap/react";
@@ -572,6 +573,7 @@ export default Tiptap;
 // import MicOff from "../../assets/images/icons8-microphone-Off.png";
 // import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 // import CharacterDeckView from "../CharacterDeckComponent/CharacterDeckView";
+// import Sidebar from "../SidebarComponent/SidebarComponent";
 // import "./tiptap.css";
 // import {
 //   FaBold,
@@ -799,6 +801,7 @@ export default Tiptap;
 //   };
 
 //   const handleCharacterButtonClick = (character) => {
+//     console.log("Character button clicked:", character);
 //     if (editor) {
 //       if (listening) {
 //         stopRecording(); // Stop current recording if listening
@@ -964,6 +967,7 @@ export default Tiptap;
 
 //   return (
 //     <div className="wrapper">
+//       <Sidebar scriptName={scriptName} />
 //       <div className="mainContainer">
 //         <div className="mainNavbar">
 //           <div className="controlButtonsWrapper">
@@ -979,7 +983,7 @@ export default Tiptap;
 //                         <button onClick={() => handleMenuClick(updateContent)}>
 //                           Save
 //                         </button>
-//                         <span className="hotkey">⌘S</span>
+//                         <span className="hotkey hide-on-mobile">⌘S</span>
 //                       </li>
 //                       <li>
 //                         <a
@@ -989,7 +993,7 @@ export default Tiptap;
 //                         >
 //                           Scripts Library
 //                         </a>
-//                         <span className="hotkey">⌘L</span>
+//                         <span className="hotkey hide-on-mobile">⌘L</span>
 //                       </li>
 //                     </ul>
 //                   </div>
@@ -1013,7 +1017,7 @@ export default Tiptap;
 //                         >
 //                           Undo
 //                         </button>
-//                         <span className="hotkey">⌘Z</span>
+//                         <span className="hotkey hide-on-mobile">⌘Z</span>
 //                       </li>
 //                       <li>
 //                         <button
@@ -1025,7 +1029,7 @@ export default Tiptap;
 //                         >
 //                           Redo
 //                         </button>
-//                         <span className="hotkey">⌘⇧Z</span>
+//                         <span className="hotkey hide-on-mobile">⌘⇧Z</span>
 //                       </li>
 //                     </ul>
 //                   </div>
@@ -1113,7 +1117,7 @@ export default Tiptap;
 
 // export default Tiptap;
 
-////////////
+////////////////////////////////////////////////
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { useEditor, EditorContent } from "@tiptap/react";
