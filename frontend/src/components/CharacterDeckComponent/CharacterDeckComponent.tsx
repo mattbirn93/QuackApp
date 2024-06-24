@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
@@ -43,6 +43,12 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
     setCharacterArray(updatedArray);
   };
 
+  const removeCharacter = (character: string) => {
+    setCharacterArray((prevArray) =>
+      prevArray.filter((item) => item !== character),
+    );
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={styles.wrapper}>
@@ -57,6 +63,7 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
               character={character}
               moveCharacter={moveCharacter}
               onClick={() => onCharacterButtonClick(character)}
+              onRemove={() => removeCharacter(character)}
             />
           ))}
         </div>
@@ -71,6 +78,7 @@ interface CharacterButtonProps {
   character: string;
   moveCharacter: (dragIndex: number, hoverIndex: number) => void;
   onClick: () => void;
+  onRemove: () => void;
 }
 
 const CharacterButton: React.FC<CharacterButtonProps> = ({
@@ -79,8 +87,11 @@ const CharacterButton: React.FC<CharacterButtonProps> = ({
   character,
   moveCharacter,
   onClick,
+  onRemove,
 }) => {
   const ref = React.useRef<HTMLButtonElement>(null);
+  const [showRemove, setShowRemove] = useState(false);
+  const holdTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const [, drop] = useDrop({
     accept: "character",
@@ -110,15 +121,37 @@ const CharacterButton: React.FC<CharacterButtonProps> = ({
 
   drag(drop(ref));
 
+  const handleMouseDown = () => {
+    holdTimeout.current = setTimeout(() => {
+      setShowRemove(true);
+    }, 4000);
+  };
+
+  const handleMouseUp = () => {
+    if (holdTimeout.current) {
+      clearTimeout(holdTimeout.current);
+    }
+  };
+
   return (
-    <CharacterDeckButton
-      ref={ref}
-      letter={letter}
-      onClick={onClick}
-      onDragStart={() => {}}
-      onDragEnd={() => {}}
-      className={isDragging ? styles.dragging : ""}
-    />
+    <div className={styles.characterButtonContainer}>
+      <CharacterDeckButton
+        ref={ref}
+        letter={letter}
+        onClick={onClick}
+        onDragStart={() => {}}
+        onDragEnd={() => {}}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        className={isDragging ? styles.dragging : ""}
+      />
+      {showRemove && (
+        <button className={styles.removeButton} onClick={onRemove}>
+          -
+        </button>
+      )}
+    </div>
   );
 };
 

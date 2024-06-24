@@ -16,6 +16,26 @@
     padding: 1rem 4rem;
 }
 
+.removeButton {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2.6rem;
+    margin-top: -3.6rem;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.removeButton:hover {
+    background: darkred;
+}
+
 /* Responsive adjustments */
 @media (orientation: portrait) {}
 
