@@ -140,7 +140,7 @@
 .menu {
     position: absolute;
     top: 3.2rem;
-    background-color: #2e2e2e;
+    background-color: #222222;
     padding: 0.5rem;
     border: 1px solid #494949;
     border-radius: 5px;
@@ -160,7 +160,8 @@
     background-color: #222222;
     border-bottom: 1px solid black;
     position: fixed;
-    width: 100%;
+    width: 50.5rem;
+    /* width: 100%; */
     top: 1.65rem;
     left: 50%;
     transform: translateX(-50%);
@@ -475,7 +476,7 @@ button.is_active {
 /* MEDIA QUERY BREAKPOINTS: */
 
 /* Extra Extra Large Devices (Large Desktops, 1400px and down) */
-@media only screen and (max-width: 1470px) {
+@media only screen and (max-width: 140px) {
     .sidPaneRender {
         display: none;
     }
