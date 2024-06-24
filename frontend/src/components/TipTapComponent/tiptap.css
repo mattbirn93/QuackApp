@@ -89,7 +89,6 @@
 
 .hamburgerMenu {
     position: fixed;
-    /* Changed from absolute to fixed */
     top: 3.5rem;
     left: 1rem;
     background-color: #2e2e2e;
@@ -136,8 +135,7 @@
 
 .menu {
     position: absolute;
-    top: 3.2rem;
-    /* margin-right: -3.0rem; */
+    top: 3.0rem;
     background-color: #2e2e2e;
     padding: 0.5rem;
     border: 1px solid #494949;
@@ -544,8 +542,6 @@ button.is_active {
 
     .hamburgerMenu {
         display: block;
-        position: fixed;
-        /* Changed from absolute to fixed */
     }
 
     .menuBar {
@@ -568,10 +564,6 @@ button.is_active {
 
     .menu li {
         margin-bottom: 0.7rem;
-    }
-
-    .hotkey {
-        display: none;
     }
 
     .controlButtonsContainer {
@@ -620,10 +612,6 @@ button.is_active {
     .hamburgerMenu .submenu ul .hotkey {
         display: none;
     }
-
-        .ProseMirror {
-            margin-top: 3.4rem;
-        }
 }
 
 /* Small Devices (Phones, 600px and down) */
