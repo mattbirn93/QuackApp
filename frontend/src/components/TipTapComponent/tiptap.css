@@ -476,10 +476,16 @@ button.is_active {
 @media only screen and (max-width: 1200px) {}
 
 /* Large Devices (Laptops, 1024px and down) */
-@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 1024px) {
+    
+}
 
 /* Medium Devices (Tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
+
+    .hide-on-mobile {
+            display: none;
+    }
 
     .mainContainer {
         width: 100%;
@@ -487,12 +493,12 @@ button.is_active {
 
     .mainNavbar {
         width: 100%;
-        height: 3.5rem;
+        height: 3.5rem;     
     }
 
-        .hotkey {
-            display: none;
-        }
+    .hotkey {
+        display: none;
+    }
 
     .action {
         margin-left: 20px !important;
@@ -577,9 +583,10 @@ button.is_active {
     .menuBarButtonContainer {
         display: flex;
         align-items: center;
-        margin-right: 1.3rem;
+        margin-right: 1.5rem;
         gap: 0.3rem;
         /* background-color: green !important; */
+        z-index: 1000;
     }
 
     .undoRedoButton {
@@ -588,10 +595,12 @@ button.is_active {
         padding: 10px;
     }
 
-    .undoRedoButtonContainer {
-        margin-top: 0.9rem;
-        margin-left: 20.0rem;
-    }
+   .undoRedoButtonContainer {
+       margin-top: 0.9rem;
+       margin-left: 20.0rem;
+       /* background-color: blue; */
+       z-index: -1;
+   }
 
     .undoRedoButton {
         font-size: 1.0rem;
