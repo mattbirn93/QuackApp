@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowLeft, FaArrowRight, FaHashtag, FaUser } from "react-icons/fa";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import "./sidePanel.css";
 
 interface Owner {
@@ -21,6 +21,8 @@ const SidePanelView = ({
   handleMouseLeave,
   owners,
   characters,
+  expandedSections,
+  toggleSection,
 }: {
   isOpen: boolean;
   isHovered: boolean;
@@ -30,6 +32,8 @@ const SidePanelView = ({
   handleMouseLeave: () => void;
   owners: Owner[];
   characters: Character[];
+  expandedSections: { [key: string]: boolean };
+  toggleSection: (section: string) => void;
 }) => {
   return (
     <div
@@ -47,71 +51,90 @@ const SidePanelView = ({
           <div className="titleContainer">
             <p className="scriptName">{scriptName}</p>
           </div>
+
           <div className="section">
-            <div className="sectionHeader">
+            <div
+              className="sectionHeader"
+              onClick={() => toggleSection("owners")}
+            >
               <span>Owners</span>
-              <button className="addButton">
-                <AiOutlinePlus />
-              </button>
+              {expandedSections.owners ? <AiOutlineUp /> : <AiOutlineDown />}
             </div>
-            {owners.map((owner) => (
-              <div className="sidebarItem" key={owner.name}>
-                <FaUser />
-                <span>{owner.name}</span>
-                <span
-                  className={`statusDot ${owner.isOnline ? "online" : "offline"}`}
-                ></span>
-              </div>
-            ))}
+            {expandedSections.owners &&
+              owners.map((owner) => (
+                <div className="sidebarItem" key={owner.name}>
+                  <FaUser />
+                  <span>{owner.name}</span>
+                  <span
+                    className={`statusDot ${owner.isOnline ? "online" : "offline"}`}
+                  ></span>
+                </div>
+              ))}
           </div>
 
           <div className="section">
-            <div className="sectionHeader">
+            <div
+              className="sectionHeader"
+              onClick={() => toggleSection("versions")}
+            >
               <span>Versions</span>
-              <button className="addButton">
-                <AiOutlinePlus />
-              </button>
+              {expandedSections.versions ? <AiOutlineUp /> : <AiOutlineDown />}
             </div>
-            <div className="sidebarItem">
-              <FaHashtag />
-              <span>Scene Versions</span>
-            </div>
-            <div className="sidebarItem">
-              <FaHashtag />
-              <span>Scene Content</span>
-            </div>
+            {expandedSections.versions && (
+              <>
+                <div className="sidebarItem">
+                  <FaHashtag />
+                  <span>Scene Versions</span>
+                </div>
+                <div className="sidebarItem">
+                  <FaHashtag />
+                  <span>Scene Content</span>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="section">
-            <div className="sectionHeader">
+            <div
+              className="sectionHeader"
+              onClick={() => toggleSection("details")}
+            >
               <span>Script Details</span>
-              <button className="addButton">
-                <AiOutlinePlus />
-              </button>
+              {expandedSections.details ? <AiOutlineUp /> : <AiOutlineDown />}
             </div>
-            <div className="sidebarItem">
-              <FaHashtag />
-              <span>Date Added</span>
-            </div>
-            <div className="sidebarItem">
-              <FaHashtag />
-              <span>Pages</span>
-            </div>
+            {expandedSections.details && (
+              <>
+                <div className="sidebarItem">
+                  <FaHashtag />
+                  <span>Date Added</span>
+                </div>
+                <div className="sidebarItem">
+                  <FaHashtag />
+                  <span>Pages</span>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="section">
-            <div className="sectionHeader">
+            <div
+              className="sectionHeader"
+              onClick={() => toggleSection("characters")}
+            >
               <span>Characters</span>
-              <button className="addButton">
-                <AiOutlinePlus />
-              </button>
+              {expandedSections.characters ? (
+                <AiOutlineUp />
+              ) : (
+                <AiOutlineDown />
+              )}
             </div>
-            {characters.map((character) => (
-              <div className="sidebarItem" key={character.name}>
-                <FaHashtag />
-                <span>{character.name}</span>
-              </div>
-            ))}
+            {expandedSections.characters &&
+              characters.map((character) => (
+                <div className="sidebarItem" key={character.name}>
+                  <FaHashtag />
+                  <span>{character.name}</span>
+                </div>
+              ))}
           </div>
         </div>
       )}
