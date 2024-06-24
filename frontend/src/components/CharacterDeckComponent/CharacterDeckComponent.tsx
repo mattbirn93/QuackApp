@@ -133,6 +133,11 @@ const CharacterButton: React.FC<CharacterButtonProps> = ({
     }
   };
 
+  const handleRemoveClick = () => {
+    setShowRemove(false);
+    onRemove();
+  };
+
   return (
     <div className={styles.characterButtonContainer}>
       <CharacterDeckButton
@@ -147,7 +152,7 @@ const CharacterButton: React.FC<CharacterButtonProps> = ({
         className={isDragging ? styles.dragging : ""}
       />
       {showRemove && (
-        <button className={styles.removeButton} onClick={onRemove}>
+        <button className={styles.removeButton} onClick={handleRemoveClick}>
           -
         </button>
       )}
