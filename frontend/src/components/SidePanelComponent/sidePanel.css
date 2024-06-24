@@ -1,5 +1,4 @@
-/* sidebar.css */
-.sidebar {
+.sidePanel {
     width: 20rem;
     background-color: #222222;
     color: white;
@@ -8,13 +7,13 @@
     top: 0;
     left: 0;
     padding: 1rem;
-    border: 1px solid rgb(74, 74, 74);
+    border: 1px solid #3c3d3f;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: width 0.3s ease, padding 0.3s ease;
     overflow: hidden;
 }
 
-.sidebar.collapsed {
+.sidePanel.collapsed {
     width: 3rem;
     padding: 1rem 0.5rem;
 }
@@ -62,12 +61,12 @@
     border: none;
 }
 
-.sidebarContent {
+.sidePanelContent {
     margin-top: 2rem;
 }
 
 .titleContainer {
-    border-bottom: 1px solid rgb(80, 80, 80);
+    border-bottom: 1px solid #3c3d3f;
     padding-bottom: 0.5rem;
 }
 

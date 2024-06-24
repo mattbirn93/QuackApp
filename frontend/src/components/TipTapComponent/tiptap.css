@@ -209,7 +209,7 @@
 .menu li:hover {
     background: #007aff;
     color: white;
-    border-radius: 5px
+    border-radius: 15px
 }
 
 .hotkey {
