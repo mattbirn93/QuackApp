@@ -625,6 +625,10 @@ button.is_active {
     .hamburgerMenu .submenu ul .hotkey {
         display: none;
     }
+
+    .ProseMirror {
+        margin-top: 3.4rem !important;
+    }
 }
 
 /* Small Devices (Phones, 600px and down) */
