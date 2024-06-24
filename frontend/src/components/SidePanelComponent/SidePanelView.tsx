@@ -50,6 +50,7 @@ const SidePanelView = ({
               <span>Matt Buttholtz</span>
             </div>
           </div>
+
           <div className="section">
             <div className="sectionHeader">
               <span>Versions</span>
@@ -64,6 +65,23 @@ const SidePanelView = ({
             <div className="sidebarItem">
               <FaHashtag />
               <span>Scene Content</span>
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="sectionHeader">
+              <span>Script Details</span>
+              <button className="addButton">
+                <AiOutlinePlus />
+              </button>
+            </div>
+            <div className="sidebarItem">
+              <FaHashtag />
+              <span>Date Added</span>
+            </div>
+            <div className="sidebarItem">
+              <FaHashtag />
+              <span>Pages</span>
             </div>
           </div>
         </div>
