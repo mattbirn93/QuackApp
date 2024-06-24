@@ -408,7 +408,9 @@ export const Tiptap = ({
   return (
     <div className="wrapper">
       <div className="mainContainer">
-        <SidePanel scriptName={scriptName} />
+        <div className="sidPaneRender">
+          <SidePanel scriptName={scriptName} />
+        </div>
         <div className="mainNavbar">
           <div className="controlButtonsWrapper">
             <div className="controlButtonsContainer">
