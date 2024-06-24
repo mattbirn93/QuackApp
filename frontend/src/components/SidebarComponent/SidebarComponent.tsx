@@ -1,7 +1,12 @@
 import React from "react";
+import "./sidebar.css";
 
-const SidebarComponent = () => {
-  return <div>SidebarComponent</div>;
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <h2>Dashboard</h2>
+    </div>
+  );
 };
 
-export default SidebarComponent;
+export default Sidebar;
