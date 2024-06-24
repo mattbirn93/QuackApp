@@ -16,6 +16,78 @@
     padding: 1rem 4rem;
 }
 
+.characterDeckButton {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #B344FF, #ba79ff);
+    box-shadow: 2px 2px 4px #999, -1px -1px 4px #ffffff;
+    transition: all 0.2s ease-in-out;
+    cursor: grab;
+}
+
+.characterButtonAdd:active {
+    cursor: grabbing;
+}
+
+.characterDeckButton:hover {
+    background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+}
+
+.characterDeckButton:active {
+    background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+    box-shadow: inset 4px 4px 8px #555, inset -2px -2px 4px #999;
+}
+
+.characterDeckButtonAdd {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #007aff, #007aff);
+    box-shadow: 2px 2px 4px #999, -1px -1px 2px #ffffff;
+    transition: all 0.2s ease-in-out;
+    cursor: grab;
+}
+
+.characterButtonAdd:active {
+    cursor: grabbing;
+}
+
+.characterDeckButtonAdd:hover {
+    background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+}
+
+.characterDeckButtonAdd:active {
+    background: linear-gradient(145deg, #c0c0c0, #8a8a8a);
+    box-shadow: inset 4px 4px 8px #555, inset -2px -2px 4px #999;
+}
+
+.characterDeckButton {
+}
+
+.characterDeckButton.dragging {
+    opacity: 0.5;
+}
+
+.characterButtonContainer {
+    display: flex;
+    align-items: center;
+}
+
 .removeButton {
     background: red;
     color: white;
@@ -23,11 +95,11 @@
     border-radius: 50%;
     width: 25px;
     height: 25px;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2.7rem;
-    margin-top: -3.8rem;
+    margin-left: 5px;
     cursor: pointer;
     font-weight: 900;
 }
