@@ -4,25 +4,26 @@
     color: white;
     height: 100vh;
     position: fixed;
-    top: 0;
+    top: 3.1rem;
     left: 0;
     padding: 1rem;
-    border-right: 1px solid #3c3d3f;
+    border-right: 1px solid #616161;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: width 0.3s ease;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    border-radius: 0 10px;
 }
 
 .sidePanel.collapsed {
-    width: 3.5rem;
+    width: 2.5rem;
     padding: 1rem 0.5rem;
 }
 
 .toggleButtonContainer {
     position: absolute;
-    top: 2.8rem;
+    top: -0.3rem;
     right: -0.21rem;
     width: 3rem;
     height: 3rem;
@@ -34,7 +35,7 @@
 .toggleButton {
     background: none;
     border: none;
-    border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 10px;
     color: white;
     cursor: pointer;
     background-color: #444444;
@@ -60,7 +61,7 @@
 }
 
 .sidePanelContent {
-    margin-top: 3rem;
+    margin-top: 1.5rem;
     padding: 0 1rem;
     display: flex;
     flex-direction: column;
@@ -79,6 +80,7 @@
     text-transform: uppercase;
 }
 
+/* Section styling */
 .section {
     margin-bottom: 2rem;
 }
@@ -115,7 +117,7 @@
     align-items: center;
     padding: 0.5rem 0;
     font-size: 0.875rem;
-    color: #bababa;
+    color: #ffffff;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -127,6 +129,26 @@
 
 .sidebarItem svg {
     margin-right: 0.5rem;
+}
+
+/* Add scroll for characters section */
+.charactersList {
+    max-height: calc(100vh - 400px);
+    /* Adjust this value as needed */
+    overflow-y: auto;
+}
+
+.charactersList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.charactersList::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.charactersList::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
 }
 
 .statusDot {

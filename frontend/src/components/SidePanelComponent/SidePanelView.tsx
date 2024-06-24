@@ -1,6 +1,13 @@
 import React from "react";
-import { FaArrowLeft, FaArrowRight, FaHashtag, FaUser } from "react-icons/fa";
-import { AiOutlinePlus, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaHashtag,
+  FaUser,
+  FaChevronDown,
+  FaChevronUp,
+  FaDotCircle,
+} from "react-icons/fa";
 import "./sidePanel.css";
 
 interface Owner {
@@ -58,7 +65,7 @@ const SidePanelView = ({
               onClick={() => toggleSection("owners")}
             >
               <span>Owners</span>
-              {expandedSections.owners ? <AiOutlineUp /> : <AiOutlineDown />}
+              {expandedSections.owners ? <FaChevronUp /> : <FaChevronDown />}
             </div>
             {expandedSections.owners &&
               owners.map((owner) => (
@@ -78,7 +85,7 @@ const SidePanelView = ({
               onClick={() => toggleSection("versions")}
             >
               <span>Versions</span>
-              {expandedSections.versions ? <AiOutlineUp /> : <AiOutlineDown />}
+              {expandedSections.versions ? <FaChevronUp /> : <FaChevronDown />}
             </div>
             {expandedSections.versions && (
               <>
@@ -100,7 +107,7 @@ const SidePanelView = ({
               onClick={() => toggleSection("details")}
             >
               <span>Script Details</span>
-              {expandedSections.details ? <AiOutlineUp /> : <AiOutlineDown />}
+              {expandedSections.details ? <FaChevronUp /> : <FaChevronDown />}
             </div>
             {expandedSections.details && (
               <>
@@ -123,18 +130,21 @@ const SidePanelView = ({
             >
               <span>Characters</span>
               {expandedSections.characters ? (
-                <AiOutlineUp />
+                <FaChevronUp />
               ) : (
-                <AiOutlineDown />
+                <FaChevronDown />
               )}
             </div>
-            {expandedSections.characters &&
-              characters.map((character) => (
-                <div className="sidebarItem" key={character.name}>
-                  <FaHashtag />
-                  <span>{character.name}</span>
-                </div>
-              ))}
+            {expandedSections.characters && (
+              <div className="charactersList">
+                {characters.map((character) => (
+                  <div className="sidebarItem" key={character.name}>
+                    <FaDotCircle />
+                    <span>{character.name}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

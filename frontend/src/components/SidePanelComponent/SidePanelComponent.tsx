@@ -1,24 +1,52 @@
 import React, { useState } from "react";
 import SidePanelView from "./SidePanelView";
 
-interface Character {
-  name: string;
-}
-
-interface Owner {
-  name: string;
-  isOnline: boolean;
-}
-
 const SidePanel = ({ scriptName }: { scriptName: string }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     owners: true,
-    versions: false,
-    details: false,
-    characters: false,
+    versions: true,
+    details: true,
+    characters: true,
   });
+
+  const owners = [
+    { name: "Mike Giffin", isOnline: true },
+    { name: "Matt Buttholtz", isOnline: false },
+  ];
+
+  // Mock list of characters
+  const characters = [
+    { name: "Mike" },
+    { name: "Matt" },
+    { name: "Alice" },
+    { name: "Bob" },
+    { name: "Tim" },
+    { name: "Janet" },
+    { name: "Sally" },
+    { name: "Reed" },
+    { name: "Patrick" },
+    { name: "Simone" },
+    { name: "Peter" },
+    { name: "Valencia" },
+    { name: "Steve" },
+    { name: "York" },
+    { name: "Stacy" },
+    { name: "Walt" },
+    { name: "Jesse" },
+    { name: "Saul" },
+    { name: "Kim" },
+    { name: "Gus" },
+    { name: "Skyler" },
+    { name: "Junior" },
+    { name: "Victor" },
+    { name: "Tyrese" },
+    { name: "Monica" },
+    { name: "Virginia" },
+    { name: "Andre" },
+    { name: "Jeff" },
+  ];
 
   const toggleSidePanel = () => {
     setIsOpen(!isOpen);
@@ -43,29 +71,6 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
     }));
   };
 
-  const owners = [
-    { name: "Mike Giffin", isOnline: true },
-    { name: "Matt Buttholtz", isOnline: false },
-  ];
-
-  // Mock list of characters
-  const characterArray = [
-    { name: "Mike" },
-    { name: "Matt" },
-    { name: "Alice" },
-    { name: "Bob" },
-    { name: "Tim" },
-    { name: "Janet" },
-    { name: "Sally" },
-    { name: "Reed" },
-    { name: "Patrick" },
-    { name: "Simone" },
-    { name: "Peter" },
-    { name: "Valencia" },
-    { name: "Steve" },
-    { name: "York" },
-  ];
-
   return (
     <SidePanelView
       isOpen={isOpen}
@@ -75,7 +80,7 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
       handleMouseEnter={handleMouseEnter}
       handleMouseLeave={handleMouseLeave}
       owners={owners}
-      characters={characterArray}
+      characters={characters}
       expandedSections={expandedSections}
       toggleSection={toggleSection}
     />
