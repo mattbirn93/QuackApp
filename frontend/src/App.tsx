@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const [description, setDescription] = useState("");
   const [testContent, setTestContent] = useState();
   const [characterArrayData, setCharacterArrayData] = useState<string[]>([]);
+  const [scriptName, setScriptName] = useState("");
   const API_BASE_URL = getApiBaseUrl();
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const App: React.FC = () => {
         setCharacterArrayData(response.data.characters);
         // Assuming response.data has the structure { data: { content: "..." } }
         setData(response.data);
+        setScriptName(response.data.title);
         setLoading(false);
       } catch (error: any) {
         const end = performance.now();
@@ -59,6 +61,7 @@ const App: React.FC = () => {
           setDescription={setDescription}
           scriptId={scriptId}
           characterArray={characterArrayData}
+          scriptName={scriptName}
         />
       </div>
     </MyErrorBoundary>
