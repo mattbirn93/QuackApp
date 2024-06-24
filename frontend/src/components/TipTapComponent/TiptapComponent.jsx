@@ -239,6 +239,7 @@ export const Tiptap = ({
   };
 
   const handleCharacterButtonClick = (character) => {
+    console.log("Character button clicked:", character);
     if (editor) {
       if (listening) {
         stopRecording(); // Stop current recording if listening
@@ -419,7 +420,7 @@ export const Tiptap = ({
                         <button onClick={() => handleMenuClick(updateContent)}>
                           Save
                         </button>
-                        <span className="hotkey">⌘S</span>
+                        <span className="hotkey hide-on-mobile">⌘S</span>
                       </li>
                       <li>
                         <a
@@ -429,7 +430,7 @@ export const Tiptap = ({
                         >
                           Scripts Library
                         </a>
-                        <span className="hotkey">⌘L</span>
+                        <span className="hotkey hide-on-mobile">⌘L</span>
                       </li>
                     </ul>
                   </div>
@@ -453,7 +454,7 @@ export const Tiptap = ({
                         >
                           Undo
                         </button>
-                        <span className="hotkey">⌘Z</span>
+                        <span className="hotkey hide-on-mobile">⌘Z</span>
                       </li>
                       <li>
                         <button
@@ -465,7 +466,7 @@ export const Tiptap = ({
                         >
                           Redo
                         </button>
-                        <span className="hotkey">⌘⇧Z</span>
+                        <span className="hotkey hide-on-mobile">⌘⇧Z</span>
                       </li>
                     </ul>
                   </div>
