@@ -36,56 +36,19 @@ export default defineConfig({
             purpose: "maskable",
           },
         ],
-        splash_screens: [
+      },
+      workbox: {
+        runtimeCaching: [
           {
-            src: "splash-640x1136.png",
-            sizes: "640x1136",
-            type: "image/png",
-          },
-          {
-            src: "splash-750x1334.png",
-            sizes: "750x1334",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2208.png",
-            sizes: "1242x2208",
-            type: "image/png",
-          },
-          {
-            src: "splash-1125x2436.png",
-            sizes: "1125x2436",
-            type: "image/png",
-          },
-          {
-            src: "splash-828x1792.png",
-            sizes: "828x1792",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2688.png",
-            sizes: "1242x2688",
-            type: "image/png",
-          },
-          {
-            src: "splash-1536x2048.png",
-            sizes: "1536x2048",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2224.png",
-            sizes: "1668x2224",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2388.png",
-            sizes: "1668x2388",
-            type: "image/png",
-          },
-          {
-            src: "splash-2048x2732.png",
-            sizes: "2048x2732",
-            type: "image/png",
+            urlPattern: /^https:\/\/your-api-domain\.com\//,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "api-cache",
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 300, // 5 minutes
+              },
+            },
           },
         ],
       },
@@ -99,6 +62,13 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 5173,
+    https:
+      process.env.VITE_USE_HTTPS === "true"
+        ? {
+          key: path.resolve(__dirname, process.env.VITE_SSL_KEY_PATH),
+          cert: path.resolve(__dirname, process.env.VITE_SSL_CERT_PATH),
+        }
+        : false,
   },
   build: {
     outDir: "dist",
