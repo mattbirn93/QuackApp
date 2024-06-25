@@ -4,14 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "start": "serve -s dist",
-    "build": "tsc && vite build",
-    "server": "nodemon --watch server.ts --exec 'tsc && node dist/server.js'",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write .",
-    "preview": "node serve.mjs"
-  },
+  "dev": "vite",
+  "start": "serve -s dist",
+  "build": "tsc && vite build",
+  "server": "nodemon --watch server.ts --exec 'tsc && node dist/server.js'",
+  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+  "format": "prettier --write .",
+  "preview": "node serve.mjs",
+  "postinstall": "npm install serve"
+},
   "dependencies": {
     "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
