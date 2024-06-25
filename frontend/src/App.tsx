@@ -32,7 +32,6 @@ const App: React.FC = () => {
         console.log(response, "response dude");
         setTestContent(response.data.content);
         setCharacterArrayData(response.data.characters);
-        // Assuming response.data has the structure { data: { content: "..." } }
         setData(response.data);
         setScriptName(response.data.title);
         setLoading(false);

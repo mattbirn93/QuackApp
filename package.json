@@ -17,7 +17,6 @@
   "preview": "node serve.mjs",
   "postinstall": "npm install serve"
 },
-
   "dependencies": {
     "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
