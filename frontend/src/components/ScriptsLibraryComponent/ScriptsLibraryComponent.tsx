@@ -41,11 +41,12 @@ const ScriptsLibraryComponent: React.FC = () => {
   const API_BASE_URL = getApiBaseUrl();
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+          `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
         );
         if (response.status === 200) {
           const data: UserData = response.data;
