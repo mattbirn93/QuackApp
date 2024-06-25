@@ -68,7 +68,6 @@ function registerValidSW(swUrl: string, config?: Config) {
       console.error("Error during service worker registration:", error);
     });
 }
-
 function checkValidServiceWorker(swUrl: string, config?: Config) {
   fetch(swUrl, {
     headers: { "Service-Worker": "script" },
@@ -94,6 +93,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       );
     });
 }
+
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready
