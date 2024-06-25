@@ -1,10 +1,10 @@
 // src/utils/getApiBaseUrl.ts
-export const getApiBaseUrl = () => {
-  if (import.meta.env.MODE === "production") {
-    return import.meta.env.VITE_API_BASE_URL_PROD;
-  } else {
-    return import.meta.env.VITE_API_BASE_URL_DEV;
-  }
+// export const getApiBaseUrl = () => {
+if (import.meta.env.MODE === "production") {
+  return import.meta.env.VITE_API_BASE_URL_PROD;
+} else {
+  return import.meta.env.VITE_API_BASE_URL_DEV;
+}
 };
 
 //////////////////
