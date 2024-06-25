@@ -22,7 +22,7 @@ export function register(config?: Config) {
     }
 
     window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
+      const swUrl = `${publicUrl.origin}/sw.js`; // Correctly set swUrl path
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
