@@ -94,7 +94,6 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       );
     });
 }
-
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready
