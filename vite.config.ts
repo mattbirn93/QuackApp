@@ -24,6 +24,7 @@ export default defineConfig({
         display: "standalone",
         start_url: "/",
         scope: "/",
+
         icons: [
           {
             src: "icon-192x192.png",
