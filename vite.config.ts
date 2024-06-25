@@ -59,7 +59,6 @@ export default defineConfig({
           },
         ],
       },
-      // Ensure the following settings are correct:
       devOptions: {
         enabled: true,
         type: "module",
