@@ -96,6 +96,7 @@ const ChatPanelComponent = ({ owners }: { owners: Owner[] }) => {
               <div ref={messagesEndRef} />
             </div>
           </div>
+
           <div className="inputContainer">
             <textarea
               value={newMessage}
