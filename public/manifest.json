@@ -1,7 +1,7 @@
 {
   "name": "QuackApp",
   "short_name": "QuackApp",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4A90E2",
