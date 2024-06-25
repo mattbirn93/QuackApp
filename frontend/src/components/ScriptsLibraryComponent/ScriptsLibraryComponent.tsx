@@ -46,7 +46,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+          `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
         );
         if (response.status === 200) {
           const data: UserData = response.data;
