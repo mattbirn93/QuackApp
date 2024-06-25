@@ -77,7 +77,7 @@
     font-weight: 600;
     font-size: 1.2rem;
     color: #ffffff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 /* Section styling */
@@ -168,3 +168,27 @@
     background-color: #ff0000;
     /* box-shadow: 0 0 10px 0 #ff0000; */
 }
+
+/* MEDIA QUERY BREAKPOINTS: */
+
+/* Extra Extra Large Devices (Large Desktops, 1400px and down) */
+@media only screen and (max-width: 140px) {}
+
+/* Extra Large Devices (Desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {}
+
+/* Large Devices (Laptops, 1024px and down) */
+@media only screen and (max-width: 1024px) {
+    .sidePanel {
+        display: none;
+    }
+}
+
+/* Medium Devices (Tablets, 768px and down) */
+@media only screen and (max-width: 768px) {}
+
+/* Small Devices (Phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Extra Small Devices (Phones, 360px and down) */
+@media only screen and (max-width: 360px) {}
