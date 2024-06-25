@@ -1,16 +1,14 @@
 import express from "express";
-import { readFileSync, existsSync } from "fs";
 import { resolve } from "path";
-import { createServer } from "https";
-import http from "http";
+import { createServer } from "http";
 import dotenv from "dotenv";
 
 dotenv.config(); // Load environment variables from .env file
 
-const keyPath = process.env.VITE_SSL_KEY_PATH;
-const certPath = process.env.VITE_SSL_CERT_PATH;
-
 const app = express();
+const server = createServer(app);
+
+const port = process.env.PORT || 5173;
 const publicPath = resolve("dist");
 
 // Serve static files from the dist directory
@@ -21,23 +19,55 @@ app.get("*", (req, res) => {
   res.sendFile(resolve(publicPath, "index.html"));
 });
 
-if (keyPath && certPath && existsSync(keyPath) && existsSync(certPath)) {
-  const options = {
-    key: readFileSync(resolve(keyPath)),
-    cert: readFileSync(resolve(certPath)),
-  };
-  createServer(options, app).listen(process.env.PORT || 5173, () => {
-    console.log(
-      `Server is running on https://${process.env.HOST || "localhost"}:${process.env.PORT || 5173}`,
-    );
-  });
-} else {
-  http.createServer(app).listen(process.env.PORT || 5173, () => {
-    console.log(
-      `Server is running on http://${process.env.HOST || "localhost"}:${process.env.PORT || 5173}`,
-    );
-  });
-}
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+////////
+
+// import express from "express";
+// import { readFileSync, existsSync } from "fs";
+// import { resolve } from "path";
+// import { createServer as createHttpServer } from "http";
+// import { createServer as createHttpsServer } from "https";
+// import dotenv from "dotenv";
+
+// dotenv.config(); // Load environment variables from .env file
+
+// const keyPath = process.env.VITE_SSL_KEY_PATH;
+// const certPath = process.env.VITE_SSL_CERT_PATH;
+
+// const app = express();
+
+// let server;
+// if (keyPath && certPath && existsSync(keyPath) && existsSync(certPath)) {
+//   const options = {
+//     key: readFileSync(resolve(keyPath)),
+//     cert: readFileSync(resolve(certPath)),
+//   };
+//   server = createHttpsServer(options, app);
+//   console.log("Starting server with HTTPS...");
+// } else {
+//   server = createHttpServer(app);
+//   console.log("Starting server with HTTP...");
+// }
+
+// const port = process.env.PORT || 5173;
+// const publicPath = resolve("dist");
+
+// // Serve static files from the dist directory
+// app.use(express.static(publicPath));
+
+// // Serve index.html for all other routes to support client-side routing
+// app.get("*", (req, res) => {
+//   res.sendFile(resolve(publicPath, "index.html"));
+// });
+
+// server.listen(port, () => {
+//   console.log(
+//     `Server is running on ${server instanceof HttpsServer ? "https" : "http"}://localhost:${port}`,
+//   );
+// });
 
 /////////////
 
