@@ -13,29 +13,40 @@ interface Owner {
   isOnline: boolean;
 }
 
-const ChatPanelComponent = ({
-  isOpen,
-  isHovered,
-  toggleChatPanel,
-  handleMouseEnter,
-  handleMouseLeave,
-  owners,
-}: {
-  isOpen: boolean;
-  isHovered: boolean;
-  toggleChatPanel: () => void;
-  handleMouseEnter: () => void;
-  handleMouseLeave: () => void;
-  owners: Owner[];
-}) => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+const ChatPanelComponent = ({ owners }: { owners: Owner[] }) => {
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+    const savedMessages = sessionStorage.getItem("chatMessages");
+    return savedMessages ? JSON.parse(savedMessages) : [];
+  });
   const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const toggleChatPanel = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    if (!isOpen) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isOpen) {
+      setIsHovered(false);
+    }
+  };
 
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  }, [messages]);
+
+  useEffect(() => {
+    sessionStorage.setItem("chatMessages", JSON.stringify(messages));
   }, [messages]);
 
   const handleSendMessage = () => {
@@ -53,38 +64,50 @@ const ChatPanelComponent = ({
   };
 
   return (
-    <div>
-      <div className="chatPanelContent">
-        <div className="chatTtitleContainer">
-          <p className="chatTitle">Chat</p>
-        </div>
-
-        <div className="messagesContainer">
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`message ${msg.sender === "You" ? "sent" : "received"}`}
-            >
-              <span className="sender">{msg.sender}</span>
-              <span className="timestamp">{msg.timestamp}</span>
-              <div className="textContainer">
-                <div className="text">{msg.message}</div>
-              </div>
-            </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-        <div className="inputContainer">
-          <textarea
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type message here..."
-          />
-          <button className="sendButton" onClick={handleSendMessage}>
-            <FaPaperPlane />
-          </button>
-        </div>
+    <div
+      className={`chatPanel ${isOpen || isHovered ? "open" : "collapsed"}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="toggleButtonContainer2">
+        <button className="toggleButton2" onClick={toggleChatPanel}>
+          {isOpen ? <FaArrowRight /> : <FaArrowLeft />}
+        </button>
       </div>
+      {(isOpen || isHovered) && (
+        <div className="chatPanelContent">
+          <div className="chatTitleContainer">
+            <p className="chatTitle">Chat</p>
+          </div>
+          <div className="chatContainer">
+            <div className="messagesContainer">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`message ${msg.sender === "You" ? "sent" : "received"}`}
+                >
+                  <span className="sender">{msg.sender}</span>
+                  <span className="timestamp">{msg.timestamp}</span>
+                  <div className="textContainer">
+                    <div className="text">{msg.message}</div>
+                  </div>
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+          </div>
+          <div className="inputContainer">
+            <textarea
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              placeholder="Type message here..."
+            />
+            <button className="sendButton" onClick={handleSendMessage}>
+              <FaPaperPlane />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
