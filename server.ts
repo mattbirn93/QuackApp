@@ -181,8 +181,6 @@ server.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on https://localhost:${PORT}`);
 });
 
-console.log("LOOK AT ME FOR A TEST");
-
 //////////////////////////////////////////////////
 
 // The server file initializes the Express application, connects to the database, sets up middleware, and defines the routes.

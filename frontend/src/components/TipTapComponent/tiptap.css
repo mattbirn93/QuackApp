@@ -185,7 +185,7 @@
 .fileMenu li:hover {
     background: #007aff;
     color: white;
-    /* border-radius: 5px; */
+    border-radius: 5px;
 }
 
 .editButton {
@@ -239,7 +239,7 @@ list-style: none;
 .editMenu li:hover {
     background: #007aff;
     color: white;
-    /* border-radius: 5px; */
+    border-radius: 5px
 }
 
 .stylingButton {
@@ -487,7 +487,7 @@ button.is_active {
     border: none;
     border-radius: 30px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     width: 5.5rem;
     text-align: center;
     /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 -3px 1px rgba(0, 0, 0, 0.3); */
@@ -507,50 +507,104 @@ button.is_active {
     transform: translateY(2px);
 }
 
-@media (max-width: 600px) {
-    .mainContainer {
-        width: 100%;
-    }
+/* MEDIA QUERY BREAKPOINTS: */
 
-    .mainNavbar {
-        width: 100%;
-        height: 5.9rem;
-    }
-
-    .menuBar {
-        flex-wrap: wrap;
-        margin-top: 4.0rem;
-    }
-
-    .action {
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-    }
-
-    .scene-header {
-        margin-left: 10px !important;
-        margin-right: 10px !important;
-        margin-top: 25px;
-    }
-
-    .character {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .dialogue {
-        margin-left: 80px !important;
-        margin-right: 80px !important;
-    }
-
-    .nodeButton1 {
-        margin-top: 2.5rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        width: 5rem;
-    }
-
-        .controlButtonsContainer {
-            gap: 0.8rem;
-        }
+/* Extra Extra Large Devices (Large Desktops, 1400px and down) */
+@media only screen and (max-width: 1400px) {
 }
+
+/* Extra Large Devices (Desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+}
+
+/* Large Devices (Laptops, 1024px and down) */
+@media only screen and (max-width: 1024px) {
+       
+            .mainNavbar {
+                width: 100%;
+                height: 5.9rem;
+            }
+        
+            .menuBar {
+                flex-wrap: wrap;
+                margin-top: 4.0rem;
+            }
+        
+            .action {
+                margin-left: 20px !important;
+                margin-right: 20px !important;
+            }
+        
+            .scene-header {
+                margin-left: 10px !important;
+                margin-right: 10px !important;
+                margin-top: 25px;
+            }
+        
+            .character {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        
+            .dialogue {
+                margin-left: 80px !important;
+                margin-right: 80px !important;
+            }
+        
+            .nodeButton1 {
+                margin-top: 2.5rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                width: 5rem;
+            }
+        
+            .controlButtonsContainer {
+                gap: 0.8rem;
+            }
+}
+
+/* Medium Devices (Tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Small Devices (Phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .mainContainer {
+            width: 100%;
+        }
+   
+}
+
+/* Extra Small Devices (Phones, 360px and down) */
+@media only screen and (max-width: 360px) {}
+
+/* Desktops: 
+    1080p displays: 1920px */
+
+/* Laptops: 
+    13" MacBook Pro (2x scaling): 1440px */
+
+/* Mobile devices (portrait mode): 
+    iPhone SE: 320px 
+    iPhone 6 to X: 375px 
+    iPhone 8 Plus: 414px */
+
+/* Tablets: iPad Air, iPad Mini, iPad Pro 9.7": 768px
+    iPad Pro 10.5": 834px
+    iPad Pro 12.9" (portrait): 1024px
+    iPad Pro 12.9" (landscape): 1366px */
+
+/* Mobile devices (landscape mode):
+    iPhone SE: 568px
+    iPhone 6 to 8: 667px
+    iPhone 8 Plus: 736px
+    iPhone X: 812px */
+
+/* iPhone SE (1st gen):
+    Portrait: 320px 
+    Landscape: 568px 
+
+Older Android Devices: 
+    Portrait: 360px
+    Landscape: 640px */

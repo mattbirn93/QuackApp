@@ -366,6 +366,12 @@ export const Tiptap = ({
     }
   };
 
+  const handleMenuClick = (callback) => {
+    callback();
+    setFileMenuVisible(false);
+    setEditMenuVisible(false);
+  };
+
   return (
     <div className="wrapper">
       <div className="mainContainer">
@@ -380,13 +386,16 @@ export const Tiptap = ({
                   <div className="menu fileMenu">
                     <ul>
                       <li>
-                        <button onClick={updateContent}>Save</button>
+                        <button onClick={() => handleMenuClick(updateContent)}>
+                          Save
+                        </button>
                         <span className="hotkey">⌘S</span>
                       </li>
                       <li>
                         <a
                           href="/scriptsLibrary"
                           className="scriptLibraryLink no-visited-style"
+                          onClick={() => handleMenuClick(() => {})}
                         >
                           Scripts Library
                         </a>
@@ -406,7 +415,11 @@ export const Tiptap = ({
                     <ul>
                       <li>
                         <button
-                          onClick={() => editor.chain().focus().undo().run()}
+                          onClick={() =>
+                            handleMenuClick(() =>
+                              editor.chain().focus().undo().run(),
+                            )
+                          }
                         >
                           Undo
                         </button>
@@ -414,7 +427,11 @@ export const Tiptap = ({
                       </li>
                       <li>
                         <button
-                          onClick={() => editor.chain().focus().redo().run()}
+                          onClick={() =>
+                            handleMenuClick(() =>
+                              editor.chain().focus().redo().run(),
+                            )
+                          }
                         >
                           Redo
                         </button>
@@ -880,10 +897,11 @@ export default Tiptap;
 //                   <p className="fileButton">File</p>
 //                 </button>
 //                 {fileMenuVisible && (
-//                   <div className="fileMenu">
+//                   <div className="menu fileMenu">
 //                     <ul>
 //                       <li>
 //                         <button onClick={updateContent}>Save</button>
+//                         <span className="hotkey">⌘S</span>
 //                       </li>
 //                       <li>
 //                         <a
@@ -892,6 +910,7 @@ export default Tiptap;
 //                         >
 //                           Scripts Library
 //                         </a>
+//                         <span className="hotkey">⌘L</span>
 //                       </li>
 //                     </ul>
 //                   </div>
@@ -903,7 +922,7 @@ export default Tiptap;
 //                   <p className="editButton">Edit</p>
 //                 </button>
 //                 {editMenuVisible && (
-//                   <div className="editMenu">
+//                   <div className="menu editMenu">
 //                     <ul>
 //                       <li>
 //                         <button
@@ -911,6 +930,7 @@ export default Tiptap;
 //                         >
 //                           Undo
 //                         </button>
+//                         <span className="hotkey">⌘Z</span>
 //                       </li>
 //                       <li>
 //                         <button
@@ -918,14 +938,17 @@ export default Tiptap;
 //                         >
 //                           Redo
 //                         </button>
+//                         <span className="hotkey">⌘⇧Z</span>
 //                       </li>
 //                     </ul>
 //                   </div>
 //                 )}
 //               </div>
-//               <button onClick={toggleMenu}>
-//                 <p className="stylingIcon">Styles</p>
-//               </button>
+//               <div>
+//                 <button onClick={toggleMenu}>
+//                   <p className="stylingButton">Styles</p>
+//                 </button>
+//               </div>
 //               <button
 //                 onClick={() => editor.chain().focus().undo().run()}
 //                 className="whiteButton"
