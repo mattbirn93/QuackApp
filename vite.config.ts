@@ -1,14 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import { readFileSync, existsSync } from "fs";
 import path from "path";
 import dotenv from "dotenv";
 
 dotenv.config();
-
-const keyPath = process.env.VITE_SSL_KEY_PATH;
-const certPath = process.env.VITE_SSL_CERT_PATH;
 
 export default defineConfig({
   plugins: [
@@ -45,56 +41,7 @@ export default defineConfig({
           },
         ],
         splash_screens: [
-          {
-            src: "splash-640x1136.png",
-            sizes: "640x1136",
-            type: "image/png",
-          },
-          {
-            src: "splash-750x1334.png",
-            sizes: "750x1334",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2208.png",
-            sizes: "1242x2208",
-            type: "image/png",
-          },
-          {
-            src: "splash-1125x2436.png",
-            sizes: "1125x2436",
-            type: "image/png",
-          },
-          {
-            src: "splash-828x1792.png",
-            sizes: "828x1792",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2688.png",
-            sizes: "1242x2688",
-            type: "image/png",
-          },
-          {
-            src: "splash-1536x2048.png",
-            sizes: "1536x2048",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2224.png",
-            sizes: "1668x2224",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2388.png",
-            sizes: "1668x2388",
-            type: "image/png",
-          },
-          {
-            src: "splash-2048x2732.png",
-            sizes: "2048x2732",
-            type: "image/png",
-          },
+          // splash screens configurations
         ],
       },
       workbox: {
@@ -112,6 +59,11 @@ export default defineConfig({
           },
         ],
       },
+      // Ensure the following settings are correct:
+      devOptions: {
+        enabled: true,
+        type: "module",
+      },
     }),
   ],
   resolve: {
@@ -124,7 +76,6 @@ export default defineConfig({
     port: 5173,
     https: false,
   },
-
   build: {
     outDir: "dist",
   },
