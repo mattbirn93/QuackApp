@@ -41,7 +41,6 @@ const ScriptsLibraryComponent: React.FC = () => {
   const API_BASE_URL = getApiBaseUrl();
 
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
