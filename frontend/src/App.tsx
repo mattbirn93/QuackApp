@@ -30,6 +30,7 @@ const App: React.FC = () => {
           `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`,
         );
         console.log(response, "response dude");
+        console.log("HELLO TURKEY TIME");
         setTestContent(response.data.content);
         setCharacterArrayData(response.data.characters);
         setData(response.data);
