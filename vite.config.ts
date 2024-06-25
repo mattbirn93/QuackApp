@@ -24,7 +24,6 @@ export default defineConfig({
         display: "standalone",
         start_url: "/",
         scope: "/",
-
         icons: [
           {
             src: "icon-192x192.png",
@@ -45,58 +44,6 @@ export default defineConfig({
             purpose: "maskable",
           },
         ],
-        splash_screens: [
-          {
-            src: "splash-640x1136.png",
-            sizes: "640x1136",
-            type: "image/png",
-          },
-          {
-            src: "splash-750x1334.png",
-            sizes: "750x1334",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2208.png",
-            sizes: "1242x2208",
-            type: "image/png",
-          },
-          {
-            src: "splash-1125x2436.png",
-            sizes: "1125x2436",
-            type: "image/png",
-          },
-          {
-            src: "splash-828x1792.png",
-            sizes: "828x1792",
-            type: "image/png",
-          },
-          {
-            src: "splash-1242x2688.png",
-            sizes: "1242x2688",
-            type: "image/png",
-          },
-          {
-            src: "splash-1536x2048.png",
-            sizes: "1536x2048",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2224.png",
-            sizes: "1668x2224",
-            type: "image/png",
-          },
-          {
-            src: "splash-1668x2388.png",
-            sizes: "1668x2388",
-            type: "image/png",
-          },
-          {
-            src: "splash-2048x2732.png",
-            sizes: "2048x2732",
-            type: "image/png",
-          },
-        ],
       },
       workbox: {
         runtimeCaching: [
@@ -113,10 +60,6 @@ export default defineConfig({
           },
         ],
       },
-      includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"], // Define other assets to be included
-      strategies: "generateSW", // Ensure you are using generateSW strategy
-      injectRegister: "inline", // Inline the registerSW.js file
-      filename: "sw.js", // Ensure the correct filename
     }),
   ],
   resolve: {
