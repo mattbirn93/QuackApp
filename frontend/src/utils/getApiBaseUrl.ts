@@ -6,7 +6,6 @@ export const getApiBaseUrl = () => {
     return import.meta.env.VITE_API_BASE_URL_PROD;
   }
 };
-
 /////////////////////////
 
 // src/utils/getApiBaseUrl.ts
