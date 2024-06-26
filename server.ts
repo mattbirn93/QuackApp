@@ -70,7 +70,10 @@ app.use((req, res, next) => {
   res.set("Pragma", "no-cache");
   res.set("Expires", "0");
   res.set("Surrogate-Control", "no-store");
-  console.log("Incoming request:", req.method, req.path);
+  console.log("LOOK HERE Incoming request:", req.method, req.path);
+  console.log(
+    `LOOK HERE Request URL: ${req.url}, API Base URL: ${process.env.API_BASE_URL}`,
+  );
   next();
 });
 
