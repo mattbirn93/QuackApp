@@ -51,7 +51,7 @@ if (
   // Start HTTP server for production
   createServer(app).listen(port, () => {
     console.log(
-      `HTTP production server is running on https://localhost:${port}`,
+      `HTTP production server is running on http://localhost:${port}`,
     );
   });
 }

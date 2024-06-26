@@ -10,7 +10,18 @@ export const getApiBaseUrl = () => {
 
 // Inside the component
 const API_BASE_URL = getApiBaseUrl();
-console.log(`Using API Base URL: ${API_BASE_URL}`);
+console.log(`LOOK THERE Using API Base URL: ${API_BASE_URL}`);
+
+///////
+
+// export const getApiBaseUrl = () => {
+//   const hostname = window.location.hostname;
+//   if (hostname === "localhost" || hostname === "127.0.0.1") {
+//     return import.meta.env.VITE_API_BASE_URL_DESKTOP;
+//   } else {
+//     return import.meta.env.VITE_API_BASE_URL_MOBILE;
+//   }
+// };
 
 ///////////
 
