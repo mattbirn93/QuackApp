@@ -81,11 +81,11 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
 
+app.use(express.static(path.join(__dirname, "dist")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
-
-app.use(express.static(path.join(__dirname, "dist")));
 
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
