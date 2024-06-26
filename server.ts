@@ -91,7 +91,89 @@ app.get("*", (req, res) => {
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
-  // Additional socket event handlers as needed
+  socket.on("add_user", (data) => {
+    createUserSocket(data, (error: any, savedUser: any) => {
+      if (error) {
+        socket.emit("user_add_error", error);
+      } else {
+        socket.emit("user_added", savedUser);
+      }
+    });
+  });
+
+  socket.on("get_scene_version_content", (data) => {
+    const { id } = data;
+    getSceneVersionContentSocket(id, (error: any, result: any) => {
+      if (error) {
+        socket.emit("get_scene_version_content_error", error);
+      } else {
+        socket.emit("scene_version_content", result);
+      }
+    });
+  });
+
+  socket.on("create_content_item", (data: any) => {
+    console.log("Received create_content_item event:", data);
+    createContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit("create_content_item_error", error);
+      } else {
+        socket.emit("content_item_created", result);
+      }
+    });
+  });
+
+  socket.on("update_content_item", (data: any) => {
+    console.log("Received update_content_item event:", data);
+    updateContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit("update_content_item_error", error);
+      } else {
+        socket.emit("content_item_updated", result);
+      }
+    });
+  });
+
+  socket.on("delete_content_item", (data: any) => {
+    console.log("Received delete_content_item event:", data);
+    deleteContentItemSocket(data, (error: any, result: any) => {
+      if (error) {
+        socket.emit("delete_content_item_error", error);
+      } else {
+        socket.emit("content_item_deleted", result);
+      }
+    });
+  });
+  socket.on("getCharactersById", (id) => {
+    getCharactersById(id, (error: any, characters: any) => {
+      if (error) {
+        socket.emit("error", error);
+      } else {
+        socket.emit("charactersData", characters);
+      }
+    });
+  });
+
+  socket.on("addCharacterToArray", (data) => {
+    addCharacterToArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit("error", error);
+      } else {
+        socket.emit("updatedCharacters", updatedCharacters);
+      }
+    });
+  });
+
+  socket.on("updateCharacterInArray", (data) => {
+    updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
+      if (error) {
+        socket.emit("error", error);
+      } else {
+        socket.emit("updatedCharacters", updatedCharacters);
+      }
+    });
+  });
+
   socket.on("disconnect", () => {
     console.log("Client disconnected", socket.id);
   });
