@@ -6,6 +6,7 @@ import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
 import { motion } from "framer-motion";
 import styles from "./ScriptsLibraryComponent.module.css";
+import axios from "axios";
 
 interface Script {
   title_page: any;
@@ -39,15 +40,42 @@ const ScriptsLibraryComponent: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+  //       );
+
+  //       if (response.ok) {
+  //         const data: UserData = await response.json();
+  //         setUserData(data);
+  //         console.log("USER DATA", data);
+  //       } else {
+  //         console.error("Failed to fetch user data");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, [API_BASE_URL]);
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(
-          `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+        // Using axios to make the HTTP request
+        const response = await axios.get(
+          `${API_BASE_URL}/api/users/fetchUserById`,
+          {
+            params: { id: "664e8a1b8bd40eebdcc5939b" },
+          },
         );
 
-        if (response.ok) {
-          const data: UserData = await response.json();
+        // Axios embeds the response data inside the `data` attribute
+        const data = response.data;
+        if (data) {
           setUserData(data);
           console.log("USER DATA", data);
         } else {
@@ -59,7 +87,7 @@ const ScriptsLibraryComponent: React.FC = () => {
     };
 
     fetchUserData();
-  }, [API_BASE_URL]);
+  }, [API_BASE_URL]); // Dependency array to trigger the effect when API_BASE_URL changes
 
   console.log(
     "LOOK HERE Making request to:",
