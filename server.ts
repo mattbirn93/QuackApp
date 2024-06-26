@@ -58,7 +58,6 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "dist")));
 
 connectDB();
 
@@ -85,6 +84,8 @@ app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
+
+app.use(express.static(path.join(__dirname, "dist")));
 
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);

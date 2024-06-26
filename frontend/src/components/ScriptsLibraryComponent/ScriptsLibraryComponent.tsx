@@ -45,6 +45,7 @@ const ScriptsLibraryComponent: React.FC = () => {
         const response = await fetch(
           `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
         );
+
         if (response.ok) {
           const data: UserData = await response.json();
           setUserData(data);
@@ -61,7 +62,12 @@ const ScriptsLibraryComponent: React.FC = () => {
   }, [API_BASE_URL]);
 
   console.log(
-    "Fetching user data from URL:",
+    "LOOK HERE Making request to:",
+    `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+  );
+
+  console.log(
+    "LOOK HERE Fetching user data from URL:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
 
