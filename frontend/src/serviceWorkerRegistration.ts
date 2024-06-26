@@ -20,7 +20,6 @@ export function register(config?: Config) {
     if (publicUrl.origin !== window.location.origin) {
       return;
     }
-
     window.addEventListener("load", () => {
       const swUrl = `./sw.js`;
 
