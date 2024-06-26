@@ -73,13 +73,7 @@ const ScriptsLibraryComponent: React.FC = () => {
           },
         );
 
-        // Axios embeds the response data inside the `data` attribute
-        const data = response.data;
-        if (data) {
-          setUserData(data);
-          console.log("USER DATA", data);
-        } else {
-          console.error("Failed to fetch user data");
+        // Axios embeds the response data inside the `data` attributes
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
