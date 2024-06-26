@@ -10,19 +10,18 @@ import https from "https";
 import fs from "fs";
 import { Server as SocketIOServer } from "socket.io";
 
+// Importing user-related routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
 import scriptsFullRoutes from "./backend/routes/scriptsFullRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-import {
-  createUserSocket,
-  getSceneVersionContentSocket,
-  createContentItemSocket,
-  updateContentItemSocket,
-  deleteContentItemSocket,
-} from "./backend/controllers/sceneVersionContentWSController.js";
+import { createUserSocket } from "./backend/controllers/userController2.js";
+import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
+import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 import {
   getCharactersById,
   addCharacterToArray,
