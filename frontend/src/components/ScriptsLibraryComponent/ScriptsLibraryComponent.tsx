@@ -48,6 +48,7 @@ const ScriptsLibraryComponent: React.FC = () => {
         if (response.ok) {
           const data: UserData = await response.json();
           setUserData(data);
+          console.log("USER DATA", data);
         } else {
           console.error("Failed to fetch user data");
         }
