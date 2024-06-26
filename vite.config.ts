@@ -1,9 +1,7 @@
-//////////
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import { readFileSync, existsSync } from "fs";
+import { readFileSync } from "fs";
 import path from "path";
 import dotenv from "dotenv";
 
@@ -12,6 +10,11 @@ dotenv.config();
 const keyPath = process.env.VITE_SSL_KEY_PATH;
 const certPath = process.env.VITE_SSL_CERT_PATH;
 
+if (!keyPath || !certPath) {
+  throw new Error(
+    "SSL key and certificate paths must be defined in the .env file",
+  );
+}
 export default defineConfig({
   plugins: [
     react(),
@@ -116,7 +119,6 @@ export default defineConfig({
       },
     }),
   ],
-
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -125,19 +127,13 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 5173,
-    https:
-      keyPath && certPath && existsSync(keyPath) && existsSync(certPath)
-        ? {
-          key: readFileSync(path.resolve(keyPath)),
-          cert: readFileSync(path.resolve(certPath)),
-        }
-        : false,
+    https: {
+      key: readFileSync(path.resolve(__dirname, keyPath)),
+      cert: readFileSync(path.resolve(__dirname, certPath)),
+    },
   },
   build: {
     outDir: "dist",
-  },
-  define: {
-    "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || ""),
   },
 });
 
