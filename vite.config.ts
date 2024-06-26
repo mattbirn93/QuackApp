@@ -15,7 +15,6 @@ if (!keyPath || !certPath) {
     "SSL key and certificate paths must be defined in the .env file",
   );
 }
-
 export default defineConfig({
   plugins: [
     react(),
