@@ -27,4 +27,4 @@ dist-ssr
 .env
 
 # SSL certificates and keys
-# /certs
+/certs
