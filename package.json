@@ -7,16 +7,16 @@
     "node": "18.x",
     "npm": "8.x"
   },
- "scripts": {
-  "dev": "vite",
-  "start": "serve -s dist",
-  "build": "tsc && vite build",
-  "server": "nodemon --watch server.ts --exec 'tsc && node dist/server.js'",
-  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-  "format": "prettier --write .",
-  "preview": "node serve.mjs",
-  "postinstall": "npm install serve"
-},
+  "scripts": {
+    "dev": "vite",
+    "start": "serve -s dist",
+    "build": "tsc && vite build",
+    "server": "nodemon --watch server.ts --exec 'tsc && node dist/server.js'",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "preview": "node serve.mjs",
+    "postinstall": "npm install serve"
+  },
   "dependencies": {
     "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
@@ -57,6 +57,7 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.5.2",
     "vite-plugin-comlink": "^5.0.1",
     "vite-plugin-pwa": "^0.20.0",
     "web-vitals": "^4.0.1",
@@ -87,7 +88,6 @@
     "prettier": "^3.2.5",
     "serve": "^14.2.3",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
 }
