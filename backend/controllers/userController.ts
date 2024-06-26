@@ -20,14 +20,17 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const fetchUserById = async (req: Request, res: Response) => {
-  const { id } = req.query as any;
-  console.log(id);
+  const { id } = req.query;
+  if (!id || typeof id !== "string") {
+    return res.status(400).json({ message: "Invalid user ID" });
+  }
+  console.log("Received ID:", id); // Confirm that ID is received correctly
   try {
     const user = await UserService.getUserById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).json(user);
+    res.json(user);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
