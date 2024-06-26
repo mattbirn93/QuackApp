@@ -47,32 +47,34 @@ const ScriptsLibraryComponent: React.FC = () => {
 
     const fetchUserData = async () => {
       try {
-        // Using axios to make the HTTP request
         const response = await axios.get(
           `${API_BASE_URL}/api/users/fetchUserById`,
           {
             params: { id: "664e8a1b8bd40eebdcc5939b" },
           },
         );
-        // Axios embeds the response data inside the `data` attribute
         const data = response.data;
         if (data) {
-          // Ensure scripts_id_array is an array
           if (!Array.isArray(data.scripts_id_array)) {
             data.scripts_id_array = [];
           }
           setUserData(data);
           console.log("USER DATA", data);
         } else {
-          console.error("Failed to fetch user data");
+          console.error("No data found in the response.");
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+      } catch (error: any) {
+        if (error.response) {
+          console.error("Error fetching user data:", error.response.data);
+        } else if (error.request) {
+          console.error("No response received:", error.request);
+        } else {
+          console.error("Error setting up the request:", error.message);
+        }
       } finally {
         setLoading(false);
       }
     };
-
     fetchUserData();
   }, [API_BASE_URL]); // Dependency array to trigger the effect when API_BASE_URL changes
 
