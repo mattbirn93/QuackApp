@@ -43,6 +43,8 @@ const ScriptsLibraryComponent: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("API Base URL:", API_BASE_URL);
+
     const fetchUserData = async () => {
       try {
         // Using axios to make the HTTP request
@@ -83,6 +85,12 @@ const ScriptsLibraryComponent: React.FC = () => {
     "LOOK AFTER Fetching user data from URL:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
+
+  console.log(
+    "API Base URL Desktop:",
+    import.meta.env.VITE_API_BASE_URL_DESKTOP,
+  );
+  console.log("API Base URL Mobile:", import.meta.env.VITE_API_BASE_URL_MOBILE);
 
   useEffect(() => {
     const fetchScriptsData = async () => {
