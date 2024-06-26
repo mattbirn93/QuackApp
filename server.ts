@@ -70,15 +70,34 @@ app.use((req, res, next) => {
   res.set("Pragma", "no-cache");
   res.set("Expires", "0");
   res.set("Surrogate-Control", "no-store");
+  console.log("Incoming request:", req.method, req.path);
   next();
 });
 
 // Define API Routes
+// app.use("/api/users", userRoutes);
+// app.use("/api/scripts", scriptRoutes);
+// app.use("/api/scenes", sceneRoutes);
+// app.use("/api/sceneVersions", sceneVersionRoutes);
+// app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/users/fetchUserById", userRoutes);
 app.use("/api/scripts", scriptRoutes);
+app.use("/api/scripts/fetchScriptsById", sceneRoutes);
+app.use("/api/scripts/createNewScript", sceneRoutes);
 app.use("/api/scenes", sceneRoutes);
+app.use("/api/scenes/fetchScriptsFull", sceneRoutes);
+app.use("/api/scenes/updateScriptsContent", sceneRoutes);
+app.use("/api/scenes/updateScriptTitlePage", sceneRoutes);
+app.use("/api/scenes/fetchScriptsById", sceneRoutes);
+app.use("/api/scenes/createNewScript", sceneRoutes);
+app.use("api/scenes/createSecene", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
+app.use("/api/sceneVersions/updateCurrentVersion", sceneVersionRoutes);
+app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
+app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "dist")));
