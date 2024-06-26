@@ -1,35 +1,38 @@
 import express from "express";
+import { createServer as createSecureServer } from "https";
+import { createServer } from "http";
 import { readFileSync } from "fs";
 import { resolve } from "path";
-import http from "http";
-import https from "https";
 import dotenv from "dotenv";
 
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const port = process.env.PORT || 5173; // Heroku dynamically assigns a port via process.env.PORT
+const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+
+// Define static files location; typically, this would be where your built frontend resides
 const publicPath = resolve("dist");
 
-// Serve static files from the dist directory
+// Serve static files
 app.use(express.static(publicPath));
 
-// Serve index.html for all other routes to support client-side routing
+// Serve index.html on all other routes to support client-side routing
 app.get("*", (req, res) => {
   res.sendFile(resolve(publicPath, "index.html"));
 });
 
+// Check environment mode
 if (
   process.env.NODE_ENV === "development" &&
   process.env.VITE_USE_HTTPS === "true"
 ) {
-  // Development mode and HTTPS is enabled
+  // Load SSL configuration for local development
   const keyPath = process.env.VITE_SSL_KEY_PATH;
   const certPath = process.env.VITE_SSL_CERT_PATH;
 
   if (!keyPath || !certPath) {
     throw new Error(
-      "SSL key and certificate paths must be defined in the .env file for HTTPS.",
+      "SSL key and certificate paths must be defined in the .env file for HTTPS in development mode.",
     );
   }
 
@@ -38,13 +41,18 @@ if (
     cert: readFileSync(resolve(certPath)),
   };
 
-  https.createServer(options, app).listen(port, () => {
-    console.log(`HTTPS server running on https://localhost:${port}`);
+  // Start HTTPS server for local development
+  createSecureServer(options, app).listen(port, () => {
+    console.log(
+      `HTTPS development server is running on https://localhost:${port}`,
+    );
   });
 } else {
-  // Production mode or local HTTP
-  http.createServer(app).listen(port, () => {
-    console.log(`HTTP server running on http://localhost:${port}`);
+  // Start HTTP server for production
+  createServer(app).listen(port, () => {
+    console.log(
+      `HTTP production server is running on http://localhost:${port}`,
+    );
   });
 }
 
