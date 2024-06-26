@@ -114,7 +114,6 @@ const ChatPanelComponent = ({ owners }: { owners: Owner[] }) => {
 };
 
 export default ChatPanelComponent;
-
 /////////////////////////////
 
 // import React, { useState, useEffect, useRef } from "react";
