@@ -75,12 +75,12 @@ const ScriptsLibraryComponent: React.FC = () => {
   }, [API_BASE_URL]); // Dependency array to trigger the effect when API_BASE_URL changes
 
   console.log(
-    "LOOK HERE Making request to:",
+    "LOOK BEFORE Making request to:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
 
   console.log(
-    "LOOK HERE Fetching user data from URL:",
+    "LOOK AFTER Fetching user data from URL:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
 
