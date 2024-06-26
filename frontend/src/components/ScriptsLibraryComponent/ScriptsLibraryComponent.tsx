@@ -59,6 +59,11 @@ const ScriptsLibraryComponent: React.FC = () => {
     fetchUserData();
   }, [API_BASE_URL]);
 
+  console.log(
+    "Fetching user data from URL:",
+    `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+  );
+
   useEffect(() => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
