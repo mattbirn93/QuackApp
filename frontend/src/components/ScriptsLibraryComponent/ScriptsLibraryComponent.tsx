@@ -26,7 +26,6 @@ interface UserData {
   time_stamp: string;
   __v: number;
 }
-
 const ScriptsLibraryComponent: React.FC = () => {
   const [scriptList, setScriptList] = useState<Script[]>([]);
   const [loading, setLoading] = useState(true);
