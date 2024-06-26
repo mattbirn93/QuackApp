@@ -44,7 +44,8 @@ const ScriptsLibraryComponent: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+          `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com//api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
+          // `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
         );
         if (response.ok) {
           const data: UserData = await response.json();
