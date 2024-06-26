@@ -39,7 +39,7 @@ export function register(config?: Config) {
 }
 
 // Print swUrl to verify its correctness in the browser's console.
-console.log(`Service Worker URL being registered: ${swUrl}`);
+console.log(`LOOK HERE Service Worker URL being registered: ${swUrl}`);
 
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
