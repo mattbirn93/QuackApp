@@ -20,7 +20,6 @@ const App: React.FC = () => {
   const [characterArrayData, setCharacterArrayData] = useState<string[]>([]);
   const [scriptName, setScriptName] = useState("");
   const API_BASE_URL = getApiBaseUrl();
-
   useEffect(() => {
     const fetchData = async () => {
       const start = performance.now();
