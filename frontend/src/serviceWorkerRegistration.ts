@@ -14,29 +14,35 @@ type Config = {
 export function register(config?: Config) {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     const publicUrl = new URL(
-      process.env.PUBLIC_URL || "",
+      import.meta.env.VITE_PUBLIC_URL || ".", // Provide a fallback value here
       window.location.href,
     );
 
-    console.log("HELLO TURKEY PUBLIC_URL:", process.env.PUBLIC_URL); // Log PUBLIC_URL
-    console.log("HELLO TURKEY publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
-    console.log("HELLO TURKEY window.location.origin:", window.location.origin); // Log window.location.origin
+    console.log(
+      "WELCOME TURKEY PUBLIC_URL:",
+      import.meta.env.VITE_PUBLIC_URL || ".",
+    ); // Log PUBLIC_URL with fallback
+    console.log("WELCOME TURKEY publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
+    console.log(
+      "WELCOME TURKEY window.location.origin:",
+      window.location.origin,
+    ); // Log window.location.origin
 
     if (publicUrl.origin !== window.location.origin) {
       console.log(
-        "HELLO TURKEY Service worker not registered due to origin mismatch.",
+        "WELCOME TURKEY Service worker not registered due to origin mismatch.",
       );
       return;
     }
     window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL || ""}/sw.js`; // Ensure proper path
-      console.log("HELLO TURKEY Service worker URL:", swUrl); // Log swUrl
+      const swUrl = `${import.meta.env.VITE_PUBLIC_URL || "."}/sw.js`; // Ensure proper path
+      console.log("WELCOME TURKEY Service worker URL:", swUrl); // Log swUrl
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
           console.log(
-            "HELLO TURKEY This web app is being served cache-first by a service worker. To learn more, visit https://cra.link/PWA",
+            "WELCOME TURKEY This web app is being served cache-first by a service worker. To learn more, visit https://cra.link/PWA",
           );
         });
       } else {
@@ -59,13 +65,13 @@ function registerValidSW(swUrl: string, config?: Config) {
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
               console.log(
-                "HELLO TURKEY New content is available and will be used when all tabs for this page are closed. See https://cra.link/PWA.",
+                "WELCOME TURKEY New content is available and will be used when all tabs for this page are closed. See https://cra.link/PWA.",
               );
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
-              console.log("HELLO TURKEY Content is cached for offline use.");
+              console.log("WELCOME TURKEY Content is cached for offline use.");
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
               }
@@ -76,7 +82,7 @@ function registerValidSW(swUrl: string, config?: Config) {
     })
     .catch((error) => {
       console.error(
-        "HELLO TURKEY Error during service worker registration:",
+        "WELCOME TURKEY Error during service worker registration:",
         error,
       );
     });
@@ -103,7 +109,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
     })
     .catch(() => {
       console.log(
-        "HELLO TURKEY No internet connection found. App is running in offline mode.",
+        "WELCOME TURKEY No internet connection found. App is running in offline mode.",
       );
     });
 }
