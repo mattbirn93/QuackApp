@@ -31,7 +31,6 @@ export const fetchScriptsFull = async (
     return res.status(500).json({ message: "Server error" });
   }
 };
-
 interface UpdateScriptCharactersBody {
   characters: string[];
 }
