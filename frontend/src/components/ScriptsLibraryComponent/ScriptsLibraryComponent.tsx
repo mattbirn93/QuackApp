@@ -7,6 +7,7 @@ import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
 import { motion } from "framer-motion";
 import styles from "./ScriptsLibraryComponent.module.css";
 import axios from "axios";
+import { error } from "winston";
 
 interface Script {
   title_page: any;
@@ -42,50 +43,48 @@ const ScriptsLibraryComponent: React.FC = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("API Base URL:", API_BASE_URL);
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}/api/users/fetchUserById`,
+        {
+          params: { id: "664e8a1b8bd40eebdcc5939b" },
+        },
+      );
 
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_BASE_URL}/api/users/fetchUserById`,
-          {
-            params: { id: "664e8a1b8bd40eebdcc5939b" },
-          },
-        );
-
-        const contentType = response.headers["content-type"];
-        if (!contentType || contentType.indexOf("application/json") === -1) {
-          throw new Error("Expected JSON response, but received non-JSON data");
-        }
-
-        const data = response.data;
-        if (typeof data !== "object" || Array.isArray(data)) {
-          throw new Error("Expected JSON response, but received non-JSON data");
-        }
-
-        // Ensure scripts_id_array is an array
-        if (!Array.isArray(data.scripts_id_array)) {
-          data.scripts_id_array = [];
-        }
-
-        setUserData(data);
-        console.log("USER DATA", data);
-      } catch (error: any) {
-        if (error.response) {
-          console.error("Error fetching user data:", error.response.data);
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-        } else {
-          console.error("Error setting up the request:", error.message);
-        }
-      } finally {
-        setLoading(false);
+      const contentType = response.headers["content-type"];
+      if (!contentType || contentType.indexOf("application/json") === -1) {
+        throw new Error("Expected JSON response, but received non-JSON data");
       }
-    };
 
+      const data = response.data;
+      if (typeof data !== "object" || Array.isArray(data)) {
+        throw new Error("Expected JSON response, but received non-JSON data");
+      }
+
+      if (!Array.isArray(data.scripts_id_array)) {
+        data.scripts_id_array = [];
+      }
+
+      setUserData(data);
+      console.log("USER DATA", data);
+    } catch (error: any) {
+      // Fix: Add type annotation for error
+      if (error.response) {
+        console.error("Error fetching user data:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchUserData();
-  }, [API_BASE_URL]); // Dependency array to trigger the effect when API_BASE_URL changes
+  }, [API_BASE_URL]);
 
   console.log(
     "LOOK BEFORE Making request to:",

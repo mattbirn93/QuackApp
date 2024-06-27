@@ -13,7 +13,7 @@ export const createUser = async (req: Request, res: Response) => {
     });
     res.status(201).json(savedUser);
   } catch (error: any) {
-    console.error("Error creating user:", error.message);
+    console.error("CHECK ME Error creating user:", error.message);
     res.status(400).json({ message: error.message });
   }
 };
@@ -27,8 +27,8 @@ export const fetchUserById = async (req: Request, res: Response) => {
   try {
     const user = await UserService.getUserById(id);
     if (!user) {
-      console.error("CHRECK ME User not found with ID:", id);
-      return res.status(404).json({ message: "CHRECK ME User not found" });
+      console.error("CHECK ME User not found with ID:", id);
+      return res.status(404).json({ message: "CHECK ME User not found" });
     }
     console.log("CHECK ME User fetched successfully:", user); // Log user object
     res.setHeader("Content-Type", "application/json");
