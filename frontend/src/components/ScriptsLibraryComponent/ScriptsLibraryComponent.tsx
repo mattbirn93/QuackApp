@@ -51,7 +51,6 @@ const ScriptsLibraryComponent: React.FC = () => {
           params: { id: "664e8a1b8bd40eebdcc5939b" },
         },
       );
-
       const contentType = response.headers["content-type"];
       if (!contentType || contentType.indexOf("application/json") === -1) {
         throw new Error("Expected JSON response, but received non-JSON data");

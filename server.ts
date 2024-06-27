@@ -74,105 +74,104 @@ app.get("*", (req, res) => {
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
 // Set up Socket.io
-const io = new SocketIOServer(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new SocketIOServer(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
-io.on("connection", (socket) => {
-  console.log("New client connected", socket.id);
+// io.on("connection", (socket) => {
+//   console.log("New client connected", socket.id);
 
-  socket.on("add_user", (data) => {
-    createUserSocket(data, (error: any, savedUser: any) => {
-      if (error) {
-        socket.emit("user_add_error", error);
-      } else {
-        socket.emit("user_added", savedUser);
-      }
-    });
-  });
-  socket.on("get_scene_version_content", (data) => {
-    const { id } = data;
-    getSceneVersionContentSocket(id, (error: any, result: any) => {
-      if (error) {
-        socket.emit("get_scene_version_content_error", error);
-      } else {
-        socket.emit("scene_version_content", result);
-      }
-    });
-  });
+//   socket.on("add_user", (data) => {
+//     createUserSocket(data, (error: any, savedUser: any) => {
+//       if (error) {
+//         socket.emit("user_add_error", error);
+//       } else {
+//         socket.emit("user_added", savedUser);
+//       }
+//     });
+//   });
+//   socket.on("get_scene_version_content", (data) => {
+//     const { id } = data;
+//     getSceneVersionContentSocket(id, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("get_scene_version_content_error", error);
+//       } else {
+//         socket.emit("scene_version_content", result);
+//       }
+//     });
+//   });
 
-  socket.on("create_content_item", (data) => {
-    console.log("Received create_content_item event:", data);
-    createContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("create_content_item_error", error);
-      } else {
-        socket.emit("content_item_created", result);
-      }
-    });
-  });
+//   socket.on("create_content_item", (data) => {
+//     console.log("Received create_content_item event:", data);
+//     createContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("create_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_created", result);
+//       }
+//     });
+//   });
 
-  socket.on("update_content_item", (data) => {
-    console.log("Received update_content_item event:", data);
-    updateContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("update_content_item_error", error);
-      } else {
-        socket.emit("content_item_updated", result);
-      }
-    });
-  });
+//   socket.on("update_content_item", (data) => {
+//     console.log("Received update_content_item event:", data);
+//     updateContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("update_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_updated", result);
+//       }
+//     });
+//   });
 
-  socket.on("delete_content_item", (data) => {
-    console.log("Received delete_content_item event:", data);
-    deleteContentItemSocket(data, (error: any, result: any) => {
-      if (error) {
-        socket.emit("delete_content_item_error", error);
-      } else {
-        socket.emit("content_item_deleted", result);
-      }
-    });
-  });
+//   socket.on("delete_content_item", (data) => {
+//     console.log("Received delete_content_item event:", data);
+//     deleteContentItemSocket(data, (error: any, result: any) => {
+//       if (error) {
+//         socket.emit("delete_content_item_error", error);
+//       } else {
+//         socket.emit("content_item_deleted", result);
+//       }
+//     });
+//   });
 
-  socket.on("getCharactersById", (id) => {
-    getCharactersById(id, (error: any, characters: any) => {
-      if (error) {
-        socket.emit("error", error);
-      } else {
-        socket.emit("charactersData", characters);
-      }
-    });
-  });
+//   socket.on("getCharactersById", (id) => {
+//     getCharactersById(id, (error: any, characters: any) => {
+//       if (error) {
+//         socket.emit("error", error);
+//       } else {
+//         socket.emit("charactersData", characters);
+//       }
+//     });
+//   });
 
-  socket.on("addCharacterToArray", (data) => {
-    addCharacterToArray(data, (error: any, updatedCharacters: any) => {
-      if (error) {
-        socket.emit("error", error);
-      } else {
-        socket.emit("updatedCharacters", updatedCharacters);
-      }
-    });
-  });
+//   socket.on("addCharacterToArray", (data) => {
+//     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
+//       if (error) {
+//         socket.emit("error", error);
+//       } else {
+//         socket.emit("updatedCharacters", updatedCharacters);
+//       }
+//     });
+//   });
 
-  socket.on("updateCharacterInArray", (data) => {
-    updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
-      if (error) {
-        socket.emit("error", error);
-      } else {
-        socket.emit("updatedCharacters", updatedCharacters);
-      }
-    });
-  });
+//   socket.on("updateCharacterInArray", (data) => {
+//     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
+//       if (error) {
+//         socket.emit("error", error);
+//       } else {
+//         socket.emit("updatedCharacters", updatedCharacters);
+//       }
+//     });
+//   });
 
-  socket.on("disconnect", () => {
-    console.log("Client disconnected", socket.id);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("Client disconnected", socket.id);
+//   });
+// });
 
 //////////////////////
 
