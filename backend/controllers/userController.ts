@@ -15,6 +15,7 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(201).json(savedUser);
   } catch (error: any) {
     console.error("Error creating user:", error.message);
+    res.setHeader("Content-Type", "application/json");
     res.status(400).json({ message: error.message });
   }
 };
@@ -22,19 +23,27 @@ export const createUser = async (req: Request, res: Response) => {
 export const fetchUserById = async (req: Request, res: Response) => {
   const { id } = req.query;
   if (typeof id !== "string") {
-    return res.status(400).json({ message: "Invalid user ID" });
+    return res
+      .setHeader("Content-Type", "application/json")
+      .status(400)
+      .json({ message: "Invalid user ID" });
   }
   console.log("Attempting to fetch user with ID:", id);
   try {
     const user = await UserService.getUserById(id);
     if (!user) {
       console.error("User not found with ID:", id);
-      return res.status(404).json({ message: "User not found" });
+      return res
+        .setHeader("Content-Type", "application/json")
+        .status(404)
+        .json({ message: "User not found" });
     }
     console.log("User fetched successfully:", user);
     res.setHeader("Content-Type", "application/json");
     res.json(user);
   } catch (error: any) {
+    console.error("Error fetching user:", error.message);
+    res.setHeader("Content-Type", "application/json");
     res.status(500).json({ message: error.message });
   }
 };

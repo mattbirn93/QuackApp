@@ -65,7 +65,7 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // Serve static files
 app.use(express.static(path.join(__dirname, "dist")));
 
-// SPA catch-all handler (this should be the last route)
+// Catch-all handler (this should be the last route)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
@@ -95,7 +95,6 @@ io.on("connection", (socket) => {
       }
     });
   });
-
   socket.on("get_scene_version_content", (data) => {
     const { id } = data;
     getSceneVersionContentSocket(id, (error: any, result: any) => {
