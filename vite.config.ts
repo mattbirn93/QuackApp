@@ -1,40 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import { readFileSync } from "fs";
 import path from "path";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 export default defineConfig(({ command, mode }) => {
-  let serverConfig = {};
-
-  // Conditionally apply HTTPS configuration only in development mode
-  if (mode === "development") {
-    const keyPath = process.env.VITE_SSL_KEY_PATH;
-    const certPath = process.env.VITE_SSL_CERT_PATH;
-
-    if (!keyPath || !certPath) {
-      throw new Error(
-        "SSL key and certificate paths must be defined in the .env file for development mode.",
-      );
-    }
-
-    serverConfig = {
-      host: "0.0.0.0",
-      port: 5173,
-      https: {
-        key: readFileSync(path.resolve(__dirname, keyPath)),
-        cert: readFileSync(path.resolve(__dirname, certPath)),
-      },
-    };
-  } else {
-    serverConfig = {
-      host: "0.0.0.0",
-      port: process.env.PORT || 5173, // Use Heroku assigned port in production
-    };
-  }
+  const serverConfig = {
+    host: "0.0.0.0",
+    port: process.env.PORT || 5173, // Use Heroku assigned port in production
+  };
 
   return {
     plugins: [

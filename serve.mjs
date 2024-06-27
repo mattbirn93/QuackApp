@@ -1,7 +1,5 @@
 import express from "express";
-import { createServer as createSecureServer } from "https";
 import { createServer } from "http";
-import { readFileSync } from "fs";
 import { resolve } from "path";
 import dotenv from "dotenv";
 
@@ -21,40 +19,10 @@ app.get("*", (req, res) => {
   res.sendFile(resolve(publicPath, "index.html"));
 });
 
-// Check environment mode
-if (
-  process.env.NODE_ENV === "development" &&
-  process.env.VITE_USE_HTTPS === "true"
-) {
-  // Load SSL configuration for local development
-  const keyPath = process.env.VITE_SSL_KEY_PATH;
-  const certPath = process.env.VITE_SSL_CERT_PATH;
-
-  if (!keyPath || !certPath) {
-    throw new Error(
-      "SSL key and certificate paths must be defined in the .env file for HTTPS in development mode.",
-    );
-  }
-
-  const options = {
-    key: readFileSync(resolve(keyPath)),
-    cert: readFileSync(resolve(certPath)),
-  };
-
-  // Start HTTPS server for local development
-  createSecureServer(options, app).listen(port, () => {
-    console.log(
-      `HTTPS development server is running on https://localhost:${port}`,
-    );
-  });
-} else {
-  // Start HTTP server for production
-  createServer(app).listen(port, () => {
-    console.log(
-      `HTTP production server is running on http://localhost:${port}`,
-    );
-  });
-}
+// Start HTTP server
+createServer(app).listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
 
 //////////////
 
