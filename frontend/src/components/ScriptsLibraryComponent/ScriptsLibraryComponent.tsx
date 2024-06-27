@@ -100,6 +100,20 @@ const ScriptsLibraryComponent: React.FC = () => {
   );
   console.log("API Base URL Mobile:", import.meta.env.VITE_API_BASE_URL_MOBILE);
 
+  ////////test route
+  const fetchScenes = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/scenes`);
+      console.log("LLOKIE LOOKIE Scenes:", response.data);
+    } catch (error) {
+      console.error("Error fetching scenes:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchScenes();
+  }, [API_BASE_URL]);
+
   useEffect(() => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
