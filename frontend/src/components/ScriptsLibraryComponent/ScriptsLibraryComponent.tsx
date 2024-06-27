@@ -53,16 +53,22 @@ const ScriptsLibraryComponent: React.FC = () => {
             params: { id: "664e8a1b8bd40eebdcc5939b" },
           },
         );
-        const data = response.data;
-        if (data) {
-          if (!Array.isArray(data.scripts_id_array)) {
-            data.scripts_id_array = [];
-          }
-          setUserData(data);
-          console.log("USER DATA", data);
-        } else {
-          console.error("No data found in the response.");
+
+        if (response.status !== 200) {
+          throw new Error(`Unexpected response status: ${response.status}`);
         }
+
+        const data = response.data;
+        if (typeof data !== "object" || Array.isArray(data)) {
+          throw new Error("Expected JSON response, but received non-JSON data");
+        }
+
+        if (!Array.isArray(data.scripts_id_array)) {
+          data.scripts_id_array = [];
+        }
+
+        setUserData(data);
+        console.log("USER DATA", data);
       } catch (error: any) {
         if (error.response) {
           console.error("Error fetching user data:", error.response.data);
