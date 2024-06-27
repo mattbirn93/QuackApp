@@ -102,7 +102,9 @@ const ScriptsLibraryComponent: React.FC = () => {
   ////////test route
   const fetchScenes = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/scenes`);
+      const response = await axios.get(
+        `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
+      );
       console.log("LOOKSIE HERE FOR THE SIMPLE Scenes:", response.data);
     } catch (error) {
       console.error("Error fetching scenes:", error);
@@ -111,7 +113,20 @@ const ScriptsLibraryComponent: React.FC = () => {
 
   useEffect(() => {
     fetchScenes();
-  }, [API_BASE_URL]);
+  }, []);
+
+  // const fetchScenes = async () => {
+  //   try {
+  //     const response = await axios.get(`${API_BASE_URL}/api/scenes`);
+  //     console.log("LOOKSIE HERE FOR THE SIMPLE Scenes:", response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching scenes:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchScenes();
+  // }, [API_BASE_URL]);
 
   useEffect(() => {
     const fetchScriptsData = async () => {
