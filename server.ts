@@ -12,7 +12,6 @@ import { Server as SocketIOServer } from "socket.io";
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
-// import scriptsFullRoutes from "./backend/routes/scriptsFullRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 import { createUserSocket } from "./backend/controllers/userController2.js";
@@ -66,7 +65,7 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // Serve static files
 app.use(express.static(path.join(__dirname, "dist")));
 
-// SPA catch-all handler (this should be the last route)
+// Serve the main PWA file (index.html) for any other requests
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
