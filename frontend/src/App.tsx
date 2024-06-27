@@ -28,15 +28,14 @@ const App: React.FC = () => {
         return;
       }
 
-      console.log("Fetched scriptId:", scriptId);
+      console.log("scriptId from useParams:", scriptId);
       const start = performance.now();
 
       try {
         const response = await axios.get(
           `${API_BASE_URL}/api/scenes/fetchScriptsFull?scriptId=${scriptId}`,
         );
-        console.log(response, "response dude");
-        console.log("HELLO TURKEY TIME");
+        console.log("API response:", response);
         setTestContent(response.data.content);
         setCharacterArrayData(response.data.characters);
         setData(response.data);
