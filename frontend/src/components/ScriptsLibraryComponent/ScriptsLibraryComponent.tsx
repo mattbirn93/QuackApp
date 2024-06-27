@@ -140,7 +140,7 @@ const ScriptsLibraryComponent: React.FC = () => {
       const response = await axios.get(`${API_BASE_URL}/api/scenes`);
       console.log("HOW ABOUT THIS FOR THE SIMPLE Scenes:", response.data);
     } catch (error) {
-      console.error("Error fetching scenes:", error);
+      console.error("HOW ABOUT THIS Error fetching scenes:", error);
     }
   };
 
