@@ -20,9 +20,8 @@ export function register(config?: Config) {
     if (publicUrl.origin !== window.location.origin) {
       return;
     }
-
     window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL || ""}/sw.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
@@ -53,13 +52,11 @@ function registerValidSW(swUrl: string, config?: Config) {
               console.log(
                 "New content is available and will be used when all tabs for this page are closed. See https://cra.link/PWA.",
               );
-
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
               console.log("Content is cached for offline use.");
-
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
               }
