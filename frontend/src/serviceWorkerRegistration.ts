@@ -41,7 +41,6 @@ export function register(config?: Config) {
     });
   }
 }
-
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
