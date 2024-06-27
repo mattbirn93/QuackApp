@@ -65,15 +65,17 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // Serve static files
 app.use(express.static(path.join(__dirname, "dist")));
 
-// Serve the main PWA file (index.html) for any other requests
+// SPA catch-all handler (this should be the last route)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
+// Start the server
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
+// Set up Socket.io
 const io = new SocketIOServer(server, {
   cors: {
     origin: "*",
