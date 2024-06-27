@@ -5,20 +5,20 @@ export const getApiBaseUrl = () => {
       ? import.meta.env.VITE_API_BASE_URL_DESKTOP
       : import.meta.env.VITE_API_BASE_URL_MOBILE;
   console.log(
-    "VITE_API_BASE_URL_DESKTOP:",
+    "POOPSIE VITE_API_BASE_URL_DESKTOP:",
     import.meta.env.VITE_API_BASE_URL_DESKTOP,
   );
   console.log(
-    "VITE_API_BASE_URL_MOBILE:",
+    "POOPSIE VITE_API_BASE_URL_MOBILE:",
     import.meta.env.VITE_API_BASE_URL_MOBILE,
   );
-  console.log(`Determined API Base URL: ${apiUrl}`);
+  console.log(`POOPSIE Determined API Base URL: ${apiUrl}`);
   return apiUrl;
 };
 
 // Inside the component
 const API_BASE_URL = getApiBaseUrl();
-console.log(`LOOK THERE Using API Base URL: ${API_BASE_URL}`);
+console.log(`POOPSIE LOOK THERE Using API Base URL: ${API_BASE_URL}`);
 
 ///////
 
