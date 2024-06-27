@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./backend/config2.js"; // Assuming this is your currentdb.js
+import connectDB from "./backend/config/db.js"; // Assuming this is your currentdb.js
 import { Server as SocketIOServer } from "socket.io";
 
 // Load environment variables from .env file
@@ -38,10 +38,7 @@ app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "dist")));
-
-// Catch-all handler (this should be the last route)
+// Catch-all route - this should be the last route
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
@@ -51,105 +48,19 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// // Set up Socket.io
-// const io = new SocketIOServer(server, {
-//   cors: {
-//     origin: "*",
-//     methods: ["GET", "POST"],
-//   },
-// });
+// Set up Socket.io
+const io = new SocketIOServer(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
-// io.on("connection", (socket) => {
-//   console.log("New client connected", socket.id);
+io.on("connection", (socket) => {
+  console.log("New client connected", socket.id);
 
-//   socket.on("add_user", (data) => {
-//     createUserSocket(data, (error, savedUser) => {
-//       if (error) {
-//         socket.emit("user_add_error", error);
-//       } else {
-//         socket.emit("user_added", savedUser);
-//       }
-//     });
-//   });
-
-//   socket.on("get_scene_version_content", (data) => {
-//     const { id } = data;
-//     getSceneVersionContentSocket(id, (error, result) => {
-//       if (error) {
-//         socket.emit("get_scene_version_content_error", error);
-//       } else {
-//         socket.emit("scene_version_content", result);
-//       }
-//     });
-//   });
-
-//   socket.on("create_content_item", (data) => {
-//     console.log("Received create_content_item event:", data);
-//     createContentItemSocket(data, (error, result) => {
-//       if (error) {
-//         socket.emit("create_content_item_error", error);
-//       } else {
-//         socket.emit("content_item_created", result);
-//       }
-//     });
-//   });
-
-//   socket.on("update_content_item", (data) => {
-//     console.log("Received update_content_item event:", data);
-//     updateContentItemSocket(data, (error, result) => {
-//       if (error) {
-//         socket.emit("update_content_item_error", error);
-//       } else {
-//         socket.emit("content_item_updated", result);
-//       }
-//     });
-//   });
-
-//   socket.on("delete_content_item", (data) => {
-//     console.log("Received delete_content_item event:", data);
-//     deleteContentItemSocket(data, (error, result) => {
-//       if (error) {
-//         socket.emit("delete_content_item_error", error);
-//       } else {
-//         socket.emit("content_item_deleted", result);
-//       }
-//     });
-//   });
-
-//   socket.on("getCharactersById", (id) => {
-//     getCharactersById(id, (error, characters) => {
-//       if (error) {
-//         socket.emit("error", error);
-//       } else {
-//         socket.emit("charactersData", characters);
-//       }
-//     });
-//   });
-
-//   socket.on("addCharacterToArray", (data) => {
-//     addCharacterToArray(data, (error, updatedCharacters) => {
-//       if (error) {
-//         socket.emit("error", error);
-//       } else {
-//         socket.emit("updatedCharacters", updatedCharacters);
-//       }
-//     });
-//   });
-
-//   socket.on("updateCharacterInArray", (data) => {
-//     updateCharacterInArray(data, (error, updatedCharacters) => {
-//       if (error) {
-//         socket.emit("error", error);
-//       } else {
-//         socket.emit("updatedCharacters", updatedCharacters);
-//       }
-//     });
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("Client disconnected", socket.id);
-//   });
-// });
+  // Define your socket event handlers here
+});
 
 //////////////////////
 
