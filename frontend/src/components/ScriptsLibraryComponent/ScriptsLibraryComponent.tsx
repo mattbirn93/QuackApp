@@ -85,7 +85,6 @@ const ScriptsLibraryComponent: React.FC = () => {
   useEffect(() => {
     fetchUserData();
   }, [API_BASE_URL]);
-
   console.log(
     "LOOK BEFORE Making request to:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
