@@ -5,9 +5,8 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./backend/config/db.js"; // Assuming this is your currentdb.js
+import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 import { Server as SocketIOServer } from "socket.io";
-import httpProxy from "http-proxy";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -25,21 +24,6 @@ connectDB();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
-
-// Create a proxy server
-const proxy = httpProxy.createProxyServer({
-  target: "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-  changeOrigin: true,
-  xfwd: true,
-});
-
-// Use the proxy server for specific routes
-app.use("/api/scenes", (req, res) => {
-  proxy.web(req, res, {}, (err: Error) => {
-    console.error("Proxy error:", err);
-    res.status(500).send("Proxy error");
-  });
-});
 
 // API Routes
 import userRoutes from "./backend/routes/userRoutes.js";
@@ -70,7 +54,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 // Set up Socket.io
 const io = new SocketIOServer(server, {
   cors: {
-    origin: "*",
+    origin: "http://localhost:5173", // Ensure CORS for Socket.io as well
     methods: ["GET", "POST"],
   },
 });
@@ -81,7 +65,7 @@ io.on("connection", (socket) => {
   // Define your socket event handlers here
 });
 
-/////////////////
+///////////////////
 
 // import "tsconfig-paths/register.js";
 // import express from "express";

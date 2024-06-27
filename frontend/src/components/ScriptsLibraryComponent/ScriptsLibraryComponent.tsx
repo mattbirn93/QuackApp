@@ -83,62 +83,76 @@ const ScriptsLibraryComponent: React.FC = () => {
   useEffect(() => {
     fetchUserData();
   }, [API_BASE_URL]);
+
   console.log(
-    "LOOK BEFORE Making request to:",
+    "LOOKSIE request to:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
 
   console.log(
-    "LOOK AFTER Fetching user data from URL:",
+    "LOOKSIE Fetching user data from URL:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
   );
 
   console.log(
-    "API Base URL Desktop:",
+    "LOOKSIE API Base URL Desktop:",
     import.meta.env.VITE_API_BASE_URL_DESKTOP,
   );
-  console.log("API Base URL Mobile:", import.meta.env.VITE_API_BASE_URL_MOBILE);
+  console.log(
+    "LOOKSIE API Base URL Mobile:",
+    import.meta.env.VITE_API_BASE_URL_MOBILE,
+  );
 
   ////////test route
-  const fetchScenes = async () => {
-    try {
-      const response = await axios.get(
-        `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
-      );
-      console.log("Response headers:", response.headers);
-      console.log("Response body:", response.data);
-    } catch (error: any) {
-      console.error("Error fetching scenes:", error);
-      if (error.response) {
-        console.log("Error response data:", error.response.data);
-        console.log("Error response status:", error.response.status);
-        console.log("Error response headers:", error.response.headers);
-      }
-    }
-  };
-
-  useEffect(() => {
-    fetchScenes();
-  }, []);
-
   // const fetchScenes = async () => {
   //   try {
-  //     const response = await axios.get(`${API_BASE_URL}/api/scenes`);
-  //     console.log("LOOKSIE HERE FOR THE SIMPLE Scenes:", response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching scenes:", error);
+  //     const response = await axios.get(
+  //       `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
+  //     );
+  //     console.log("HOW ABOUT THIS Response headers:", response.headers);
+  //     console.log("HOW ABOUT THIS  Response body:", response.data);
+  //   } catch (error: any) {
+  //     // Typing error as any to handle response correctly
+  //     console.error("HOW ABOUT THIS  Error fetching scenes:", error);
+  //     if (error.response) {
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response data:",
+  //         error.response.data,
+  //       );
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response status:",
+  //         error.response.status,
+  //       );
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response headers:",
+  //         error.response.headers,
+  //       );
+  //     }
   //   }
   // };
 
   // useEffect(() => {
   //   fetchScenes();
-  // }, [API_BASE_URL]);
+  // }, []);
+
+  const fetchScenes = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/scenes`);
+      console.log("HOW ABOUT THIS FOR THE SIMPLE Scenes:", response.data);
+    } catch (error) {
+      console.error("Error fetching scenes:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchScenes();
+  }, [API_BASE_URL]);
 
   useEffect(() => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
         const scriptIds = userData.scripts_id_array.join(",");
-        console.log("scriptIds", scriptIds);
+        console.log("HOW ABOUT THIS scriptIds", scriptIds);
 
         try {
           const response = await fetch(
@@ -148,10 +162,10 @@ const ScriptsLibraryComponent: React.FC = () => {
             const data = await response.json();
             setScriptList(data);
           } else {
-            console.error("Failed to fetch scripts data");
+            console.error("HOW ABOUT THIS Failed to fetch scripts data");
           }
         } catch (error) {
-          console.error("Error fetching scripts data:", error);
+          console.error("HOW ABOUT THIS Error fetching scripts data:", error);
         } finally {
           setLoading(false);
         }
