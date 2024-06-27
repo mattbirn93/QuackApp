@@ -23,6 +23,12 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!scriptId) {
+        console.error("No scriptId provided");
+        return;
+      }
+
+      console.log("Fetched scriptId:", scriptId);
       const start = performance.now();
 
       try {
@@ -50,9 +56,7 @@ const App: React.FC = () => {
       }
     };
 
-    if (scriptId) {
-      fetchData();
-    }
+    fetchData();
   }, [API_BASE_URL, scriptId]);
 
   return (
