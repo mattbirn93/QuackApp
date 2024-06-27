@@ -4,7 +4,7 @@ import { resolve } from "path";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
-import connectDB from "./backend/config/db.js"; // Adjust the path as needed
+import connectDB from "./backend/config/db.js";
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
@@ -40,7 +40,7 @@ app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Define static files location; typically, this would be where your built frontend reside
+// Define static files location; typically, this would be where your built frontend resides
 const publicPath = resolve("dist");
 
 // Serve static files
