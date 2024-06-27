@@ -47,6 +47,7 @@ app.get("*", (req, res) => {
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
 // Set up Socket.io
 const io = new SocketIOServer(server, {
   cors: {
