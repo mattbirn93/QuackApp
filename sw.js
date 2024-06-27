@@ -24,7 +24,6 @@ self.addEventListener("activate", (event) => {
     }),
   );
 });
-
 // Fetch event: handle network requests
 self.addEventListener("fetch", (event) => {
   if (event.request.url.includes("/api/")) {
