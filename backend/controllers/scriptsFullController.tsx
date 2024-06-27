@@ -69,7 +69,10 @@ interface UpdateScriptContentBody {
   newContent: string;
 }
 
-export const updateScriptContent = async (res: Response): Promise<Response> => {
+export const updateScriptContent = async (
+  req: Request<{}, {}, UpdateScriptContentBody, FetchScriptsFullQuery>,
+  res: Response,
+): Promise<Response> => {
   const { scriptId } = req.query;
   const { newContent } = req.body;
 
