@@ -49,9 +49,6 @@ export default defineConfig(({ command, mode }) => {
               purpose: "maskable",
             },
           ],
-          splash_screens: [
-            // Add splash screen details here
-          ],
         },
 
         workbox: {
