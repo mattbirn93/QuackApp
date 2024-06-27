@@ -21,8 +21,7 @@ export function register(config?: Config) {
       return;
     }
     window.addEventListener("load", () => {
-      // Directly use the relative path if PUBLIC_URL is not defined or correct
-      const swUrl = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ""}/sw.js`;
+      const swUrl = `${process.env.PUBLIC_URL || ""}/sw.js`; // Updated line
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
