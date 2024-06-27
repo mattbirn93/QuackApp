@@ -71,6 +71,7 @@ const ScriptsLibraryComponent: React.FC = () => {
 
         setUserData(data);
         console.log("USER DATA", data);
+      } catch (error: any) {
         if (error.response) {
           console.error("Error fetching user data:", error.response.data);
         } else if (error.request) {
