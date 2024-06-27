@@ -50,7 +50,6 @@ export default defineConfig(({ command, mode }) => {
             },
           ],
         },
-
         workbox: {
           runtimeCaching: [
             {
