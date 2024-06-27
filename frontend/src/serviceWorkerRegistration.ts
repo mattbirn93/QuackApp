@@ -20,16 +20,12 @@ export function register(config?: Config) {
     if (publicUrl.origin !== window.location.origin) {
       return;
     }
+
     window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
+      const swUrl = `${process.env.PUBLIC_URL || ""}/sw.js`;
 
       if (isLocalhost) {
-        // Check if a service worker is already controlling the page
-        if (navigator.serviceWorker.controller) {
-          console.log("Service worker is already controlling the page.");
-        } else {
-          checkValidServiceWorker(swUrl, config);
-        }
+        checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
           console.log(
             "This web app is being served cache-first by a service worker. To learn more, visit https://cra.link/PWA",
@@ -57,11 +53,13 @@ function registerValidSW(swUrl: string, config?: Config) {
               console.log(
                 "New content is available and will be used when all tabs for this page are closed. See https://cra.link/PWA.",
               );
+
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
               console.log("Content is cached for offline use.");
+
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
               }
