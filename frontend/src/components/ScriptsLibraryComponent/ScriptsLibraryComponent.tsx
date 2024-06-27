@@ -113,7 +113,6 @@ const ScriptsLibraryComponent: React.FC = () => {
   useEffect(() => {
     fetchScenes();
   }, [API_BASE_URL]);
-
   useEffect(() => {
     const fetchScriptsData = async () => {
       if (userData && userData.scripts_id_array.length > 0) {
