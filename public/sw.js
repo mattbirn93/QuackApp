@@ -1,12 +1,23 @@
 const CACHE_NAME = "my-cache-v1";
 const OFFLINE_URL = "/offline.html";
 
-// Install event: cache offline page and any other necessary assets
+// Install event: cache offline page and other necessary assets
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll([OFFLINE_URL, "/"]); // Add any other assets you want to cache initially
-    }),
+      return cache.addAll([
+        OFFLINE_URL,
+        "/",
+        "/assets/index-4ubWRhfU.js",
+        "/assets/index-BrG-zB5P.css",
+        "/icon-192x192.png",
+        "/icon-512x512.png",
+        "/icon-maskable-512x512.png",
+        "/manifest.webmanifest",
+        "/vite.svg",
+        "/workbox-30ed6c48.js",
+      ]);
+    })
   );
 });
 
@@ -19,19 +30,24 @@ self.addEventListener("activate", (event) => {
           if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
-        }),
+        })
       );
-    }),
+    })
   );
 });
+
 // Fetch event: handle network requests
 self.addEventListener("fetch", (event) => {
   if (event.request.url.includes("/api/")) {
     // Network first for API calls
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request); // Serve from cache if offline
-      }),
+      fetch(event.request)
+        .then((response) => {
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request); // Serve from cache if offline
+        })
     );
   } else {
     // Cache first for other requests
@@ -59,10 +75,81 @@ self.addEventListener("fetch", (event) => {
             // Fallback to offline page if both network and cache fail
             return caches.match(OFFLINE_URL);
           });
-      }),
+      })
     );
   }
 });
+
+
+
+///////////////////////
+
+
+// const CACHE_NAME = "my-cache-v1";
+// const OFFLINE_URL = "/offline.html";
+
+// // Install event: cache offline page and any other necessary assets
+// self.addEventListener("install", (event) => {
+//   event.waitUntil(
+//     caches.open(CACHE_NAME).then((cache) => {
+//       return cache.addAll([OFFLINE_URL, "/"]); // Add any other assets you want to cache initially
+//     }),
+//   );
+// });
+
+// // Activate event: clean up old caches if any
+// self.addEventListener("activate", (event) => {
+//   event.waitUntil(
+//     caches.keys().then((cacheNames) => {
+//       return Promise.all(
+//         cacheNames.map((cacheName) => {
+//           if (cacheName !== CACHE_NAME) {
+//             return caches.delete(cacheName);
+//           }
+//         }),
+//       );
+//     }),
+//   );
+// });
+// // Fetch event: handle network requests
+// self.addEventListener("fetch", (event) => {
+//   if (event.request.url.includes("/api/")) {
+//     // Network first for API calls
+//     event.respondWith(
+//       fetch(event.request).catch(() => {
+//         return caches.match(event.request); // Serve from cache if offline
+//       }),
+//     );
+//   } else {
+//     // Cache first for other requests
+//     event.respondWith(
+//       caches.match(event.request).then((response) => {
+//         if (response) {
+//           return response;
+//         }
+//         return fetch(event.request)
+//           .then((response) => {
+//             if (
+//               !response ||
+//               response.status !== 200 ||
+//               response.type !== "basic"
+//             ) {
+//               return response;
+//             }
+//             const responseClone = response.clone();
+//             caches.open(CACHE_NAME).then((cache) => {
+//               cache.put(event.request, responseClone);
+//             });
+//             return response;
+//           })
+//           .catch(() => {
+//             // Fallback to offline page if both network and cache fail
+//             return caches.match(OFFLINE_URL);
+//           });
+//       }),
+//     );
+//   }
+// });
 
 ////////////////
 
