@@ -24,6 +24,34 @@ createServer(app).listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
+/////////////////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { resolve } from "path";
+// import dotenv from "dotenv";
+
+// dotenv.config(); // Load environment variables from .env file
+
+// const app = express();
+// const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+
+// // Define static files location; typically, this would be where your built frontend resides
+// const publicPath = resolve("dist");
+
+// // Serve static files
+// app.use(express.static(publicPath));
+
+// // Serve index.html on all other routes to support client-side routing
+// app.get("*", (req, res) => {
+//   res.sendFile(resolve(publicPath, "index.html"));
+// });
+
+// // Start HTTP server
+// createServer(app).listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
+
 //////////////
 
 // import express from "express";

@@ -77,5 +77,8 @@
       "sizes": "2048x2732",
       "type": "image/png"
     }
-  ]
+  ],
+  "serviceworker": {
+    "src": "/sw.js"
+  }
 }
