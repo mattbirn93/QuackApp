@@ -4,6 +4,14 @@ export const getApiBaseUrl = () => {
     hostname === "localhost" || hostname === "127.0.0.1"
       ? import.meta.env.VITE_API_BASE_URL_DESKTOP
       : import.meta.env.VITE_API_BASE_URL_MOBILE;
+  console.log(
+    "VITE_API_BASE_URL_DESKTOP:",
+    import.meta.env.VITE_API_BASE_URL_DESKTOP,
+  );
+  console.log(
+    "VITE_API_BASE_URL_MOBILE:",
+    import.meta.env.VITE_API_BASE_URL_MOBILE,
+  );
   console.log(`Determined API Base URL: ${apiUrl}`);
   return apiUrl;
 };
