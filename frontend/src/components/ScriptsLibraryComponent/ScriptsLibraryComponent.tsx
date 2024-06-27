@@ -104,7 +104,7 @@ const ScriptsLibraryComponent: React.FC = () => {
   const fetchScenes = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/api/scenes`);
-      console.log("LLOKIE LOOKIE Scenes:", response.data);
+      console.log("LOOKSIE HERE FOR THE SIMPLE Scenes:", response.data);
     } catch (error) {
       console.error("Error fetching scenes:", error);
     }
