@@ -39,7 +39,7 @@ app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
 // Catch-all route - this should be the last route
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
