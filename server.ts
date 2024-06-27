@@ -1,101 +1,3 @@
-import "tsconfig-paths/register.js";
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
-import connectDB from "./backend/config/db.js"; // Adjust the path as needed
-import { Server as SocketIOServer } from "socket.io";
-import httpProxy from "http-proxy"; // Import http-proxy
-
-// Load environment variables from .env file
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-const PORT = process.env.PORT || 5001;
-
-// Connect to MongoDB
-connectDB();
-
-// Middleware
-app.use(bodyParser.json());
-app.use(express.json());
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ], // Adjust this according to your needs
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  }),
-);
-
-// Create and configure the proxy
-const proxy = httpProxy.createProxyServer({
-  target: "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-  toProxy: true,
-  changeOrigin: true,
-  xfwd: true,
-});
-
-// Proxy setup for specific routes
-app.use("/api", (req, res) => {
-  proxy.web(req, res, {}, (err) => {
-    console.error("Proxy error:", err);
-    res.status(500).send("Proxy error");
-  });
-});
-
-// API Routes
-import userRoutes from "./backend/routes/userRoutes.js";
-import scriptRoutes from "./backend/routes/scriptRoutes.js";
-import sceneRoutes from "./backend/routes/sceneRoutes.js";
-import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
-import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
-app.use("/api/users", userRoutes);
-app.use("/api/scripts", scriptRoutes);
-app.use("/api/scenes", sceneRoutes);
-app.use("/api/sceneVersions", sceneVersionRoutes);
-app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "dist")));
-
-// Catch-all route - this should be the last route
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
-// Start the server
-const server = app.listen(Number(PORT), "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-// Set up Socket.io
-const io = new SocketIOServer(server, {
-  cors: {
-    origin: [
-      "http://localhost:5173",
-      "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ], // Ensure CORS for Socket.io as well
-    methods: ["GET", "POST"],
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log("New client connected", socket.id);
-
-  // Define your socket event handlers here
-});
-
-///////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -105,6 +7,7 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 // import { Server as SocketIOServer } from "socket.io";
+// import httpProxy from "http-proxy"; // Import http-proxy
 
 // // Load environment variables from .env file
 // dotenv.config();
@@ -131,6 +34,22 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
+
+// // Create and configure the proxy
+// const proxy = httpProxy.createProxyServer({
+//   target: "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+//   toProxy: true,
+//   changeOrigin: true,
+//   xfwd: true,
+// });
+
+// // Proxy setup for specific routes
+// app.use("/api", (req, res) => {
+//   proxy.web(req, res, {}, (err) => {
+//     console.error("Proxy error:", err);
+//     res.status(500).send("Proxy error");
+//   });
+// });
 
 // // API Routes
 // import userRoutes from "./backend/routes/userRoutes.js";
@@ -174,6 +93,86 @@ io.on("connection", (socket) => {
 
 //   // Define your socket event handlers here
 // });
+
+///////////////////////
+
+import "tsconfig-paths/register.js";
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./backend/config/db.js"; // Adjust the path as needed
+import { Server as SocketIOServer } from "socket.io";
+
+// Load environment variables from .env file
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 5001;
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+    ], // Adjust this according to your needs
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }),
+);
+// API Routes
+import userRoutes from "./backend/routes/userRoutes.js";
+import scriptRoutes from "./backend/routes/scriptRoutes.js";
+import sceneRoutes from "./backend/routes/sceneRoutes.js";
+import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+
+app.use("/api/users", userRoutes);
+app.use("/api/scripts", scriptRoutes);
+app.use("/api/scenes", sceneRoutes);
+app.use("/api/sceneVersions", sceneVersionRoutes);
+app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "dist")));
+
+// Catch-all route - this should be the last route
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+// Start the server
+const server = app.listen(Number(PORT), "0.0.0.0", () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+// Set up Socket.io
+const io = new SocketIOServer(server, {
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+    ], // Ensure CORS for Socket.io as well
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("New client connected", socket.id);
+
+  // Define your socket event handlers here
+});
 
 //////////////
 
