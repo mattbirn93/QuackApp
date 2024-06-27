@@ -105,9 +105,15 @@ const ScriptsLibraryComponent: React.FC = () => {
       const response = await axios.get(
         `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
       );
-      console.log("LOOKSIE HERE FOR THE SIMPLE Scenes:", response.data);
-    } catch (error) {
+      console.log("Response headers:", response.headers);
+      console.log("Response body:", response.data);
+    } catch (error: any) {
       console.error("Error fetching scenes:", error);
+      if (error.response) {
+        console.log("Error response data:", error.response.data);
+        console.log("Error response status:", error.response.status);
+        console.log("Error response headers:", error.response.headers);
+      }
     }
   };
 
