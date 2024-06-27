@@ -100,7 +100,8 @@
 //   // Define your socket event handlers here
 // });
 
-///////////////////////
+////////////
+///////////////////////////
 
 import "tsconfig-paths/register.js";
 import express from "express";
@@ -111,6 +112,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 import { Server as SocketIOServer } from "socket.io";
+
 // Load environment variables from .env file
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);

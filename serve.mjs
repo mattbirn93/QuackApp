@@ -8,7 +8,7 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
-// Define static files location; typically, this would be where your built frontend resides
+// Define static files location; typically, this would be where your built frontend reside
 const publicPath = resolve("dist");
 
 // Serve static files
@@ -25,6 +25,7 @@ createServer(app).listen(port, () => {
 });
 
 /////////////////////
+//////////
 
 // import express from "express";
 // import { createServer } from "http";
