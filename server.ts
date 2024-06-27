@@ -5,57 +5,33 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./backend/config2.js";
+import connectDB from "./backend/config2.js"; // Assuming this is your currentdb.js
 import { Server as SocketIOServer } from "socket.io";
 
-// Importing routes
+// Load environment variables from .env file
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 5001;
+
+// Connect to MongoDB
+connectDB();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
+
+// API Routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-import { createUserSocket } from "./backend/controllers/userController2.js";
-import { getSceneVersionContentSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-import {
-  getCharactersById,
-  addCharacterToArray,
-  updateCharacterInArray,
-} from "./backend/controllers/charactersWSController.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT || 5001;
-
-app.use(bodyParser.json());
-app.use(express.json());
-app.use(cors());
-
-connectDB();
-
-// Disable caching for all responses
-app.use((req, res, next) => {
-  res.set(
-    "Cache-Control",
-    "no-store, no-cache, must-revalidate, proxy-revalidate",
-  );
-  res.set("Pragma", "no-cache");
-  res.set("Expires", "0");
-  res.set("Surrogate-Control", "no-store");
-  console.log("LOOK HERE Incoming request:", req.method, req.path);
-  console.log(
-    `LOOK HERE Request URL: ${req.url}, API Base URL: ${process.env.API_BASE_URL}`,
-  );
-  next();
-});
-
-// Define API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/scripts", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
@@ -74,7 +50,8 @@ app.get("*", (req, res) => {
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-// Set up Socket.io
+
+// // Set up Socket.io
 // const io = new SocketIOServer(server, {
 //   cors: {
 //     origin: "*",
@@ -86,7 +63,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log("New client connected", socket.id);
 
 //   socket.on("add_user", (data) => {
-//     createUserSocket(data, (error: any, savedUser: any) => {
+//     createUserSocket(data, (error, savedUser) => {
 //       if (error) {
 //         socket.emit("user_add_error", error);
 //       } else {
@@ -94,9 +71,10 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //       }
 //     });
 //   });
+
 //   socket.on("get_scene_version_content", (data) => {
 //     const { id } = data;
-//     getSceneVersionContentSocket(id, (error: any, result: any) => {
+//     getSceneVersionContentSocket(id, (error, result) => {
 //       if (error) {
 //         socket.emit("get_scene_version_content_error", error);
 //       } else {
@@ -107,7 +85,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 
 //   socket.on("create_content_item", (data) => {
 //     console.log("Received create_content_item event:", data);
-//     createContentItemSocket(data, (error: any, result: any) => {
+//     createContentItemSocket(data, (error, result) => {
 //       if (error) {
 //         socket.emit("create_content_item_error", error);
 //       } else {
@@ -118,7 +96,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 
 //   socket.on("update_content_item", (data) => {
 //     console.log("Received update_content_item event:", data);
-//     updateContentItemSocket(data, (error: any, result: any) => {
+//     updateContentItemSocket(data, (error, result) => {
 //       if (error) {
 //         socket.emit("update_content_item_error", error);
 //       } else {
@@ -129,7 +107,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 
 //   socket.on("delete_content_item", (data) => {
 //     console.log("Received delete_content_item event:", data);
-//     deleteContentItemSocket(data, (error: any, result: any) => {
+//     deleteContentItemSocket(data, (error, result) => {
 //       if (error) {
 //         socket.emit("delete_content_item_error", error);
 //       } else {
@@ -139,7 +117,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   });
 
 //   socket.on("getCharactersById", (id) => {
-//     getCharactersById(id, (error: any, characters: any) => {
+//     getCharactersById(id, (error, characters) => {
 //       if (error) {
 //         socket.emit("error", error);
 //       } else {
@@ -149,7 +127,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   });
 
 //   socket.on("addCharacterToArray", (data) => {
-//     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
+//     addCharacterToArray(data, (error, updatedCharacters) => {
 //       if (error) {
 //         socket.emit("error", error);
 //       } else {
@@ -159,7 +137,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   });
 
 //   socket.on("updateCharacterInArray", (data) => {
-//     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
+//     updateCharacterInArray(data, (error, updatedCharacters) => {
 //       if (error) {
 //         socket.emit("error", error);
 //       } else {
