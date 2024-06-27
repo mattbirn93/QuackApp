@@ -54,8 +54,9 @@ const ScriptsLibraryComponent: React.FC = () => {
           },
         );
 
-        if (response.status !== 200) {
-          throw new Error(`Unexpected response status: ${response.status}`);
+        const contentType = response.headers["content-type"];
+        if (!contentType || contentType.indexOf("application/json") === -1) {
+          throw new Error("Expected JSON response, but received non-JSON data");
         }
 
         const data = response.data;
@@ -63,13 +64,13 @@ const ScriptsLibraryComponent: React.FC = () => {
           throw new Error("Expected JSON response, but received non-JSON data");
         }
 
+        // Ensure scripts_id_array is an array
         if (!Array.isArray(data.scripts_id_array)) {
           data.scripts_id_array = [];
         }
 
         setUserData(data);
         console.log("USER DATA", data);
-      } catch (error: any) {
         if (error.response) {
           console.error("Error fetching user data:", error.response.data);
         } else if (error.request) {
@@ -81,6 +82,7 @@ const ScriptsLibraryComponent: React.FC = () => {
         setLoading(false);
       }
     };
+
     fetchUserData();
   }, [API_BASE_URL]); // Dependency array to trigger the effect when API_BASE_URL changes
 
