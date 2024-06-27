@@ -54,6 +54,7 @@ const io = new SocketIOServer(server, {
     methods: ["GET", "POST"],
   },
 });
+
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
