@@ -43,6 +43,14 @@ const proxy = httpProxy.createProxyServer({
   xfwd: true,
 });
 
+// Proxy setup for specific routes
+app.use("/api", (req, res) => {
+  proxy.web(req, res, {}, (err) => {
+    console.error("Proxy error:", err);
+    res.status(500).send("Proxy error");
+  });
+});
+
 // API Routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -55,14 +63,6 @@ app.use("/api/scripts", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
-// Proxy setup for specific routes
-app.use("/api", (req, res) => {
-  proxy.web(req, res, {}, (err) => {
-    console.error("Proxy error:", err);
-    res.status(500).send("Proxy error");
-  });
-});
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "dist")));
