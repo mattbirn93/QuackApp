@@ -66,10 +66,18 @@ app.get("*", (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) => {
+    console.error(err.stack);
+    res.status(500).send("Something broke!");
+    next(err);
+  },
+);
 
 // Start the server
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
