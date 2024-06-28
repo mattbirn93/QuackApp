@@ -33,7 +33,7 @@ app.use(
   }),
 );
 
-//test
+// Test route
 app.get("/test", (req, res) => {
   res.send("API is working!");
 });
@@ -51,26 +51,26 @@ app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Serve static files from the React apps
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, "dist")));
 
 // Catch-all route - this should be the last route
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-// Start the servers
+// Start the server
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// Set up Socket.ios
+// Set up Socket.IO
 const io = new SocketIOServer(server, {
   cors: {
     origin: [
       "http://localhost:5173",
       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ], // Ensure CORS for Socket.io as well
+    ], // Ensure CORS for Socket.IO as well
     methods: ["GET", "POST"],
   },
 });
