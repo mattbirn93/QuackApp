@@ -81,6 +81,10 @@ app.get("/butterfly", (req, res) => {
   res.send("butterfly is working!");
 });
 
+app.get("/api/dog", (req, res) => {
+  res.json({ message: "Woof!" });
+});
+
 // Serve index.html on all other routes to support client-side routing
 app.get("/", (req, res) => {
   res.sendFile(resolve(publicPath, "index.html"));
