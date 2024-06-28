@@ -38,7 +38,7 @@ app.get("/test", (req, res) => {
   res.send("API is working!");
 });
 
-// API Routes
+// API Routess
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
