@@ -1,91 +1,3 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { VitePWA } from "vite-plugin-pwa";
-import path from "path";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-function sanitizePath(path) {
-  return path.replace(/\/+$/, "").replace(/^\/+/, "/");
-}
-
-export default defineConfig(({ command, mode }) => {
-  const serverConfig = {
-    host: "0.0.0.0",
-    port: process.env.PORT || 5173,
-  };
-
-  const baseUrl = sanitizePath(process.env.VITE_PUBLIC_URL || "/");
-
-  return {
-    base: baseUrl,
-    plugins: [
-      react(),
-      VitePWA({
-        registerType: "autoUpdate",
-        manifest: {
-          name: "QuackApp",
-          short_name: "QuackApp",
-          description: "My screenwriting app",
-          theme_color: "#4A90E2",
-          background_color: "#ffffff",
-          display: "standalone",
-          start_url: baseUrl,
-          scope: baseUrl,
-          icons: [
-            {
-              src: "icon-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
-              purpose: "any",
-            },
-            {
-              src: "icon-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-              purpose: "any",
-            },
-            {
-              src: "icon-maskable-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-              purpose: "maskable",
-            },
-          ],
-        },
-        workbox: {
-          runtimeCaching: [
-            {
-              urlPattern:
-                /^https:\/\/aqueous-fortress-42552-d35f4f194ee9.herokuapp.com\//,
-              handler: "NetworkFirst",
-              options: {
-                cacheName: "api-cache",
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 300, // 5 minutes
-                },
-              },
-            },
-          ],
-        },
-      }),
-    ],
-    resolve: {
-      alias: {
-        "@": path.resolve(__dirname, "./src"),
-      },
-    },
-    server: serverConfig,
-    build: {
-      outDir: "dist",
-    },
-  };
-});
-
-////////////////
-
 // import { defineConfig } from "vite";
 // import react from "@vitejs/plugin-react";
 // import { VitePWA } from "vite-plugin-pwa";
@@ -94,13 +6,17 @@ export default defineConfig(({ command, mode }) => {
 
 // dotenv.config();
 
+// function sanitizePath(path) {
+//   return path.replace(/\/+$/, "").replace(/^\/+/, "/");
+// }
+
 // export default defineConfig(({ command, mode }) => {
 //   const serverConfig = {
 //     host: "0.0.0.0",
 //     port: process.env.PORT || 5173,
 //   };
 
-//   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
+//   const baseUrl = sanitizePath(process.env.VITE_PUBLIC_URL || "/");
 
 //   return {
 //     base: baseUrl,
@@ -167,6 +83,90 @@ export default defineConfig(({ command, mode }) => {
 //     },
 //   };
 // });
+
+////////////////
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
+import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export default defineConfig(({ command, mode }) => {
+  const serverConfig = {
+    host: "0.0.0.0",
+    port: process.env.PORT || 5173,
+  };
+
+  const baseUrl = process.env.VITE_PUBLIC_URL || "/";
+
+  return {
+    base: baseUrl,
+    plugins: [
+      react(),
+      VitePWA({
+        registerType: "autoUpdate",
+        manifest: {
+          name: "QuackApp",
+          short_name: "QuackApp",
+          description: "My screenwriting app",
+          theme_color: "#4A90E2",
+          background_color: "#ffffff",
+          display: "standalone",
+          start_url: baseUrl,
+          scope: baseUrl,
+          icons: [
+            {
+              src: "icon-192x192.png",
+              sizes: "192x192",
+              type: "image/png",
+              purpose: "any",
+            },
+            {
+              src: "icon-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any",
+            },
+            {
+              src: "icon-maskable-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "maskable",
+            },
+          ],
+        },
+        workbox: {
+          runtimeCaching: [
+            {
+              urlPattern:
+                /^https:\/\/aqueous-fortress-42552-d35f4f194ee9.herokuapp.com\//,
+              handler: "NetworkFirst",
+              options: {
+                cacheName: "api-cache",
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 300, // 5 minutes
+                },
+              },
+            },
+          ],
+        },
+      }),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+    server: serverConfig,
+    build: {
+      outDir: "dist",
+    },
+  };
+});
 
 ////////
 
