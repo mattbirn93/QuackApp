@@ -1,1 +1,1 @@
-web: node serve.mjs
+web: node dist/server.js
