@@ -41,11 +41,11 @@ app.use((req, res, next) => {
 });
 
 // Test routes
-app.get("/dog", (req, res) => {
+app.get("/api/dog", (req, res) => {
   res.send("Dog is working!");
 });
 
-app.get("/cat", (req, res) => {
+app.get("/api/cat", (req, res) => {
   res.send("Cat is working!");
 });
 
