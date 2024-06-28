@@ -1,43 +1,34 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
+import { createServer } from "http";
+import { resolve } from "path";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config(); // Load environment variables from .env file
 
-async function createServer() {
-  const app = express();
+const app = express();
+const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
-  const vite = await createViteServer({
-    server: { middlewareMode: "ssr" },
-  });
+// Define static files location; typically, this would be where your built frontend resides
+const publicPath = resolve("dist");
 
-  app.use(vite.middlewares);
+// Serve static files
+app.use(express.static(publicPath));
 
-  app.use("*", async (req, res) => {
-    const url = req.originalUrl;
+// Serve index.html on all other routes to support client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(resolve(publicPath, "index.html"));
+});
 
-    try {
-      const template = await vite.transformIndexHtml(url, "");
-      const render = (await vite.ssrLoadModule("/src/entry-server.js")).render;
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
 
-      const appHtml = await render(url);
-      const html = template.replace(`<!--app-html-->`, appHtml);
-
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
-    } catch (e) {
-      vite.ssrFixStacktrace(e);
-      console.error(e.stack);
-      res.status(500).end(e.stack);
-    }
-  });
-
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
-}
-
-createServer();
+// Start HTTP server
+createServer(app).listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
 
 ///////////
 

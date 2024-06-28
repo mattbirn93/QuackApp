@@ -9,7 +9,7 @@ dotenv.config();
 export default defineConfig(({ command, mode }) => {
   const serverConfig = {
     host: "0.0.0.0",
-    port: process.env.PORT || 5173, // Use Heroku assigned port in production
+    port: process.env.PORT || 5173,
   };
 
   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
@@ -49,63 +49,12 @@ export default defineConfig(({ command, mode }) => {
               purpose: "maskable",
             },
           ],
-          splash_screens: [
-            {
-              src: "splash-640x1136.png",
-              sizes: "640x1136",
-              type: "image/png",
-            },
-            {
-              src: "splash-750x1334.png",
-              sizes: "750x1334",
-              type: "image/png",
-            },
-            {
-              src: "splash-1242x2208.png",
-              sizes: "1242x2208",
-              type: "image/png",
-            },
-            {
-              src: "splash-1125x2436.png",
-              sizes: "1125x2436",
-              type: "image/png",
-            },
-            {
-              src: "splash-828x1792.png",
-              sizes: "828x1792",
-              type: "image/png",
-            },
-            {
-              src: "splash-1242x2688.png",
-              sizes: "1242x2688",
-              type: "image/png",
-            },
-            {
-              src: "splash-1536x2048.png",
-              sizes: "1536x2048",
-              type: "image/png",
-            },
-            {
-              src: "splash-1668x2224.png",
-              sizes: "1668x2224",
-              type: "image/png",
-            },
-            {
-              src: "splash-1668x2388.png",
-              sizes: "1668x2388",
-              type: "image/png",
-            },
-            {
-              src: "splash-2048x2732.png",
-              sizes: "2048x2732",
-              type: "image/png",
-            },
-          ],
         },
         workbox: {
           runtimeCaching: [
             {
-              urlPattern: /^https:\/\/your-api-domain\.com\//,
+              urlPattern:
+                /^https:\/\/aqueous-fortress-42552-d35f4f194ee9.herokuapp.com\//,
               handler: "NetworkFirst",
               options: {
                 cacheName: "api-cache",
