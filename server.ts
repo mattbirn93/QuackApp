@@ -7,7 +7,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./backend/config/db.js";
 import { Server as SocketIOServer } from "socket.io";
-import forceHttps from "express-force-https";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,9 +16,6 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-
-// Enforce HTTPS
-app.use(forceHttps);
 
 // Connect to MongoDB
 connectDB();
