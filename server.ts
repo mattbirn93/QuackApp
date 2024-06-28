@@ -7,6 +7,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./backend/config/db.js";
 import { Server as SocketIOServer } from "socket.io";
+import forceHttps from "express-force-https";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -16,6 +17,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
+// Enforce HTTPS
+app.use(forceHttps);
 
 // Connect to MongoDB
 connectDB();
@@ -55,7 +59,7 @@ app.get("/api/cat", (req, res) => {
   res.send("Cat is working!");
 });
 
-// API Route
+// API Routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
@@ -73,7 +77,7 @@ const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
 // Catch-all route to serve index.html (must be placed after all other routes)
-app.get(/^\/(?!api\/).*/, (req, res) => {
+app.get("*", (req, res) => {
   const indexPath = path.resolve(distPath, "index.html");
   res.sendFile(indexPath, (err) => {
     if (err) {
@@ -102,7 +106,7 @@ const io = new SocketIOServer(server, {
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
-  // Define your socket event handlers heres
+  // Define your socket event handlers here
 });
 
 ///////////////////////////

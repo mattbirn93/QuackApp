@@ -71,12 +71,11 @@ const publicPath = resolve("dist");
 // Serve static files
 app.use(express.static(publicPath));
 
-//test
+// API routes
 app.get("/test", (req, res) => {
   res.send("API is working!");
 });
 
-//butterfly
 app.get("/butterfly", (req, res) => {
   res.send("butterfly is working!");
 });
@@ -85,9 +84,17 @@ app.get("/api/dog", (req, res) => {
   res.json({ message: "Woof!" });
 });
 
+app.get("/food", (req, res) => {
+  res.json({ message: "food route is working" });
+});
+
 // Serve index.html on all other routes to support client-side routing
 app.get("*", (req, res) => {
-  res.sendFile(resolve(publicPath, "index.html"));
+  res.sendFile(resolve(publicPath, "index.html"), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
 });
 
 // Error handling middleware
