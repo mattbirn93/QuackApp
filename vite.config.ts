@@ -15,7 +15,7 @@ export default defineConfig(({ command, mode }) => {
   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
 
   return {
-    base: baseUrl, // Use VITE_PUBLIC_URL from .env or fallback to '/'
+    base: baseUrl,
     plugins: [
       react(),
       VitePWA({
