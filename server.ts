@@ -41,9 +41,15 @@ app.use((req, res, next) => {
 });
 
 // Simple test route
-app.get("/food", (req, res) => {
-  console.log("food route accessed");
-  res.json({ message: "food route is working" });
+app.get("/troppers", (req, res) => {
+  console.log("troopers route accessed");
+  res.json({ message: "troopers route is working" });
+});
+
+// Simple test route
+app.get("/api/poopers", (req, res) => {
+  console.log("poopers route accessed");
+  res.json({ message: "poopers route is working" });
 });
 
 // Test routes
