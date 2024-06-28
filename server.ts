@@ -34,12 +34,11 @@ app.use(
   }),
 );
 
-// Test route
+// Test routes
 app.get("/dog", (req, res) => {
   res.send("Dog is working!");
 });
 
-// Test route
 app.get("/cat", (req, res) => {
   res.send("Cat is working!");
 });
@@ -61,7 +60,7 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
-// Catch-all route to serve index.html
+// Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
   const indexPath = path.join(distPath, "index.html");
   res.sendFile(indexPath, (err) => {
