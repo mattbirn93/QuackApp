@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "serve -s dist",
+    "start": "node dist/server.js",
     "build": "NODE_ENV=production tsc && vite build",
     "server": "nodemon --watch server.ts --exec 'tsc && node dist/server.js'",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
