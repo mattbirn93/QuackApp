@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "outDir": "./build",
+    "outDir": "./dist",
     "typeRoots": [
       "./node_modules/@types",
       "./types"

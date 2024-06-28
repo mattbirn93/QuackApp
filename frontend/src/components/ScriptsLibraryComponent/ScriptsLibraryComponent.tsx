@@ -104,54 +104,54 @@ const ScriptsLibraryComponent: React.FC = () => {
   );
 
   ////////test route
-  // const fetchScenes = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
-  //     );
-  //     console.log("HOW ABOUT THIS Response headers:", response.headers);
-  //     console.log("HOW ABOUT THIS  Response body:", response.data);
-  //   } catch (error: any) {
-  //     // Typing error as any to handle response correctly
-  //     console.error("HOW ABOUT THIS  Error fetching scenes:", error);
-  //     if (error.response) {
-  //       console.log(
-  //         "HOW ABOUT THIS  Error response data:",
-  //         error.response.data,
-  //       );
-  //       console.log(
-  //         "HOW ABOUT THIS  Error response status:",
-  //         error.response.status,
-  //       );
-  //       console.log(
-  //         "HOW ABOUT THIS  Error response headers:",
-  //         error.response.headers,
-  //       );
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchScenes();
-  // }, []);
-
   const fetchScenes = async () => {
     try {
       const response = await axios.get(
-        "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes",
+        `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
       );
-      console.log(
-        "HOW YOU STINK THIS FOR THE SIMPLE Scenes SUCKAH MC:",
-        response.data,
-      );
-    } catch (error) {
-      console.error("HOW ABOUT THIS Error fetching scenes:", error);
+      console.log("HOW ABOUT THIS Response headers:", response.headers);
+      console.log("HOW ABOUT THIS  Response body:", response.data);
+    } catch (error: any) {
+      // Typing error as any to handle response correctly
+      console.error("HOW ABOUT THIS  Error fetching scenes:", error);
+      if (error.response) {
+        console.log(
+          "HOW ABOUT THIS  Error response data:",
+          error.response.data,
+        );
+        console.log(
+          "HOW ABOUT THIS  Error response status:",
+          error.response.status,
+        );
+        console.log(
+          "HOW ABOUT THIS  Error response headers:",
+          error.response.headers,
+        );
+      }
     }
   };
 
   useEffect(() => {
     fetchScenes();
-  }, [API_BASE_URL]);
+  }, []);
+
+  // const fetchScenes = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes",
+  //     );
+  //     console.log(
+  //       "HOW YOU STINK THIS FOR THE SIMPLE Scenes SUCKAH MC:",
+  //       response.data,
+  //     );
+  //   } catch (error) {
+  //     console.error("HOW ABOUT THIS Error fetching scenes:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchScenes();
+  // }, [API_BASE_URL]);
 
   // const fetchScenes = async () => {
   //   try {
