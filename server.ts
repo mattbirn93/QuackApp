@@ -33,6 +33,11 @@ app.use(
   }),
 );
 
+//test
+app.get("/test", (req, res) => {
+  res.send("API is working!");
+});
+
 // API Routes
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -45,11 +50,6 @@ app.use("/api/scripts", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
-//test
-app.get("/test", (req, res) => {
-  res.send("API is working!");
-});
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "dist")));
