@@ -1,28 +1,71 @@
 import express from "express";
-import { createServer } from "http";
-import { resolve } from "path";
+import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
-const app = express();
-const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+async function createServer() {
+  const app = express();
 
-// Define static files location; typically, this would be where your built frontend reside
-const publicPath = resolve("dist");
+  const vite = await createViteServer({
+    server: { middlewareMode: "ssr" },
+  });
 
-// Serve static files
-app.use(express.static(publicPath));
+  app.use(vite.middlewares);
 
-// Serve index.html on all other routes to support client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(resolve(publicPath, "index.html"));
-});
+  app.use("*", async (req, res) => {
+    const url = req.originalUrl;
 
-// Start HTTP server
-createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+    try {
+      const template = await vite.transformIndexHtml(url, "");
+      const render = (await vite.ssrLoadModule("/src/entry-server.js")).render;
+
+      const appHtml = await render(url);
+      const html = template.replace(`<!--app-html-->`, appHtml);
+
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    } catch (e) {
+      vite.ssrFixStacktrace(e);
+      console.error(e.stack);
+      res.status(500).end(e.stack);
+    }
+  });
+
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
+
+createServer();
+
+///////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { resolve } from "path";
+// import dotenv from "dotenv";
+
+// dotenv.config(); // Load environment variables from .env file
+
+// const app = express();
+// const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+
+// // Define static files location; typically, this would be where your built frontend reside
+// const publicPath = resolve("dist");
+
+// // Serve static files
+// app.use(express.static(publicPath));
+
+// // Serve index.html on all other routes to support client-side routing
+// app.get("*", (req, res) => {
+//   res.sendFile(resolve(publicPath, "index.html"));
+// });
+
+// // Start HTTP server
+// createServer(app).listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
 
 ///////////
 
