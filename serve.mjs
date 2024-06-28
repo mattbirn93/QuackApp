@@ -3,11 +3,15 @@ import { createServer } from "http";
 import { resolve } from "path";
 import cors from "cors";
 import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 import { Server as SocketIOServer } from "socket.io";
 
 // Load environment variables from .env file
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
@@ -47,7 +51,7 @@ app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
 // Define static files location; typically, this would be where your built frontend resides
-const publicPath = resolve("dist");
+const publicPath = resolve(__dirname, "dist");
 
 // Serve static files
 app.use(express.static(publicPath));
