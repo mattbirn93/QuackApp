@@ -108,7 +108,7 @@ const io = new SocketIOServer(server, {
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
 
-  // Define your socket event handlers here
+  // Define your socket event handlers heres
 });
 
 ///////////////////////////
