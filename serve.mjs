@@ -1,38 +1,40 @@
+// serve.mjs
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import apiRoutes from "./api.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "dist")));
+app.use("/api", apiRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+///////////////////
+
 // import express from "express";
 // import { createServer } from "http";
 // import { resolve } from "path";
 // import dotenv from "dotenv";
-// import helmet from "helmet";
-// import compression from "compression";
-// import morgan from "morgan";
 
 // dotenv.config(); // Load environment variables from .env file
 
 // const app = express();
 // const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
-// // Log environment variables to debug on Heroku
-// console.log("MONGO_URI:", process.env.MONGO_URI);
-// console.log(
-//   "VITE_API_BASE_URL_DESKTOP:",
-//   process.env.VITE_API_BASE_URL_DESKTOP,
-// );
-// console.log("VITE_API_BASE_URL_MOBILE:", process.env.VITE_API_BASE_URL_MOBILE);
-// console.log("MONGO_COLLECTION_NAME:", process.env.MONGO_COLLECTION_NAME);
-// console.log("VITE_USE_HTTPS:", process.env.VITE_USE_HTTPS);
-// console.log("VITE_PUBLIC_URL:", process.env.VITE_PUBLIC_URL);
-
 // // Define static files location; typically, this would be where your built frontend resides
 // const publicPath = resolve("dist");
-
-// // Use helmet for security
-// app.use(helmet());
-
-// // Use compression for gzip compression
-// app.use(compression());
-
-// // Use morgan for logging
-// app.use(morgan("combined"));
 
 // // Serve static files
 // app.use(express.static(publicPath));
@@ -52,40 +54,6 @@
 // createServer(app).listen(port, () => {
 //   console.log(`Server is running on http://localhost:${port}`);
 // });
-
-///////////////////
-
-import express from "express";
-import { createServer } from "http";
-import { resolve } from "path";
-import dotenv from "dotenv";
-
-dotenv.config(); // Load environment variables from .env file
-
-const app = express();
-const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
-
-// Define static files location; typically, this would be where your built frontend resides
-const publicPath = resolve("dist");
-
-// Serve static files
-app.use(express.static(publicPath));
-
-// Serve index.html on all other routes to support client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(resolve(publicPath, "index.html"));
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something went wrong!");
-});
-
-// Start HTTP server
-createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
 
 ///////////
 
