@@ -51,7 +51,7 @@ app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Serve static files from the React app
+// Serve static files from the React apps
 app.use(express.static(path.join(__dirname, "dist")));
 
 // Catch-all route - this should be the last route
