@@ -72,9 +72,9 @@ const publicPath = resolve("dist");
 app.use(express.static(publicPath));
 
 //test
-app.get("/test", (req, res) => {
-  res.send("API is working!");
-});
+// app.get("/test", (req, res) => {
+//   res.send("API is working!");
+// });
 
 // Serve index.html on all other routes to support client-side routing
 app.get("*", (req, res) => {
