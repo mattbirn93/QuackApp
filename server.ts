@@ -5,11 +5,12 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./backend/config/db.js"; // Adjust the path as needed
+import connectDB from "./backend/config/db.js";
 import { Server as SocketIOServer } from "socket.io";
 
 // Load environment variables from .env file
 dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -27,15 +28,20 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ], // Adjust this according to your needs
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
 );
 
 // Test route
-app.get("/test", (req, res) => {
-  res.send("API is working!");
+app.get("/dog", (req, res) => {
+  res.send("Dog is working!");
+});
+
+// Test route
+app.get("/cat", (req, res) => {
+  res.send("Cat is working!");
 });
 
 // API Routes
@@ -52,11 +58,18 @@ app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "dist")));
+const distPath = path.join(__dirname, "dist");
+app.use(express.static(distPath));
 
-// Catch-all route - this should be the last route
+// Catch-all route to serve index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  const indexPath = path.join(distPath, "index.html");
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error("Error sending index.html:", err);
+      res.status(500).send(err);
+    }
+  });
 });
 
 // Start the server
@@ -70,7 +83,7 @@ const io = new SocketIOServer(server, {
     origin: [
       "http://localhost:5173",
       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ], // Ensure CORS for Socket.IO as well
+    ],
     methods: ["GET", "POST"],
   },
 });
