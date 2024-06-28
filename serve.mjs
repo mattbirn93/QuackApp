@@ -65,11 +65,11 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
-// Define static files location; typically, this would be where your built frontend resides
-const publicPath = resolve("dist");
-
-// Serve static files
-app.use(express.static(publicPath));
+// Middleware to log requests
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.path}`);
+  next();
+});
 
 // API routes
 app.get("/test", (req, res) => {
@@ -88,10 +88,16 @@ app.get("/food", (req, res) => {
   res.json({ message: "food route is working" });
 });
 
-// Serve index.html on all other routes to support client-side routing
+// Serve static files
+const publicPath = resolve("dist");
+app.use(express.static(publicPath));
+
+// Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
-  res.sendFile(resolve(publicPath, "index.html"), (err) => {
+  const indexPath = resolve(publicPath, "index.html");
+  res.sendFile(indexPath, (err) => {
     if (err) {
+      console.error("Error sending index.html:", err);
       res.status(500).send(err);
     }
   });
