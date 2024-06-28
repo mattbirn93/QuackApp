@@ -55,7 +55,7 @@ app.get("/api/cat", (req, res) => {
   res.send("Cat is working!");
 });
 
-// API Routes
+// API Route
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
