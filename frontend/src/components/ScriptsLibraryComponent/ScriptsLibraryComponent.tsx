@@ -140,7 +140,10 @@ const ScriptsLibraryComponent: React.FC = () => {
       const response = await axios.get(
         "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes",
       );
-      console.log("HOW ABOUT THIS FOR THE SIMPLE Scenes:", response.data);
+      console.log(
+        "HOW YOU STINK THIS FOR THE SIMPLE Scenes SUCKAH MC:",
+        response.data,
+      );
     } catch (error) {
       console.error("HOW ABOUT THIS Error fetching scenes:", error);
     }
