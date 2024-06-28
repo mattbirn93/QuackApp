@@ -71,6 +71,19 @@ const publicPath = resolve("dist");
 // Serve static files
 app.use(express.static(publicPath));
 
+// API Routes
+import userRoutes from "./backend/routes/userRoutes.js";
+import scriptRoutes from "./backend/routes/scriptRoutes.js";
+import sceneRoutes from "./backend/routes/sceneRoutes.js";
+import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+
+app.use("/api/users", userRoutes);
+app.use("/api/scripts", scriptRoutes);
+app.use("/api/scenes", sceneRoutes);
+app.use("/api/sceneVersions", sceneVersionRoutes);
+app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+
 //test
 app.get("/test", (req, res) => {
   res.send("API is working!");
