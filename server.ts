@@ -62,13 +62,7 @@ app.use(express.static(distPath));
 
 // Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
-  const indexPath = path.join(distPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send(err);
-    }
-  });
+  res.sendFile(path.resolve(distPath, "index.html"));
 });
 
 // Start the server
