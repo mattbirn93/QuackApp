@@ -82,7 +82,7 @@ app.get("/butterfly", (req, res) => {
 });
 
 // Serve index.html on all other routes to support client-side routing
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(resolve(publicPath, "index.html"));
 });
 
