@@ -34,6 +34,12 @@ app.use(
   }),
 );
 
+// Middleware to log requests
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.path}`);
+  next();
+});
+
 // Test routes
 app.get("/dog", (req, res) => {
   res.send("Dog is working!");
@@ -62,7 +68,13 @@ app.use(express.static(distPath));
 
 // Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(distPath, "index.html"));
+  const indexPath = path.resolve(distPath, "index.html");
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error("Error sending index.html:", err);
+      res.status(500).send(err);
+    }
+  });
 });
 
 // Start the server
