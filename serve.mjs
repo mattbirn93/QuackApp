@@ -85,17 +85,17 @@ app.get("/api/dog", (req, res) => {
   res.json({ message: "Woof!" });
 });
 
-import userRoutes from "./backend/routes/userRoutes.js";
-import scriptRoutes from "./backend/routes/scriptRoutes.js";
-import sceneRoutes from "./backend/routes/sceneRoutes.js";
-import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
-import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+// import userRoutes from "./backend/routes/userRoutes.js";
+// import scriptRoutes from "./backend/routes/scriptRoutes.js";
+// import sceneRoutes from "./backend/routes/sceneRoutes.js";
+// import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+// import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 
-app.use("/api/users", userRoutes);
-app.use("/api/scripts", scriptRoutes);
-app.use("/api/scenes", sceneRoutes);
-app.use("/api/sceneVersions", sceneVersionRoutes);
-app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+// app.use("/api/users", userRoutes);
+// app.use("/api/scripts", scriptRoutes);
+// app.use("/api/scenes", sceneRoutes);
+// app.use("/api/sceneVersions", sceneVersionRoutes);
+// app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
 // Serve index.html on all other routes to support client-side routing
 app.get("*", (req, res) => {
