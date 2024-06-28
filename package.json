@@ -10,12 +10,12 @@
   },
    "scripts": {
     "dev": "vite",
-    "start": "node serve.mjs",
-    "build": "NODE_ENV=production tsc && vite build",
-    "server": "tsc && node dist/server.js",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write .",
-    "preview": "node serve.mjs",
+    "start": "serve -s dist",
+    "build:server": "NODE_ENV=production tsc",
+    "build:client": "vite build",
+    "build": "npm run build:server && npm run build:client && npm run combine-builds",
+    "server": "node dist/server.js",
+    "combine-builds": "mv build/* dist/ && rmdir build",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
