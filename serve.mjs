@@ -63,7 +63,7 @@ import dotenv from "dotenv";
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+const port = process.env.PORT || 5001; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
 // Middleware to log requests
 app.use((req, res, next) => {
