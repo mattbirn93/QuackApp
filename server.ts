@@ -40,6 +40,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Simple test route
+app.get("/food", (req, res) => {
+  console.log("food route accessed");
+  res.json({ message: "food route is working" });
+});
+
 // Test routes
 app.get("/api/dog", (req, res) => {
   res.send("Dog is working!");
