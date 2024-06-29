@@ -106,27 +106,48 @@ const ScriptsLibraryComponent: React.FC = () => {
   ////////test route
   const fetchScenes = async () => {
     try {
-      const response = await axios.get(
-        `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
-      );
+      const response = await axios.get(`${API_BASE_URL}/api/scenes`);
+      // Log the entire response headers and body for inspection
       console.log("HOW ABOUT THIS Response headers:", response.headers);
-      console.log("HOW ABOUT THIS  Response body:", response.data);
-    } catch (error: any) {
-      // Typing error as any to handle response correctly
-      console.error("HOW ABOUT THIS  Error fetching scenes:", error);
-      if (error.response) {
-        console.log(
-          "HOW ABOUT THIS  Error response data:",
-          error.response.data,
-        );
-        console.log(
-          "HOW ABOUT THIS  Error response status:",
-          error.response.status,
-        );
-        console.log(
-          "HOW ABOUT THIS  Error response headers:",
-          error.response.headers,
-        );
+      console.log("HOW ABOUT THIS Response body:", response.data);
+
+      // Check if the Content-Type is JSON
+      const contentType = response.headers["content-type"];
+      if (contentType && contentType.includes("application/json")) {
+        // Handle JSON response
+        console.log("HOW ABOUT THIS Received JSON data:", response.data);
+        // Process your JSON data here
+      } else {
+        // Handle non-JSON responses (in this case, text/html)
+        const textData = response.data; // Assuming it's HTML or plain text
+        console.log("HOW ABOUT THIS Received non-JSON data:", textData);
+        // Handle or process HTML data as needed
+      }
+    } catch (error) {
+      console.error("Error fetching scenes:", error);
+      if (axios.isAxiosError(error)) {
+        // Axios error handling
+        if (error.response) {
+          console.log(
+            "HOW ABOUT THIS Error response data:",
+            error.response.data,
+          );
+          console.log(
+            "HOW ABOUT THIS Error response status:",
+            error.response.status,
+          );
+          console.log(
+            "HOW ABOUT THIS Error response headers:",
+            error.response.headers,
+          );
+        } else if (error.request) {
+          console.log("HOW ABOUT THIS Error request:", error.request);
+        } else {
+          console.log("HOW ABOUT THIS Error message:", error.message);
+        }
+      } else {
+        // Other non-Axios errors
+        console.error("HOW ABOUT THIS Non-Axios error:", error);
       }
     }
   };
@@ -134,6 +155,37 @@ const ScriptsLibraryComponent: React.FC = () => {
   useEffect(() => {
     fetchScenes();
   }, []);
+
+  // const fetchScenes = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com/api/scenes`,
+  //     );
+  //     console.log("HOW ABOUT THIS Response headers:", response.headers);
+  //     console.log("HOW ABOUT THIS  Response body:", response.data);
+  //   } catch (error: any) {
+  //     // Typing error as any to handle response correctly
+  //     console.error("HOW ABOUT THIS  Error fetching scenes:", error);
+  //     if (error.response) {
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response data:",
+  //         error.response.data,
+  //       );
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response status:",
+  //         error.response.status,
+  //       );
+  //       console.log(
+  //         "HOW ABOUT THIS  Error response headers:",
+  //         error.response.headers,
+  //       );
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchScenes();
+  // }, []);
 
   // const fetchScenes = async () => {
   //   try {
