@@ -109,7 +109,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong!");
 });
 
-// Start HTTP server
+// Start HTTP servers
 createServer(app).listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
