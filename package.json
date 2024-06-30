@@ -8,14 +8,14 @@
     "node": "18.x",
     "npm": "8.x"
   },
- "scripts": {
+  "scripts": {
     "dev": "vite",
     "start": "node dist/server.js",
     "build": "NODE_ENV=production tsc && vite build",
     "server": "tsc && node dist/server.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "preview": "PORT=5002 node dist/server.js",
+    "preview": "PORT=5173 node dist/server.js",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
