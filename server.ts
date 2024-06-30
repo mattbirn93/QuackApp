@@ -34,7 +34,7 @@ app.use(
   }),
 );
 
-// Middleware to log request
+// Middleware to log requests
 app.use((req, res, next) => {
   console.log(`Request: ${req.method} ${req.path}`);
   next();
