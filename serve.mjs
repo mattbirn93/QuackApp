@@ -36,16 +36,16 @@ app.get("/api/scenes", (req, res) => {
 });
 
 app.post("/api/scenes/createNewScript", (req, res) => {
-  const newScript = req.body;
-  if (!newScript || !newScript.title || !newScript.content) {
+  const { title, title_page } = req.body;
+  if (!title || !title_page || !title_page.title || !title_page.written_by) {
     return res.status(400).json({ error: "Invalid script data" });
   }
   // Implement your logic to save the new script here
   // For example, you could save it to a database
-  console.log("Creating new script:", newScript);
+  console.log("Creating new script:", req.body);
   res
     .status(201)
-    .json({ message: "New script created successfully", script: newScript });
+    .json({ message: "New script created successfully", script: req.body });
 });
 
 // All other GET requests not handled before will return the frontend app
