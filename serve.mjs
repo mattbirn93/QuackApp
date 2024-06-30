@@ -45,7 +45,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static files from the dist directory
+// Serve static files from the dist directorys
 app.use(express.static(join(__dirname, "dist")));
 
 // Test routes
