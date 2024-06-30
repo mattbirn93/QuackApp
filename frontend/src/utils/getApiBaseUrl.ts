@@ -23,8 +23,8 @@
 
 export const getApiBaseUrl = () => {
   const apiUrl =
-    process.env.VITE_API_BASE_URL_DESKTOP ||
-    process.env.VITE_API_BASE_URL_MOBILE;
+    import.meta.env.VITE_API_BASE_URL_DESKTOP ||
+    import.meta.env.VITE_API_BASE_URL_MOBILE;
   console.log(
     "POOPSIE VITE_API_BASE_URL_DESKTOP:",
     import.meta.env.VITE_API_BASE_URL_DESKTOP,
