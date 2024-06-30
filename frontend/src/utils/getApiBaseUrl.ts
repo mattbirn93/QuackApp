@@ -37,10 +37,6 @@ export const getApiBaseUrl = () => {
   return apiUrl;
 };
 
-// Inside the component
-const API_BASE_URL = getApiBaseUrl();
-console.log(`POOPSIE LOOK THERE Using API Base URL: ${API_BASE_URL}`);
-
 //////////////
 
 // export const getApiBaseUrl = () => {
