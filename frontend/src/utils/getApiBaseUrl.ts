@@ -37,7 +37,7 @@ export const getApiBaseUrl = () => {
   return apiUrl;
 };
 
-//////////////
+////////////////
 
 // export const getApiBaseUrl = () => {
 //   const hostname = window.location.hostname;
