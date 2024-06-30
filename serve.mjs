@@ -27,6 +27,22 @@ app.use((req, res, next) => {
 app.use(express.static(join(__dirname, "dist")));
 
 // API routes
+app.get("/test", (req, res) => {
+  res.send("API is working!");
+});
+
+app.get("/butterfly", (req, res) => {
+  res.send("butterfly is working!");
+});
+
+app.get("/api/dog", (req, res) => {
+  res.json({ message: "Woof!" });
+});
+
+app.get("/food", (req, res) => {
+  res.json({ message: "food route is working" });
+});
+
 app.get("/api/users/fetchUserById", (req, res) => {
   res.json({ user: "user data" });
 });
