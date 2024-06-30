@@ -9,7 +9,7 @@ export function register(config?: Config) {
     try {
       const publicUrl = new URL(import.meta.env.VITE_PUBLIC_URL);
 
-      console.log("PUBLIC_URL:", import.meta.env.VITE_PUBLIC_URL || "."); // Log PUBLIC_URL with fallback
+      console.log("VITE PUBLIC_URL:", import.meta.env.VITE_PUBLIC_URL || "."); // Log PUBLIC_URL with fallback
       console.log("publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
       console.log("window.location.origin:", window.location.origin); // Log window.location.origin
 
