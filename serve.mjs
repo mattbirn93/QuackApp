@@ -72,12 +72,12 @@ app.get("*", (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5173;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
@@ -175,7 +175,7 @@ process.on("SIGINT", gracefulShutdown);
 //   res.status(500).send("Something broke!");
 // });
 
-// const PORT = process.env.PORT || 5001;
+// const PORT = process.env.PORT || 5173;
 // server.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
 // });
@@ -274,7 +274,7 @@ process.on("SIGINT", gracefulShutdown);
 //   res.status(500).send("Something broke!");
 // });
 
-// const PORT = process.env.PORT || 5001;
+// const PORT = process.env.PORT || 5173;
 // server.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
 // });
@@ -354,7 +354,7 @@ process.on("SIGINT", gracefulShutdown);
 //   res.status(500).send("Something broke!");
 // });
 
-// const PORT = process.env.PORT || 5001;
+// const PORT = process.env.PORT || 5173;
 // server.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
 // });
@@ -408,7 +408,7 @@ process.on("SIGINT", gracefulShutdown);
 //   res.sendFile(join(__dirname, "dist", "index.html"));
 // });
 
-// const PORT = process.env.PORT || 5001;
+// const PORT = process.env.PORT || 5173;
 // server.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
 // });
