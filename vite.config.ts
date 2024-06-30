@@ -9,7 +9,7 @@ dotenv.config();
 export default defineConfig(({ command, mode }) => {
   const serverConfig = {
     host: "0.0.0.0",
-    port: parseInt(process.env.VITE_PORT) || 5173,
+    port: process.env.PORT || 5173,
   };
 
   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
