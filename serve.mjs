@@ -35,7 +35,7 @@ app.get("/food", (req, res) => {
 const publicPath = resolve("dist");
 app.use(express.static(publicPath));
 
-// Catch-all route to serve index.html (must be placed after all other routes)
+// Catch-all route to serve index.html (must be placed after all sother routes)
 app.get("*", (req, res) => {
   const indexPath = resolve(publicPath, "index.html");
   res.sendFile(indexPath, (err) => {
