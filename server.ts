@@ -40,6 +40,31 @@ app.use((req, res, next) => {
   next();
 });
 
+// // Simple test routes
+app.get("/troppers", (req, res) => {
+  console.log("troopers route accessed");
+  res.json({ message: "troopers route is working" });
+});
+app.get("/api/poopers", (req, res) => {
+  console.log("poopers route accessed");
+  res.json({ message: "poopers route is working" });
+});
+app.get("/api/dog", (req, res) => {
+  res.send("Dog is working!");
+});
+app.get("/api/cat", (req, res) => {
+  res.send("Cat is working!");
+});
+app.get("/test", (req, res) => {
+  res.send("API is working!");
+});
+app.get("/butterfly", (req, res) => {
+  res.send("butterfly is working!");
+});
+app.get("/food", (req, res) => {
+  res.json({ message: "food route is working" });
+});
+
 // API Route imports
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
