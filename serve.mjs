@@ -37,7 +37,9 @@ app.get("/api/scenes", (req, res) => {
 
 app.post("/api/scenes/createNewScript", (req, res) => {
   const { title, title_page } = req.body;
+  console.log("Received data:", req.body); // Log the received data for debugging
   if (!title || !title_page || !title_page.title || !title_page.written_by) {
+    console.error("Invalid script data:", req.body); // Log invalid data
     return res.status(400).json({ error: "Invalid script data" });
   }
   // Implement your logic to save the new script here
@@ -54,7 +56,7 @@ app.get("*", (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
@@ -93,6 +95,104 @@ const gracefulShutdown = () => {
 
 process.on("SIGTERM", gracefulShutdown);
 process.on("SIGINT", gracefulShutdown);
+
+////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { fileURLToPath } from "url";
+// import { dirname, join } from "path";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+// const app = express();
+// const server = createServer(app);
+
+// app.use(express.json()); // Add this line to parse JSON bodies
+
+// // Middleware for logging requests
+// app.use((req, res, next) => {
+//   console.log(
+//     `[${new Date().toISOString()}] Request: ${req.method} ${req.url}`,
+//   );
+//   console.log(`Body: ${JSON.stringify(req.body)}`);
+//   next();
+// });
+
+// // Serve static files from the dist directory
+// app.use(express.static(join(__dirname, "dist")));
+
+// // API routes
+// app.get("/api/users/fetchUserById", (req, res) => {
+//   res.json({ user: "user data" });
+// });
+
+// app.get("/api/scenes", (req, res) => {
+//   res.json({ scenes: "scene data" });
+// });
+
+// app.post("/api/scenes/createNewScript", (req, res) => {
+//   const { title, title_page } = req.body;
+//   if (!title || !title_page || !title_page.title || !title_page.written_by) {
+//     return res.status(400).json({ error: "Invalid script data" });
+//   }
+//   // Implement your logic to save the new script here
+//   // For example, you could save it to a database
+//   console.log("Creating new script:", req.body);
+//   res
+//     .status(201)
+//     .json({ message: "New script created successfully", script: req.body });
+// });
+
+// // All other GET requests not handled before will return the frontend app
+// app.get("*", (req, res) => {
+//   res.sendFile(join(__dirname, "dist", "index.html"));
+// });
+
+// // Error handling middleware
+// app.use((err, req, res) => {
+//   console.error(err.stack);
+//   res.status(500).send("Something broke!");
+// });
+
+// const PORT = process.env.PORT || 5001;
+// server.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+// // Handle unhandled promise rejections
+// process.on("unhandledRejection", (reason, promise) => {
+//   console.error("Unhandled Rejection at:", promise, "reason:", reason);
+//   // Application specific logging, throwing an error, or other logic here
+// });
+
+// // Handle uncaught exceptions
+// process.on("uncaughtException", (error) => {
+//   console.error("Uncaught Exception thrown:", error);
+//   // Application specific logging, throwing an error, or other logic here
+//   process.exit(1); // Optional: Exit the process to avoid undefined state
+// });
+
+// // Graceful shutdown
+// const gracefulShutdown = () => {
+//   console.log("Shutting down gracefully...");
+//   server.close(() => {
+//     console.log("Closed out remaining connections");
+//     process.exit(0);
+//   });
+
+//   setTimeout(() => {
+//     console.error("Forcing shutdown...");
+//     process.exit(1);
+//   }, 10000);
+// };
+
+// process.on("SIGTERM", gracefulShutdown);
+// process.on("SIGINT", gracefulShutdown);
 
 ////////////
 
