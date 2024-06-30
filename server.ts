@@ -74,7 +74,7 @@ app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Serve static files from the React apps
+// Serve static files from the React app
 const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
