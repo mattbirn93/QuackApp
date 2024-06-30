@@ -11,7 +11,7 @@ const app = express();
 const server = createServer(app);
 
 // Serve static files from the React frontend app
-app.use(express.static(join(__dirname, "dist")));
+app.use(express.static(join(__dirname, "dist/frontend")));
 
 // API routes
 app.get("/api/users/fetchUserById", (req, res) => {
@@ -26,51 +26,13 @@ app.get("/api/scenes", (req, res) => {
 
 // All other GET requests not handled before will return the frontend app
 app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, "dist", "index.html"));
+  res.sendFile(join(__dirname, "dist/frontend", "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-//////////
-
-// import express from "express";
-// import { createServer } from "http";
-// import { fileURLToPath } from "url";
-// import { dirname } from "path";
-// import { join } from "path";
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
-
-// const app = express();
-// const server = createServer(app);
-
-// // Serve static files from the React frontend app
-// app.use(express.static(join(__dirname, "dist/frontend")));
-
-// // API routes
-// app.get("/api/users/fetchUserById", (req, res) => {
-//   // Your API logic here
-//   res.json({ user: "user data" });
-// });
-
-// app.get("/api/scenes", (req, res) => {
-//   // Your API logic here
-//   res.json({ scenes: "scene data" });
-// });
-
-// // All other GET requests not handled before will return the frontend app
-// app.get("*", (req, res) => {
-//   res.sendFile(join(__dirname, "dist/frontend", "index.html"));
-// });
-
-// const PORT = process.env.PORT || 3000;
-// server.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`);
-// });
 
 ///////////////////
 
