@@ -40,45 +40,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// Simple test route
-app.get("/troppers", (req, res) => {
-  console.log("troopers route accessed");
-  res.json({ message: "troopers route is working" });
-});
-
-// Simple test route
-app.get("/api/poopers", (req, res) => {
-  console.log("poopers route accessed");
-  res.json({ message: "poopers route is working" });
-});
-
-// Test routes
-app.get("/api/dog", (req, res) => {
-  res.send("Dog is working!");
-});
-
-app.get("/api/cat", (req, res) => {
-  res.send("Cat is working!");
-});
-
-// API Route
+// API Route imports
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
 
+// API routes
 app.use("/api/users", userRoutes);
 app.use("/api/scripts", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 
-// Serve static files from the React apps
-const distPath = path.join(__dirname, "dist");
+// Serve static files from the React app
+const distPath = path.join(__dirname, "..", "dist");
 app.use(express.static(distPath));
 
-// Catch-all route to serve index.html (must be placed after all other routes)\
+// Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
   const indexPath = path.resolve(distPath, "index.html");
   res.sendFile(indexPath, (err) => {
@@ -107,9 +87,287 @@ const io = new SocketIOServer(server, {
 
 io.on("connection", (socket) => {
   console.log("New client connected", socket.id);
-
-  // Define your socket event handlers heres
 });
+
+//////////
+
+// import "tsconfig-paths/register.js";
+// // import express from "express";
+// import path from "path";
+// import { fileURLToPath } from "url";
+// import bodyParser from "body-parser";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import connectDB from "./backend/config/db.js";
+// import { Server as SocketIOServer } from "socket.io";
+// import express, { Request, Response, NextFunction } from "express";
+
+// // Load environment variables from .env file
+// dotenv.config();
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// const app = express();
+// const PORT = process.env.PORT || 5001;
+
+// // Connect to MongoDB
+// connectDB();
+
+// // Middleware
+// app.use(bodyParser.json());
+// app.use(express.json());
+// app.use(
+//   cors({
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   }),
+// );
+
+// // Middleware to log requests
+// app.use((req, res, next) => {
+//   console.log(
+//     `[${new Date().toISOString()}] Request: ${req.method} ${req.url}`,
+//   );
+//   console.log(`Body: ${JSON.stringify(req.body)}`);
+//   next();
+// });
+
+// // Simple test routes
+// app.get("/troppers", (req, res) => {
+//   console.log("troopers route accessed");
+//   res.json({ message: "troopers route is working" });
+// });
+// app.get("/api/poopers", (req, res) => {
+//   console.log("poopers route accessed");
+//   res.json({ message: "poopers route is working" });
+// });
+// app.get("/api/dog", (req, res) => {
+//   res.send("Dog is working!");
+// });
+// app.get("/api/cat", (req, res) => {
+//   res.send("Cat is working!");
+// });
+// app.get("/test", (req, res) => {
+//   res.send("API is working!");
+// });
+// app.get("/butterfly", (req, res) => {
+//   res.send("butterfly is working!");
+// });
+// app.get("/food", (req, res) => {
+//   res.json({ message: "food route is working" });
+// });
+// app.post("/api/scenes/createNewScript", (req, res) => {
+//   const { title, title_page } = req.body;
+//   console.log("Received data:", req.body); // Log the received data for debugging
+//   if (!title || !title_page || !title_page.title || !title_page.written_by) {
+//     console.error("Invalid script data:", req.body); // Log invalid data
+//     return res.status(400).json({ error: "Invalid script data" });
+//   }
+//   // Implement your logic to save the new script here
+//   console.log("Creating new script:", req.body);
+//   res
+//     .status(201)
+//     .json({ message: "New script created successfully", script: req.body });
+// });
+
+// // API Routes
+// import userRoutes from "./backend/routes/userRoutes.js";
+// import scriptRoutes from "./backend/routes/scriptRoutes.js";
+// import sceneRoutes from "./backend/routes/sceneRoutes.js";
+// import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+// import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+
+// app.use("/api/users", userRoutes);
+// app.use("/api/scripts", scriptRoutes);
+// app.use("/api/scenes", sceneRoutes);
+// app.use("/api/sceneVersions", sceneVersionRoutes);
+// app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+
+// // Serve static files from the React app
+// const distPath = path.join(__dirname, "dist");
+// app.use(express.static(distPath));
+
+// // Catch-all route to serve index.html (must be placed after all other routes)
+// app.get("*", (req, res) => {
+//   const indexPath = path.resolve(distPath, "index.html");
+//   res.sendFile(indexPath, (err) => {
+//     if (err) {
+//       console.error("Error sending index.html:", err);
+//       res.status(500).send(err);
+//     }
+//   });
+// });
+
+// // Error handling middleware
+// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+//   console.error(err.stack);
+//   res.status(500).send("Something broke!");
+// });
+
+// // Start the server
+// const server = app.listen(Number(PORT), "0.0.0.0", () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+// // Set up Socket.IO
+// const io = new SocketIOServer(server, {
+//   cors: {
+//     origin: ["http://localhost:5173"],
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+// io.on("connection", (socket) => {
+//   console.log("New client connected", socket.id);
+
+//   // Define your socket event handlers here
+// });
+
+// // Handle unhandled promise rejections
+// process.on("unhandledRejection", (reason, promise) => {
+//   console.error("Unhandled Rejection at:", promise, "reason:", reason);
+//   // Application specific logging, throwing an error, or other logic here
+// });
+
+// // Handle uncaught exceptions
+// process.on("uncaughtException", (error) => {
+//   console.error("Uncaught Exception thrown:", error);
+//   // Application specific logging, throwing an error, or other logic here
+//   process.exit(1); // Optional: Exit the process to avoid undefined state
+// });
+
+// // Graceful shutdown
+// const gracefulShutdown = () => {
+//   console.log("Shutting down gracefully...");
+//   server.close(() => {
+//     console.log("Closed out remaining connections");
+//     process.exit(0);
+//   });
+
+//   setTimeout(() => {
+//     console.error("Forcing shutdown...");
+//     process.exit(1);
+//   }, 10000);
+// };
+
+// process.on("SIGTERM", gracefulShutdown);
+// process.on("SIGINT", gracefulShutdown);
+
+/////////////
+
+// import "tsconfig-paths/register.js";
+// import express from "express";
+// import path from "path";
+// import { fileURLToPath } from "url";
+// import bodyParser from "body-parser";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import connectDB from "./backend/config/db.js";
+// import { Server as SocketIOServer } from "socket.io";
+
+// // Load environment variables from .env file
+// dotenv.config();
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// const app = express();
+// const PORT = process.env.PORT || 5001;
+
+// // Connect to MongoDB
+// connectDB();
+
+// // Middleware
+// app.use(bodyParser.json());
+// app.use(express.json());
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173",
+//       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   }),
+// );
+
+// // Middleware to log requests
+// app.use((req, res, next) => {
+//   console.log(`Request: ${req.method} ${req.path}`);
+//   next();
+// });
+
+// // Simple test route
+// app.get("/troppers", (req, res) => {
+//   console.log("troopers route accessed");
+//   res.json({ message: "troopers route is working" });
+// });
+
+// // Simple test route
+// app.get("/api/poopers", (req, res) => {
+//   console.log("poopers route accessed");
+//   res.json({ message: "poopers route is working" });
+// });
+
+// // Test routes
+// app.get("/api/dog", (req, res) => {
+//   res.send("Dog is working!");
+// });
+
+// app.get("/api/cat", (req, res) => {
+//   res.send("Cat is working!");
+// });
+
+// // API Route
+// import userRoutes from "./backend/routes/userRoutes.js";
+// import scriptRoutes from "./backend/routes/scriptRoutes.js";
+// import sceneRoutes from "./backend/routes/sceneRoutes.js";
+// import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
+// import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
+
+// app.use("/api/users", userRoutes);
+// app.use("/api/scripts", scriptRoutes);
+// app.use("/api/scenes", sceneRoutes);
+// app.use("/api/sceneVersions", sceneVersionRoutes);
+// app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
+
+// // Serve static files from the React apps
+// const distPath = path.join(__dirname, "dist");
+// app.use(express.static(distPath));
+
+// // Catch-all route to serve index.html (must be placed after all other routes)\
+// app.get("*", (req, res) => {
+//   const indexPath = path.resolve(distPath, "index.html");
+//   res.sendFile(indexPath, (err) => {
+//     if (err) {
+//       console.error("Error sending index.html:", err);
+//       res.status(500).send(err);
+//     }
+//   });
+// });
+
+// // Start the server
+// const server = app.listen(Number(PORT), "0.0.0.0", () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+// // Set up Socket.IO
+// const io = new SocketIOServer(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:5173",
+//       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+//     ],
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+// io.on("connection", (socket) => {
+//   console.log("New client connected", socket.id);
+
+//   // Define your socket event handlers heres
+// });
 
 ///////////////////////////
 //////////////////////
