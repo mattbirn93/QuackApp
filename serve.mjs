@@ -26,7 +26,7 @@ app.get("/api/scenes", (req, res) => {
 
 // All other GET requests not handled before will return the frontend app
 app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, "dist/frontend", "index.html"));
+  res.sendFile(join(__dirname, "dist", "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
@@ -34,7 +34,7 @@ server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-//////////////////////
+//////////////////////////
 
 // import express from "express";
 // import { createServer } from "http";
