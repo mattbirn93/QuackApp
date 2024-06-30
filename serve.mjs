@@ -1,61 +1,99 @@
 import express from "express";
 import { createServer } from "http";
-import { resolve } from "path";
-import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { join } from "path";
 
-dotenv.config(); // Load environment variables from .env file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+const server = createServer(app);
 
-// Middleware to log requests
-app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.path}`);
-  next();
-});
+// Serve static files from the React frontend app
+app.use(express.static(join(__dirname, "dist/frontend")));
 
 // API routes
-app.get("/test", (req, res) => {
-  res.send("API is working!");
+app.get("/api/users/fetchUserById", (req, res) => {
+  // Your API logic here
+  res.json({ user: "user data" });
 });
 
-app.get("/butterfly", (req, res) => {
-  res.send("butterfly is working!");
+app.get("/api/scenes", (req, res) => {
+  // Your API logic here
+  res.json({ scenes: "scene data" });
 });
 
-app.get("/api/dog", (req, res) => {
-  res.json({ message: "Woof!" });
-});
-
-app.get("/food", (req, res) => {
-  res.json({ message: "food route is working" });
-});
-
-// Serve static files
-const publicPath = resolve("dist");
-app.use(express.static(publicPath));
-
-// Catch-all route to serve index.html (must be placed after all sother routes)
+// All other GET requests not handled before will return the frontend app
 app.get("*", (req, res) => {
-  const indexPath = resolve(publicPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send(err);
-    }
-  });
+  res.sendFile(join(__dirname, "dist/frontend", "index.html"));
 });
 
-// Error handling middlewares
-app.use((err, req, res) => {
-  console.error(err.stack);
-  res.status(500).send("Something went wrong!");
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Start HTTP servers
-createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+/////////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { resolve } from "path";
+// import dotenv from "dotenv";
+
+// dotenv.config(); // Load environment variables from .env file
+
+// const app = express();
+// const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
+
+// // Middleware to log requests
+// app.use((req, res, next) => {
+//   console.log(`Request: ${req.method} ${req.path}`);
+//   next();
+// });
+
+// // API routes
+// app.get("/test", (req, res) => {
+//   res.send("API is working!");
+// });
+
+// app.get("/butterfly", (req, res) => {
+//   res.send("butterfly is working!");
+// });
+
+// app.get("/api/dog", (req, res) => {
+//   res.json({ message: "Woof!" });
+// });
+
+// app.get("/food", (req, res) => {
+//   res.json({ message: "food route is working" });
+// });
+
+// // Serve static files
+// const publicPath = resolve("dist");
+// app.use(express.static(publicPath));
+
+// // Catch-all route to serve index.html (must be placed after all sother routes)
+// app.get("*", (req, res) => {
+//   const indexPath = resolve(publicPath, "index.html");
+//   res.sendFile(indexPath, (err) => {
+//     if (err) {
+//       console.error("Error sending index.html:", err);
+//       res.status(500).send(err);
+//     }
+//   });
+// });
+
+// // Error handling middlewares
+// app.use((err, req, res) => {
+//   console.error(err.stack);
+//   res.status(500).send("Something went wrong!");
+// });
+
+// // Start HTTP servers
+// createServer(app).listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
 
 //////////////////////////
 
