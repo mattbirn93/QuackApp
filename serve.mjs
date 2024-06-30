@@ -2,6 +2,9 @@ import express from "express";
 import { createServer } from "http";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -9,17 +12,21 @@ const __dirname = dirname(__filename);
 const app = express();
 const server = createServer(app);
 
+// Middleware for logging requests
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  next();
+});
+
 // Serve static files from the dist directory
 app.use(express.static(join(__dirname, "dist")));
 
 // API routes
 app.get("/api/users/fetchUserById", (req, res) => {
-  // Your API logic here
   res.json({ user: "user data" });
 });
 
 app.get("/api/scenes", (req, res) => {
-  // Your API logic here
   res.json({ scenes: "scene data" });
 });
 
@@ -28,10 +35,53 @@ app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
 
+// Error handling middleware
+app.use((err, req, res) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+////////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { fileURLToPath } from "url";
+// import { dirname, join } from "path";
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+// const app = express();
+// const server = createServer(app);
+
+// // Serve static files from the dist directory
+// app.use(express.static(join(__dirname, "dist")));
+
+// // API routes
+// app.get("/api/users/fetchUserById", (req, res) => {
+//   // Your API logic here
+//   res.json({ user: "user data" });
+// });
+
+// app.get("/api/scenes", (req, res) => {
+//   // Your API logic here
+//   res.json({ scenes: "scene data" });
+// });
+
+// // All other GET requests not handled before will return the frontend app
+// app.get("*", (req, res) => {
+//   res.sendFile(join(__dirname, "dist", "index.html"));
+// });
+
+// const PORT = process.env.PORT || 3000;
+// server.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
 ///////
 
