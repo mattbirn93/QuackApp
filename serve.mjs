@@ -1,45 +1,87 @@
+import express from "express";
+import { createServer } from "http";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+const server = createServer(app);
+
+// Serve static files from the React frontend app
+app.use(express.static(join(__dirname, "dist/frontend")));
+
+// API routes
+app.get("/api/users/fetchUserById", (req, res) => {
+  // Your API logic here
+  res.json({ user: "user data" });
+});
+
+app.get("/api/scenes", (req, res) => {
+  // Your API logic here
+  res.json({ scenes: "scene data" });
+});
+
+// All other GET requests not handled before will return the frontend app
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, "dist/frontend", "index.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+///////////////////
+
 // import express from "express";
 // import { createServer } from "http";
 // import { resolve } from "path";
 // import dotenv from "dotenv";
-// import helmet from "helmet";
-// import compression from "compression";
-// import morgan from "morgan";
 
 // dotenv.config(); // Load environment variables from .env file
 
 // const app = express();
 // const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
 
-// // Log environment variables to debug on Heroku
-// console.log("MONGO_URI:", process.env.MONGO_URI);
-// console.log(
-//   "VITE_API_BASE_URL_DESKTOP:",
-//   process.env.VITE_API_BASE_URL_DESKTOP,
-// );
-// console.log("VITE_API_BASE_URL_MOBILE:", process.env.VITE_API_BASE_URL_MOBILE);
-// console.log("MONGO_COLLECTION_NAME:", process.env.MONGO_COLLECTION_NAME);
-// console.log("VITE_USE_HTTPS:", process.env.VITE_USE_HTTPS);
-// console.log("VITE_PUBLIC_URL:", process.env.VITE_PUBLIC_URL);
+// // Middleware to log requests
+// app.use((req, res, next) => {
+//   console.log(`Request: ${req.method} ${req.path}`);
+//   next();
+// });
 
-// // Define static files location; typically, this would be where your built frontend resides
-// const publicPath = resolve("dist");
+// // API routes
+// app.get("/test", (req, res) => {
+//   res.send("API is working!");
+// });
 
-// // Use helmet for security
-// app.use(helmet());
+// app.get("/butterfly", (req, res) => {
+//   res.send("butterfly is working!");
+// });
 
-// // Use compression for gzip compression
-// app.use(compression());
+// app.get("/api/dog", (req, res) => {
+//   res.json({ message: "Woof!" });
+// });
 
-// // Use morgan for logging
-// app.use(morgan("combined"));
+// app.get("/food", (req, res) => {
+//   res.json({ message: "food route is working" });
+// });
 
 // // Serve static files
+// const publicPath = resolve("dist");
 // app.use(express.static(publicPath));
 
-// // Serve index.html on all other routes to support client-side routing
+// // Catch-all route to serve index.html (must be placed after all other routes)
 // app.get("*", (req, res) => {
-//   res.sendFile(resolve(publicPath, "index.html"));
+//   const indexPath = resolve(publicPath, "index.html");
+//   res.sendFile(indexPath, (err) => {
+//     if (err) {
+//       console.error("Error sending index.html:", err);
+//       res.status(500).send(err);
+//     }
+//   });
 // });
 
 // // Error handling middleware
@@ -48,71 +90,10 @@
 //   res.status(500).send("Something went wrong!");
 // });
 
-// // Start HTTP server
+// // Start HTTP servers
 // createServer(app).listen(port, () => {
 //   console.log(`Server is running on http://localhost:${port}`);
 // });
-
-///////////////////
-
-import express from "express";
-import { createServer } from "http";
-import { resolve } from "path";
-import dotenv from "dotenv";
-
-dotenv.config(); // Load environment variables from .env file
-
-const app = express();
-const port = process.env.PORT || 5173; // Default to 5173 if no port is specified, Heroku sets process.env.PORT
-
-// Middleware to log requests
-app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.path}`);
-  next();
-});
-
-// API routes
-app.get("/test", (req, res) => {
-  res.send("API is working!");
-});
-
-app.get("/butterfly", (req, res) => {
-  res.send("butterfly is working!");
-});
-
-app.get("/api/dog", (req, res) => {
-  res.json({ message: "Woof!" });
-});
-
-app.get("/food", (req, res) => {
-  res.json({ message: "food route is working" });
-});
-
-// Serve static files
-const publicPath = resolve("dist");
-app.use(express.static(publicPath));
-
-// Catch-all route to serve index.html (must be placed after all other routes)
-app.get("*", (req, res) => {
-  const indexPath = resolve(publicPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send(err);
-    }
-  });
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something went wrong!");
-});
-
-// Start HTTP servers
-createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
 
 ///////////
 
