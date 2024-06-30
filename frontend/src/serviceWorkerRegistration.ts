@@ -5,7 +5,7 @@ type Config = {
 
 export function register(config?: Config) {
   // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-  async () => {
+  window.addEventListener("load", async () => {
     try {
       const publicUrl = new URL(import.meta.env.VITE_PUBLIC_URL);
 
@@ -25,7 +25,7 @@ export function register(config?: Config) {
     } catch (error) {
       console.error("Error during service worker registration:", error);
     }
-  };
+  });
 }
 // }
 
@@ -101,112 +101,6 @@ export function unregister() {
       });
   }
 }
-
-/////////////////////
-
-// type Config = {
-//   onSuccess?: (registration: ServiceWorkerRegistration) => void;
-//   onUpdate?: (registration: ServiceWorkerRegistration) => void;
-// };
-
-// export function register(config?: Config) {
-//   // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-//   window.addEventListener("load", async () => {
-//     try {
-//       const publicUrl = new URL(import.meta.env.VITE_PUBLIC_URL);
-
-//       console.log("VITE PUBLIC_URL:", import.meta.env.VITE_PUBLIC_URL || "."); // Log PUBLIC_URL with fallback
-//       console.log("publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
-//       console.log("window.location.origin:", window.location.origin); // Log window.location.origin
-
-//       // Only proceed with service worker registration if origins match
-//       if (publicUrl.origin) {
-//         const swUrl = `${publicUrl.origin}/sw.js`; // Ensure proper path
-//         console.log("Service worker URL:", swUrl); // Log swUrl
-
-//         await registerValidSW(swUrl, config);
-//       } else {
-//         console.log("Service worker not registered due to origin mismatch.");
-//       }
-//     } catch (error) {
-//       console.error("Error during service worker registration:", error);
-//     }
-//   });
-// }
-// // }
-
-// async function registerValidSW(swUrl: string, config?: Config) {
-//   try {
-//     const registration = await navigator.serviceWorker.register(swUrl);
-//     registration.onupdatefound = () => {
-//       const installingWorker = registration.installing;
-//       if (installingWorker == null) {
-//         return;
-//       }
-//       installingWorker.onstatechange = () => {
-//         if (installingWorker.state === "installed") {
-//           if (navigator.serviceWorker.controller) {
-//             console.log(
-//               "New content is available and will be used when all tabs for this page are closed. See https://cra.link/PWA.",
-//             );
-//             if (config && config.onUpdate) {
-//               config.onUpdate(registration);
-//             }
-//           } else {
-//             console.log("Content is cached for offline use.");
-//             if (config && config.onSuccess) {
-//               config.onSuccess(registration);
-//             }
-//           }
-//         }
-//       };
-//     };
-//   } catch (error) {
-//     console.error("Error during service worker registration:", error);
-//     throw error;
-//   }
-// }
-
-// async function checkValidServiceWorker(swUrl: string, config?: Config) {
-//   try {
-//     const response = await fetch(swUrl, {
-//       headers: { "Service-Worker": "script" },
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Service worker not found or failed to load.");
-//     }
-
-//     const contentType = response.headers.get("content-type");
-//     if (
-//       response.status === 404 ||
-//       (contentType != null && contentType.indexOf("javascript") === -1)
-//     ) {
-//       const registration = await navigator.serviceWorker.ready;
-//       await registration.unregister();
-//       window.location.reload();
-//     } else {
-//       await registerValidSW(swUrl, config);
-//     }
-//   } catch (error) {
-//     console.error(
-//       "No internet connection found. App is running in offline mode.",
-//     );
-//     throw error;
-//   }
-// }
-
-// export function unregister() {
-//   if ("serviceWorker" in navigator) {
-//     navigator.serviceWorker.ready
-//       .then((registration) => {
-//         registration.unregister();
-//       })
-//       .catch((error) => {
-//         console.error(error.message);
-//       });
-//   }
-// }
 
 // // // serviceWorkerRegistration.ts
 

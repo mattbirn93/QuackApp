@@ -14,7 +14,9 @@ const server = createServer(app);
 
 // Middleware for logging requests
 app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.url}`);
+  console.log(
+    `[${new Date().toISOString()}] Request: ${req.method} ${req.url}`,
+  );
   next();
 });
 
@@ -30,13 +32,14 @@ app.get("/api/scenes", (req, res) => {
   res.json({ scenes: "scene data" });
 });
 
-// All other GET requests not handled before wills return the fronend app
+// All other GET requests not handled before will return the frontend app
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
 
 // Error handling middleware
 app.use((err, req, res) => {
+  // added `next` to the parameters
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
@@ -44,6 +47,19 @@ app.use((err, req, res) => {
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+// Handle unhandled promise rejections
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection at:", promise, "reason:", reason);
+  // Application specific logging, throwing an error, or other logic here
+});
+
+// Handle uncaught exceptions
+process.on("uncaughtException", (error) => {
+  console.error("Uncaught Exception thrown:", error);
+  // Application specific logging, throwing an error, or other logic here
+  process.exit(1); // Optional: Exit the process to avoid undefined state
 });
 
 // Graceful shutdown
@@ -62,6 +78,73 @@ const gracefulShutdown = () => {
 
 process.on("SIGTERM", gracefulShutdown);
 process.on("SIGINT", gracefulShutdown);
+
+////////////////
+
+// import express from "express";
+// import { createServer } from "http";
+// import { fileURLToPath } from "url";
+// import { dirname, join } from "path";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+// const app = express();
+// const server = createServer(app);
+
+// // Middleware for logging requests
+// app.use((req, res, next) => {
+//   console.log(`Request: ${req.method} ${req.url}`);
+//   next();
+// });
+
+// // Serve static files from the dist directory
+// app.use(express.static(join(__dirname, "dist")));
+
+// // API routes
+// app.get("/api/users/fetchUserById", (req, res) => {
+//   res.json({ user: "user data" });
+// });
+
+// app.get("/api/scenes", (req, res) => {
+//   res.json({ scenes: "scene data" });
+// });
+
+// // All other GET requests not handled before wills return the fronend app
+// app.get("*", (req, res) => {
+//   res.sendFile(join(__dirname, "dist", "index.html"));
+// });
+
+// // Error handling middleware
+// app.use((err, req, res) => {
+//   console.error(err.stack);
+//   res.status(500).send("Something broke!");
+// });
+
+// const PORT = process.env.PORT || 5001;
+// server.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+// // Graceful shutdown
+// const gracefulShutdown = () => {
+//   console.log("Shutting down gracefully...");
+//   server.close(() => {
+//     console.log("Closed out remaining connections");
+//     process.exit(0);
+//   });
+
+//   setTimeout(() => {
+//     console.error("Forcing shutdown...");
+//     process.exit(1);
+//   }, 10000);
+// };
+
+// process.on("SIGTERM", gracefulShutdown);
+// process.on("SIGINT", gracefulShutdown);
 
 ////////////
 
