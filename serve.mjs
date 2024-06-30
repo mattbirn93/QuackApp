@@ -30,7 +30,7 @@ app.get("/api/scenes", (req, res) => {
   res.json({ scenes: "scene data" });
 });
 
-// All other GET requests not handled before will return the frontend app
+// All other GET requests not handled before will return the fronend app
 app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "dist", "index.html"));
 });
