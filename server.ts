@@ -58,7 +58,7 @@ app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 const distPath = path.join(__dirname, "..", "dist");
 app.use(express.static(distPath));
 
-// Catch-all route to serve index.html (must be placed after all other routes)
+// Catch-all route to serve index.html (must be placed after all other routess)
 app.get("*", (req, res) => {
   const indexPath = path.resolve(distPath, "index.html");
   res.sendFile(indexPath, (err) => {
