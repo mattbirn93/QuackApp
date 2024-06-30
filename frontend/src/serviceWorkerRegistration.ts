@@ -4,33 +4,33 @@ type Config = {
 };
 
 export function register(config?: Config) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-    window.addEventListener("load", async () => {
-      try {
-        const publicUrl = new URL(
-          import.meta.env.VITE_PUBLIC_URL || ".", // Provide a fallback value here
-          window.location.href,
-        );
+  // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+  window.addEventListener("load", async () => {
+    try {
+      const publicUrl = new URL(
+        import.meta.env.VITE_PUBLIC_URL || ".", // Provide a fallback value here
+        window.location.href,
+      );
 
-        console.log("PUBLIC_URL:", import.meta.env.VITE_PUBLIC_URL || "."); // Log PUBLIC_URL with fallback
-        console.log("publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
-        console.log("window.location.origin:", window.location.origin); // Log window.location.origin
+      console.log("PUBLIC_URL:", import.meta.env.VITE_PUBLIC_URL || "."); // Log PUBLIC_URL with fallback
+      console.log("publicUrl.origin:", publicUrl.origin); // Log publicUrl.origin
+      console.log("window.location.origin:", window.location.origin); // Log window.location.origin
 
-        // Only proceed with service worker registration if origins match
-        if (publicUrl.origin === window.location.origin) {
-          const swUrl = `${publicUrl.origin}/sw.js`; // Ensure proper path
-          console.log("Service worker URL:", swUrl); // Log swUrl
+      // Only proceed with service worker registration if origins match
+      if (publicUrl.origin === window.location.origin) {
+        const swUrl = `${publicUrl.origin}/sw.js`; // Ensure proper path
+        console.log("Service worker URL:", swUrl); // Log swUrl
 
-          await registerValidSW(swUrl, config);
-        } else {
-          console.log("Service worker not registered due to origin mismatch.");
-        }
-      } catch (error) {
-        console.error("Error during service worker registration:", error);
+        await registerValidSW(swUrl, config);
+      } else {
+        console.log("Service worker not registered due to origin mismatch.");
       }
-    });
-  }
+    } catch (error) {
+      console.error("Error during service worker registration:", error);
+    }
+  });
 }
+// }
 
 async function registerValidSW(swUrl: string, config?: Config) {
   try {
