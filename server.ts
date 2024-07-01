@@ -1,6 +1,7 @@
 import connectDB from "./backend/config/db.js"; // Adjust the path as necessary
 import path from "path";
 import express, { Request, Response, NextFunction } from "express";
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -10,6 +11,10 @@ connectDB();
 // Middleware to parse JSON
 app.use(express.json());
 
+// Get directory name in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Define API routes
 app.get("/api/users/fetchUserById", (req, res) => {
   const userId = req.query.id;
@@ -18,21 +23,20 @@ app.get("/api/users/fetchUserById", (req, res) => {
   }
 
   // Simulate database fetch
-  // Replace this with actual database logic
   res.send(`User ID: ${userId}`);
 });
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
-// // Error handling middleware
+//  Error handling middleware
 app.use((err: Error, req: Request, res: Response) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
