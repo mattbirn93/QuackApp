@@ -1,6 +1,6 @@
-import express from "express";
 import connectDB from "./backend/config/db.js"; // Adjust the path as necessary
 import path from "path";
+import express, { Request, Response, NextFunction } from "express";
 
 const app = express();
 
@@ -16,7 +16,9 @@ app.get("/api/users/fetchUserById", (req, res) => {
   if (!userId) {
     return res.status(400).send("User ID is required");
   }
+
   // Simulate database fetch
+  // Replace this with actual database logic
   res.send(`User ID: ${userId}`);
 });
 
@@ -29,6 +31,12 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+// // Error handling middleware
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
