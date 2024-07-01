@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Simple test routes
+// Simple test route
 app.get("/troppers", (req, res) => {
   console.log("troopers route accessed");
   res.json({ message: "troopers route is working" });
