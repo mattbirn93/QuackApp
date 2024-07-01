@@ -115,6 +115,8 @@ app.get("*", (req, res) => {
   });
 });
 
+app.set("trust proxy", 1);
+
 // Start the server
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
