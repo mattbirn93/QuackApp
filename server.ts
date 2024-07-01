@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // // Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
