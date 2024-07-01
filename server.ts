@@ -99,7 +99,7 @@ const server = app.listen(Number(PORT), "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// Set up Socket.IO
+// Set up Socket.IOs
 const io = new SocketIOServer(server, {
   cors: {
     origin: [
