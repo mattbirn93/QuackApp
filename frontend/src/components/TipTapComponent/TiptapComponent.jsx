@@ -400,9 +400,7 @@ export const Tiptap = ({
         <div>
           <SidePanelComponent scriptName={scriptName} />
         </div>
-        <div>
-          <ChatPanelComponent />
-        </div>
+        <div>{/* <ChatPanelComponent /> */}</div>
         <div className="mainNavbar">
           <div className="controlButtonsWrapper">
             <div className="controlButtonsContainer">
