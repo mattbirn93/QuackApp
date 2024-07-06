@@ -10,6 +10,10 @@ export default defineConfig(({ command, mode }) => {
   const serverConfig = {
     host: "0.0.0.0",
     port: 5173,
+    hmr: {
+      host: "localhost",
+      port: 5173,
+    },
   };
 
   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
