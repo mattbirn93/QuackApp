@@ -26,8 +26,8 @@
     "dev:staging": "vite --mode staging",
     "build:development": "npm run build:frontend && npm run build:backend",
     "build:staging": "vite build --mode staging",
-    "preview:development": "concurrently \"vite preview --mode development\" \"node dist/server.js\"",
-    "preview:staging": "concurrently \"vite preview --mode staging\" \"node dist/server.js\""
+    "preview:development": "concurrently \"vite preview --mode development --port 5173\" \"node dist/server.js\"",
+    "preview:staging": "concurrently \"vite preview --mode staging --port 5173\" \"node dist/server.js\""
   },
   "dependencies": {
     "@capacitor/cli": "^6.0.0",
