@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 // Simple test routes
 app.get("/api/test", (req, res) => {
-    res.send("Test route is working on heroku!");
+    res.send("Test route is working on server!");
 });
 // API Route imports
 import userRoutes from "./backend/routes/userRoutes.js";

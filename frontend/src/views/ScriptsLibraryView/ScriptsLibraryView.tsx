@@ -31,7 +31,7 @@ const ScriptsLibraryView: React.FC = () => {
           </div>
         </div>
         <div className={styles.headingsContainer}>
-          <h1 className={styles.heading1}>Scripts Library Home for heroku</h1>
+          <h1 className={styles.heading1}>Scripts Library Home</h1>
           <h2 className={styles.heading2}>Open up a script to get started</h2>
         </div>
 

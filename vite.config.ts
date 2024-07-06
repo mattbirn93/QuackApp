@@ -84,7 +84,7 @@ export default defineConfig(({ command, mode }) => {
   };
 });
 
-////////////////
+////////// BELOW HERE IS MODE SWITCHING VERSION FOR ENV VARIBALE IN CASE YOU WANT TO TRY
 
 // import { defineConfig } from "vite";
 // import react from "@vitejs/plugin-react";
@@ -92,12 +92,23 @@ export default defineConfig(({ command, mode }) => {
 // import path from "path";
 // import dotenv from "dotenv";
 
-// dotenv.config();
-
+// // Load environment variables based on the mode
 // export default defineConfig(({ command, mode }) => {
+//   const envFiles = {
+//     development: '.env.development',
+//     production: '.env.production',
+//     staging: '.env.staging',
+//   };
+
+//   dotenv.config({ path: envFiles[mode] });
+
 //   const serverConfig = {
 //     host: "0.0.0.0",
-//     port: 5173, // Set the port directly to 5173
+//     port: 5173,
+//     hmr: {
+//       host: "localhost",
+//       port: 5173,
+//     },
 //   };
 
 //   const baseUrl = process.env.VITE_PUBLIC_URL || "/";
