@@ -5,107 +5,86 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import { Server as SocketIOServer } from "socket.io";
-
 // Load environment variables from .env file
 dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 console.log("__filename:", __filename);
 console.log("__dirname:", __dirname);
-
 const connectDBPath = path.join(__dirname, "backend/config/db.js");
 console.log("Connecting to DB from:", connectDBPath);
-
 // Dynamically import connectDB
 const connectDB = await import(connectDBPath).then((module) => module.default);
-
 const app = express();
 const PORT = process.env.PORT || 5001;
-
 // Connect to MongoDB
 connectDB();
-
 // Middleware
 app.use(bodyParser.json());
 app.use(express.json());
-
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:4173",
-    "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 };
-
 app.use(cors(corsOptions));
-
 // Middleware to log request
 app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.path}`);
-  next();
+    console.log(`Request: ${req.method} ${req.path}`);
+    next();
 });
-
 // Simple test routes
 app.get("/api/test", (req, res) => {
-  res.send("Test route is working on preview");
+    res.send("Test route is working on preview");
 });
-
 // API Route imports
 import userRoutes from "./backend/routes/userRoutes.js";
 import scriptRoutes from "./backend/routes/scriptRoutes.js";
 import sceneRoutes from "./backend/routes/sceneRoutes.js";
 import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // API routes
 app.use("/api/users", userRoutes);
 app.use("/api/scripts", scriptRoutes);
 app.use("/api/scenes", sceneRoutes);
 app.use("/api/sceneVersions", sceneVersionRoutes);
 app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // Serve static files from the React app
 const distPath = path.join(__dirname, "..", "dist");
 app.use(express.static(distPath));
-
 // Catch-all route to serve index.html (must be placed after all other routes)
 app.get("*", (req, res) => {
-  const indexPath = path.resolve(distPath, "index.html");
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send(err);
-    }
-  });
+    const indexPath = path.resolve(distPath, "index.html");
+    res.sendFile(indexPath, (err) => {
+        if (err) {
+            console.error("Error sending index.html:", err);
+            res.status(500).send(err);
+        }
+    });
 });
-
 // Start the server
 const server = app.listen(Number(PORT), "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
-
 // Set up Socket.IO
 const io = new SocketIOServer(server, {
-  cors: {
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:4173",
-      "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
-    ],
-    methods: ["GET", "POST"],
-  },
+    cors: {
+        origin: [
+            "http://localhost:5173",
+            "http://localhost:4173",
+            "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
+        ],
+        methods: ["GET", "POST"],
+    },
 });
-
 io.on("connection", (socket) => {
-  console.log("New client connected", socket.id);
+    console.log("New client connected", socket.id);
 });
-
 /////////////////
-
 // import express from "express";
 // import path from "path";
 // import { fileURLToPath } from "url";
@@ -113,28 +92,20 @@ io.on("connection", (socket) => {
 // import cors from "cors";
 // import dotenv from "dotenv";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // console.log("__filename:", __filename);
 // console.log("__dirname:", __dirname);
-
 // const connectDBPath = path.join(__dirname, "backend/config/db.js");
 // console.log("Connecting to DB from:", connectDBPath);
-
 // // Dynamically import connectDB
 // const connectDB = await import(connectDBPath).then((module) => module.default);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -148,13 +119,11 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
-
 // // Middleware to log request
 // app.use((req, res, next) => {
 //   console.log(`Request: ${req.method} ${req.path}`);
 //   next();
 // });
-
 // // Simple test routes
 // app.get("/troppers", (req, res) => {
 //   console.log("troopers route accessed");
@@ -179,25 +148,21 @@ io.on("connection", (socket) => {
 // app.get("/food", (req, res) => {
 //   res.json({ message: "food route is working" });
 // });
-
 // // API Route imports
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // // API routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // const distPath = path.join(__dirname, "..", "dist");
 // app.use(express.static(distPath));
-
 // // Catch-all route to serve index.html (must be placed after all other routes)
 // app.get("*", (req, res) => {
 //   const indexPath = path.resolve(distPath, "index.html");
@@ -208,12 +173,10 @@ io.on("connection", (socket) => {
 //     }
 //   });
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.IO
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -224,56 +187,41 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
 // });
-
 ///////////////////////
-
 // import express from "express";
 // import path from "path";
 // import { fileURLToPath } from "url";
 // import dotenv from "dotenv";
 // import fs from "fs";
-
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // console.log("__filename:", __filename);
 // console.log("__dirname:", __dirname);
-
 // const connectDBPath = path.join(__dirname, "backend/config/db.js");
 // console.log("Connecting to DB from:", connectDBPath);
-
 // console.log("Directory Listing of dist/backend/config:");
 // fs.readdirSync(path.join(__dirname, "backend/config")).forEach((file) => {
 //   console.log(file);
 // });
-
 // // Dynamically import connectDB
 // const connectDB = await import(connectDBPath).then((module) => module.default);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Simple test route
 // app.get("/test", (req, res) => {
 //   res.send("API is working!");
 // });
-
 // // Start the server
 // app.listen(PORT, () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 ////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -283,19 +231,14 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDBs
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -309,13 +252,11 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
-
 // // Middleware to log request
 // app.use((req, res, next) => {
 //   console.log(`Request: ${req.method} ${req.path}`);
 //   next();
 // });
-
 // // Simple test routes
 // app.get("/troppers", (req, res) => {
 //   console.log("troopers route accessed");
@@ -340,25 +281,21 @@ io.on("connection", (socket) => {
 // app.get("/food", (req, res) => {
 //   res.json({ message: "food route is working" });
 // });
-
 // // API Route imports
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // // API routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // const distPath = path.join(__dirname, "..", "dist");
 // app.use(express.static(distPath));
-
 // // Catch-all route to serve index.html (must be placed after all other routes)
 // app.get("*", (req, res) => {
 //   const indexPath = path.resolve(distPath, "index.html");
@@ -369,12 +306,10 @@ io.on("connection", (socket) => {
 //     }
 //   });
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.IO
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -385,13 +320,10 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
 // });
-
 //////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -401,19 +333,14 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDBs
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -427,13 +354,11 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
-
 // // Middleware to log request
 // app.use((req, res, next) => {
 //   console.log(`Request: ${req.method} ${req.path}`);
 //   next();
 // });
-
 // // // Simple test routes
 // app.get("/troppers", (req, res) => {
 //   console.log("troopers route accessed");
@@ -458,25 +383,21 @@ io.on("connection", (socket) => {
 // app.get("/food", (req, res) => {
 //   res.json({ message: "food route is working" });
 // });
-
 // // API Route imports
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // // API routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // const distPath = path.join(__dirname, "..", "dist");
 // app.use(express.static(distPath));
-
 // // Catch-all route to serve index.html (must be placed after all other routess)
 // app.get("*", (req, res) => {
 //   const indexPath = path.resolve(distPath, "index.html");
@@ -487,12 +408,10 @@ io.on("connection", (socket) => {
 //     }
 //   });
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.IO
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -503,13 +422,10 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
 // });
-
 //////////
-
 // import "tsconfig-paths/register.js";
 // // import express from "express";
 // import path from "path";
@@ -520,19 +436,14 @@ io.on("connection", (socket) => {
 // import connectDB from "./backend/config/db.js";
 // import { Server as SocketIOServer } from "socket.io";
 // import express, { Request, Response, NextFunction } from "express";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -542,7 +453,6 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
-
 // // Middleware to log requests
 // app.use((req, res, next) => {
 //   console.log(
@@ -551,7 +461,6 @@ io.on("connection", (socket) => {
 //   console.log(`Body: ${JSON.stringify(req.body)}`);
 //   next();
 // });
-
 // // Simple test routes
 // app.get("/troppers", (req, res) => {
 //   console.log("troopers route accessed");
@@ -589,24 +498,20 @@ io.on("connection", (socket) => {
 //     .status(201)
 //     .json({ message: "New script created successfully", script: req.body });
 // });
-
 // // API Routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // const distPath = path.join(__dirname, "dist");
 // app.use(express.static(distPath));
-
 // // Catch-all route to serve index.html (must be placed after all other routes)
 // app.get("*", (req, res) => {
 //   const indexPath = path.resolve(distPath, "index.html");
@@ -617,18 +522,15 @@ io.on("connection", (socket) => {
 //     }
 //   });
 // });
-
 // // Error handling middleware
 // app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 //   console.error(err.stack);
 //   res.status(500).send("Something broke!");
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.IO
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -636,26 +538,21 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   // Define your socket event handlers here
 // });
-
 // // Handle unhandled promise rejections
 // process.on("unhandledRejection", (reason, promise) => {
 //   console.error("Unhandled Rejection at:", promise, "reason:", reason);
 //   // Application specific logging, throwing an error, or other logic here
 // });
-
 // // Handle uncaught exceptions
 // process.on("uncaughtException", (error) => {
 //   console.error("Uncaught Exception thrown:", error);
 //   // Application specific logging, throwing an error, or other logic here
 //   process.exit(1); // Optional: Exit the process to avoid undefined state
 // });
-
 // // Graceful shutdown
 // const gracefulShutdown = () => {
 //   console.log("Shutting down gracefully...");
@@ -663,18 +560,14 @@ io.on("connection", (socket) => {
 //     console.log("Closed out remaining connections");
 //     process.exit(0);
 //   });
-
 //   setTimeout(() => {
 //     console.error("Forcing shutdown...");
 //     process.exit(1);
 //   }, 10000);
 // };
-
 // process.on("SIGTERM", gracefulShutdown);
 // process.on("SIGINT", gracefulShutdown);
-
 /////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -684,19 +577,14 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -710,51 +598,42 @@ io.on("connection", (socket) => {
 //     credentials: true,
 //   }),
 // );
-
 // // Middleware to log requests
 // app.use((req, res, next) => {
 //   console.log(`Request: ${req.method} ${req.path}`);
 //   next();
 // });
-
 // // Simple test route
 // app.get("/troppers", (req, res) => {
 //   console.log("troopers route accessed");
 //   res.json({ message: "troopers route is working" });
 // });
-
 // // Simple test route
 // app.get("/api/poopers", (req, res) => {
 //   console.log("poopers route accessed");
 //   res.json({ message: "poopers route is working" });
 // });
-
 // // Test routes
 // app.get("/api/dog", (req, res) => {
 //   res.send("Dog is working!");
 // });
-
 // app.get("/api/cat", (req, res) => {
 //   res.send("Cat is working!");
 // });
-
 // // API Route
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React apps
 // const distPath = path.join(__dirname, "dist");
 // app.use(express.static(distPath));
-
 // // Catch-all route to serve index.html (must be placed after all other routes)\
 // app.get("*", (req, res) => {
 //   const indexPath = path.resolve(distPath, "index.html");
@@ -765,12 +644,10 @@ io.on("connection", (socket) => {
 //     }
 //   });
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.IO
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -781,16 +658,12 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   // Define your socket event handlers heres
 // });
-
 ///////////////////////////
 //////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -800,18 +673,14 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
@@ -831,26 +700,21 @@ io.on("connection", (socket) => {
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // // Catch-all route - this should be the last route
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.io
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -861,15 +725,11 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   // Define your socket event handlers here
 // });
-
 //////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -879,50 +739,39 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js"; // Adjust the path as needed
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(cors());
-
 // // API Routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // // Catch-all route - this should be the last route
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // // Set up Socket.io
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -930,15 +779,11 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   // Define your socket event handlers here
 // });
-
 ///////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -948,47 +793,37 @@ io.on("connection", (socket) => {
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config/db.js"; // Assuming this is your currentdb.js
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Load environment variables from .env file
 // dotenv.config();
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // // Connect to MongoDB
 // connectDB();
-
 // // Middleware
 // app.use(bodyParser.json());
 // app.use(express.json());
 // app.use(cors());
-
 // // API Routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
 // import sceneRoutes from "./backend/routes/sceneRoutes.js";
 // import sceneVersionRoutes from "./backend/routes/sceneVersionRoutes.js";
 // import sceneVersionContentRoutes from "./backend/routes/sceneVersionContentRoutes.js";
-
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Catch-all route - this should be the last route
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // // Start the server
 // const server = app.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
-
 // //Set up Socket.io
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -996,15 +831,11 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   // Define your socket event handlers here
 // });
-
 //////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -1016,7 +847,6 @@ io.on("connection", (socket) => {
 // import https from "https";
 // import fs from "fs";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Importing user-related routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -1034,25 +864,19 @@ io.on("connection", (socket) => {
 //   addCharacterToArray,
 //   updateCharacterInArray,
 // } from "./backend/controllers/charactersWSController.js";
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config();
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // const keyPath =
 //   process.env.VITE_SSL_KEY_PATH || path.join(__dirname, "./certs/key.pem");
 // const certPath =
 //   process.env.VITE_SSL_CERT_PATH || path.join(__dirname, "./certs/cert.pem");
-
 // const httpsOptions = {
 //   key: fs.readFileSync(keyPath),
 //   cert: fs.readFileSync(certPath),
 // };
-
 // const server = https.createServer(httpsOptions, app);
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -1060,14 +884,10 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // app.use(bodyParser.json());
 // app.use(express.json());
-
 // app.use(cors());
-
 // connectDB();
-
 // // Disable caching for all responses
 // app.use((req, res, next) => {
 //   res.set(
@@ -1083,14 +903,12 @@ io.on("connection", (socket) => {
 //   );
 //   next();
 // });
-
 // // Define API Routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/scripts", scriptRoutes);
 // app.use("/api/scenes", sceneRoutes);
 // app.use("/api/sceneVersions", sceneVersionRoutes);
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Remove redundant or incorrect routes
 // // app.use("/api/users/fetchUserById", userRoutes);
 // // app.use("/api/scripts/fetchScriptsById", sceneRoutes);
@@ -1105,18 +923,14 @@ io.on("connection", (socket) => {
 // // app.use("/api/sceneVersions/createSceneVersion", sceneVersionRoutes);
 // // app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 // // app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // // SPA catch-all handler (this should be the last route)
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   socket.on("add_user", (data) => {
 //     createUserSocket(data, (error: any, savedUser: any) => {
 //       if (error) {
@@ -1126,7 +940,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("get_scene_version_content", (data) => {
 //     const { id } = data;
 //     getSceneVersionContentSocket(id, (error: any, result: any) => {
@@ -1137,7 +950,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("create_content_item", (data: any) => {
 //     console.log("Received create_content_item event:", data);
 //     createContentItemSocket(data, (error: any, result: any) => {
@@ -1148,7 +960,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("update_content_item", (data: any) => {
 //     console.log("Received update_content_item event:", data);
 //     updateContentItemSocket(data, (error: any, result: any) => {
@@ -1159,7 +970,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("delete_content_item", (data: any) => {
 //     console.log("Received delete_content_item event:", data);
 //     deleteContentItemSocket(data, (error: any, result: any) => {
@@ -1179,7 +989,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("addCharacterToArray", (data) => {
 //     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1189,7 +998,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("updateCharacterInArray", (data) => {
 //     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1199,18 +1007,14 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("disconnect", () => {
 //     console.log("Client disconnected", socket.id);
 //   });
 // });
-
 // server.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on https://localhost:${PORT}`);
 // });
-
 ///////////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -1222,7 +1026,6 @@ io.on("connection", (socket) => {
 // import https from "https";
 // import fs from "fs";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Importing user-related routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -1240,25 +1043,19 @@ io.on("connection", (socket) => {
 //   addCharacterToArray,
 //   updateCharacterInArray,
 // } from "./backend/controllers/charactersWSController.js";
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config();
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // const keyPath =
 //   process.env.VITE_SSL_KEY_PATH || path.join(__dirname, "./certs/key.pem");
 // const certPath =
 //   process.env.VITE_SSL_CERT_PATH || path.join(__dirname, "./certs/cert.pem");
-
 // const httpsOptions = {
 //   key: fs.readFileSync(keyPath),
 //   cert: fs.readFileSync(certPath),
 // };
-
 // const server = https.createServer(httpsOptions, app);
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -1266,14 +1063,10 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // app.use(bodyParser.json());
 // app.use(express.json());
-
 // app.use(cors());
-
 // connectDB();
-
 // // Disable caching for all responses
 // app.use((req, res, next) => {
 //   res.set(
@@ -1289,7 +1082,6 @@ io.on("connection", (socket) => {
 //   );
 //   next();
 // });
-
 // // Define API Routes
 // // app.use("/api/users", userRoutes);
 // // app.use("/api/scripts", scriptRoutes);
@@ -1314,18 +1106,14 @@ io.on("connection", (socket) => {
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
-
 // // Serve static files
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // // SPA catch-all handler
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   socket.on("add_user", (data) => {
 //     createUserSocket(data, (error: any, savedUser: any) => {
 //       if (error) {
@@ -1335,7 +1123,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("get_scene_version_content", (data) => {
 //     const { id } = data;
 //     getSceneVersionContentSocket(id, (error: any, result: any) => {
@@ -1346,7 +1133,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("create_content_item", (data: any) => {
 //     console.log("Received create_content_item event:", data);
 //     createContentItemSocket(data, (error: any, result: any) => {
@@ -1357,7 +1143,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("update_content_item", (data: any) => {
 //     console.log("Received update_content_item event:", data);
 //     updateContentItemSocket(data, (error: any, result: any) => {
@@ -1368,7 +1153,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("delete_content_item", (data: any) => {
 //     console.log("Received delete_content_item event:", data);
 //     deleteContentItemSocket(data, (error: any, result: any) => {
@@ -1388,7 +1172,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("addCharacterToArray", (data) => {
 //     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1398,7 +1181,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("updateCharacterInArray", (data) => {
 //     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1408,18 +1190,14 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("disconnect", () => {
 //     console.log("Client disconnected", socket.id);
 //   });
 // });
-
 // server.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on https://localhost:${PORT}`);
 // });
-
 ////////////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express from "express";
 // import path from "path";
@@ -1431,7 +1209,6 @@ io.on("connection", (socket) => {
 // import https from "https";
 // import fs from "fs";
 // import { Server as SocketIOServer } from "socket.io";
-
 // // Importing user-related routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -1449,25 +1226,19 @@ io.on("connection", (socket) => {
 //   addCharacterToArray,
 //   updateCharacterInArray,
 // } from "./backend/controllers/charactersWSController.js";
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config();
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // const keyPath =
 //   process.env.VITE_SSL_KEY_PATH || path.join(__dirname, "./certs/key.pem");
 // const certPath =
 //   process.env.VITE_SSL_CERT_PATH || path.join(__dirname, "./certs/cert.pem");
-
 // const httpsOptions = {
 //   key: fs.readFileSync(keyPath),
 //   cert: fs.readFileSync(certPath),
 // };
-
 // const server = https.createServer(httpsOptions, app);
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -1475,14 +1246,10 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // app.use(bodyParser.json());
 // app.use(express.json());
-
 // app.use(cors());
-
 // connectDB();
-
 // // Define API Routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/users/fetchUserById", userRoutes);
@@ -1502,16 +1269,12 @@ io.on("connection", (socket) => {
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
-
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   socket.on("add_user", (data) => {
 //     createUserSocket(data, (error: any, savedUser: any) => {
 //       if (error) {
@@ -1521,7 +1284,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("get_scene_version_content", (data) => {
 //     const { id } = data;
 //     getSceneVersionContentSocket(id, (error: any, result: any) => {
@@ -1532,7 +1294,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("create_content_item", (data: any) => {
 //     console.log("Received create_content_item event:", data);
 //     createContentItemSocket(data, (error: any, result: any) => {
@@ -1543,7 +1304,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("update_content_item", (data: any) => {
 //     console.log("Received update_content_item event:", data);
 //     updateContentItemSocket(data, (error: any, result: any) => {
@@ -1554,7 +1314,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("delete_content_item", (data: any) => {
 //     console.log("Received delete_content_item event:", data);
 //     deleteContentItemSocket(data, (error: any, result: any) => {
@@ -1574,7 +1333,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("addCharacterToArray", (data) => {
 //     addCharacterToArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1584,7 +1342,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("updateCharacterInArray", (data) => {
 //     updateCharacterInArray(data, (error: any, updatedCharacters: any) => {
 //       if (error) {
@@ -1594,20 +1351,15 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("disconnect", () => {
 //     console.log("Client disconnected", socket.id);
 //   });
 // });
-
 // server.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on https://localhost:${PORT}`);
 // });
-
 //////////////////////////////////////////////////
-
 // The server file initializes the Express application, connects to the database, sets up middleware, and defines the routes.
-
 // import "tsconfig-paths/register.js"; // Enables tsconfig paths in the project
 // import express from "express"; // Express framework for building the server
 // import path from "path"; // Utility module for handling and transforming file paths
@@ -1618,7 +1370,6 @@ io.on("connection", (socket) => {
 // import connectDB from "./backend/config2.js"; // Function to connect to the MongoDB database
 // import http from "http"; // HTTP module to create server
 // import { Server as SocketIOServer } from "socket.io"; // Socket.IO server for real-time communication
-
 // // Importing user-related routes
 // import userRoutes from "./backend/routes/userRoutes.js";
 // import scriptRoutes from "./backend/routes/scriptRoutes.js";
@@ -1630,16 +1381,12 @@ io.on("connection", (socket) => {
 // import { createContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 // import { updateContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
 // import { deleteContentItemSocket } from "./backend/controllers/sceneVersionContentWSController.js";
-
 // // ES module equivalents of __dirname and __filename
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config(); // Load environment variables from .env file
-
 // const app = express(); // Initialize Express app
 // const PORT = process.env.PORT || 5001; // Port to run the server on
-
 // const server = http.createServer(app); // Create an HTTP server
 // const io = new SocketIOServer(server, {
 //   cors: {
@@ -1647,17 +1394,13 @@ io.on("connection", (socket) => {
 //     methods: ["GET", "POST"], // Allowed HTTP methods
 //   },
 // });
-
 // // Middleware to parse request bodies
 // app.use(bodyParser.json());
 // app.use(express.json());
-
 // app.use(cors()); // Enable CORS
 // app.use(express.static(path.join(__dirname, "dist"))); // Serve static files from the dist directory
-
 // // Connect to the Mongo Database
 // connectDB();
-
 // // Define API Routes
 // app.use("/api/users", userRoutes);
 // app.use("/api/users/fetchUserById", userRoutes);
@@ -1672,16 +1415,13 @@ io.on("connection", (socket) => {
 // app.use("/api/sceneVersionContent", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersions", sceneVersionContentRoutes);
 // app.use("/api/scenes/sceneVersionContent", sceneVersionContentRoutes);
-
 // // All other routes should serve the index.html file
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // // Socket.io connection handler
 // io.on("connection", (socket) => {
 //   console.log("New client connected", socket.id);
-
 //   socket.on("add_user", (data) => {
 //     createUserSocket(data, (error: any, savedUser: any) => {
 //       if (error) {
@@ -1691,7 +1431,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("get_scene_version_content", (data) => {
 //     const { id } = data;
 //     getSceneVersionContentSocket(id, (error: any, result: any) => {
@@ -1702,7 +1441,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("create_content_item", (data: any) => {
 //     console.log("Received create_content_item event:", data);
 //     createContentItemSocket(data, (error: any, result: any) => {
@@ -1713,7 +1451,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("update_content_item", (data: any) => {
 //     console.log("Received update_content_item event:", data);
 //     updateContentItemSocket(data, (error: any, result: any) => {
@@ -1724,7 +1461,6 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("delete_content_item", (data: any) => {
 //     console.log("Received delete_content_item event:", data);
 //     deleteContentItemSocket(data, (error: any, result: any) => {
@@ -1735,19 +1471,15 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("disconnect", () => {
 //     console.log("Client disconnected", socket.id);
 //   });
 // });
-
 // // Start the server
 // server.listen(Number(PORT), "0.0.0.0", () => {
 //   console.log(`Server running on port ${PORT}`);
 // });
-
 ////////////////////////////////////////
-
 // import "tsconfig-paths/register.js";
 // import express, { Request, Response, NextFunction } from "express";
 // import path from "path";
@@ -1756,59 +1488,44 @@ io.on("connection", (socket) => {
 // import cors from "cors";
 // import dotenv from "dotenv";
 // import connectDB from "./backend/config2.js";
-
 // import createError from "http-errors";
 // import morgan from "morgan";
 // import expressWinston from "express-winston";
 // import logger from "./backend/logger.js";
 // import { format, transports } from "winston";
-
 // import { createUserSocket } from "./backend/controllers/userController2.js";
 // import http from "http";
 // import { Server as SocketIOServer } from "socket.io";
-
 // import Item from "./backend/models/Item.js";
 // import userRoutes from "./backend/routes/userRoutes.js";
-
 // // ES module equivalents of __dirname and __filename
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config();
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // const server = http.createServer(app);
-
 // const io = new SocketIOServer(server, {
 //   cors: {
 //     origin: "*",
 //     methods: ["GET", "POST"],
 //   },
 // });
-
 // app.use(bodyParser.json());
-
 // // Middleware to parse JSON requests
 // app.use(express.json());
-
 // // Enable CORS
 // app.use(cors());
-
 // //Mongo connection call to function
 // connectDB();
-
 // // Serve static files from the dist directory
 // app.use(express.static(path.join(__dirname, "dist")));
-
 // // Morgan for HTTP request logging
 // app.use(
 //   morgan("combined", {
 //     stream: { write: (message) => logger.info(message.trim()) },
 //   }),
 // );
-
 // // Express-Winston middleware for request logging
 // app.use(
 //   expressWinston.logger({
@@ -1823,14 +1540,11 @@ io.on("connection", (socket) => {
 //     colorize: false,
 //   }),
 // );
-
 // // Routes
 // app.use("/api/users", userRoutes);
-
 // app.get("/api/test", (req, res, next) => {
 //   res.json({ message: "Hello from the server SUCAKH MC!" });
 // });
-
 // app.post(
 //   "/api/items",
 //   async (req: Request, res: Response, next: NextFunction) => {
@@ -1849,7 +1563,6 @@ io.on("connection", (socket) => {
 //     }
 //   },
 // );
-
 // app.get(
 //   "/api/items",
 //   async (req: Request, res: Response, next: NextFunction) => {
@@ -1868,15 +1581,12 @@ io.on("connection", (socket) => {
 //     }
 //   },
 // );
-
 // // All other routes should serve the index.html file
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "dist", "index.html"));
 // });
-
 // io.on("connection", (socket) => {
 //   logger.info("New client connected", { socketId: socket.id });
-
 //   socket.on("add_user", (data) => {
 //     createUserSocket(data, (error: unknown, savedUser: any) => {
 //       if (error) {
@@ -1888,12 +1598,10 @@ io.on("connection", (socket) => {
 //       }
 //     });
 //   });
-
 //   socket.on("disconnect", () => {
 //     logger.info("Client disconnected", { socketId: socket.id });
 //   });
 // });
-
 // // Error handling middleware
 // app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
 //   logger.error(err instanceof Error ? err.message : "Unknown error", err);
@@ -1901,13 +1609,10 @@ io.on("connection", (socket) => {
 //     message: err instanceof Error ? err.message : "Internal Server Error",
 //   });
 // });
-
 // server.listen(Number(PORT), "0.0.0.0", () => {
 //   logger.info(`Server running on port ${PORT}`);
 // });
-
 //////////////////////////////////////////
-
 // import 'tsconfig-paths/register.js';
 // import express from 'express';
 // import path from 'path';
@@ -1921,36 +1626,25 @@ io.on("connection", (socket) => {
 // import userRoutes from './backend/routes/userRoutes.js';
 // // import alternateSceneVersionRoutes from './backend/routes/alternateSceneVersionRoutes';
 // // import { createUserSocket } from './controllers/userController2'; compiled file
-
 // // ES module equivalents of __dirname and __filename
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-
 // dotenv.config();
-
 // const app = express();
 // const PORT = process.env.PORT || 5001;
-
 // app.use(bodyParser.json());
-
 // // Middleware to parse JSON requests
 // app.use(express.json());
-
 // // Enable CORS
 // app.use(cors());
-
 // connectDB();
-
 // // Serve static files from the dist directory
 // app.use(express.static(path.join(__dirname, 'dist')));
-
 // app.use('/api/users', userRoutes);
-
 // // Define a test route
 // app.get('/api/test', (req, res) => {
 //     res.json({ message: 'Hello from the server SUCAKH MATT S!' });
 // });
-
 // // Define a route to create a new item
 // app.post('/api/items', async (req, res) => {
 //     try {
@@ -1962,7 +1656,6 @@ io.on("connection", (socket) => {
 //         res.status(500).json({ message: 'Error creating item', error });
 //     }
 // });
-
 // // Define a route to get all items
 // app.get('/api/items', async (req, res) => {
 //     try {
@@ -1972,14 +1665,11 @@ io.on("connection", (socket) => {
 //         res.status(500).json({ message: 'Error fetching items', error });
 //     }
 // });
-
 // // All other routes should serve the index.html file
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 // });
-
 // app.listen(PORT, () => {
 //     console.log(`Server is running at http://localhost:${PORT}`);
 // });
-
 //////////////////////////////
