@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 
 // Simple test routes
 app.get("/api/test", (req, res) => {
-  res.send("Test route is working on dev!");
+  res.send("Test route is working on heroku!");
 });
 
 // API Route imports
