@@ -22,7 +22,40 @@
       "./types"
     ],
     "types": ["node", "express", "morgan"],
-    "baseUrl": "src",
+    "baseUrl": "."
   },
-  "include": ["frontend/src", "server.ts", "backend/**/*.ts", "backend/services/userService.tsx", "frontend/src/sw/worker.js", "src", "backend", "src/**/*.ts", "server/**/*.ts"]
+  "include": ["frontend/src", "server.ts", "backend/**/*.ts", "src/**/*.ts"]
 }
+
+
+
+///////////////
+
+// {
+//   "compilerOptions": {
+//     "target": "ESNext",
+//     "module": "ESNext",
+//     "lib": ["dom", "dom.iterable", "ESNext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "noEmit": false,
+//     "jsx": "react-jsx",
+//     "outDir": "./dist",
+//     "rootDir": ".",
+//     "typeRoots": [
+//       "./node_modules/@types",
+//       "./types"
+//     ],
+//     "types": ["node", "express", "morgan"],
+//     "baseUrl": "src",
+//   },
+//   "include": ["frontend/src", "server.ts", "backend/**/*.ts", "backend/services/userService.tsx", "frontend/src/sw/worker.js", "src", "backend", "src/**/*.ts", "server/**/*.ts"]
+// }

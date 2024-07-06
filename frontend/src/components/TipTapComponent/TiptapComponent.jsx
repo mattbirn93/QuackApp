@@ -10,7 +10,6 @@ import NodeButton from "../nodes/NodeButton";
 import SpeechToText from "../SpeechToTextComponent/SpeechToTextComponent";
 import MicOn from "../../assets/images/icons8-microphone-On.png";
 import MicOff from "../../assets/images/icons8-microphone-Off.png";
-import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import CharacterDeckView from "../CharacterDeckComponent/CharacterDeckView";
 import SidePanelComponent from "../SidePanelComponent/SidePanelComponent";
 import ChatPanelComponent from "../ChatPanelComponent/ChatPanelComponent";
@@ -136,7 +135,8 @@ export const Tiptap = ({
   const editMenuRef = useRef(null);
   const hamburgerMenuRef = useRef(null);
 
-  const API_BASE_URL = getApiBaseUrl();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   console.log(initialContent, "initial content");
 
   const toggleRecording = () => {
@@ -400,7 +400,9 @@ export const Tiptap = ({
         <div>
           <SidePanelComponent scriptName={scriptName} />
         </div>
-        <div>{/* <ChatPanelComponent /> */}</div>
+        <div>
+          <ChatPanelComponent />
+        </div>
         <div className="mainNavbar">
           <div className="controlButtonsWrapper">
             <div className="controlButtonsContainer">

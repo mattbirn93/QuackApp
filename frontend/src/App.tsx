@@ -4,7 +4,6 @@ import { io, Socket } from "socket.io-client";
 import MyErrorBoundary from "./MyErrorBoundary";
 import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
-import { getApiBaseUrl } from "./utils/getApiBaseUrl";
 import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
 import { useParams } from "react-router-dom";
 import styles from "./App.module.css";
@@ -19,7 +18,8 @@ const App: React.FC = () => {
   const [testContent, setTestContent] = useState();
   const [characterArrayData, setCharacterArrayData] = useState<string[]>([]);
   const [scriptName, setScriptName] = useState("");
-  const API_BASE_URL = getApiBaseUrl();
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchData = async () => {

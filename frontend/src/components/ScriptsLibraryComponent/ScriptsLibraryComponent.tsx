@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getApiBaseUrl } from "../../utils/getApiBaseUrl";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
 import EditScriptModal from "./modals/EditScriptModal/EditScriptModal";
 import AddScriptModal from "./modals/AddScriptModal/AddScriptModal";
@@ -38,7 +37,8 @@ const ScriptsLibraryComponent: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [clickCount, setClickCount] = useState(0);
   const [tapTimeout, setTapTimeout] = useState<NodeJS.Timeout | null>(null);
-  const API_BASE_URL = getApiBaseUrl();
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const navigate = useNavigate();
 
@@ -92,15 +92,6 @@ const ScriptsLibraryComponent: React.FC = () => {
   console.log(
     "LOOKSIE Fetching user data from URL:",
     `${API_BASE_URL}/api/users/fetchUserById?id=664e8a1b8bd40eebdcc5939b`,
-  );
-
-  console.log(
-    "LOOKSIE API Base URL Desktop:",
-    import.meta.env.VITE_API_BASE_URL_DESKTOP,
-  );
-  console.log(
-    "LOOKSIE API Base URL Mobile:",
-    import.meta.env.VITE_API_BASE_URL_MOBILE,
   );
 
   ////////test route
