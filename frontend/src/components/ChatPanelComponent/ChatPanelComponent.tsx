@@ -19,6 +19,7 @@ const ChatPanelComponent = ({ owners }: { owners: Owner[] }) => {
     const savedMessages = sessionStorage.getItem("chatMessages");
     return savedMessages ? JSON.parse(savedMessages) : [];
   });
+
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState<string>(() => {
     const savedUser = localStorage.getItem("chatUser");

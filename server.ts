@@ -107,7 +107,7 @@ io.on("connection", (socket) => {
 
   socket.on("chatMessage", (msg) => {
     console.log("Message received:", msg);
-    io.emit("chatMessage", msg); // Broadcast the message to all clients
+    io.emit("chatMessage", msg); // Broadcast the message to all clientss
   });
 
   socket.on("disconnect", () => {
