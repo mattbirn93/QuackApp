@@ -35,6 +35,7 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:4173",
+    "http://192.168.0.211:5173",
     "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -51,7 +52,7 @@ app.use((req, res, next) => {
 
 // Simple test routes
 app.get("/api/test", (req, res) => {
-  res.send("Test route is working on tank");
+  res.send("Test route is working on dev");
 });
 
 // API Route imports
@@ -94,6 +95,7 @@ const io = new SocketIOServer(server, {
     origin: [
       "http://localhost:5173",
       "http://localhost:4173",
+      "http://192.168.0.211:5173",
       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
     ],
     methods: ["GET", "POST"],
