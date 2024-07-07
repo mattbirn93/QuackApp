@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:network": "vite --mode network",
     "start": "node dist/server.js",
     "build:frontend": "vite build",
     "build:backend": "tsc -p tsconfig.server.json",
