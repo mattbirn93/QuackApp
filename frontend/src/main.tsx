@@ -5,6 +5,7 @@ import { AppProvider } from "./context/AppContext";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { router } from "./routes/Router";
+// import { Auth0Provider } from "@auth0/auth0-react";
 import "./assets/styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
