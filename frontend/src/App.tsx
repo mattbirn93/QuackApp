@@ -6,6 +6,7 @@ import SkeletonLoader from "./components/SkeletonLoader/SkeletonLoader-EXAMPLE";
 import { AppDataInterface } from "./interfaces/interfaces";
 import { Tiptap } from "./components/TipTapComponent/TiptapComponent";
 import { useParams } from "react-router-dom";
+import LoginView from "./views/LoginView/LoginView";
 import styles from "./App.module.css";
 
 const App: React.FC = () => {
@@ -61,13 +62,14 @@ const App: React.FC = () => {
   return (
     <MyErrorBoundary fallback={"There was an error"}>
       <div>
-        <Tiptap
+        <LoginView />
+        {/* <Tiptap
           initialContent={testContent}
           setDescription={setDescription}
           scriptId={scriptId}
           characterArray={characterArrayData}
           scriptName={scriptName}
-        />
+        /> */}
       </div>
     </MyErrorBoundary>
   );
