@@ -56,6 +56,7 @@
     "express-validator": "^7.1.0",
     "express-winston": "^4.2.0",
     "framer-motion": "^11.2.6",
+    "gsap": "^3.12.5",
     "html-react-parser": "^5.1.10",
     "http-proxy": "^1.18.1",
     "mongoose": "^8.4.0",

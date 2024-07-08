@@ -1,27 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Spline from "@splinetool/react-spline";
-import { useAnimation } from "framer-motion";
-import background4 from "../../assets/images/background4.png";
-import Ball3D1 from "../../components/Ball3D1/Ball3D1";
+import gsap from "gsap";
 import ErrorBoundary from "../../MyErrorBoundary";
+import background4 from "../../assets/images/background4.png";
 import styles from "./LoginView.module.css";
 
-const SplineScene: React.FC = () => (
-  <Spline scene="https://prod.spline.design/XYZ123/scene.splinecode" />
-);
-
 const LoginView: React.FC = () => {
-  const controls = useAnimation();
-  const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const letters = textRef.current?.querySelectorAll("span");
+    if (letters) {
+      letters.forEach((letter) => {
+        gsap.fromTo(
+          letter,
+          { scale: 1 },
+          {
+            scale: 1.2,
+            duration: 0.3,
+            ease: "power1.inOut",
+            yoyo: true,
+            repeat: -1,
+            repeatDelay: 0.5,
+            paused: true,
+          },
+        );
+
+        letter.addEventListener("mouseenter", () => {
+          gsap.to(letter, { scale: 1.5, duration: 0.3, ease: "power1.inOut" });
+        });
+
+        letter.addEventListener("mouseleave", () => {
+          gsap.to(letter, { scale: 1, duration: 0.3, ease: "power1.inOut" });
+        });
+      });
+    }
   }, []);
 
   const handleSignInClick = () => {
@@ -30,12 +53,17 @@ const LoginView: React.FC = () => {
 
   const { ref: textBoxesRef, inView: textBoxesInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1, // Adjust this value to control when the animation triggers
+    threshold: 0.1,
   });
 
   const { ref: phoneSectionRef, inView: phoneSectionInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1, // Adjust this value to control when the animation triggers
+    threshold: 0.1,
+  });
+
+  const { ref: artisticSectionRef, inView: artisticSectionInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
   const containerVariants = {
@@ -129,13 +157,14 @@ const LoginView: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
         >
           <motion.p
+            ref={textRef}
             className={styles.heading1}
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
             variants={containerVariants}
             whileHover="hover"
-            onHoverEnd={() => controls.start("initial")}
+            onHoverEnd={() => gsap.to(textRef.current, { scale: 1 })}
           >
             {"Quack!".split("").map((char, index) => (
               <motion.span
@@ -235,11 +264,6 @@ const LoginView: React.FC = () => {
                 screenwriting app made for busy people on the go. Our platform
                 allows you to seamlessly work on your home computer, and then
                 pick right up and go on your mobile phone. We allow for real
-                time collaboration, AI help and a robust communication platform,
-                featuring a notes section and a chat app. Quack is a
-                screenwriting app made for busy people on the go. Our platform
-                allows you to seamlessly work on your home computer, and then
-                pick right up and go on your mobile phone. We allow for real
                 time collaboration.
               </p>
             </motion.div>
@@ -253,12 +277,7 @@ const LoginView: React.FC = () => {
                 Quack is a screenwriting app made for busy people on the go. Our
                 platform allows you to seamlessly work on your home computer,
                 and then pick right up and go on your mobile phone. We allow for
-                real time collaboration, AI help and a robust communication
-                platform, featuring a notes section and a chat app. Quack is a
-                screenwriting app made for busy people on the go. Our platform
-                allows you to seamlessly work on your home computer, and then
-                pick right up and go on your mobile phone. We allow for real
-                time collaboration.
+                real time collaboration.
               </p>
             </motion.div>
           </motion.div>
@@ -303,12 +322,430 @@ const LoginView: React.FC = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Artistic Section */}
+        <div ref={artisticSectionRef}>
+          <motion.div
+            className={styles.artisticContainer}
+            initial={{ opacity: 0 }}
+            animate={artisticSectionInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.5, duration: 2 }}
+          >
+            <motion.div
+              className={styles.artisticBox}
+              initial={{ opacity: 0, x: 100 }}
+              animate={artisticSectionInView ? { opacity: 1, x: 0 } : {}}
+            >
+              <div className={styles.titleText}>Desktop</div>
+              <motion.div
+                className={styles.revealText}
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p>
+                  Quack is a screenwriting app made for busy people on the go.
+                  Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration.
+                </p>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className={styles.artisticBox}
+              initial={{ opacity: 0, x: 100 }}
+              animate={artisticSectionInView ? { opacity: 1, x: 0 } : {}}
+            >
+              <div className={styles.titleText}>Mobile</div>
+              <motion.div
+                className={styles.revealText}
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p>
+                  Quack is a screenwriting app made for busy people on the go.
+                  Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration.
+                </p>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className={styles.artisticBox}
+              initial={{ opacity: 0, x: 100 }}
+              animate={artisticSectionInView ? { opacity: 1, x: 0 } : {}}
+            >
+              <div className={styles.titleText}>Speech To Text</div>
+              <motion.div
+                className={styles.revealText}
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p>
+                  Quack is a screenwriting app made for busy people on the go.
+                  Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration, AI help and a robust
+                  communication platform, featuring a notes section and a chat
+                  app. Quack is a screenwriting app made for busy people on the
+                  go. Our platform allows you to seamlessly work on your home
+                  computer, and then pick right up and go on your mobile phone.
+                  We allow for real time collaboration.
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default LoginView;
+
+//////////////
+
+// import React, { useState, useEffect } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import { useInView } from "react-intersection-observer";
+// import Spline from "@splinetool/react-spline";
+// import { useAnimation } from "framer-motion";
+// import background4 from "../../assets/images/background4.png";
+// import Ball3D1 from "../../components/Ball3D1/Ball3D1";
+// import gsap from "gsap";
+// import ErrorBoundary from "../../MyErrorBoundary";
+// import styles from "./LoginView.module.css";
+
+// const SplineScene: React.FC = () => (
+//   <Spline scene="https://prod.spline.design/XYZ123/scene.splinecode" />
+// );
+
+// const LoginView: React.FC = () => {
+//   const controls = useAnimation();
+//   const [isHovering, setIsHovering] = useState(false);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     window.scrollTo(0, 0);
+//   }, []);
+
+//   const handleSignInClick = () => {
+//     navigate("/scriptslibrary");
+//   };
+
+//   const { ref: textBoxesRef, inView: textBoxesInView } = useInView({
+//     triggerOnce: true,
+//     threshold: 0.1, // Adjust this value to control when the animation triggers
+//   });
+
+//   const { ref: phoneSectionRef, inView: phoneSectionInView } = useInView({
+//     triggerOnce: true,
+//     threshold: 0.1, // Adjust this value to control when the animation triggers
+//   });
+
+//   const containerVariants = {
+//     hover: {
+//       transition: {
+//         staggerChildren: 0.1,
+//         staggerDirection: 1,
+//       },
+//     },
+//     initial: {
+//       transition: {
+//         staggerChildren: 0.1,
+//         staggerDirection: -1,
+//       },
+//     },
+//   };
+
+//   const childVariants = {
+//     initial: {
+//       scale: 1,
+//     },
+//     hover: {
+//       scale: 1.2,
+//       transition: {
+//         duration: 0.3,
+//         ease: "easeInOut",
+//       },
+//     },
+//   };
+
+//   return (
+//     <div className={styles.wrapper}>
+//       <motion.div
+//         className={styles.mainContainer}
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         transition={{ duration: 1 }}
+//       >
+//         <motion.div className={styles.homeNavContainer}>
+//           <motion.div className={styles.searchBarContainer}>
+//             <motion.div className={styles.searchBarWrapper}>
+//               <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
+//               <input
+//                 type="text"
+//                 placeholder="Search"
+//                 className={styles.searchBar}
+//               />
+//             </motion.div>
+//           </motion.div>
+//           <motion.img
+//             src={background4}
+//             className={styles.backgroundImage}
+//             initial={{ opacity: 1 }}
+//             animate={{
+//               opacity: 1,
+//               rotateX: [-5, 15, -15],
+//               rotateY: [-10, 10, -10],
+//             }}
+//             transition={{
+//               duration: 3,
+//               opacity: { duration: 30 },
+//               rotateX: {
+//                 duration: 7,
+//                 repeat: Infinity,
+//                 repeatType: "mirror",
+//                 ease: "easeInOut",
+//               },
+//               rotateY: {
+//                 duration: 30,
+//                 repeat: Infinity,
+//                 repeatType: "mirror",
+//                 ease: "easeInOut",
+//               },
+//             }}
+//           />
+
+//           <motion.div className={styles.signInButtonContainer}>
+//             <button className={styles.signInButton} onClick={handleSignInClick}>
+//               <FontAwesomeIcon
+//                 icon={faUser}
+//                 className={styles.signInButtonIcon}
+//               />
+//               Sign In
+//             </button>
+//           </motion.div>
+//         </motion.div>
+//         <motion.div
+//           className={styles.loginSectionContainer}
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 0.5, duration: 1 }}
+//         >
+//           <motion.p
+//             className={styles.heading1}
+//             initial={{ x: -200, opacity: 0 }}
+//             animate={{ x: 0, opacity: 1 }}
+//             transition={{ type: "spring", stiffness: 100 }}
+//             variants={containerVariants}
+//             whileHover="hover"
+//             onHoverEnd={() => controls.start("initial")}
+//           >
+//             {"Quack!".split("").map((char, index) => (
+//               <motion.span
+//                 key={index}
+//                 variants={childVariants}
+//                 className={styles.character}
+//               >
+//                 {char}
+//               </motion.span>
+//             ))}
+//           </motion.p>
+
+//           <motion.p
+//             className={styles.heading2}
+//             initial={{ x: -200, opacity: 0 }}
+//             animate={{ x: 0, opacity: 1 }}
+//             transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+//           >
+//             A Realtime Collaborative Screenwriting App
+//           </motion.p>
+//           <motion.p
+//             className={styles.missionStatement1}
+//             initial={{ x: -200, opacity: 0 }}
+//             animate={{ x: 0, opacity: 1 }}
+//             transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+//           >
+//             Create and share scripts with other users and create the vision you
+//             have always dreamed about!.
+//           </motion.p>
+//           <motion.button
+//             className={styles.tryItButton}
+//             onClick={() => {}}
+//             whileHover={{ scale: 1.1 }}
+//             whileTap={{ scale: 0.9 }}
+//             initial={{ opacity: 0, y: 50 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ delay: 0.3, duration: 0.5 }}
+//           >
+//             Try It Now
+//           </motion.button>
+//         </motion.div>
+//         <ErrorBoundary fallback={""}>
+//           <motion.div
+//             initial={{ opacity: 0, y: 50 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ delay: 1, duration: 1 }}
+//           >
+//             {/* <SplineScene /> */}
+//           </motion.div>
+//         </ErrorBoundary>
+//       </motion.div>
+
+//       {/* New Section with Text Boxes */}
+//       <div>
+//         <div ref={textBoxesRef}>
+//           <motion.div
+//             className={styles.textBoxesContainer}
+//             initial={{ opacity: 0 }}
+//             animate={textBoxesInView ? { opacity: 1, x: 0 } : {}}
+//             transition={{ delay: 0.0, duration: 2 }}
+//           >
+//             <motion.div
+//               className={styles.textBox}
+//               initial={{ opacity: 0, x: 100 }}
+//               animate={textBoxesInView ? { opacity: 1, x: 0 } : {}}
+//               transition={{ delay: 1, duration: 1.5 }}
+//             >
+//               <p>
+//                 Quack is a screenwriting app made for busy people on the go. Our
+//                 platform allows you to seamlessly work on your home computer,
+//                 and then pick right up and go on your mobile phone. We allow for
+//                 real time collaboration, AI help and a robust communication
+//                 platform, featuring a notes section and a chat app. Quack is a
+//                 screenwriting app made for busy people on the go. Our platform
+//                 allows you to seamlessly work on your home computer, and then
+//                 pick right up and go on your mobile phone. We allow for real
+//                 time collaboration, AI help and a robust communication platform,
+//                 featuring a notes section and a chat app. Quack is a
+//                 screenwriting app made for busy people on the go. Our platform
+//                 allows you to seamlessly work on your home computer, and then
+//                 pick right up and go on your mobile phone. We allow for real
+//                 time collaboration.
+//               </p>
+//             </motion.div>
+//             <motion.div
+//               className={styles.textBox}
+//               initial={{ opacity: 0, x: 100 }}
+//               animate={textBoxesInView ? { opacity: 1, x: 0 } : {}}
+//               transition={{ delay: 1.5, duration: 1.5 }}
+//             >
+//               <p>
+//                 Quack is a screenwriting app made for busy people on the go. Our
+//                 platform allows you to seamlessly work on your home computer,
+//                 and then pick right up and go on your mobile phone. We allow for
+//                 real time collaboration, AI help and a robust communication
+//                 platform, featuring a notes section and a chat app. Quack is a
+//                 screenwriting app made for busy people on the go. Our platform
+//                 allows you to seamlessly work on your home computer, and then
+//                 pick right up and go on your mobile phone. We allow for real
+//                 time collaboration, AI help and a robust communication platform,
+//                 featuring a notes section and a chat app. Quack is a
+//                 screenwriting app made for busy people on the go. Our platform
+//                 allows you to seamlessly work on your home computer, and then
+//                 pick right up and go on your mobile phone. We allow for real
+//                 time collaboration.
+//               </p>
+//             </motion.div>
+//             <motion.div
+//               className={styles.textBox}
+//               initial={{ opacity: 0, x: 100 }}
+//               animate={textBoxesInView ? { opacity: 1, x: 0 } : {}}
+//               transition={{ delay: 2, duration: 1.5 }}
+//             >
+//               <p>
+//                 Quack is a screenwriting app made for busy people on the go. Our
+//                 platform allows you to seamlessly work on your home computer,
+//                 and then pick right up and go on your mobile phone. We allow for
+//                 real time collaboration, AI help and a robust communication
+//                 platform, featuring a notes section and a chat app. Quack is a
+//                 screenwriting app made for busy people on the go. Our platform
+//                 allows you to seamlessly work on your home computer, and then
+//                 pick right up and go on your mobile phone. We allow for real
+//                 time collaboration.
+//               </p>
+//             </motion.div>
+//           </motion.div>
+//         </div>
+
+//         {/* Phone section */}
+//         <div className={styles.phoneSectionHeader}>
+//           <div ref={phoneSectionRef}>
+//             <motion.div
+//               initial={{ opacity: 0, y: 50 }}
+//               animate={phoneSectionInView ? { opacity: 1, y: 0 } : {}}
+//               transition={{ duration: 1 }}
+//             >
+//               <div className={styles.phoneHeading}>
+//                 Record speech for your app right on your mobile phone and
+//                 continue working on your shared scripts
+//               </div>
+//             </motion.div>
+//             <motion.div
+//               initial={{ opacity: 0 }}
+//               animate={phoneSectionInView ? { opacity: 1 } : {}}
+//               transition={{ duration: 1 }}
+//               className={styles.phoneImage}
+//             >
+//               <Spline scene="https://prod.spline.design/LuVV6x9TaIevJB6h/scene.splinecode" />
+//             </motion.div>
+//           </div>
+//         </div>
+
+//         {/* Quack Icon section */}
+//         <div className={styles.quackIconContainer}>
+//           <motion.div
+//             animate={{ rotateY: 3600 }} // Large number to ensure continuous spinning
+//             transition={{
+//               duration: 100, // Longer duration for smooth continuous spin
+//               repeat: Infinity,
+//               ease: "linear",
+//             }}
+//           >
+//             <div className={styles.quackIconWrapper}>
+//               <Spline scene="https://prod.spline.design/CIYcRNgqTIgWyLLf/scene.splinecode" />
+//             </div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default LoginView;
 
 ///////////
 
