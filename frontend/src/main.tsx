@@ -21,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 // Register the service worker
 serviceWorkerRegistration.register();
+// serviceWorkerRegistration.unregister();
 
 reportWebVitals();
 

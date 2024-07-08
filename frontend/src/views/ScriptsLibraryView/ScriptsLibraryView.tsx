@@ -40,5 +40,4 @@ const ScriptsLibraryView: React.FC = () => {
     </div>
   );
 };
-
 export default ScriptsLibraryView;
