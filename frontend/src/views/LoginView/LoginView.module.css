@@ -5,11 +5,15 @@
 .mainContainer {
     @apply w-full flex flex-col relative;
         height: 100vh;
-        background: linear-gradient(90deg, rgba(38, 5, 255, 1) 0%, rgba(149, 0, 255, 1) 44%, rgba(21, 1, 24, 1) 100%);
+        background: rgb(0, 0, 0);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 1) 100%);
         font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
         /* max-width: 1028px; */
         margin-inline: auto;
-        padding: 0rem 5rem;
+}
+
+.loginSectionContainer {
+    padding: 0rem 6rem;
 }
 
 .homeNavContainer {
@@ -17,11 +21,11 @@
     position: relative;
     justify-content: end;
     align-items: center;
-    padding: 10px;
+    padding: 1.5rem 6rem;
     width: 100;
     /* max-width: 1200px; */
     padding-left: 3rem;
-    border-bottom: 1px solid grey;;
+    border-bottom: 1px solid rgb(91, 91, 91);;
     /* background-color: red; */
 }
 
@@ -131,6 +135,55 @@
     font-weight: 700;
     color: white;
 }
+
+.missionStatement1 {
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    /* text-align: center; */
+    background-clip: text;
+    font-weight: 300;
+    color: rgb(202, 202, 202);
+    margin-top: 1rem;
+}
+
+.backgroundImage {
+    display: flex;
+    position: absolute;
+    top: 10rem;
+    height: 40rem;
+    width: 40rem;
+}
+
+.tryItButton {
+    background-color: #007aff;
+    color: white;
+    padding: 1.0rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.0rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.tryItButton:hover {
+    background-color: #005bb5;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.tryItButton:active {
+    background-color: #004085;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 600px) {

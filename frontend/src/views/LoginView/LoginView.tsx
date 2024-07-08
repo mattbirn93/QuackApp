@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
+import background2 from "../../assets/images/background2.jpg";
 import styles from "./LoginView.module.css";
 
 const LoginView = () => {
@@ -18,6 +19,7 @@ const LoginView = () => {
               />
             </div>
           </div>
+          <img src={background2} className={styles.backgroundImage} />
           <div className={styles.signInButtonContainer}>
             <button className={styles.signInButton}>
               <FontAwesomeIcon
@@ -28,10 +30,19 @@ const LoginView = () => {
             </button>
           </div>
         </div>
-        <p className={styles.heading1}>Quack!</p>
-        <p className={styles.heading2}>
-          A Realtime Collaborative Screenwriting App
-        </p>
+        <div className={styles.loginSectionContainer}>
+          <p className={styles.heading1}>Quack!</p>
+          <p className={styles.heading2}>
+            A Realtime Collaborative Screenwriting App
+          </p>
+          <p className={styles.missionStatement1}>
+            Create and share scripts with other users and create the vision you
+            have always dreamed about!.
+          </p>
+          <button className={styles.tryItButton} onClick={() => {}}>
+            Try It Now
+          </button>
+        </div>
       </div>
     </div>
   );
