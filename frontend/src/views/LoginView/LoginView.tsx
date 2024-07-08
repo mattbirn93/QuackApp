@@ -15,9 +15,9 @@ const LoginView: React.FC = () => {
   const navigate = useNavigate();
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const letters = textRef.current?.querySelectorAll("span");
@@ -245,14 +245,7 @@ const LoginView: React.FC = () => {
                 simultaneously, ensuring that creativity flows uninterrupted and
                 ideas are shared instantaneously. One of the standout features
                 of Quack! is its integration of advanced speech-to-text
-                capabilities. This allows screenwriters to dictate their
-                thoughts and ideas, which are then transcribed directly into the
-                script. The app also boasts a robust communication platform that
-                includes a notes section and an in-app chat function, making it
-                easy for writers to communicate and leave feedback. With Quack!,
-                screenwriters can transition smoothly between their home
-                computer and mobile phone, ensuring that they can capture their
-                creativity whenever and wherever inspiration strikes.
+                capabilities.
               </p>
             </motion.div>
             <motion.div
@@ -273,14 +266,7 @@ const LoginView: React.FC = () => {
                 simultaneously, ensuring that creativity flows uninterrupted and
                 ideas are shared instantaneously. One of the standout features
                 of Quack! is its integration of advanced speech-to-text
-                capabilities. This allows screenwriters to dictate their
-                thoughts and ideas, which are then transcribed directly into the
-                script. The app also boasts a robust communication platform that
-                includes a notes section and an in-app chat function, making it
-                easy for writers to communicate and leave feedback. With Quack!,
-                screenwriters can transition smoothly between their home
-                computer and mobile phone, ensuring that they can capture their
-                creativity whenever and wherever inspiration strikes.
+                capabilities.
               </p>
             </motion.div>
             <motion.div
@@ -301,14 +287,7 @@ const LoginView: React.FC = () => {
                 simultaneously, ensuring that creativity flows uninterrupted and
                 ideas are shared instantaneously. One of the standout features
                 of Quack! is its integration of advanced speech-to-text
-                capabilities. This allows screenwriters to dictate their
-                thoughts and ideas, which are then transcribed directly into the
-                script. The app also boasts a robust communication platform that
-                includes a notes section and an in-app chat function, making it
-                easy for writers to communicate and leave feedback. With Quack!,
-                screenwriters can transition smoothly between their home
-                computer and mobile phone, ensuring that they can capture their
-                creativity whenever and wherever inspiration strikes.
+                capabilities.
               </p>
             </motion.div>
           </motion.div>
