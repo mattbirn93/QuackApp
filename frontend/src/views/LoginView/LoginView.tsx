@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import background4 from "../../assets/images/background4.png";
+import Ball3D1 from "../../components/Ball3D1/Ball3D1";
 import styles from "./LoginView.module.css";
 
 const LoginView: React.FC = () => {
@@ -38,6 +39,9 @@ const LoginView: React.FC = () => {
           </div>
         </div>
         <div className={styles.loginSectionContainer}>
+          <div className={styles.ball3D1Container}>
+            <Ball3D1 />
+          </div>
           <p className={styles.heading1}>Quack!</p>
           <p className={styles.heading2}>
             A Realtime Collaborative Screenwriting App
