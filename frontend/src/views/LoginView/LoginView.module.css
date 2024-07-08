@@ -4,7 +4,12 @@
     justify-content: center;
     width: 100%;
     min-height: 100vh;
-    background: url('../../assets/images/background6.jpg') no-repeat center center/cover;
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 1.0) 21%,
+            rgba(115, 32, 173, 0.8127844887955182) 100%,
+            rgba(22, 0, 25, 0.7) 100%),
+        url('../../assets/images/background6.jpg') no-repeat center center/cover;
+    box-sizing: border-box;
 }
 
 .mainContainer {
@@ -12,10 +17,7 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    /* Less transparent overla */
-    background: linear-gradient(90deg, rgba(0, 0, 0, 1.0) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 0.7) 100%);
+    min-height: 100vh;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-inline: auto;
 }
@@ -110,10 +112,16 @@
 .ball3D1Container {
     display: flex;
     position: absolute;
-    top: -13rem;
-    left: 8rem;
+    top: -14rem;
+    left: 7.5rem;
     width: 100%;
     height: 100%;
+}
+
+.ball3D1Wrapper {
+    width: 70rem;
+    height: 70rem;
+    transform: scale(0.22);
 }
 
 .headingsContainer {
@@ -194,6 +202,49 @@
     background-color: #004085;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(1px);
+}
+
+.textBoxesContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3rem;
+    padding: 0 5rem;
+}
+
+.textBox {
+    color: white;
+    flex: 1;
+    margin: 0 50px;
+    padding: 40px;
+    background-color: none;
+    /* background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); */
+    border: 1px solid white;
+    border-radius: 15px;
+   
+}
+
+.phoneSectionHeader {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-top: 1px solid white;
+    margin-top: 10rem;
+    padding: 20px;
+}
+
+.phoneHeading {
+    margin-top: 2rem;
+    font-weight: 400;
+}
+
+.phoneImage {
+    margin-top: -8rem;
+    font-weight: 400;
 }
 
 @media (max-width: 600px) {
