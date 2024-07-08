@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Spline from "@splinetool/react-spline";
 import background4 from "../../assets/images/background4.png";
-import Ball3D1 from "../../components/Ball3D1/Ball3D1";
 import ErrorBoundary from "../../MyErrorBoundary";
 import styles from "./LoginView.module.css";
 
@@ -27,12 +26,12 @@ const LoginView: React.FC = () => {
 
   const { ref: textBoxesRef, inView: textBoxesInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1, // Adjust this value to control when the animation triggers
   });
 
   const { ref: phoneSectionRef, inView: phoneSectionInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1, // Adjust this value to control when the animation triggers
   });
 
   return (
@@ -235,19 +234,41 @@ const LoginView: React.FC = () => {
               transition={{ duration: 1 }}
             >
               <div className={styles.phoneHeading}>
-                Record speech for your script right on your mobile phone and
+                Record speech for your app right on your mobile phone and
                 continue working on your shared scripts
               </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={phoneSectionInView ? { opacity: 1 } : {}}
-              transition={{ duration: 3 }}
+              transition={{ duration: 1 }}
               className={styles.phoneImage}
             >
               <Spline scene="https://prod.spline.design/LuVV6x9TaIevJB6h/scene.splinecode" />
             </motion.div>
           </div>
+        </div>
+
+        {/* <motion.div className={styles.ball3D1Container}>
+//             <div className={styles.ball3D1Wrapper}>
+//               <Ball3D1 />
+//             </div>
+//           </motion.div> */}
+
+        {/* Quack Icon section */}
+        <div className={styles.quackIconContainer}>
+          <motion.div
+            animate={{ rotateY: 3600 }}
+            transition={{
+              duration: 200,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <div className={styles.quackIconWrapper}>
+              <Spline scene="https://prod.spline.design/CIYcRNgqTIgWyLLf/scene.splinecode" />
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
