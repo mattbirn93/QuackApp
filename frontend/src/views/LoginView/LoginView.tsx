@@ -1,14 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
-// import Ball3D1 from "../../components/Ball3D1/Ball3D1";
-// import background2 from "../../assets/images/background2.jpg";
-// import background3 from "../../assets/images/background3.png";
+import { useNavigate } from "react-router-dom";
 import background4 from "../../assets/images/background4.png";
-// import background5 from "../../assets/images/background5.png";
 import styles from "./LoginView.module.css";
 
-const LoginView = () => {
+const LoginView: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleSignInClick = () => {
+    navigate("/scriptslibrary");
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.mainContainer}>
@@ -24,9 +27,8 @@ const LoginView = () => {
             </div>
           </div>
           <img src={background4} className={styles.backgroundImage} />
-          {/* <Ball3D1 /> */}
           <div className={styles.signInButtonContainer}>
-            <button className={styles.signInButton}>
+            <button className={styles.signInButton} onClick={handleSignInClick}>
               <FontAwesomeIcon
                 icon={faUser}
                 className={styles.signInButtonIcon}
