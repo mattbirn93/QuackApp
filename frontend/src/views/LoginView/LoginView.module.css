@@ -264,6 +264,53 @@
     font-weight: 400;
 }
 
+.artisticContainer {
+    display: flex;
+    justify-content: space-around;
+    height: 200rem;
+    padding: 0 5rem;
+    margin-top: 4rem;
+}
+
+.artisticBox {
+    flex: 1;
+    margin: 0 50px;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff007f, #ffdf00);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: height 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    height: 5rem;
+    /* Initial height of the box */
+}
+
+.titleText {
+    position: relative;
+    z-index: 1;
+}
+
+.revealText {
+    margin-top: 20px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.artisticBox:hover {
+    height: 40rem;
+    /* Expanded height on hover */
+}
+
+.artisticBox:hover .revealText {
+    opacity: 1;
+}
+
 @media (max-width: 600px) {
     .navContainer {
         padding-right: 4.0rem;
