@@ -124,6 +124,11 @@
     transform: scale(0.22);
 }
 
+.character {
+    display: inline-block;
+    margin: 0 2px;
+}
+
 .headingsContainer {
     display: flex;
     flex-direction: column;

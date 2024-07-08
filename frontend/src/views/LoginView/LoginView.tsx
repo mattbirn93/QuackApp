@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Spline from "@splinetool/react-spline";
+import { useAnimation } from "framer-motion";
 import background4 from "../../assets/images/background4.png";
+import Ball3D1 from "../../components/Ball3D1/Ball3D1";
 import ErrorBoundary from "../../MyErrorBoundary";
 import styles from "./LoginView.module.css";
 
@@ -14,6 +16,8 @@ const SplineScene: React.FC = () => (
 );
 
 const LoginView: React.FC = () => {
+  const controls = useAnimation();
+  const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +37,34 @@ const LoginView: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1, // Adjust this value to control when the animation triggers
   });
+
+  const containerVariants = {
+    hover: {
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: 1,
+      },
+    },
+    initial: {
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const childVariants = {
+    initial: {
+      scale: 1,
+    },
+    hover: {
+      scale: 1.2,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -101,9 +133,21 @@ const LoginView: React.FC = () => {
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
+            variants={containerVariants}
+            whileHover="hover"
+            onHoverEnd={() => controls.start("initial")}
           >
-            Quack!
+            {"Quack!".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                variants={childVariants}
+                className={styles.character}
+              >
+                {char}
+              </motion.span>
+            ))}
           </motion.p>
+
           <motion.p
             className={styles.heading2}
             initial={{ x: -200, opacity: 0 }}
@@ -214,11 +258,6 @@ const LoginView: React.FC = () => {
                 screenwriting app made for busy people on the go. Our platform
                 allows you to seamlessly work on your home computer, and then
                 pick right up and go on your mobile phone. We allow for real
-                time collaboration, AI help and a robust communication platform,
-                featuring a notes section and a chat app. Quack is a
-                screenwriting app made for busy people on the go. Our platform
-                allows you to seamlessly work on your home computer, and then
-                pick right up and go on your mobile phone. We allow for real
                 time collaboration.
               </p>
             </motion.div>
@@ -249,18 +288,12 @@ const LoginView: React.FC = () => {
           </div>
         </div>
 
-        {/* <motion.div className={styles.ball3D1Container}>
-//             <div className={styles.ball3D1Wrapper}>
-//               <Ball3D1 />
-//             </div>
-//           </motion.div> */}
-
         {/* Quack Icon section */}
         <div className={styles.quackIconContainer}>
           <motion.div
-            animate={{ rotateY: 3600 }}
+            animate={{ rotateY: 3600 }} // Large number to ensure continuous spinning
             transition={{
-              duration: 200,
+              duration: 100, // Longer duration for smooth continuous spin
               repeat: Infinity,
               ease: "linear",
             }}
