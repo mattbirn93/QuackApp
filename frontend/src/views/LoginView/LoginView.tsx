@@ -1,7 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
-import background2 from "../../assets/images/background2.jpg";
+// import Ball3D1 from "../../components/Ball3D1/Ball3D1";
+// import background2 from "../../assets/images/background2.jpg";
+// import background3 from "../../assets/images/background3.png";
+import background4 from "../../assets/images/background4.png";
+// import background5 from "../../assets/images/background5.png";
 import styles from "./LoginView.module.css";
 
 const LoginView = () => {
@@ -19,7 +23,8 @@ const LoginView = () => {
               />
             </div>
           </div>
-          <img src={background2} className={styles.backgroundImage} />
+          <img src={background4} className={styles.backgroundImage} />
+          {/* <Ball3D1 /> */}
           <div className={styles.signInButtonContainer}>
             <button className={styles.signInButton}>
               <FontAwesomeIcon

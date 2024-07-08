@@ -1,15 +1,23 @@
 .wrapper {
-    @apply flex flex-col justify-center w-full
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../assets/images/background6.jpg') no-repeat center center/cover;
 }
 
 .mainContainer {
-    @apply w-full flex flex-col relative;
-        height: 100vh;
-        background: rgb(0, 0, 0);
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 1) 100%);
-        font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        /* max-width: 1028px; */
-        margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    /* Less transparent overlay */
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1.0) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 0.7) 100%);
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-inline: auto;
 }
 
 .loginSectionContainer {
@@ -22,11 +30,9 @@
     justify-content: end;
     align-items: center;
     padding: 1.5rem 6rem;
-    width: 100;
-    /* max-width: 1200px; */
+    width: 100%;
     padding-left: 3rem;
-    border-bottom: 1px solid rgb(91, 91, 91);;
-    /* background-color: red; */
+    border-bottom: 1px solid rgb(91, 91, 91);
 }
 
 .signInButtonContainer {}
@@ -102,10 +108,11 @@
 }
 
 .headingsContainer {
-    @apply flex flex-col items-center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     padding: 1rem 0;
-    /* background-color: #141414; */
     gap: 1rem;
 }
 
@@ -116,20 +123,17 @@
     margin-top: 1.0rem;
 }
 
-
 .heading1 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffffff;
     font-size: 9.0rem;
     margin-top: 8.87rem;
-    /* margin-left: 2.0rem; */
     font-weight: 900;
 }
 
 .heading2 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 3.0rem;
-    /* text-align: center; */
     background: rgba(255, 255, 255, 0.92);
     background-clip: text;
     font-weight: 700;
@@ -139,7 +143,6 @@
 .missionStatement1 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.5rem;
-    /* text-align: center; */
     background-clip: text;
     font-weight: 300;
     color: rgb(202, 202, 202);
@@ -149,9 +152,10 @@
 .backgroundImage {
     display: flex;
     position: absolute;
-    top: 10rem;
-    height: 40rem;
-    width: 40rem;
+    top: 4rem;
+    right: 1.5rem;
+    height: 50rem;
+    width: 50rem;
 }
 
 .tryItButton {
@@ -165,7 +169,6 @@
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,10 +187,7 @@
     transform: translateY(1px);
 }
 
-
-/* Responsive adjustments */
 @media (max-width: 600px) {
-
     .navContainer {
         padding-right: 4.0rem;
     }
