@@ -267,9 +267,10 @@
 .artisticContainer {
     display: flex;
     justify-content: space-around;
-    height: 200rem;
-    padding: 0 5rem;
-    margin-top: 4rem;
+    height: 50rem;
+    padding: 5rem 5rem;
+    border-top: 1px solid rgb(91, 91, 91);
+    border-bottom: 1px solid rgb(91, 91, 91);
 }
 
 .artisticBox {
@@ -287,7 +288,6 @@
     overflow: hidden;
     position: relative;
     height: 5rem;
-    /* Initial height of the box */
 }
 
 .titleText {
@@ -304,11 +304,78 @@
 
 .artisticBox:hover {
     height: 40rem;
-    /* Expanded height on hover */
 }
 
 .artisticBox:hover .revealText {
     opacity: 1;
+}
+
+.pageSection {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 5rem 5rem;
+    border-top: 1px solid rgb(91, 91, 91);
+    border-bottom: 1px solid rgb(91, 91, 91);
+}
+
+.pageText {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 400;
+    max-width: 70%;
+    margin: 0 auto;
+    z-index: 3;
+}
+
+.maskedImageContainer {
+    position: absolute;
+    top: 15rem;
+    left: 55rem;
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.maskedImage {
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: radial-gradient(circle, white 50%, transparent 51%);
+    mask-image: radial-gradient(circle, white 50%, transparent 51%);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.maskedImageContainer2 {
+    position: relative;
+    top: -18rem;
+    left: 24rem;
+    width: 60rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 1.0;
+}
+
+.maskedImage2 {
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: radial-gradient(circle, white 50%, transparent 51%);
+    mask-image: radial-gradient(circle, white 50%, transparent 51%);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
 @media (max-width: 600px) {
