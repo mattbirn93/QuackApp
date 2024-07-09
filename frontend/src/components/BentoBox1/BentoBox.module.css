@@ -1,19 +1,21 @@
 .bentoBoxContainer {
     padding: 2rem 20rem;
-    border-bottom: 1px solid
+    border-bottom: 1px solid;
 }
 
 .bentoBox {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, auto);
     gap: 15px;
     padding: 20px;
     grid-template-areas:
-        "box1 box2 box2"
-        "box1 box3 box4"
-        "box5 box5 box6"
-        ". . .";
+        "box1 box1 box1 box2 box2 box2 box2 box2 box2"
+        "box1 box1 box1 box3 box3 box3 box4 box4 box4"
+        "box5 box5 box5 box5 box5 box5 box6 box6 box6"
+        "box5 box5 box5 box5 box5 box5 box6 box6 box6"
+        ". . . . . . . . ."
+        ". . . . . . . . .";
 }
 
 .box {
@@ -57,7 +59,6 @@
 .box1 {
     grid-area: box1;
     height: 715px;
-    /* justify-content: space-between; */
 }
 
 .box1 .title {
@@ -282,18 +283,18 @@
 }
 
 .customBox3 {
-        display: flex;
-        position: absolute;
-        top: 38rem;
-        left: 7.5rem;
-        background-color: rgba(45, 45, 45, 0.6);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 10px;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 0.8rem;
-        font-weight: 900;
-        border: 1px solid rgb(69, 69, 69);
-        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    display: flex;
+    position: absolute;
+    top: 38rem;
+    left: 7.5rem;
+    background-color: rgba(45, 45, 45, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 900;
+    border: 1px solid rgb(69, 69, 69);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
 }
