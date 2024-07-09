@@ -84,13 +84,13 @@
 
 .box2 .title {
     order: 2;
-    margin-top: 11rem;
+    margin-top: 14rem;
 }
 
 .box2 img {
     order: 1;
-    margin-left: 23rem;
-    max-width: 23rem;
+    margin-left: 10rem;
+    max-width: 39rem;
     margin-top: .5rem;
 }
 
@@ -108,17 +108,22 @@
 
 .box3 .content {
     order: 3;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .box3 img {
     order: 1;
     margin-top: 0rem;
     margin-left: 2.5rem;
+    max-width: 25rem;
 }
 
 .box3 .title {
     order: 2;
-    margin-top: 10.5rem;
+    margin-top: 11.0rem;
 }
 
 .box4 {
@@ -157,6 +162,8 @@
 .box5 img {
     order: 1;
     margin-top: 0rem;
+    margin-left: 12rem;
+    max-width: 25rem;
 }
 
 .box5 .content {
@@ -165,7 +172,7 @@
 
 .box5 .title {
     order: 2;
-    margin-top: 11rem;
+    margin-top: 14rem;
 }
 
 .box6 {
@@ -184,8 +191,8 @@
 
 .box6 img {
     order: 3;
-    margin-top: 8rem;
-    margin-left: 3.0rem;
+    margin-top: 5rem;
+    margin-left: 3.5rem;
     max-width: 15rem;
 }
 
