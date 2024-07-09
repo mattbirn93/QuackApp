@@ -9,7 +9,9 @@ import gsap from "gsap";
 import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
+import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
+import AppleScroll from "../../components/appleScroll/appleScroll";
 import styles from "./LoginView.module.css";
 
 const LoginView: React.FC = () => {
@@ -362,6 +364,11 @@ const LoginView: React.FC = () => {
           <BentoBox1 />
         </div>
 
+        {/* Scroll section */}
+        {/* <div>
+          <AppleScroll />
+        </div> */}
+
         {/* Artistic Section */}
         <div ref={artisticSectionRef}>
           <motion.div
@@ -482,14 +489,15 @@ const LoginView: React.FC = () => {
             </motion.div>
           </motion.div>
 
+          {/* mask section */}
+          <div>
+            <HumanSection />
+          </div>
+
           {/* Page Section */}
           <div className={styles.pageSection}>
             <div className={styles.maskedImageContainer}>
-              <img
-                src={PageIcon1}
-                alt="masked"
-                className={styles.maskedImage}
-              />
+              <img src={""} alt="masked" className={styles.maskedImage} />
             </div>
             <motion.p
               className={styles.pageText}

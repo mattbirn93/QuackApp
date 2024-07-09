@@ -1,0 +1,48 @@
+.Human__wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.Human__container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-inline: auto;
+}
+
+.HumanSection__animText1 {
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px #ffffff;
+  background: url('../../assets/images/blue-smoke.png');
+  -webkit-background-clip: text;
+  background-position: 100px 0;
+  animation: image 20s linear infinite;
+  position: absolute;
+  top: 0%;
+  left: 10.5%;
+  font-size: clamp(0rem, 24.5vw + 1rem, 24.5rem);
+}
+
+@keyframes image {
+  100% {
+    background-position: 2000px 0;
+  }
+}
+
+.fade-in5 {
+  animation: fadeIn 4s;
+}
+
+@keyframes fadeIn5 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
