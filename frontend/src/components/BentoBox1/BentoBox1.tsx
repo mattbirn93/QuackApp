@@ -7,39 +7,45 @@ import Image1 from "../../assets/images/background6.jpg";
 import Image2 from "../../assets/images/background6.jpg";
 import Image3 from "../../assets/images/background6.jpg";
 import Image4 from "../../assets/images/background6.jpg";
+import Neon1 from "../../assets/images/neon-icon1.jpg";
+import Neon2 from "../../assets/images/neon-icon2.jpg";
+import Neon3 from "../../assets/images/neon-icon3.jpg";
+import Neon4 from "../../assets/images/neon-icon4.jpg";
+import Neon5 from "../../assets/images/neon-icon5.jpg";
+import Neon6 from "../../assets/images/neon-icon6.jpg";
 
 const data = [
   {
     title: "Create Scripts",
     content: "Easily create and edit scripts with a user-friendly interface.",
-    image: Image1,
+    image: Neon1,
   },
   {
     title: "Collaborate",
     content: "Work together with others in real-time.",
-    image: Image2,
+    image: Neon2,
   },
   {
     title: "Speech-to-Text",
     content:
       "Use advanced speech-to-text capabilities to dictate your scripts.",
-    image: Image3,
+    image: Neon3,
   },
   {
     title: "Notes and Chat",
     content:
       "Communicate with your team using the integrated notes and chat features.",
-    image: Image4,
+    image: Neon4,
   },
   {
     title: "Review and Feedback",
     content: "Receive feedback and review scripts collaboratively.",
-    image: Image4,
+    image: Neon5,
   },
   {
     title: "Export Scripts",
     content: "Easily export your scripts in multiple formats.",
-    image: Image4,
+    image: Neon6,
   },
 ];
 
