@@ -343,6 +343,12 @@
     height: 5rem;
 }
 
+.artisticPragraph {
+    font-weight: 400;
+    font-size: .875rem;
+    text-align: left;
+}
+
 .titleText {
     position: relative;
     z-index: 1;
