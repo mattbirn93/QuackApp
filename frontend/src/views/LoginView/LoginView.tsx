@@ -17,9 +17,9 @@ const LoginView: React.FC = () => {
   const navigate = useNavigate();
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const letters = textRef.current?.querySelectorAll("span");
@@ -350,8 +350,11 @@ const LoginView: React.FC = () => {
               screenwriting a breeze.
             </p>
           </div>
+
           <div className={styles.cubeContainer}>
-            <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+            <div className={styles.cubeWrapper}>
+              <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+            </div>
           </div>
         </div>
 
