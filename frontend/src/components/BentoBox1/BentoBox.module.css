@@ -4,9 +4,9 @@
 
 .bentoBox {
     display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
-    gap: 30px;
+    gap: 20px;
     padding: 20px;
     grid-template-areas:
         "box1 box2 box2"
@@ -17,7 +17,7 @@
 
 .box {
     background: #303030;
-    border-radius: 15px;
+    border-radius: 40px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 30px;
     display: flex;
@@ -25,10 +25,14 @@
     font-size: 1.2rem;
     color: white;
     overflow: hidden;
+    position: relative;
+    z-index: 2;
+    height: 200px
 }
 
 .box img {
-    max-width: 500px;
+    position: absolute;
+    max-width: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -43,13 +47,14 @@
 .content {
     font-size: 1.1rem;
     font-weight: 400;
+    overflow: hidden;
 }
 
-/* Unique styles for each box */
+
 .box1 {
     grid-area: box1;
-    min-height: 700px;
-    display: flex;
+    height: 670px;
+    justify-content: space-between;
 }
 
 .box1 .title {
@@ -62,22 +67,29 @@
 
 .box1 img {
     order: 2;
+    margin-top: 10rem;
+    margin-left: .7rem;
+    max-width: 20rem;
 }
 
 .box2 {
     grid-area: box2;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 325px;
 }
 
 .box2 .title {
     order: 2;
+    margin-top: 11rem;
 }
 
 .box2 img {
     order: 1;
-    margin-left: 20rem;
-    width: 20rem;
+    margin-left: 23rem;
+    max-width: 23rem;
+    margin-top: .5rem;
 }
 
 .box2 .content {
@@ -88,6 +100,8 @@
     grid-area: box3;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 325px;
 }
 
 .box3 .content {
@@ -96,19 +110,26 @@
 
 .box3 img {
     order: 1;
+    margin-top: 0rem;
+    margin-left: 2.5rem;
 }
 
 .box3 .title {
     order: 2;
+    margin-top: 11rem;
 }
 
 .box4 {
     grid-area: box4;
     display: flex;
+    height: 325px;
 }
 
 .box4 img {
     order: 3;
+    margin-top: 9rem;
+    margin-left: 0.5rem;
+    max-width: 20rem;
 }
 
 .box4 .title {
@@ -122,10 +143,14 @@
 .box5 {
     grid-area: box5;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 325px;
 }
 
 .box5 img {
     order: 1;
+    margin-top: 0rem;
 }
 
 .box5 .content {
@@ -134,11 +159,13 @@
 
 .box5 .title {
     order: 2;
+    margin-top: 11rem;
 }
 
 .box6 {
     grid-area: box6;
     display: flex;
+    height: 325px;
 }
 
 .box6 .title {
@@ -151,4 +178,19 @@
 
 .box6 img {
     order: 3;
+    margin-top: 8rem;
+    margin-left: 3.0rem;
+    max-width: 15rem;
+}
+
+.bentoBlackBox {
+    display: flex;
+    position: absolute;
+    top: 220rem;
+    left: 19.5rem;
+    background-color: rgb(13, 13, 13);
+    height: 66.5rem;
+    width: 80rem;
+    border-radius: 40px;
+    z-index: 1;
 }

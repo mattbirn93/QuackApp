@@ -43,6 +43,7 @@ const data = [
 const BentoBox = () => {
   return (
     <div className={styles.bentoBoxContainer}>
+      <div className={styles.bentoBlackBox}></div>
       <div className={styles.bentoBox}>
         {data.map((item, index) => (
           <div
