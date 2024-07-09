@@ -37,6 +37,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@gsap/react": "^2.1.1",
     "@react-typed-hooks/use-key-press": "^1.0.5",
+    "@relume_io/relume-ui": "^0.3.0",
     "@splinetool/react-spline": "^4.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
