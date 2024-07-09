@@ -1,5 +1,6 @@
 .bentoBoxContainer {
     padding: 2rem 20rem;
+    border-bottom: 1px solid
 }
 
 .bentoBox {
@@ -28,7 +29,7 @@
     z-index: 2;
     height: 200px;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    /* border: 0.1px solid rgb(67, 67, 67); */
+    border: 0.1px solid rgb(62, 62, 62);
 }
 
 .box img {
