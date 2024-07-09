@@ -239,10 +239,6 @@
    
 }
 
-.quackLogo {
-
-}
-
 .phoneSectionHeader {
     font-size: 2rem;
     font-weight: bold;
@@ -312,9 +308,15 @@
 .cubeContainer {
     display: flex;
     position: absolute;
-    top: 160rem;
-    right: 39rem;
+    top: 145rem;
+    left: 5%;
     z-index: 2;
+}
+
+.cubeWrapper {
+    width: 70rem;
+    height: 70rem;
+    transform: scale(0.7);
 }
 
 .artisticContainer {
