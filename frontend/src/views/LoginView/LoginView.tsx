@@ -10,7 +10,7 @@ import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
 import Carousel from "../../components/carousel/carousel";
-// import Carousel2 from "../../components/Carousel2/Carousel2";
+import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import styles from "./LoginView.module.css";
 
 const LoginView: React.FC = () => {
@@ -357,6 +357,9 @@ const LoginView: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* BentoBox section */}
+        <div>{/* <BentoBox1 /> */}</div>
 
         {/* carousel section */}
         <div>
