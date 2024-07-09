@@ -358,7 +358,9 @@ const LoginView: React.FC = () => {
         </div>
 
         {/* BentoBox section */}
-        <div>{/* <BentoBox1 /> */}</div>
+        <div>
+          <BentoBox1 />
+        </div>
 
         {/* Artistic Section */}
         <div ref={artisticSectionRef}>
