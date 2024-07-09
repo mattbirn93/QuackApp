@@ -9,7 +9,6 @@ import gsap from "gsap";
 import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
-import Carousel from "../../components/carousel/carousel";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import styles from "./LoginView.module.css";
 
@@ -360,11 +359,6 @@ const LoginView: React.FC = () => {
 
         {/* BentoBox section */}
         <div>{/* <BentoBox1 /> */}</div>
-
-        {/* carousel section */}
-        <div>
-          <Carousel />
-        </div>
 
         {/* Artistic Section */}
         <div ref={artisticSectionRef}>
