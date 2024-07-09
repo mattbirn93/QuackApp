@@ -1,0 +1,154 @@
+.bentoBoxContainer {
+    padding: 2rem 20rem;
+}
+
+.bentoBox {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 30px;
+    padding: 20px;
+    grid-template-areas:
+        "box1 box2 box2"
+        "box1 box3 box4"
+        "box5 box5 box6"
+        ". . .";
+}
+
+.box {
+    background: #303030;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    color: white;
+    overflow: hidden;
+}
+
+.box img {
+    max-width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 2.0rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.content {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Unique styles for each box */
+.box1 {
+    grid-area: box1;
+    min-height: 700px;
+    display: flex;
+}
+
+.box1 .title {
+    order: 1;
+}
+
+.box1 .content {
+    order: 3;
+}
+
+.box1 img {
+    order: 2;
+}
+
+.box2 {
+    grid-area: box2;
+    display: flex;
+    flex-direction: column;
+}
+
+.box2 .title {
+    order: 2;
+}
+
+.box2 img {
+    order: 1;
+    margin-left: 20rem;
+    width: 20rem;
+}
+
+.box2 .content {
+    order: 3;
+}
+
+.box3 {
+    grid-area: box3;
+    display: flex;
+    flex-direction: column;
+}
+
+.box3 .content {
+    order: 3;
+}
+
+.box3 img {
+    order: 1;
+}
+
+.box3 .title {
+    order: 2;
+}
+
+.box4 {
+    grid-area: box4;
+    display: flex;
+}
+
+.box4 img {
+    order: 3;
+}
+
+.box4 .title {
+    order: 1;
+}
+
+.box4 .content {
+    order: 2;
+}
+
+.box5 {
+    grid-area: box5;
+    display: flex;
+}
+
+.box5 img {
+    order: 1;
+}
+
+.box5 .content {
+    order: 3;
+}
+
+.box5 .title {
+    order: 2;
+}
+
+.box6 {
+    grid-area: box6;
+    display: flex;
+}
+
+.box6 .title {
+    order: 1;
+}
+
+.box6 .content {
+    order: 2;
+}
+
+.box6 img {
+    order: 3;
+}
