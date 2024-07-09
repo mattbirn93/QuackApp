@@ -370,7 +370,7 @@ const LoginView: React.FC = () => {
         </div> */}
 
         {/* Artistic Section */}
-        <div ref={artisticSectionRef}>
+        {/* <div ref={artisticSectionRef}>
           <motion.div
             className={styles.artisticContainer}
             initial={{ opacity: 0 }}
@@ -488,52 +488,51 @@ const LoginView: React.FC = () => {
               </motion.div>
             </motion.div>
           </motion.div>
+        </div> */}
 
-          {/* mask section */}
-          <div>
-            <HumanSection />
-          </div>
-
-          {/* Page Section */}
-          <div className={styles.pageSection}>
-            <div className={styles.maskedImageContainer}>
-              <img src={""} alt="masked" className={styles.maskedImage} />
-            </div>
-            <motion.p
-              className={styles.pageText}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 5 }}
-            >
-              Quack! is a cutting-edge mobile screenwriting app designed for the
-              modern screenwriter on the go. Seamlessly blending functionality
-              and convenience, Quack! allows users to craft, edit, and
-              collaborate on scripts directly from their mobile devices. Whether
-              you’re brainstorming ideas, writing dialogue, or revising scenes,
-              Quack! provides a user-friendly interface that makes screenwriting
-              a breeze. With real-time collaboration features, multiple users
-              can work on the same script simultaneously, ensuring that
-              creativity flows uninterrupted and ideas are shared
-              instantaneously. One of the standout features of Quack! is its
-              integration of advanced speech-to-text capabilities. This allows
-              screenwriters to dictate their thoughts and ideas, which are then
-              transcribed directly into the script. The app also boasts a robust
-              communication platform that includes a notes section and an in-app
-              chat function, making it easy for writers to communicate and leave
-              feedback. With Quack!, screenwriters can transition smoothly
-              between their home computer and mobile phone, ensuring that they
-              can capture their creativity whenever and wherever inspiration
-              strikes.
-            </motion.p>
-            <div className={styles.maskedImageContainer2}>
-              <img
-                src={PageIcon1}
-                alt="masked2"
-                className={styles.maskedImage2}
-              />
-            </div>
-          </div>
+        {/* mask section */}
+        <div>
+          <HumanSection />
         </div>
+
+        {/* Page Section */}
+        {/* <div className={styles.pageSection}>
+          <div className={styles.maskedImageContainer}>
+            <img src={""} alt="masked" className={styles.maskedImage} />
+          </div>
+          <motion.p
+            className={styles.pageText}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 5 }}
+          >
+            Quack! is a cutting-edge mobile screenwriting app designed for the
+            modern screenwriter on the go. Seamlessly blending functionality and
+            convenience, Quack! allows users to craft, edit, and collaborate on
+            scripts directly from their mobile devices. Whether you’re
+            brainstorming ideas, writing dialogue, or revising scenes, Quack!
+            provides a user-friendly interface that makes screenwriting a
+            breeze. With real-time collaboration features, multiple users can
+            work on the same script simultaneously, ensuring that creativity
+            flows uninterrupted and ideas are shared instantaneously. One of the
+            standout features of Quack! is its integration of advanced
+            speech-to-text capabilities. This allows screenwriters to dictate
+            their thoughts and ideas, which are then transcribed directly into
+            the script. The app also boasts a robust communication platform that
+            includes a notes section and an in-app chat function, making it easy
+            for writers to communicate and leave feedback. With Quack!,
+            screenwriters can transition smoothly between their home computer
+            and mobile phone, ensuring that they can capture their creativity
+            whenever and wherever inspiration strikes.
+          </motion.p>
+          <div className={styles.maskedImageContainer2}>
+            <img
+              src={PageIcon1}
+              alt="masked2"
+              className={styles.maskedImage2}
+            />
+          </div>
+        </div> */}
       </div>
     </div>
   );
