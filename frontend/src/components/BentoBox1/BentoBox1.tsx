@@ -42,7 +42,7 @@ const data = [
 ];
 
 const BentoBox = () => {
-  const refs = data.map(() => useRef(null));
+  const refs = data.map(() => useRef<HTMLDivElement>(null));
   const isInView = refs.map((ref) => useInView(ref, { triggerOnce: true }));
 
   const textVariants = {
@@ -68,16 +68,15 @@ const BentoBox = () => {
       <div className={styles.bentoBlackBox}></div>
       <div className={styles.bentoBox}>
         {data.map((item, index) => (
-          <div
+          <motion.div
             key={index}
             ref={refs[index]}
             className={`${styles.box} ${styles[`box${index + 1}`]}`}
+            initial="hidden"
+            animate={isInView[index] ? "visible" : "hidden"}
           >
             <motion.h3
               className={styles.title}
-              initial="hidden"
-              animate={isInView[index] ? "visible" : "hidden"}
-              whileHover="hover"
               variants={textVariants}
               transition={{ duration: 0.5, delay: index * 0.3 }}
             >
@@ -85,9 +84,6 @@ const BentoBox = () => {
             </motion.h3>
             <motion.p
               className={styles.content}
-              initial="hidden"
-              animate={isInView[index] ? "visible" : "hidden"}
-              whileHover="hover"
               variants={contentVariants}
               transition={{ duration: 0.5, delay: index * 0.4 }}
             >
@@ -96,13 +92,10 @@ const BentoBox = () => {
             <motion.img
               src={item.image}
               alt={item.title}
-              initial="hidden"
-              animate={isInView[index] ? "visible" : "hidden"}
-              whileHover="hover"
               variants={imageVariants}
               transition={{ duration: 0.5, delay: index * 0.5 }}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
