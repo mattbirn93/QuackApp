@@ -35,6 +35,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@gsap/react": "^2.1.1",
     "@react-typed-hooks/use-key-press": "^1.0.5",
     "@splinetool/react-spline": "^4.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
