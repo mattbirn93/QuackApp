@@ -12,7 +12,7 @@ import InfoSection28 from "../../assets/images/InfoSection2-8.jpeg";
 import useKeypress from "react-use-keypress";
 import "./carousel.css";
 
-let images = [
+const images = [
   InfoSection21,
   InfoSection22,
   InfoSection23,
