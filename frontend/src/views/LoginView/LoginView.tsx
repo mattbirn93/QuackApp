@@ -365,9 +365,9 @@ const LoginView: React.FC = () => {
         </div>
 
         {/* Scroll section */}
-        {/* <div>
+        <div>
           <AppleScroll />
-        </div> */}
+        </div>
 
         {/* Artistic Section */}
         {/* <div ref={artisticSectionRef}>
