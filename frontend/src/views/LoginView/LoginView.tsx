@@ -9,7 +9,7 @@ import gsap from "gsap";
 import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import PageIcon1 from "../../assets/images/MattPDFSCript1.png";
-import Carousel from "../../components/carousel/Carousel";
+import Carousel from "../../components/carousel/carousel";
 // import Carousel2 from "../../components/Carousel2/Carousel2";
 import styles from "./LoginView.module.css";
 
