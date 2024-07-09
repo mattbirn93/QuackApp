@@ -10,9 +10,9 @@ import InfoSection26 from "../../assets/images/InfoSection2-6.jpeg";
 import InfoSection27 from "../../assets/images/InfoSection2-7.jpeg";
 import InfoSection28 from "../../assets/images/InfoSection2-8.jpeg";
 import useKeypress from "react-use-keypress";
-import "./Carousel.css";
+import "./carousel.css";
 
-const images = [
+let images = [
   InfoSection21,
   InfoSection22,
   InfoSection23,
@@ -46,10 +46,11 @@ function Carousel() {
   return (
     <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
       <div className="Carousel__wrapper">
-        {/* <div className="Carousel__liveText1">Quack!</div> */}
+        {/* <div className="Carousel__liveText1">FIND MY GLORY</div> */}
 
         {/* <div className="Carousel__liveText2">
-          Write the script you have always wanted to.
+          Choose to possess the spirit of the Tiger and learn to wield the
+          mystical Samurai blade.
         </div> */}
 
         <div className="Carousel__container">

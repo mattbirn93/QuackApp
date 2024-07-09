@@ -20,7 +20,7 @@
   top: 4.6%;
   left: 2.3%;
   font-size: clamp(0rem, 9vw + 1rem, 9rem);
-  color: white;
+  color: var(--clr-primary-1100);
   max-width: 5rem;
   font-weight: var(--fw-bold3);
   line-height: 0.8;
@@ -33,7 +33,7 @@
   top: 4.6%;
   left: 22.8%;
   font-size: clamp(0rem, 3vw + 1rem, 3rem);
-  color: white;
+  color: var(--clr-primary-1100);
   font-weight: var(--fw-regular);
   text-shadow: rgb(0, 0, 0) 4px 4px 14px;
   max-width: 70rem;
