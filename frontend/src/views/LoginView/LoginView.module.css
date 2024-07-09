@@ -264,6 +264,59 @@
     font-weight: 400;
 }
 
+.darkFrontiersContainer {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(91, 91, 91);
+    margin-top: 11rem;
+}
+
+.darkBlackBox {
+    display: flex;
+    position: absolute;
+    top: 160rem;
+    left: 14.5rem;
+    background-color: rgb(17, 17, 17);
+    height: 40rem;
+    width: 90rem;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.darkTextContainer {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    height: 50rem;
+    padding: 20px;
+    margin-left: 60rem;
+    margin-top: 2rem;
+    max-width: 39rem;
+    z-index: 2;
+    /* background-color: red;  */
+}
+
+ .darkHeading {
+    color: white;
+    font-weight: 900;
+    font-size: 5.0rem;
+ }
+
+  .darkParagraph {
+    color: rgb(162, 162, 162);
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+
+.cubeContainer {
+    display: flex;
+    position: absolute;
+    top: 160rem;
+    right: 39rem;
+    z-index: 2;
+}
+
 .artisticContainer {
     display: flex;
     justify-content: space-around;

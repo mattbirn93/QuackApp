@@ -15,9 +15,9 @@ const LoginView: React.FC = () => {
   const navigate = useNavigate();
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   useEffect(() => {
     const letters = textRef.current?.querySelectorAll("span");
@@ -320,9 +320,9 @@ const LoginView: React.FC = () => {
         {/* Quack Icon section */}
         <div className={styles.quackIconContainer}>
           <motion.div
-            animate={{ rotateY: 3600 }} // Large number to ensure continuous spinning
+            animate={{ rotateY: 3600 }}
             transition={{
-              duration: 100, // Longer duration for smooth continuous spin
+              duration: 100,
               repeat: Infinity,
               ease: "linear",
             }}
@@ -331,6 +331,26 @@ const LoginView: React.FC = () => {
               <Spline scene="https://prod.spline.design/CIYcRNgqTIgWyLLf/scene.splinecode" />
             </div>
           </motion.div>
+        </div>
+
+        {/* dark frontiers section */}
+        <div className={styles.darkFrontiersContainer}>
+          <div className={styles.darkBlackBox}></div>
+          <div className={styles.darkTextContainer}>
+            <h1 className={styles.darkHeading}>What is Quack!</h1>
+            <p className={styles.darkParagraph}>
+              Meet Quack!, a cutting-edge mobile screenwriting app designed for
+              the modern screenwriter on the go. Seamlessly blending
+              functionality and convenience, Quack! allows users to craft, edit,
+              and collaborate on scripts directly from their mobile devices.
+              Whether you’re brainstorming ideas, writing dialogue, or revising
+              scenes, Quack! provides a user-friendly interface that makes
+              screenwriting a breeze.
+            </p>
+          </div>
+          <div className={styles.cubeContainer}>
+            <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+          </div>
         </div>
 
         {/* Artistic Section */}
