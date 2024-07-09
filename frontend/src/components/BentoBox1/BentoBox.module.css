@@ -16,7 +16,7 @@
 }
 
 .box {
-    background: #303030;
+    background: #0e0e0e;
     border-radius: 40px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -188,7 +188,7 @@
     position: absolute;
     top: 220rem;
     left: 19.5rem;
-    background-color: rgb(13, 13, 13);
+    background-color: rgb(25, 25, 25);
     height: 66.5rem;
     width: 80rem;
     border-radius: 40px;
