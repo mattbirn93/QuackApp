@@ -16,7 +16,7 @@
 }
 
 .box {
-    background: #040404;
+    background: #000000;
     border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -28,7 +28,7 @@
     z-index: 2;
     height: 200px;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    border: .1px solid rgb(67, 67, 67);
+    /* border: 0.1px solid rgb(67, 67, 67); */
 }
 
 .box img {
@@ -48,7 +48,7 @@
 
 .content {
     font-size: 1.1rem;
-    font-weight: 400;
+    font-weight: 600;
     overflow: hidden;
     color: rgb(166, 166, 166);
 }
@@ -56,7 +56,7 @@
 .box1 {
     grid-area: box1;
     height: 715px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .box1 .title {
@@ -65,13 +65,16 @@
 
 .box1 .content {
     order: 3;
+    margin-top: 34rem;
 }
 
 .box1 img {
     order: 2;
     margin-top: 10rem;
-    margin-left: .7rem;
+    margin-left: 1.2rem;
     max-width: 20rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
 }
 
 .box2 {
@@ -89,9 +92,11 @@
 
 .box2 img {
     order: 1;
-    margin-left: 10rem;
+    margin-left: 8.9rem;
     max-width: 39rem;
-    margin-top: .5rem;
+    margin-top: 0.0rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
 }
 
 .box2 .content {
@@ -117,13 +122,14 @@
 .box3 img {
     order: 1;
     margin-top: 0rem;
-    margin-left: 2.5rem;
-    max-width: 25rem;
+    margin-left: 0.6rem;
+    max-width: 21.5rem;
 }
 
 .box3 .title {
     order: 2;
     margin-top: 11.0rem;
+    text-align: center;
 }
 
 .box4 {
@@ -135,7 +141,7 @@
 .box4 img {
     order: 3;
     margin-top: 9rem;
-    margin-left: 0.5rem;
+    margin-left: 1.1rem;
     max-width: 20rem;
 }
 
@@ -191,9 +197,9 @@
 
 .box6 img {
     order: 3;
-    margin-top: 5rem;
-    margin-left: 3.5rem;
-    max-width: 15rem;
+    margin-top: 6.2rem;
+    margin-left: 4.7rem;
+    max-width: 13rem;
 }
 
 .bentoBlackBox {
@@ -217,3 +223,76 @@
     transform: scale(1.01);
 }
 
+.imageWithGlow {
+    /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    border-radius: 15px; */
+}
+
+.hoverContent {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.box:hover .hoverContent {
+    opacity: 1;
+}
+
+.customBox1 {
+    display: flex;
+    position: absolute;
+    top: 27rem;
+    left: 7.5rem;
+    background-color: rgba(45, 45, 45, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 900;
+    border: 1px solid rgb(69, 69, 69);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.customBox2 {
+    display: flex;
+    position: absolute;
+    top: 38rem;
+    left: 7.5rem;
+    background-color: rgba(45, 45, 45, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 900;
+    border: 1px solid rgb(69, 69, 69);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.customBox3 {
+        display: flex;
+        position: absolute;
+        top: 38rem;
+        left: 7.5rem;
+        background-color: rgba(45, 45, 45, 0.6);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 900;
+        border: 1px solid rgb(69, 69, 69);
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
