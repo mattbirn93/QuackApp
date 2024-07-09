@@ -27,7 +27,8 @@
     overflow: hidden;
     position: relative;
     z-index: 2;
-    height: 200px
+    height: 200px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .box img {
@@ -49,7 +50,6 @@
     font-weight: 400;
     overflow: hidden;
 }
-
 
 .box1 {
     grid-area: box1;
@@ -193,4 +193,13 @@
     width: 78.0rem;
     border-radius: 20px;
     z-index: 1;
+}
+
+.bentoBox:hover .box {
+    opacity: 0.3;
+}
+
+.bentoBox .box:hover {
+    opacity: 1;
+    /* transform: scale(1.05); */
 }
