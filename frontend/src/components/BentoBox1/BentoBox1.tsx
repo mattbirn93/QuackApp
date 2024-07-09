@@ -7,7 +7,6 @@ import Neon3 from "../../assets/images/neon-icon3.jpg";
 import Neon4 from "../../assets/images/neon-icon4.jpg";
 import Neon5 from "../../assets/images/neon-icon5.jpg";
 import Neon6 from "../../assets/images/neon-icon6.jpg";
-// import Film1 from "../../assets/images/film-icon1.png";
 
 const data = [
   {
@@ -39,9 +38,24 @@ const data = [
     image: Neon5,
   },
   {
-    title: "Export Scripts",
-    content: "Easily export your scripts in multiple formats.",
+    title: "Voice Commands",
+    content: "Record your ideas and watch them come to life.",
     image: Neon6,
+  },
+  {
+    title: "Mobile",
+    content: "Works on any mobile device.",
+    image: null, // No image for this box
+  },
+  {
+    title: "Desktop",
+    content: "Works on any desktop device.",
+    image: null, // No image for this box
+  },
+  {
+    title: "Portable",
+    content: "Create on the go.",
+    image: Neon1,
   },
 ];
 
@@ -94,19 +108,21 @@ const BentoBox = () => {
             >
               {item.content}
             </motion.p>
-            <motion.img
-              className={styles.imageWithGlow}
-              src={item.image}
-              alt={item.title}
-              variants={imageVariants}
-              transition={{ duration: 0.5, delay: index * 0.5 }}
-            />
+            {item.image && (
+              <motion.img
+                className={styles.imageWithGlow}
+                src={item.image}
+                alt={item.title}
+                variants={imageVariants}
+                transition={{ duration: 0.5, delay: index * 0.5 }}
+              />
+            )}
             {item.customElement && (
               <motion.div
                 className={styles.customElement}
-                // initial={{ opacity: 0 }}
-                // whileHover={{ opacity: 1 }}
-                // transition={{ duration: 0.5 }}
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 {item.customElement}
               </motion.div>
