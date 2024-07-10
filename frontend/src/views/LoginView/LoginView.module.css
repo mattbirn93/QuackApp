@@ -129,6 +129,12 @@
     margin: 0 2px;
 }
 
+.d3Quack {
+    position: relative;
+    /* top: 10rem;
+    right: 80rem; */
+}
+
 .headingsContainer {
     display: flex;
     flex-direction: column;
@@ -246,7 +252,6 @@
     text-align: center;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
-    margin-top: 10rem;
     padding: 20px;
 }
 
@@ -256,21 +261,23 @@
 }
 
 .phoneImage {
-    margin-top: -8rem;
+    /* margin-top: -8rem; */
     font-weight: 400;
 }
 
 .darkFrontiersContainer {
     display: flex;
-    flex-direction: row;
+    position: relative;
+    flex-direction: column;
     border-bottom: 1px solid rgb(91, 91, 91);
-    margin-top: 11rem;
+    border-top: 1px solid grey;
+    padding: 12rem 0;
 }
 
 .darkBlackBox {
     display: flex;
     position: absolute;
-    top: 160rem;
+    top: 4.5rem;
     left: 14.5rem;
     background-color: rgb(17, 17, 17);
     height: 40rem;
@@ -282,8 +289,9 @@
 .darkTextContainer {
     display: flex;
     justify-content: start;
+    align-items: center;
     flex-direction: column;
-    height: 50rem;
+    /* height: 50rem; */
     padding: 20px;
     margin-left: 60rem;
     margin-top: 2rem;
@@ -308,7 +316,7 @@
 .cubeContainer {
     display: flex;
     position: absolute;
-    top: 145rem;
+    top: -10rem;
     left: 5%;
     z-index: 2;
 }
