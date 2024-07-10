@@ -1,3 +1,5 @@
+// src/router.jsx
+
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
@@ -5,6 +7,7 @@ import App from "../App";
 import LoginView from "../views/LoginView/LoginView";
 import ScriptsLibraryView from "../views/ScriptsLibraryView/ScriptsLibraryView";
 import NotFound from "../views/NotFound";
+import { FAQ } from "../views/FAQ/FAQ";
 
 const routes = [
   {
@@ -32,6 +35,14 @@ const routes = [
     ),
   },
   {
+    path: "/faq",
+    element: (
+      <MainLayout>
+        <FAQ />
+      </MainLayout>
+    ),
+  },
+  {
     path: "*",
     element: (
       <MainLayout>
@@ -43,12 +54,13 @@ const routes = [
 
 export const router = createBrowserRouter(routes);
 
-//////////////////////
+//////////////
 
 // import React from "react";
 // import { createBrowserRouter } from "react-router-dom";
 // import MainLayout from "../layouts/MainLayout";
 // import App from "../App";
+// import LoginView from "../views/LoginView/LoginView";
 // import ScriptsLibraryView from "../views/ScriptsLibraryView/ScriptsLibraryView";
 // import NotFound from "../views/NotFound";
 
@@ -57,7 +69,7 @@ export const router = createBrowserRouter(routes);
 //     path: "/",
 //     element: (
 //       <MainLayout>
-//         <App />
+//         <LoginView />
 //       </MainLayout>
 //     ),
 //   },
