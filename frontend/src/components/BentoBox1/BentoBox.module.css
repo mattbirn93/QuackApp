@@ -164,6 +164,8 @@
 
 .box4 .title {
     order: 1;
+    display: flex;
+    position: relative;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: linear-gradient(180deg, #6300a1, #c87fc8);
     -webkit-background-clip: text;
@@ -175,7 +177,7 @@
 .box4 .content {
     order: 2;
     padding: 10px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 15px;
     text-align: center;
 }
@@ -524,4 +526,58 @@
     100% {
         transform: translateX(-300%);
     }
+}
+
+.testimonialFeed {
+    position: absolute;
+    top: 10remx;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    color: rgb(173, 173, 173);
+    font-weight: 500;
+    height: 15rem;
+        /* background-color: red; */
+}
+
+.testimonialTrack {
+    display: flex;
+    flex-direction: column;
+    animation: scrollTestimonials 45s linear infinite;
+}
+
+.testimonial {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    font-size: 0.875rem;
+}
+
+@keyframes scrollTestimonials {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.box4Title {
+    order: 1;
+    display: flex;
+    position: relative;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #6300a1, #c87fc8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: 900;
 }
