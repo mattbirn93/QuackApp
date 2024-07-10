@@ -18,9 +18,9 @@ const LoginView: React.FC = () => {
   const navigate = useNavigate();
   const textRef = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   useEffect(() => {
     const letters = textRef.current?.querySelectorAll("span");
@@ -100,129 +100,229 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <motion.div
-        className={styles.mainContainer}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div className={styles.homeNavContainer}>
-          <motion.div className={styles.searchBarContainer}>
-            <motion.div className={styles.searchBarWrapper}>
-              <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
-              <input
-                type="text"
-                placeholder="Search"
-                className={styles.searchBar}
-              />
-            </motion.div>
-          </motion.div>
-          <motion.img
-            src={background4}
-            className={styles.backgroundImage}
-            initial={{ opacity: 1 }}
-            animate={{
-              opacity: 1,
-              rotateX: [-5, 15, -15],
-              rotateY: [-10, 10, -10],
-            }}
-            transition={{
-              duration: 3,
-              opacity: { duration: 30 },
-              rotateX: {
-                duration: 7,
-                repeat: Infinity,
-                repeatType: "mirror",
-                ease: "easeInOut",
-              },
-              rotateY: {
-                duration: 30,
-                repeat: Infinity,
-                repeatType: "mirror",
-                ease: "easeInOut",
-              },
-            }}
-          />
-
-          <motion.div className={styles.signInButtonContainer}>
-            <button className={styles.signInButton} onClick={handleSignInClick}>
-              <FontAwesomeIcon
-                icon={faUser}
-                className={styles.signInButtonIcon}
-              />
-              Sign In
-            </button>
-          </motion.div>
-        </motion.div>
+      <div>
         <motion.div
-          className={styles.loginSectionContainer}
+          className={styles.mainContainer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={{ duration: 1 }}
         >
-          <motion.p
-            ref={textRef}
-            className={styles.heading1}
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100 }}
-            variants={containerVariants}
-            whileHover="hover"
-            onHoverEnd={() => gsap.to(textRef.current, { scale: 1 })}
-          >
-            {"Quack!".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={childVariants}
-                className={styles.character}
-              >
-                {char}
-              </motion.span>
-            ))}
-          </motion.p>
+          <motion.div className={styles.homeNavContainer}>
+            <motion.div className={styles.searchBarContainer}>
+              <motion.div className={styles.searchBarWrapper}>
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className={styles.searchIcon}
+                />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className={styles.searchBar}
+                />
+              </motion.div>
+            </motion.div>
+            <motion.img
+              src={background4}
+              className={styles.backgroundImage}
+              initial={{ opacity: 1 }}
+              animate={{
+                opacity: 1,
+                rotateX: [-5, 15, -15],
+                rotateY: [-10, 10, -10],
+              }}
+              transition={{
+                duration: 3,
+                opacity: { duration: 30 },
+                rotateX: {
+                  duration: 7,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                },
+                rotateY: {
+                  duration: 30,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                },
+              }}
+            />
 
-          <motion.p
-            className={styles.heading2}
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+            <motion.div className={styles.signInButtonContainer}>
+              <button
+                className={styles.signInButton}
+                onClick={handleSignInClick}
+              >
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className={styles.signInButtonIcon}
+                />
+                Sign In
+              </button>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className={styles.loginSectionContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
           >
-            A Realtime Collaborative Screenwriting App
-          </motion.p>
-          <motion.p
-            className={styles.missionStatement1}
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-          >
-            Create and share scripts with other users and create the vision you
-            have always dreamed about!.
-          </motion.p>
-          <motion.button
-            className={styles.tryItButton}
-            onClick={() => {}}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Try It Now
-          </motion.button>
+            <motion.p
+              ref={textRef}
+              className={styles.heading1}
+              initial={{ x: -200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100 }}
+              variants={containerVariants}
+              whileHover="hover"
+              onHoverEnd={() => gsap.to(textRef.current, { scale: 1 })}
+            >
+              {"Quack!".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={childVariants}
+                  className={styles.character}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.p>
+
+            {/* <div className={styles.d3Quack}>
+            <Spline scene="https://prod.spline.design/e93EGg-huUOk-Rnr/scene.splinecode" />
+          </div> */}
+
+            <motion.p
+              className={styles.heading2}
+              initial={{ x: -200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+            >
+              A Realtime Collaborative Screenwriting App
+            </motion.p>
+            <motion.p
+              className={styles.missionStatement1}
+              initial={{ x: -200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+            >
+              Create and share scripts with other users and create the vision
+              you have always dreamed about!.
+            </motion.p>
+            <motion.button
+              className={styles.tryItButton}
+              onClick={() => {}}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              Try It Now
+            </motion.button>
+          </motion.div>
+          <ErrorBoundary fallback={""}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 1 }}
+            >
+              {/* <SplineScene /> */}
+            </motion.div>
+          </ErrorBoundary>
         </motion.div>
-        <ErrorBoundary fallback={""}>
+      </div>
+
+      {/* dark frontiers section */}
+      <div className={styles.darkFrontiersContainer}>
+        <div className={styles.darkBlackBox}></div>
+        <div className={styles.darkTextContainer}>
+          <h1 className={styles.darkHeading}>What is Quack!</h1>
+          <p className={styles.darkParagraph}>
+            Meet Quack!, a cutting-edge mobile screenwriting app designed for
+            the modern screenwriter on the go. Seamlessly blending functionality
+            and convenience, Quack! allows users to craft, edit, and collaborate
+            on scripts directly from their mobile devices. Whether you’re
+            brainstorming ideas, writing dialogue, or revising scenes, Quack!
+            provides a user-friendly interface that makes screenwriting a
+            breeze.
+          </p>
+        </div>
+
+        <div className={styles.cubeContainer}>
+          <div className={styles.cubeWrapper}>
+            <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+          </div>
+        </div>
+      </div>
+
+      {/* BentoBox section */}
+      <div>
+        <BentoBox1 />
+      </div>
+
+      {/* Phone section */}
+      <div className={styles.phoneSectionHeader}>
+        <div ref={phoneSectionRef}>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1 }}
+            animate={phoneSectionInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}
           >
-            {/* <SplineScene /> */}
+            <div className={styles.phoneHeading}>
+              Record speech for your app right on your mobile phone and continue
+              working on your shared scripts
+            </div>
           </motion.div>
-        </ErrorBoundary>
-      </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={phoneSectionInView ? { opacity: 1 } : {}}
+            transition={{ duration: 1 }}
+            className={styles.phoneImage}
+          >
+            <Spline scene="https://prod.spline.design/LuVV6x9TaIevJB6h/scene.splinecode" />
+          </motion.div>
+        </div>
+      </div>
 
-      {/* New Section with Text Boxes */}
+      {/* Quack Icon section */}
+      <div className={styles.quackIconContainer}>
+        <motion.div
+          animate={{ rotateY: 3600 }}
+          transition={{
+            duration: 100,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          <div className={styles.quackIconWrapper}>
+            <Spline scene="https://prod.spline.design/CIYcRNgqTIgWyLLf/scene.splinecode" />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* mask section */}
       <div>
+        <HumanSection />
+      </div>
+
+      {/* Scroll section */}
+      <div>
+        <AppleScroll />
+      </div>
+    </div>
+  );
+};
+
+export default LoginView;
+
+//
+
+{
+  /* New Section with Text Boxes */
+}
+{
+  /* <div>
         <div ref={textBoxesRef}>
           <motion.div
             className={styles.textBoxesContainer}
@@ -295,82 +395,14 @@ const LoginView: React.FC = () => {
             </motion.div>
           </motion.div>
         </div>
+      </div> */
+}
 
-        {/* Phone section */}
-        <div className={styles.phoneSectionHeader}>
-          <div ref={phoneSectionRef}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={phoneSectionInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1 }}
-            >
-              <div className={styles.phoneHeading}>
-                Record speech for your app right on your mobile phone and
-                continue working on your shared scripts
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={phoneSectionInView ? { opacity: 1 } : {}}
-              transition={{ duration: 1 }}
-              className={styles.phoneImage}
-            >
-              <Spline scene="https://prod.spline.design/LuVV6x9TaIevJB6h/scene.splinecode" />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Quack Icon section */}
-        <div className={styles.quackIconContainer}>
-          <motion.div
-            animate={{ rotateY: 3600 }}
-            transition={{
-              duration: 100,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <div className={styles.quackIconWrapper}>
-              <Spline scene="https://prod.spline.design/CIYcRNgqTIgWyLLf/scene.splinecode" />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* dark frontiers section */}
-        <div className={styles.darkFrontiersContainer}>
-          <div className={styles.darkBlackBox}></div>
-          <div className={styles.darkTextContainer}>
-            <h1 className={styles.darkHeading}>What is Quack!</h1>
-            <p className={styles.darkParagraph}>
-              Meet Quack!, a cutting-edge mobile screenwriting app designed for
-              the modern screenwriter on the go. Seamlessly blending
-              functionality and convenience, Quack! allows users to craft, edit,
-              and collaborate on scripts directly from their mobile devices.
-              Whether you’re brainstorming ideas, writing dialogue, or revising
-              scenes, Quack! provides a user-friendly interface that makes
-              screenwriting a breeze.
-            </p>
-          </div>
-
-          <div className={styles.cubeContainer}>
-            <div className={styles.cubeWrapper}>
-              <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
-            </div>
-          </div>
-        </div>
-
-        {/* BentoBox section */}
-        <div>
-          <BentoBox1 />
-        </div>
-
-        {/* Scroll section */}
-        <div>
-          <AppleScroll />
-        </div>
-
-        {/* Artistic Section */}
-        {/* <div ref={artisticSectionRef}>
+{
+  /* Artistic Section */
+}
+{
+  /* <div ref={artisticSectionRef}>
           <motion.div
             className={styles.artisticContainer}
             initial={{ opacity: 0 }}
@@ -488,15 +520,14 @@ const LoginView: React.FC = () => {
               </motion.div>
             </motion.div>
           </motion.div>
-        </div> */}
+        </div> */
+}
 
-        {/* mask section */}
-        <div>
-          <HumanSection />
-        </div>
-
-        {/* Page Section */}
-        {/* <div className={styles.pageSection}>
+{
+  /* Page Section */
+}
+{
+  /* <div className={styles.pageSection}>
           <div className={styles.maskedImageContainer}>
             <img src={""} alt="masked" className={styles.maskedImage} />
           </div>
@@ -532,12 +563,5 @@ const LoginView: React.FC = () => {
               className={styles.maskedImage2}
             />
           </div>
-        </div> */}
-      </div>
-    </div>
-  );
-};
-
-export default LoginView;
-
-//
+        </div> */
+}
