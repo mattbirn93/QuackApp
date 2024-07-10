@@ -267,13 +267,11 @@
 .box9 .title {
     order: 1;
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    
-        background: linear-gradient(180deg, #6300a1, #c87fc8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-       
+    background: linear-gradient(180deg, #6300a1, #c87fc8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;    
 }
 
 .box9 .content {
@@ -282,10 +280,11 @@
 
 .box9 img {
     order: 3;
-    margin-top: 1.1rem;
+    margin-top: -2.3rem;
     margin-left: 14.7rem;
     max-width: 26rem;
-    /* border: 1px solid white; */
+    /* border: .1px solid rgb(163, 163, 163); */
+    /* border-radius: 50px; */
 }
 
 .bentoBlackBox {
@@ -335,18 +334,19 @@
 .customBox1 {
     display: flex;
     position: absolute;
-    top: 27rem;
-    left: 7.5rem;
+    top: 24rem;
+    left: 2.5rem;
     background-color: rgba(45, 45, 45, 0.6);
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-radius: 10px;
     margin-top: 10px;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     font-weight: 900;
     border: 1px solid rgb(69, 69, 69);
     box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    width: 20rem;
 }
 
 .customBox2 {
