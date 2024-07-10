@@ -14,54 +14,63 @@ const data = [
     content: "Easily create and edit scripts with a user-friendly interface.",
     image: Neon1,
     customElement: <div className={styles.customBox1}>AVAILABLE TODAY</div>,
+    flip: true,
   },
   {
     title: "Collaborate",
     content: "Work together with others in real-time.",
     image: Neon2,
+    flip: false,
   },
   {
     title: "Speech-to-Text",
     content:
       "Use advanced speech-to-text capabilities to dictate your scripts.",
     image: Neon3,
+    flip: false,
   },
   {
     title: "Notes and Chat",
     content:
       "Communicate with your team using the integrated notes and chat features.",
     image: Neon4,
+    flip: false,
   },
   {
     title: "Review and Feedback",
     content: "Receive feedback and review scripts collaboratively.",
     image: Neon5,
+    flip: true,
   },
   {
     title: "Voice Commands",
     content: "Record your ideas and watch them come to life.",
     image: Neon6,
+    flip: false,
   },
   {
     title: "Mobile",
     content: "Works on any mobile device.",
     image: null, // No image for this box
+    flip: false,
   },
   {
     title: "Desktop",
     content: "Works on any desktop device.",
     image: null, // No image for this box
+    flip: false,
   },
   {
     title: "Portable",
     content: "Create on the go.",
     image: Neon1,
+    flip: false,
   },
 ];
 
 const BentoBox = () => {
   const refs = data.map(() => useRef<HTMLDivElement>(null));
-  const isInView = refs.map((ref) => useInView(ref, { once: false }));
+  const isInView = refs.map((ref) => useInView(ref, { triggerOnce: true }));
 
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -109,13 +118,21 @@ const BentoBox = () => {
               {item.content}
             </motion.p>
             {item.image && (
-              <motion.img
-                className={styles.imageWithGlow}
-                src={item.image}
-                alt={item.title}
-                variants={imageVariants}
-                transition={{ duration: 0.5, delay: index * 0.5 }}
-              />
+              <motion.div
+                className={item.flip ? styles.flipCard : ""}
+                whileHover={item.flip ? { rotateY: 180 } : {}}
+              >
+                <motion.img
+                  className={styles.flipCardFront}
+                  src={item.image}
+                  alt={item.title}
+                  variants={imageVariants}
+                  transition={{ duration: 0.5, delay: index * 0.5 }}
+                />
+                {item.flip && (
+                  <motion.div className={styles.flipCardBack}></motion.div>
+                )}
+              </motion.div>
             )}
             {item.customElement && (
               <motion.div
@@ -149,15 +166,11 @@ const BentoBox = () => {
 
 export default BentoBox;
 
-///////////
+////////
 
 // import React, { useRef } from "react";
 // import { motion, useInView } from "framer-motion";
 // import styles from "./BentoBox.module.css";
-// import Image1 from "../../assets/images/background6.jpg";
-// import Image2 from "../../assets/images/background6.jpg";
-// import Image3 from "../../assets/images/background6.jpg";
-// import Image4 from "../../assets/images/background6.jpg";
 // import Neon1 from "../../assets/images/neon-icon1.jpg";
 // import Neon2 from "../../assets/images/neon-icon2.jpg";
 // import Neon3 from "../../assets/images/neon-icon3.jpg";
@@ -170,6 +183,7 @@ export default BentoBox;
 //     title: "Create Scripts",
 //     content: "Easily create and edit scripts with a user-friendly interface.",
 //     image: Neon1,
+//     customElement: <div className={styles.customBox1}>AVAILABLE TODAY</div>,
 //   },
 //   {
 //     title: "Collaborate",
@@ -194,9 +208,24 @@ export default BentoBox;
 //     image: Neon5,
 //   },
 //   {
-//     title: "Export Scripts",
-//     content: "Easily export your scripts in multiple formats.",
+//     title: "Voice Commands",
+//     content: "Record your ideas and watch them come to life.",
 //     image: Neon6,
+//   },
+//   {
+//     title: "Mobile",
+//     content: "Works on any mobile device.",
+//     image: null, // No image for this box
+//   },
+//   {
+//     title: "Desktop",
+//     content: "Works on any desktop device.",
+//     image: null, // No image for this box
+//   },
+//   {
+//     title: "Portable",
+//     content: "Create on the go.",
+//     image: Neon1,
 //   },
 // ];
 
@@ -233,6 +262,7 @@ export default BentoBox;
 //             className={`${styles.box} ${styles[`box${index + 1}`]}`}
 //             initial="hidden"
 //             animate={isInView[index] ? "visible" : "hidden"}
+//             whileHover={{ zIndex: 3 }}
 //           >
 //             <motion.h3
 //               className={styles.title}
@@ -248,13 +278,44 @@ export default BentoBox;
 //             >
 //               {item.content}
 //             </motion.p>
-//             <motion.img
-//               className={styles.imageWithGlow}
-//               src={item.image}
-//               alt={item.title}
-//               variants={imageVariants}
-//               transition={{ duration: 0.5, delay: index * 0.5 }}
-//             />
+//             {item.image && (
+//               <motion.div
+//                 className={styles.flipCard}
+//                 whileHover={{ rotateY: 180 }}
+//               >
+//                 <motion.img
+//                   className={styles.flipCardFront}
+//                   src={item.image}
+//                   alt={item.title}
+//                   variants={imageVariants}
+//                   transition={{ duration: 0.5, delay: index * 0.5 }}
+//                 />
+//                 <motion.div className={styles.flipCardBack}></motion.div>
+//               </motion.div>
+//             )}
+//             {item.customElement && (
+//               <motion.div
+//                 className={styles.customElement}
+//                 initial={{ opacity: 0 }}
+//                 whileHover={{ opacity: 1 }}
+//                 transition={{ duration: 0.5 }}
+//               >
+//                 {item.customElement}
+//               </motion.div>
+//             )}
+//             {index === 0 || index === 1 || index === 4 ? (
+//               <motion.div
+//                 className={styles.hoverContent}
+//                 initial={{ opacity: 0, height: 0 }}
+//                 whileHover={{ opacity: 1, height: "auto" }}
+//                 transition={{ duration: 0.5 }}
+//               >
+//                 <p>
+//                   More about Quack: This is an amazing feature that enhances
+//                   your experience.
+//                 </p>
+//               </motion.div>
+//             ) : null}
 //           </motion.div>
 //         ))}
 //       </div>
