@@ -76,6 +76,7 @@ const data = [
 const BentoBox = () => {
   const refs = data.map(() => useRef<HTMLDivElement>(null));
   const isInView = refs.map((ref) => useInView(ref, { triggerOnce: true }));
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
