@@ -1,10 +1,11 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import App from "../App";
 import ScriptsLibraryView from "../views/ScriptsLibraryView/ScriptsLibraryView";
+import { FAQ } from "../views/FAQ/FAQ";
 import NotFound from "../views/NotFound";
+
 const routes = [
   {
     path: "/",
@@ -17,6 +18,10 @@ const routes = [
   {
     path: "/app/:scriptId",
     element: _jsx(MainLayout, { children: _jsx(App, {}) }),
+  },
+  {
+    path: "/faq",
+    element: _jsx(MainLayout, { children: _jsx(FAQ, {}) }),
   },
   {
     path: "*",

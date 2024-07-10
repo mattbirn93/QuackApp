@@ -74,6 +74,46 @@
     font-size: 0.7rem;
 }
 
+.faqButtonContainer {
+    /* margin-left: 13rem;
+    margin-top: -3.2rem; */
+    z-index: 12000;
+}
+
+.faqButton {
+    background-color: none;
+    color: white;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faqButton:hover {
+    background-color: #005bb5;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.faqButton:active {
+    background-color: #004085;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
+.faqButton {
+    margin-right: 5px;
+    font-size: 0.7rem;
+}
+
 .searchBarContainer {}
 
 .searchBarWrapper {
