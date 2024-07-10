@@ -1,9 +1,7 @@
 .Human__wrapper {
   display: flex;
-  flex-direction: column;
   position: relative;
   width: 100%;
-  min-height: 70vh;
 }
 
 .Human__container {
@@ -18,14 +16,15 @@
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 1px #ffffff;
-  background: url('../../assets/images/blue-smoke.png');
+  background: url('../../assets/images/skyline1.webp');
   -webkit-background-clip: text;
   background-position: 100px 0;
   animation: image 20s linear infinite;
   position: absolute;
   top: 0%;
-  left: 10.5%;
+  left: 8.0%;
   font-size: clamp(0rem, 24.5vw + 1rem, 24.5rem);
+  font-weight: 900;
 }
 
 @keyframes image {
