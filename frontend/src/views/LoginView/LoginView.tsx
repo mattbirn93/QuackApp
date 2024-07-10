@@ -123,8 +123,8 @@ const LoginView: React.FC = () => {
         opacity: 1,
         scrollTrigger: {
           trigger: phoneTextRef.current,
-          start: "top 80%", // Adjusted start position
-          end: "top 30%",
+          start: "top 135%",
+          end: "top 50%",
           scrub: true,
         },
       },
@@ -139,8 +139,8 @@ const LoginView: React.FC = () => {
         rotate: 0,
         scrollTrigger: {
           trigger: phoneRef.current,
-          start: "top 70%", // Adjusted start position
-          end: "top 30%",
+          start: "top 75%",
+          end: "top 50%",
           scrub: true,
         },
       },
@@ -163,17 +163,21 @@ const LoginView: React.FC = () => {
       },
     );
 
-    gsap.to(phoneRef.current, {
-      x: "100%",
-      opacity: 0,
-      rotate: 90,
-      scrollTrigger: {
-        trigger: phoneRef.current,
-        start: "top 90%", // Adjusted start position
-        end: "top 110%", // Adjusted end position
-        scrub: true,
+    gsap.fromTo(
+      phoneRef.current,
+      { x: 0, opacity: 1, rotate: 0 },
+      {
+        x: "100%",
+        opacity: 0,
+        rotate: 90,
+        scrollTrigger: {
+          trigger: phoneRef.current,
+          start: "top 110%",
+          end: "top 130%",
+          scrub: true,
+        },
       },
-    });
+    );
 
     gsap.fromTo(
       humanSectionRef.current,
