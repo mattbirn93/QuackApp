@@ -13,7 +13,12 @@ const data = [
     title: "Create Scripts",
     content: "Easily create and edit scripts with a user-friendly interface.",
     image: Neon1,
-    customElement: <div className={styles.customBox1}>AVAILABLE TODAY</div>,
+    customElement: (
+      <div className={styles.customBox1}>
+        Quack is a powerful collaborative app that allows you to achieve the
+        story of your dreams
+      </div>
+    ),
     flip: true,
   },
   {
