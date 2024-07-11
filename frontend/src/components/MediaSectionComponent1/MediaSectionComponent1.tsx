@@ -24,23 +24,27 @@ const MediaSectionComponent1: React.FC = () => {
     const title = sectionRef.current.querySelector(".InfoSection2__title");
     const header = sectionRef.current.querySelector(".InfoSection2__header");
     const hr = sectionRef.current.querySelector(".InfoSection2__hr");
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: true,
-      },
-    });
 
     elements.forEach((el, index) => {
-      tl.fromTo(
+      gsap.fromTo(
         el,
         { x: -300, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
-        index * 1, // delay for each image
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: true,
+            toggleActions: "play none none reset",
+          },
+        },
       );
     });
+
     if (title) {
       gsap.fromTo(
         title,
@@ -55,6 +59,7 @@ const MediaSectionComponent1: React.FC = () => {
             start: "top 60%",
             end: "top 20%",
             scrub: true,
+            toggleActions: "play none none reset",
           },
         },
       );
@@ -74,10 +79,12 @@ const MediaSectionComponent1: React.FC = () => {
             start: "top 60%",
             end: "top 20%",
             scrub: true,
+            toggleActions: "play none none reset",
           },
         },
       );
     }
+
     if (hr) {
       gsap.fromTo(
         hr,
@@ -94,7 +101,7 @@ const MediaSectionComponent1: React.FC = () => {
             trigger: hr,
             start: "top 80%",
             end: "top 20%",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reset",
           },
         },
       );
@@ -105,9 +112,7 @@ const MediaSectionComponent1: React.FC = () => {
     <div className="InfoSection2__wrapper">
       <div className="InfoSection2__mainContainer" ref={sectionRef}>
         <div className="InfoSection2__title">Media</div>
-
         <hr className="InfoSection2__hr" />
-
         <div className="InfoSection2__header">Quack In Use:</div>
         <div className="InfoSection2__picsContainer">
           {[Film1, Film2, Film3, Film4, Film5, Film6, Film7, Film8, Film9].map(
