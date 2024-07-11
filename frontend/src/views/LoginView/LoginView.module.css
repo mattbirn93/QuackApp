@@ -493,8 +493,14 @@
 
 .word {
     display: inline-block;
-    transition: opacity 1s ease-out, transform .1s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
+
+.glowWord {
+    /* color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.1); */
+}
+
 .heading2 {
     display: flex;
     flex-wrap: wrap;
