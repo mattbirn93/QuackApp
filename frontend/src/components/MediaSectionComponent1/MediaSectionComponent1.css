@@ -1,0 +1,107 @@
+.InfoSection2__wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 1) 21%,
+            rgba(115, 32, 173, 0.8127844887955182) 100%,
+            rgba(22, 0, 25, 0.7) 100%),
+        url("../../assets/images/background6.jpg") no-repeat center center/cover;
+    box-sizing: border-box;
+    padding: 2rem 0;
+}
+
+.InfoSection2__mainContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    margin-inline: auto;
+    padding: 3rem 16rem;
+}
+
+.InfoSection2__title,
+.InfoSection2__header {
+    font-size: clamp(3.5rem, 5vw, 5rem);
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+}
+
+.InfoSection2__header {
+    font-size: clamp(1rem, 1.7vw, 1.7rem);
+    font-weight: 500;
+    color: #fff;
+    margin: 2rem 0 3rem 0;
+}
+
+.InfoSection2__picsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto 7rem auto;
+    overflow: hidden;
+}
+
+.InfoSection__Box {
+    width: 20.85rem;
+    height: auto;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.InfoSection2__playPics {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+    border-radius: 30px;
+}
+
+.InfoSection2__container hr {
+    border: none;
+    height: 0.04px;
+    color: #fff;
+}
+
+@keyframes fadeIn3 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Media Queries */
+@media all and (max-width: 90em) {
+    .InfoSection2__mainContainer {
+        padding: 3rem 12rem;
+    }
+}
+
+@media all and (max-width: 75em) {
+    .InfoSection2__mainContainer {
+        padding: 3rem 12rem;
+    }
+}
+
+@media all and (max-width: 62em) {
+    .InfoSection2__mainContainer {
+        padding: 3rem 8rem;
+    }
+}
+
+@media all and (max-width: 48em) {
+    .InfoSection2__mainContainer {
+        padding: 3rem 2rem;
+    }
+
+    .InfoSection2__playPics {
+        max-width: 16.85rem;
+    }
+}

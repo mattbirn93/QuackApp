@@ -12,8 +12,10 @@ import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
-import AppleScroll from "../../components/appleScroll/appleScroll";
-import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
+import Carousel from "../..//components/Carousel/Carousel";
+import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
+// import AppleScroll from "../../components/appleScroll/appleScroll";
+// import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -480,6 +482,16 @@ const LoginView: React.FC = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* MediaSection section */}
+        <div>
+          <MediaSectionComponent1 />
+        </div>
+
+        {/* Carousel section */}
+        {/* <div>
+          <Carousel />
+        </div> */}
 
         {/* Quack Icon section */}
         <div className={styles.quackIconContainer}>
