@@ -49,6 +49,48 @@ const LoginView: React.FC = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: containerRef.current,
+  //       start: "top center",
+  //       end: "bottom center",
+  //       scrub: true,
+  //       markers: false,
+  //     },
+  //   });
+
+  //   tl.fromTo(
+  //     blackBoxRef.current,
+  //     { x: "-100%", opacity: 0 },
+  //     { x: "0%", opacity: 1 },
+  //   )
+  //     .fromTo(
+  //       textContainerRef.current,
+  //       { x: "100%", opacity: 0 },
+  //       { x: "0%", opacity: 1 },
+  //       "-=0.8",
+  //     )
+  //     .fromTo(
+  //       headingRef.current,
+  //       { y: "-50%", opacity: 0 },
+  //       { y: "0%", opacity: 1 },
+  //       "-=0.6",
+  //     )
+  //     .fromTo(
+  //       paragraphRef.current,
+  //       { y: "50%", opacity: 0 },
+  //       { y: "0%", opacity: 1 },
+  //       "-=0.4",
+  //     )
+  //     .fromTo(
+  //       cubeContainerRef.current,
+  //       { scale: 0, opacity: 0 },
+  //       { scale: 1, opacity: 1 },
+  //       "-=0.2",
+  //     );
+  // }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -492,6 +534,7 @@ export default LoginView;
 // import { useInView } from "react-intersection-observer";
 // import Spline from "@splinetool/react-spline";
 // import gsap from "gsap";
+// import Lenis from "@studio-freight/lenis";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import ErrorBoundary from "../../MyErrorBoundary";
 // import background4 from "../../assets/images/background4.png";
@@ -515,6 +558,24 @@ export default LoginView;
 //   const phoneTextRef = useRef(null);
 //   const phoneRef = useRef(null);
 //   const humanSectionRef = useRef(null);
+
+//   useEffect(() => {
+//     const lenis = new Lenis({
+//       duration: 1.2,
+//       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+//     });
+
+//     function raf(time: number) {
+//       lenis.raf(time);
+//       requestAnimationFrame(raf);
+//     }
+
+//     requestAnimationFrame(raf);
+
+//     return () => {
+//       lenis.destroy();
+//     };
+//   }, []);
 
 //   useEffect(() => {
 //     const observer = new IntersectionObserver(
