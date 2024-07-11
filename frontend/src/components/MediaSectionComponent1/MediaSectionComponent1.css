@@ -16,8 +16,11 @@
     flex-direction: column;
     position: relative;
     width: 100%;
-    margin-inline: auto;
-    padding: 3rem 16rem;
+    margin-inline: auto; 
+    background-color: rgb(14, 14, 14);
+    border-radius: 30px;
+    margin: 5rem 13rem;
+    padding: 3rem;
 }
 
 .InfoSection2__title,
@@ -33,6 +36,22 @@
     font-weight: 500;
     color: #fff;
     margin: 2rem 0 3rem 0;
+}
+
+.InfoSection2__hr {
+    margin: 1rem 0;
+    height: 2px;
+    background-color: #ffffff;
+    border: none;
+    opacity: 0;
+}
+
+.InfoSection2__picsContainerWrapper {
+    background-color: black;
+    padding: 3rem;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .InfoSection2__picsContainer {
@@ -58,13 +77,8 @@
     max-height: 200px;
     object-fit: cover;
     transition: transform 0.3s;
-    border-radius: 30px;
-}
-
-.InfoSection2__container hr {
-    border: none;
-    height: 0.04px;
-    color: #fff;
+    border-radius: 5px;
+    border: 1px solid rgb(105, 105, 105);
 }
 
 @keyframes fadeIn3 {
