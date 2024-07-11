@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
+import AppleScroll from "../../components/appleScroll/appleScroll";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -19,6 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 const LoginView: React.FC = () => {
   const navigate = useNavigate();
   const textRef = useRef<HTMLParagraphElement>(null);
+
   const containerRef = useRef(null);
   const blackBoxRef = useRef(null);
   const textContainerRef = useRef(null);
@@ -30,7 +32,7 @@ const LoginView: React.FC = () => {
   const humanSectionRef = useRef(null);
   const heading2Ref = useRef<HTMLParagraphElement>(null);
 
-  const initLenis = useCallback(() => {
+  useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -49,11 +51,24 @@ const LoginView: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const cleanupLenis = initLenis();
-    return cleanupLenis;
-  }, [initLenis]);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
 
-  const setupGsapAnimations = useCallback(() => {
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -62,7 +77,6 @@ const LoginView: React.FC = () => {
         scrub: true,
       },
     });
-
     tl.fromTo(
       blackBoxRef.current,
       { x: "-100%", opacity: 0 },
@@ -92,7 +106,9 @@ const LoginView: React.FC = () => {
         { scale: 1, opacity: 1 },
         "-=0.1",
       );
+  }, []);
 
+  useEffect(() => {
     gsap.fromTo(
       phoneTextRef.current,
       { x: "-100%", opacity: 0 },
@@ -107,7 +123,6 @@ const LoginView: React.FC = () => {
         },
       },
     );
-
     gsap.fromTo(
       phoneRef.current,
       { x: "100%", opacity: 0, rotate: 90 },
@@ -123,7 +138,6 @@ const LoginView: React.FC = () => {
         },
       },
     );
-
     gsap.fromTo(
       phoneTextRef.current,
       { opacity: 0, y: 50 },
@@ -140,7 +154,6 @@ const LoginView: React.FC = () => {
         },
       },
     );
-
     gsap.fromTo(
       phoneRef.current,
       { x: 0, opacity: 1, rotate: 0 },
@@ -156,7 +169,6 @@ const LoginView: React.FC = () => {
         },
       },
     );
-
     gsap.fromTo(
       humanSectionRef.current,
       {
@@ -186,7 +198,9 @@ const LoginView: React.FC = () => {
         },
       },
     );
+  }, []);
 
+  useEffect(() => {
     const words = document.querySelectorAll(`.${styles.word}`);
     words.forEach((word, index) => {
       gsap.fromTo(
@@ -209,10 +223,6 @@ const LoginView: React.FC = () => {
       );
     });
   }, []);
-
-  useEffect(() => {
-    setupGsapAnimations();
-  }, [setupGsapAnimations]);
 
   const handleSignInClick = () => {
     navigate("/scriptslibrary");
@@ -305,6 +315,7 @@ const LoginView: React.FC = () => {
                   },
                 }}
               />
+
               <motion.div className={styles.signInButtonContainer}>
                 <button
                   className={styles.signInButton}
