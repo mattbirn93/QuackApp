@@ -490,6 +490,21 @@
     -webkit-mask-position: center;
     mask-position: center;
 }
+
+.word {
+    display: inline-block;
+    transition: opacity 1s ease-out, transform .1s ease-out;
+}
+.heading2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.heading2 .word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 600px) {
     .navContainer {
         padding-right: 4.0rem;
