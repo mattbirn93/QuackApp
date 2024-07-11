@@ -89,7 +89,7 @@ const data = [
 
 const BentoBox = () => {
   const refs = data.map(() => useRef<HTMLDivElement>(null));
-  const isInView = refs.map((ref) => useInView(ref, { triggerOnce: true }));
+  const isInView = refs.map((ref) => useInView(ref, { once: false }));
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -100,22 +100,14 @@ const BentoBox = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-    hover: { scale: 1.1 },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0 },
-    hover: { scale: 1.1, rotate: 5 },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-    hover: { x: [0, -5, 5, -5, 5, 0], transition: { duration: 0.5 } },
+  const variants = {
+    hidden: { opacity: 0, x: 0 },
+    visible: (index: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, delay: index * 0.1 },
+      // ease: [0.6, -0.05, 0.01, 0.99],
+    }),
   };
 
   return (
@@ -127,21 +119,19 @@ const BentoBox = () => {
             key={index}
             ref={refs[index]}
             className={`${styles.box} ${styles[`box${index + 1}`]}`}
+            custom={index}
             initial="hidden"
             animate={isInView[index] ? "visible" : "hidden"}
+            variants={variants}
             whileHover={{ zIndex: 3 }}
           >
-            <motion.h3
-              className={styles.title}
-              variants={textVariants}
-              transition={{ duration: 0.5, delay: index * 0.3 }}
-            >
+            <motion.h3 className={styles.title} whileHover={{ scale: 1.1 }}>
               {item.title}
             </motion.h3>
             <motion.p
               className={styles.content}
-              variants={contentVariants}
-              transition={{ duration: 0.5, delay: index * 0.4 }}
+              whileHover={{ x: [0, -5, 5, -5, 5, 0] }}
+              transition={{ duration: 0.5 }}
             >
               {item.content}
             </motion.p>
@@ -154,38 +144,13 @@ const BentoBox = () => {
                   className={styles.flipCardFront}
                   src={item.image}
                   alt={item.title}
-                  variants={imageVariants}
-                  transition={{ duration: 0.5, delay: index * 0.5 }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
                 />
                 {item.flip && (
                   <motion.div className={styles.flipCardBack}></motion.div>
                 )}
               </motion.div>
             )}
-            {/* {item.customElement && (
-              <motion.div
-                className={styles.customElement}
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {item.customElement}
-              </motion.div>
-            )} */}
-            {/* {index === 0 && (
-              <div className={styles.carouselContainer}>
-                <motion.img
-                  key={currentImage}
-                  src={carouselImages[currentImage]}
-                  alt="carousel"
-                  className={styles.carouselImage}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1 }}
-                />
-              </div>
-            )} */}
             {index === 1 || index === 4 ? (
               <motion.div
                 className={styles.hoverContent}
@@ -239,10 +204,9 @@ const BentoBox = () => {
 
 export default BentoBox;
 
-////////////
+//////////////
 
-// import React, { useRef, useState, useEffect } from "react";
-// import { motion, useInView } from "framer-motion";
+// import React, { useRef, useState, useEffect, useMemo } from "react";
 // import gsap from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import styles from "./BentoBox.module.css";
@@ -335,21 +299,39 @@ export default BentoBox;
 // ];
 
 // const BentoBox = () => {
-//   const refs = data.map(() => useRef<HTMLDivElement>(null));
+//   const refs = useMemo(
+//     () => data.map(() => React.createRef<HTMLDivElement>()),
+//     [],
+//   );
+//   const [currentImage, setCurrentImage] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentImage((prevImage) => (prevImage + 1) % carouselImages.length);
+//     }, 7000);
+
+//     return () => clearInterval(interval);
+//   }, []);
 
 //   useEffect(() => {
 //     refs.forEach((ref, index) => {
-//       gsap.fromTo(
-//         ref.current,
-//         { x: 300, opacity: 0 },
-//         {
-//           x: 0,
-//           opacity: 1,
-//           duration: 0.3, // Fast duration
-//           ease: "power3.out",
-//           delay: index * 0.1, // Staggered timing
-//         },
-//       );
+//       if (ref.current) {
+//         gsap.fromTo(
+//           ref.current,
+//           { opacity: 0 },
+//           {
+//             opacity: 1,
+//             delay: index * 0.1,
+//             duration: 0.3,
+//             scrollTrigger: {
+//               trigger: ref.current,
+//               start: "top 80%",
+//               toggleActions: "play none none none",
+//               once: true,
+//             },
+//           },
+//         );
+//       }
 //     });
 //   }, [refs]);
 
@@ -358,7 +340,7 @@ export default BentoBox;
 //       <div className={styles.bentoBlackBox}></div>
 //       <div className={styles.bentoBox}>
 //         {data.map((item, index) => (
-//           <motion.div
+//           <div
 //             key={index}
 //             ref={refs[index]}
 //             className={`${styles.box} ${styles[`box${index + 1}`]}`}
@@ -383,7 +365,7 @@ export default BentoBox;
 //                 </p>
 //               </div>
 //             ) : null}
-//           </motion.div>
+//           </div>
 //         ))}
 //         <div className={`${styles.box} ${styles.box4}`}>
 //           <div className={styles.box4Title}>Notes and Chat</div>

@@ -303,6 +303,7 @@
 
 .phoneImage {
     margin-top: 24rem;
+    margin-left: 5.5rem;
     font-weight: 400;
 }
 
@@ -509,6 +510,13 @@
 .heading2 .word {
     opacity: 1;
     transform: translateY(0);
+}
+
+.flipText {
+    color: white;
+    font-size: 2,0rem;
+    margin-top: -9rem !important;
+
 }
 
 @media (max-width: 600px) {
