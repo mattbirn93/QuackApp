@@ -239,10 +239,12 @@ const BentoBox = () => {
 
 export default BentoBox;
 
-////////////////////////
+////////////
 
 // import React, { useRef, useState, useEffect } from "react";
 // import { motion, useInView } from "framer-motion";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import styles from "./BentoBox.module.css";
 // import Neon1 from "../../assets/images/neon-icon1.jpg";
 // import Neon2 from "../../assets/images/neon-icon2.jpg";
@@ -251,7 +253,22 @@ export default BentoBox;
 // import Neon5 from "../../assets/images/neon-icon5.jpg";
 // import Neon6 from "../../assets/images/neon-icon6.jpg";
 
+// gsap.registerPlugin(ScrollTrigger);
+
 // const carouselImages = [Neon1, Neon2, Neon3, Neon4, Neon5, Neon6];
+
+// const testimonials = [
+//   "Quack has transformed the way we collaborate on scripts!",
+//   "The speech-to-text feature is a game-changer.",
+//   "I love how intuitive and easy-to-use Quack is.",
+//   "Collaborating in real-time has never been easier.",
+//   "The best tool for screenwriters!",
+//   "Quack has made scriptwriting a breeze.",
+//   "Highly recommend Quack for any writing team.",
+//   "The collaborative features are top-notch.",
+//   "Quack is the future of scriptwriting.",
+//   "Fantastic tool for remote collaboration.",
+// ];
 
 // const data = [
 //   {
@@ -281,9 +298,8 @@ export default BentoBox;
 //   },
 //   {
 //     title: "Notes and Chat",
-//     content:
-//       "Communicate with your team using the integrated notes and chat features.",
-//     image: Neon4,
+//     content: "",
+//     image: null,
 //     flip: false,
 //   },
 //   {
@@ -320,34 +336,22 @@ export default BentoBox;
 
 // const BentoBox = () => {
 //   const refs = data.map(() => useRef<HTMLDivElement>(null));
-//   const isInView = refs.map((ref) => useInView(ref, { triggerOnce: true }));
-//   const [currentImage, setCurrentImage] = useState(0);
 
 //   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentImage((prevImage) => (prevImage + 1) % carouselImages.length);
-//     }, 7000);
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   const textVariants = {
-//     hidden: { opacity: 0, y: 50 },
-//     visible: { opacity: 1, y: 0 },
-//     hover: { scale: 1.1 },
-//   };
-
-//   const imageVariants = {
-//     hidden: { opacity: 0, x: 50 },
-//     visible: { opacity: 1, x: 0 },
-//     hover: { scale: 1.1, rotate: 5 },
-//   };
-
-//   const contentVariants = {
-//     hidden: { opacity: 0, y: 50 },
-//     visible: { opacity: 1, y: 0 },
-//     hover: { x: [0, -5, 5, -5, 5, 0], transition: { duration: 0.5 } },
-//   };
+//     refs.forEach((ref, index) => {
+//       gsap.fromTo(
+//         ref.current,
+//         { x: 300, opacity: 0 },
+//         {
+//           x: 0,
+//           opacity: 1,
+//           duration: 0.3, // Fast duration
+//           ease: "power3.out",
+//           delay: index * 0.1, // Staggered timing
+//         },
+//       );
+//     });
+//   }, [refs]);
 
 //   return (
 //     <div className={styles.bentoBoxContainer}>
@@ -358,104 +362,59 @@ export default BentoBox;
 //             key={index}
 //             ref={refs[index]}
 //             className={`${styles.box} ${styles[`box${index + 1}`]}`}
-//             initial="hidden"
-//             animate={isInView[index] ? "visible" : "hidden"}
-//             whileHover={{ zIndex: 3 }}
 //           >
-//             <motion.h3
-//               className={styles.title}
-//               variants={textVariants}
-//               transition={{ duration: 0.5, delay: index * 0.3 }}
-//             >
-//               {item.title}
-//             </motion.h3>
-//             <motion.p
-//               className={styles.content}
-//               variants={contentVariants}
-//               transition={{ duration: 0.5, delay: index * 0.4 }}
-//             >
-//               {item.content}
-//             </motion.p>
+//             <h3 className={styles.title}>{item.title}</h3>
+//             <p className={styles.content}>{item.content}</p>
 //             {item.image && (
-//               <motion.div
-//                 className={item.flip ? styles.flipCard : ""}
-//                 whileHover={item.flip ? { rotateY: 180 } : {}}
-//               >
-//                 <motion.img
+//               <div className={item.flip ? styles.flipCard : ""}>
+//                 <img
 //                   className={styles.flipCardFront}
 //                   src={item.image}
 //                   alt={item.title}
-//                   variants={imageVariants}
-//                   transition={{ duration: 0.5, delay: index * 0.5 }}
 //                 />
-//                 {item.flip && (
-//                   <motion.div className={styles.flipCardBack}></motion.div>
-//                 )}
-//               </motion.div>
-//             )}
-//             {/* {item.customElement && (
-//               <motion.div
-//                 className={styles.customElement}
-//                 initial={{ opacity: 0 }}
-//                 whileHover={{ opacity: 1 }}
-//                 transition={{ duration: 0.5 }}
-//               >
-//                 {item.customElement}
-//               </motion.div>
-//             )} */}
-//             {index === 0 && (
-//               <div className={styles.carouselContainer}>
-//                 <motion.img
-//                   key={currentImage}
-//                   src={carouselImages[currentImage]}
-//                   alt="carousel"
-//                   className={styles.carouselImage}
-//                   initial={{ opacity: 0 }}
-//                   animate={{ opacity: 1 }}
-//                   exit={{ opacity: 0 }}
-//                   transition={{ duration: 1 }}
-//                 />
+//                 {item.flip && <div className={styles.flipCardBack}></div>}
 //               </div>
 //             )}
 //             {index === 1 || index === 4 ? (
-//               <motion.div
-//                 className={styles.hoverContent}
-//                 initial={{ opacity: 0, height: 0 }}
-//                 whileHover={{ opacity: 1, height: "auto" }}
-//                 transition={{ duration: 0.5 }}
-//               >
+//               <div className={styles.hoverContent}>
 //                 <p>
 //                   More about Quack: This is an amazing feature that enhances
 //                   your experience.
 //                 </p>
-//               </motion.div>
+//               </div>
 //             ) : null}
 //           </motion.div>
 //         ))}
+//         <div className={`${styles.box} ${styles.box4}`}>
+//           <div className={styles.box4Title}>Notes and Chat</div>
+//           <div className={styles.testimonialFeed}>
+//             <div className={styles.testimonialTrack}>
+//               {testimonials.map((testimonial, index) => (
+//                 <div key={index} className={styles.testimonial}>
+//                   {testimonial}
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
 //       </div>
 //       <div className={styles.marquee}>
 //         <div className={styles.marqueeTrack}>
-//           {[
-//             "Fast",
-//             "Reliable",
-//             "Secure",
-//             "Collaborate",
-//             "Efficient",
-//             "Powerful",
-//             "Creative",
-//             "User-Friendly",
-//             "Innovative",
-//             "Robust",
-//             "Flexible",
-//             "Versatile",
-//             "Dynamic",
-//             "Adaptive",
-//             "Responsive",
-//           ].map((word, index) => (
-//             <div key={index} className={styles.marqueeButton}>
-//               {word}
-//             </div>
-//           ))}
+//           <button className={styles.marqueeButton}>Quack</button>
+//           <button className={styles.marqueeButton}>Powerful</button>
+//           <button className={styles.marqueeButton}>Collaborative</button>
+//           <button className={styles.marqueeButton}>Creative</button>
+//           <button className={styles.marqueeButton}>Efficient</button>
+//           <button className={styles.marqueeButton}>Intuitive</button>
+//           <button className={styles.marqueeButton}>Dynamic</button>
+//           <button className={styles.marqueeButton}>Seamless</button>
+//           <button className={styles.marqueeButton}>Versatile</button>
+//           <button className={styles.marqueeButton}>Innovative</button>
+//           <button className={styles.marqueeButton}>Streamlined</button>
+//           <button className={styles.marqueeButton}>Productive</button>
+//           <button className={styles.marqueeButton}>User-friendly</button>
+//           <button className={styles.marqueeButton}>Flexible</button>
+//           <button className={styles.marqueeButton}>Secure</button>
 //         </div>
 //       </div>
 //     </div>
