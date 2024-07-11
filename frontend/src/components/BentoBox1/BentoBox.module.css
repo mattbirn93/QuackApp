@@ -30,7 +30,7 @@
     position: relative;
     z-index: 2;
     height: 200px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     border: 0.1px solid rgb(62, 62, 62);
 }
 
@@ -177,7 +177,6 @@
 .box4 .content {
     order: 2;
     padding: 10px;
-    /* border: 1px solid grey; */
     border-radius: 15px;
     text-align: center;
 }
@@ -320,7 +319,6 @@
     margin-top: -2.3rem;
     margin-left: 14.7rem;
     max-width: 26rem;
-    /* border: .1px solid rgb(163, 163, 163); */
     border-radius: 10px;
 }
 
@@ -361,7 +359,7 @@
     right: 20px;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .box:hover .hoverContent {
@@ -420,7 +418,6 @@
     box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-
 .marquee {
     position: absolute;
     top: 159rem;
@@ -434,7 +431,7 @@
 
 .marqueeTrack {
     display: inline-block;
-    animation: marquee 60s linear infinite;
+    animation: marquee 60s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .marqueeButton {
@@ -478,13 +475,12 @@
     align-items: center;
     overflow: hidden;
     border-radius: 10px;
-    /* background-color: red; */
 }
 
 .carouselTrack {
     display: flex;
     height: 100%;
-    animation: scroll 12s linear infinite;
+    animation: scroll 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .carouselImage {
@@ -541,13 +537,12 @@
     color: rgb(173, 173, 173);
     font-weight: 500;
     height: 17.0rem;
-    /* background-color: red; */
 }
 
 .testimonialTrack {
     display: flex;
     flex-direction: column;
-    animation: scrollTestimonials 45s linear infinite;
+    animation: scrollTestimonials 45s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .testimonial {
@@ -567,6 +562,7 @@
         transform: translateY(-100%);
     }
 }
+
 .box4Title {
     order: 1;
     display: flex;

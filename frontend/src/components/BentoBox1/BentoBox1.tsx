@@ -172,7 +172,7 @@ const BentoBox = () => {
                 {item.customElement}
               </motion.div>
             )} */}
-            {index === 0 && (
+            {/* {index === 0 && (
               <div className={styles.carouselContainer}>
                 <motion.img
                   key={currentImage}
@@ -185,7 +185,7 @@ const BentoBox = () => {
                   transition={{ duration: 1 }}
                 />
               </div>
-            )}
+            )} */}
             {index === 1 || index === 4 ? (
               <motion.div
                 className={styles.hoverContent}

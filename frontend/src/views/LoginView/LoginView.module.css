@@ -29,13 +29,15 @@
 
 .homeNavContainer {
     display: flex;
-    position: relative;
+    position: sticky;
+    top: 0;
     justify-content: end;
     align-items: center;
     padding: 1.5rem 6rem;
     width: 100%;
     padding-left: 3rem;
     border-bottom: 1px solid rgb(91, 91, 91);
+    z-index: 10;
 }
 
 .signInButtonContainer {}
@@ -75,8 +77,6 @@
 }
 
 .faqButtonContainer {
-    /* margin-left: 13rem;
-    margin-top: -3.2rem; */
     z-index: 12000;
 }
 
@@ -172,8 +172,6 @@
 
 .d3Quack {
     position: relative;
-    /* top: 10rem;
-    right: 80rem; */
 }
 
 .headingsContainer {
@@ -206,6 +204,7 @@
     font-size: 9.0rem;
     margin-top: 8.87rem;
     font-weight: 900;
+    transition: transform 0.3s ease;
 }
 
 .heading2 {
@@ -215,6 +214,7 @@
     background-clip: text;
     font-weight: 700;
     color: white;
+    transition: transform 0.3s ease;
 }
 
 .missionStatement1 {
@@ -224,6 +224,7 @@
     font-weight: 300;
     color: rgb(202, 202, 202);
     margin-top: 1rem;
+    transition: transform 0.3s ease;
 }
 
 .backgroundImage {
@@ -277,13 +278,9 @@
     margin: 0 50px;
     padding: 40px;
     background-color: none;
-    /* background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); */
     border: 1px solid white;
     border-radius: 15px;
-   
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .phoneSectionHeader {
@@ -297,10 +294,7 @@
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     padding: 20px;
-    /* height: 100rem; */
-    /* background-color: red; */
 }
-
 
 .phoneHeading {
     margin-top: 2rem;
@@ -331,6 +325,7 @@
     width: 90rem;
     border-radius: 15px;
     z-index: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .darkTextContainer {
@@ -338,27 +333,28 @@
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    /* height: 50rem; */
     padding: 20px;
     margin-left: 60rem;
     margin-top: 2rem;
     max-width: 39rem;
     z-index: 2;
-    /* background-color: red;  */
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
- .darkHeading {
+.darkHeading {
     color: white;
     font-weight: 900;
     font-size: 5.0rem;
- }
+    transition: transform 0.3s ease;
+}
 
-  .darkParagraph {
+.darkParagraph {
     color: rgb(162, 162, 162);
     font-weight: 400;
     font-size: 1.2rem;
     margin-top: 1rem;
-  }
+    transition: transform 0.3s ease;
+}
 
 .cubeContainer {
     display: flex;
@@ -372,6 +368,7 @@
     width: 70rem;
     height: 70rem;
     transform: scale(0.7);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .artisticContainer {
@@ -394,7 +391,7 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-    transition: height 0.3s ease, transform 0.3s ease;
+    transition: height 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
     position: relative;
     height: 5rem;
@@ -493,7 +490,6 @@
     -webkit-mask-position: center;
     mask-position: center;
 }
-
 @media (max-width: 600px) {
     .navContainer {
         padding-right: 4.0rem;

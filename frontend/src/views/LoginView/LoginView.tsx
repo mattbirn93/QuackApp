@@ -67,101 +67,101 @@ const LoginView: React.FC = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: containerRef.current,
-  //       start: "top center",
-  //       end: "bottom center",
-  //       scrub: true,
-  //     },
-  //   });
-
-  //   tl.fromTo(
-  //     blackBoxRef.current,
-  //     { x: "-100%", opacity: 0 },
-  //     { x: "0%", opacity: 1 },
-  //   )
-  //     .fromTo(
-  //       textContainerRef.current,
-  //       { x: "100%", opacity: 0 },
-  //       { x: "0%", opacity: 1 },
-  //       "-=0.8",
-  //     )
-  //     .fromTo(
-  //       headingRef.current,
-  //       { y: "-50%", opacity: 0 },
-  //       { y: "0%", opacity: 1 },
-  //       "-=0.6",
-  //     )
-  //     .fromTo(
-  //       paragraphRef.current,
-  //       { y: "50%", opacity: 0 },
-  //       { y: "0%", opacity: 1 },
-  //       "-=0.4",
-  //     )
-  //     .fromTo(
-  //       cubeContainerRef.current,
-  //       { scale: 0, opacity: 0 },
-  //       { scale: 1, opacity: 1 },
-  //       "-=0.2",
-  //     );
-  // }, []);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const tl = gsap.timeline({
-              defaults: { duration: 1, ease: "power2.inOut" },
-            });
-
-            tl.fromTo(
-              blackBoxRef.current,
-              { x: "-100%", opacity: 0 },
-              { x: "0%", opacity: 1 },
-            )
-              .fromTo(
-                textContainerRef.current,
-                { x: "100%", opacity: 0 },
-                { x: "0%", opacity: 1 },
-                "-=0.8",
-              )
-              .fromTo(
-                headingRef.current,
-                { y: "-50%", opacity: 0 },
-                { y: "0%", opacity: 1 },
-                "-=0.6",
-              )
-              .fromTo(
-                paragraphRef.current,
-                { y: "50%", opacity: 0 },
-                { y: "0%", opacity: 1 },
-                "-=0.4",
-              )
-              .fromTo(
-                cubeContainerRef.current,
-                { scale: 0, opacity: 0 },
-                { scale: 1, opacity: 1 },
-                "-=0.2",
-              );
-          }
-        });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
       },
-      { threshold: 0.1 },
-    );
+    });
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
+    tl.fromTo(
+      blackBoxRef.current,
+      { x: "-100%", opacity: 0 },
+      { x: "0%", opacity: 1 },
+    )
+      .fromTo(
+        textContainerRef.current,
+        { x: "100%", opacity: 0 },
+        { x: "0%", opacity: 1 },
+        "-=0.8",
+      )
+      .fromTo(
+        headingRef.current,
+        { y: "-50%", opacity: 0 },
+        { y: "0%", opacity: 1 },
+        "-=0.6",
+      )
+      .fromTo(
+        paragraphRef.current,
+        { y: "50%", opacity: 0 },
+        { y: "0%", opacity: 1 },
+        "-=0.4",
+      )
+      .fromTo(
+        cubeContainerRef.current,
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1 },
+        "-=0.1",
+      );
   }, []);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           const tl = gsap.timeline({
+  //             defaults: { duration: 1, ease: "power2.inOut" },
+  //           });
+
+  //           tl.fromTo(
+  //             blackBoxRef.current,
+  //             { x: "-100%", opacity: 0 },
+  //             { x: "0%", opacity: 1 },
+  //           )
+  //             .fromTo(
+  //               textContainerRef.current,
+  //               { x: "100%", opacity: 0 },
+  //               { x: "0%", opacity: 1 },
+  //               "-=0.8",
+  //             )
+  //             .fromTo(
+  //               headingRef.current,
+  //               { y: "-50%", opacity: 0 },
+  //               { y: "0%", opacity: 1 },
+  //               "-=0.6",
+  //             )
+  //             .fromTo(
+  //               paragraphRef.current,
+  //               { y: "50%", opacity: 0 },
+  //               { y: "0%", opacity: 1 },
+  //               "-=0.4",
+  //             )
+  //             .fromTo(
+  //               cubeContainerRef.current,
+  //               { scale: 0, opacity: 0 },
+  //               { scale: 1, opacity: 1 },
+  //               "-=0.2",
+  //             );
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.1 },
+  //   );
+
+  //   if (containerRef.current) {
+  //     observer.observe(containerRef.current);
+  //   }
+
+  //   return () => {
+  //     if (containerRef.current) {
+  //       observer.unobserve(containerRef.current);
+  //     }
+  //   };
+  // }, []);
 
   useEffect(() => {
     const letters = textRef.current?.querySelectorAll("span");
