@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import SidePanelView from "./SidePanelView";
 
-const SidePanel = ({ scriptName }: { scriptName: string }) => {
+const SidePanel = ({ scriptName, characterArray }: { scriptName: string, characterArray: any }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     owners: true,
-    versions: false,
     details: true,
     characters: true,
   });
@@ -16,37 +15,11 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
     { name: "Matt Buttholtz", isOnline: false },
   ];
 
-  // Mock list of characters
-  const characters = [
-    { name: "Mike" },
-    { name: "Matt" },
-    { name: "Alice" },
-    { name: "Bob" },
-    { name: "Tim" },
-    { name: "Janet" },
-    { name: "Sally" },
-    { name: "Reed" },
-    { name: "Patrick" },
-    { name: "Simone" },
-    { name: "Peter" },
-    { name: "Valencia" },
-    { name: "Steve" },
-    { name: "York" },
-    { name: "Stacy" },
-    { name: "Walt" },
-    { name: "Jesse" },
-    { name: "Saul" },
-    { name: "Kim" },
-    { name: "Gus" },
-    { name: "Skyler" },
-    { name: "Junior" },
-    { name: "Victor" },
-    { name: "Tyrese" },
-    { name: "Monica" },
-    { name: "Virginia" },
-    { name: "Andre" },
-    { name: "Jeff" },
-  ];
+  // Filter through characterArray and add a name key
+  const characters = characterArray.map((character: any) => ({
+    ...character,
+    name: character.name || character, // Add name key if not already present
+  }));
 
   const toggleSidePanel = () => {
     setIsOpen(!isOpen);
@@ -67,8 +40,8 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
   const toggleSection = (section: string) => {
     setExpandedSections((prev) => ({
       ...prev,
-      [section as "owners" | "versions" | "details" | "characters"]:
-        !prev[section as "owners" | "versions" | "details" | "characters"],
+      [section as "owners" | "details" | "characters"]:
+        !prev[section as "owners"| "details" | "characters"],
     }));
   };
 
@@ -89,6 +62,7 @@ const SidePanel = ({ scriptName }: { scriptName: string }) => {
 };
 
 export default SidePanel;
+
 
 ////////////////////////////////////////
 

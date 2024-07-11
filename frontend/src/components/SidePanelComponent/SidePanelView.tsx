@@ -82,50 +82,6 @@ const SidePanelView = ({
           <div className="section">
             <div
               className="sectionHeader"
-              onClick={() => toggleSection("versions")}
-            >
-              <span>Versions</span>
-              {expandedSections.versions ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
-            {expandedSections.versions && (
-              <>
-                <div className="sidebarItem">
-                  <FaHashtag />
-                  <span>Scene Versions</span>
-                </div>
-                <div className="sidebarItem">
-                  <FaHashtag />
-                  <span>Scene Content</span>
-                </div>
-              </>
-            )}
-          </div>
-
-          <div className="section">
-            <div
-              className="sectionHeader"
-              onClick={() => toggleSection("details")}
-            >
-              <span>Script Details</span>
-              {expandedSections.details ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
-            {expandedSections.details && (
-              <>
-                <div className="sidebarItem">
-                  <FaHashtag />
-                  <span>Date Added</span>
-                </div>
-                <div className="sidebarItem">
-                  <FaHashtag />
-                  <span>Pages</span>
-                </div>
-              </>
-            )}
-          </div>
-
-          <div className="section">
-            <div
-              className="sectionHeader"
               onClick={() => toggleSection("notes")}
             >
               <span>Notes</span>

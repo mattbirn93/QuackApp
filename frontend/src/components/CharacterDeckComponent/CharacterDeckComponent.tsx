@@ -19,7 +19,7 @@ const CharacterDeckComponent: React.FC<CharacterDeckComponentProps> = ({
 }) => {
   const [characterArray, setCharacterArray] = useState(initialCharacterArray);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+console.log("here Mart", characterArray)
   useEffect(() => {
     if (initialCharacterArray && initialCharacterArray.length > 0) {
       setCharacterArray(initialCharacterArray);

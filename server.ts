@@ -35,7 +35,7 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:4173",
-    "http://192.168.0.211:5173",
+    "http://192.168.1.126:5173",
     "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -95,7 +95,7 @@ const io = new SocketIOServer(server, {
     origin: [
       "http://localhost:5173",
       "http://localhost:4173",
-      "http://192.168.0.211:5173",
+      "http://192.168.1.126:5173",
       "https://aqueous-fortress-42552-d35f4f194ee9.herokuapp.com",
     ],
     methods: ["GET", "POST"],

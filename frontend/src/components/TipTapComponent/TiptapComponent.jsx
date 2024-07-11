@@ -398,7 +398,7 @@ export const Tiptap = ({
     <div className="wrapper">
       <div className="mainContainer">
         <div>
-          <SidePanelComponent scriptName={scriptName} />
+          <SidePanelComponent scriptName={scriptName} characterArray={characterArray} />
         </div>
         <div>
           <ChatPanelComponent />

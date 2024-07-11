@@ -14,7 +14,7 @@ const CharacterDeckModal1: React.FC<CharacterDeckModal1Props> = ({
         <span className="characterDeckModal1-close " onClick={onClose}>
           &times;
         </span>
-        <p>Character Deck Modal Content</p>
+        <p> Modal Content</p>
       </div>
     </div>
   );
