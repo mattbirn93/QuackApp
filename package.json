@@ -39,6 +39,7 @@
     "@react-typed-hooks/use-key-press": "^1.0.5",
     "@relume_io/relume-ui": "^0.3.0",
     "@splinetool/react-spline": "^4.0.0",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/line-clamp": "^0.4.4",

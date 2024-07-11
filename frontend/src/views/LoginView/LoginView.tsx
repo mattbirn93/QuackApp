@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Spline from "@splinetool/react-spline";
 import gsap from "gsap";
+import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
@@ -29,6 +30,24 @@ const LoginView: React.FC = () => {
   const phoneTextRef = useRef(null);
   const phoneRef = useRef(null);
   const humanSectionRef = useRef(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

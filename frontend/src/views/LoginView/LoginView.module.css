@@ -287,6 +287,9 @@
 }
 
 .phoneSectionHeader {
+    display: flex;
+    position: relative;
+    flex-direction: column;
     font-size: 2rem;
     font-weight: bold;
     color: white;
@@ -295,7 +298,9 @@
     border-bottom: 1px solid white;
     padding: 20px;
     /* height: 100rem; */
+    /* background-color: red; */
 }
+
 
 .phoneHeading {
     margin-top: 2rem;
