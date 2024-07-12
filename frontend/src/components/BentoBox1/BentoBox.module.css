@@ -1,4 +1,6 @@
 .bentoBoxContainer {
+    display: flex;
+    position: relative;
     padding: 2rem 20rem;
     border-bottom: 1px solid;
 }
@@ -8,7 +10,7 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(6, auto);
     gap: 10px;
-    padding: 20px;
+    padding: 6rem 20px;
     grid-template-areas:
         "box1 box1 box1 box1 box2 box2 box2 box2 box2 box2 box2 box2"
         "box1 box1 box1 box1 box3 box3 box3 box3 box4 box4 box4 box4"
@@ -325,7 +327,7 @@
 .bentoBlackBox {
     display: flex;
     position: absolute;
-    top: 109.3rem;
+    top: 7.3rem;
     left: 20.5rem;
     background-color: rgb(25, 25, 25);
     height: 80.2rem;
@@ -420,7 +422,7 @@
 
 .marquee {
     position: absolute;
-    top: 159rem;
+    top: 56.6rem;
     left: 59rem;
     width: 38rem;
     overflow: hidden;

@@ -198,6 +198,17 @@
     transform: scale(0.35);
 }
 
+/* .heading1 {
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: transparent;
+    font-size: 9.0rem;
+    margin-top: 8.87rem;
+    font-weight: 900;
+    transition: transform 0.3s ease;
+    -webkit-text-stroke: 2px #dcdee2;
+    text-shadow: none;
+} */
+
 .heading1 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffffff;
@@ -216,7 +227,7 @@
             8px 8px 0 #6a6a6a,
             9px 9px 0 #6a6a6a,
             10px 10px 0 #545454;
-}
+} 
 
 .heading2 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -230,12 +241,13 @@
 
 .missionStatement1 {
     font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     background-clip: text;
-    font-weight: 300;
-    color: rgb(202, 202, 202);
+    font-weight: 400;
+    color: rgb(227, 227, 227);
     margin-top: 1rem;
     transition: transform 0.3s ease;
+    letter-spacing: .1px;
 }
 
 .backgroundImage {
@@ -324,13 +336,13 @@
     flex-direction: column;
     border-bottom: 1px solid rgb(91, 91, 91);
     border-top: 1px solid grey;
-    padding: 12rem 0;
+    padding: 15rem 0;
 }
 
 .darkBlackBox {
     display: flex;
     position: absolute;
-    top: 4.5rem;
+    top: 7.9rem;
     left: 14.5rem;
     background-color: rgb(17, 17, 17);
     height: 40rem;
@@ -386,7 +398,7 @@
 .cubeContainer {
     display: flex;
     position: absolute;
-    top: -10rem;
+    top: -7.5rem;
     left: 5%;
     z-index: 2;
 }
