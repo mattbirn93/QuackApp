@@ -30,7 +30,7 @@ const MediaSectionComponent1: React.FC = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=100%", // Pin the section for the duration of the animation
+        end: "+=100%", /// Pin the section for the duration of the animation
         scrub: true,
         pin: true,
       },
