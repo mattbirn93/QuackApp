@@ -1,11 +1,4 @@
 .InfoSection__wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  background: linear-gradient(300deg, deepskyblue, darkviolet, blue);
-  background-size: 180% 180%;
-  animation: gradient-animation 18s ease infinite;
-  padding: 5rem 0;
 }
 
 @keyframes gradient-animation {
@@ -25,9 +18,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  /* max-width: 1920px; */
 }
 
 .fade-in2 {

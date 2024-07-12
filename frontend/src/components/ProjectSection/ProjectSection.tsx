@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import CurvedText from "../../components/CurvedText/CurvedText";
 import styles from "./ProjectSection.module.css";
 
 const useScrollPosition = () => {
@@ -73,13 +74,17 @@ const ProjectsSection = () => {
             className={styles.marqueeInner1}
             animate={marqueeControls1}
           >
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
           </motion.div>
         </div>
@@ -88,13 +93,17 @@ const ProjectsSection = () => {
             className={styles.marqueeInner2}
             animate={marqueeControls2}
           >
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
-            <span className={styles.marqueeText1}>WELCOME TO</span>
+            <span className={styles.marqueeText1}>WELCOME</span>
+            <span className={styles.marqueeText3}>TO</span>
             <span className={styles.marqueeText2}>QUACK!</span>
           </motion.div>
         </div>
@@ -111,9 +120,12 @@ const ProjectsSection = () => {
           scripts directly from their mobile devices. Quack is a great
           experience you've always dreamed about!
         </motion.p>
+        <div className={styles.curvedTextContainer}>
+          <CurvedText />
+        </div>
         <motion.p
           className={styles.projectMoreAbout}
-          initial={{ opacity: 0, x: 1000 }}
+          initial={{ opacity: 0, x: 500 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.1 }}
           transition={{

@@ -1,0 +1,19 @@
+.Arrow__container {
+    
+  top: 0rem;
+  left: 50rem;
+}
+
+
+.down-arrow {
+    display: inline-block;
+    vertical-align: middle;
+    transition: fill-opacity 0.3s ease;
+    background-color: red;
+    height: 8rem;
+    width: 8rem;
+}
+
+.down-arrow:hover {
+    fill-opacity: 0.8;
+}

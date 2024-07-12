@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, useDragControls } from "framer-motion";
+import React, { useRef } from "react";
+import { useDragControls } from "framer-motion";
 import ReactCurvedText from "react-curved-text";
-import Arrow1 from "../../assets/images/right-arrow1.png";
 import "./CurvedText.css";
 
 const CurvedText: React.FC = () => {
@@ -12,7 +10,6 @@ const CurvedText: React.FC = () => {
   return (
     <div className="InfoSection__wrapper">
       <div className="InfoSection__container">
-        <div className="Right__Arrow1">{Arrow1}</div>
         <div
           ref={constraintsRef}
           onPointerDown={(event) => dragControls.start(event)}
@@ -31,11 +28,11 @@ const CurvedText: React.FC = () => {
                 textProps={{
                   style: {
                     fontSize: "1.5rem",
-                    fontWeight: 700,
+                    fontWeight: 400,
                     letterSpacing: "0.5rem",
                   },
                 }}
-                textPathProps={{ fill: "#bed74e" }}
+                textPathProps={{ fill: "#ffffff" }}
                 reversed={true}
               />
             </a>
