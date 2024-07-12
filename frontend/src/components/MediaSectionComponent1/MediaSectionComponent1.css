@@ -2,28 +2,16 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background: linear-gradient(90deg,
-            rgba(0, 0, 0, 1) 21%,
-            rgba(115, 32, 173, 0.8127844887955182) 100%,
-            rgba(22, 0, 25, 0.7) 100%),
-        url("../../assets/images/background6.jpg") no-repeat center center/cover;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 0.7) 100%), url("../../assets/images/background6.jpg") no-repeat center center/cover;
     box-sizing: border-box;
-    padding: 2rem 0;
+    padding: 12rem 0;
 }
 
 .InfoSection2__mainContainer {
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 100%;
-    margin-inline: auto; 
-    background-color: rgb(17, 17, 17);
-    border-radius: 30px;
-    margin: 5rem 13rem;
-    padding: 3rem;
-    border: 1px solid rgb(78, 78, 78);
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2),
-    0 1px 3px rgba(255, 255, 255, 0.08);
+    margin-inline: auto;
 }
 
 .InfoSection2__title,
@@ -34,42 +22,19 @@
     text-align: center;
 }
 
-.InfoSection2__header {
-    font-size: clamp(1rem, 1.7vw, 1.7rem);
-    font-weight: 500;
-    color: #fff;
-    margin: 2rem 0 3rem 0;
-}
-
-.InfoSection2__hr {
-    margin: 1rem 0;
-    height: 2px;
-    background-color: #ffffff;
-    border: none;
-    opacity: 0;
-}
-
 .InfoSection2__picsContainerWrapper {
-    background-color: black;
-    padding: 3rem;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
+    overflow: hidden;
+    width: 100%;
 }
 
 .InfoSection2__picsContainer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    gap: 1rem;
-    width: 100%;
-    margin: 0 auto 7rem auto;
-    overflow: hidden;
+    transition: transform 0.3s;
+    gap: 10rem;
 }
 
 .InfoSection__Box {
-    width: 20.85rem;
+    width: 23.0rem;
     height: auto;
     overflow: hidden;
     perspective: 1000px;
@@ -77,48 +42,9 @@
 
 .InfoSection2__playPics {
     width: 100%;
-    max-height: 200px;
+    height: 520px;
     object-fit: cover;
     transition: transform 0.3s;
-    border-radius: 5px;
+    border-radius: 15px;
     border: 1px solid rgb(105, 105, 105);
-}
-
-@keyframes fadeIn3 {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Media Queries */
-@media all and (max-width: 90em) {
-    .InfoSection2__mainContainer {
-        padding: 3rem 12rem;
-    }
-}
-
-@media all and (max-width: 75em) {
-    .InfoSection2__mainContainer {
-        padding: 3rem 12rem;
-    }
-}
-
-@media all and (max-width: 62em) {
-    .InfoSection2__mainContainer {
-        padding: 3rem 8rem;
-    }
-}
-
-@media all and (max-width: 48em) {
-    .InfoSection2__mainContainer {
-        padding: 3rem 2rem;
-    }
-
-    .InfoSection2__playPics {
-        max-width: 16.85rem;
-    }
 }
