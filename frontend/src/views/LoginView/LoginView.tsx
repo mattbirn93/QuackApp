@@ -12,11 +12,12 @@ import ErrorBoundary from "../../MyErrorBoundary";
 import background4 from "../../assets/images/background4.png";
 import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
-import Carousel from "../../components/Carousel/Carousel";
+// import Carousel from "../../components/Carousel/Carousel";
 import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
-import GalaxyButton1 from "../../components/Button/GalaxyButton1";
+// import ProjectsSection from "../../components/ProjectSection/ProjectSection";
+// import GalaxyButton1 from "../../components/Button/GalaxyButton1";
 // import AppleScroll from "../../components/appleScroll/appleScroll";
-// import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
+import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -271,7 +272,7 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      {/* <AnimatedCursor1 /> */}
+      <AnimatedCursor1 />
       <div>
         <motion.div
           className={styles.mainContainer}
@@ -422,6 +423,8 @@ const LoginView: React.FC = () => {
             </ErrorBoundary>
           </div>
         </motion.div>
+
+        {/* <ProjectsSection /> */}
 
         {/* dark frontiers section */}
         <div ref={containerRef} className={styles.darkFrontiersContainer}>

@@ -205,6 +205,17 @@
     margin-top: 8.87rem;
     font-weight: 900;
     transition: transform 0.3s ease;
+    text-shadow:
+            1px 1px 0 #6a6a6a,
+            2px 2px 0 #6a6a6a,
+            3px 3px 0 #6a6a6a,
+            4px 4px 0 #6a6a6a,
+            5px 5px 0 #6a6a6a,
+            6px 6px 0 #6a6a6a,
+            7px 7px 0 #6a6a6a,
+            8px 8px 0 #6a6a6a,
+            9px 9px 0 #6a6a6a,
+            10px 10px 0 #545454;
 }
 
 .heading2 {
@@ -345,8 +356,23 @@
 .darkHeading {
     color: white;
     font-weight: 900;
-    font-size: 5.0rem;
+    font-size: 5rem;
     transition: transform 0.3s ease;
+    text-shadow:
+        1px 1px 0 #6a6a6a,
+        2px 2px 0 #6a6a6a,
+        3px 3px 0 #6a6a6a,
+        4px 4px 0 #6a6a6a,
+        5px 5px 0 #6a6a6a,
+        6px 6px 0 #6a6a6a,
+        7px 7px 0 #6a6a6a,
+        8px 8px 0 #6a6a6a,
+        9px 9px 0 #6a6a6a,
+        10px 10px 0 #545454;
+}
+
+.darkHeading:hover {
+    transform: translateZ(30px) rotateY(10deg) rotateX(10deg);
 }
 
 .darkParagraph {

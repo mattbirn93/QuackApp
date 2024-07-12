@@ -115,7 +115,7 @@ const MediaSectionComponent1: React.FC = () => {
         <hr className="InfoSection2__hr" />
         <div className="InfoSection2__header">Quack In Use:</div>
         <div className="InfoSection2__picsContainer">
-          {[Film1, Film2, Film3, Film4, Film5, Film6, Film7, Film8, Film9].map(
+          {[Film1, Film2, Film3, Film4, Film5, Film6, Film7, Film9].map(
             (film, index) => (
               <div key={index} className="InfoSection__Box">
                 <img

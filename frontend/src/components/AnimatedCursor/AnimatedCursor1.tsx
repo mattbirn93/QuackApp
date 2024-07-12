@@ -4,8 +4,8 @@ import AnimatedCursor from "react-animated-cursor";
 export default function AnimatedCursor1() {
   return (
     <AnimatedCursor
-      color="255, 255, 255"
-      innerSize={15}
+      color="179, 237, 62"
+      innerSize={30}
       outerSize={45}
       innerScale={1}
       outerScale={1.7}
