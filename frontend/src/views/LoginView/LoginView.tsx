@@ -505,7 +505,7 @@ const LoginView: React.FC = () => {
 
 export default LoginView;
 
-////////////////
+///////////////////
 
 // import React, { useEffect, useRef } from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
