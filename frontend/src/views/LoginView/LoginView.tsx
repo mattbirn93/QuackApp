@@ -14,6 +14,7 @@ import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import Carousel from "../../components/Carousel/Carousel";
 import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
+import GalaxyButton1 from "../../components/Button/GalaxyButton1";
 // import AppleScroll from "../../components/appleScroll/appleScroll";
 // import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import styles from "./LoginView.module.css";
@@ -369,7 +370,6 @@ const LoginView: React.FC = () => {
                   </motion.span>
                 ))}
               </motion.p>
-
               <motion.p
                 ref={heading2Ref}
                 className={styles.heading2}
@@ -409,6 +409,7 @@ const LoginView: React.FC = () => {
               >
                 Try It Now
               </motion.button>
+              {/* <GalaxyButton1>CLICK HERE</GalaxyButton1> */}
             </motion.div>
             <ErrorBoundary fallback={""}>
               <motion.div

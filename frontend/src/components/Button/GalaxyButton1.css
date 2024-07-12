@@ -1,0 +1,95 @@
+.button {
+    background: radial-gradient(circle, #1a1a1a, #000000);
+    color: white;
+    border: .1px solid rgb(87, 87, 87);
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    outline: none;
+    transition: background 0.3s;
+    margin-left: 12rem;
+    margin-top: -4rem;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.button:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.galaxy-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity 0.3s;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.button:hover .galaxy-background {
+    opacity: 1;
+    animation: moveBackground 30s linear infinite;
+}
+
+.stars {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    top: 0;
+    left: 0;
+    animation: animateStars 30s linear infinite;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes animateStars {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(-500px, -500px);
+    }
+}
+
+.button-content {
+    position: relative;
+    z-index: 2;
+}
