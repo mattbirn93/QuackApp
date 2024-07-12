@@ -14,6 +14,7 @@ import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
 import ProjectsSection from "../../components/ProjectSection/ProjectSection";
+import CurvedText from "../../components/CurvedText/CurvedText";
 import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import styles from "./LoginView.module.css";
 
@@ -271,6 +272,7 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      <AnimatedCursor1 />
       <div>
         <motion.div
           className={styles.mainContainer}
@@ -417,6 +419,10 @@ const LoginView: React.FC = () => {
             </ErrorBoundary>
           </div>
         </motion.div>
+
+        <div>
+          <CurvedText />
+        </div>
 
         <div>
           <ProjectsSection />
