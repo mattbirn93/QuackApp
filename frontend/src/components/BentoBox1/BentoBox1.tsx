@@ -100,15 +100,15 @@ const BentoBox = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // const variants = {
-  //   hidden: { opacity: 0, x: 0 },
-  //   visible: (index: number) => ({
-  //     opacity: 1,
-  //     x: 0,
-  //     transition: { duration: 0.5, delay: index * 0.1 },
-  //     // ease: [0.6, -0.05, 0.01, 0.99],
-  //   }),
-  // };
+  const variants = {
+    hidden: { opacity: 0, x: 0 },
+    visible: (index: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, delay: index * 0.1 },
+      // ease: [0.6, -0.05, 0.01, 0.99],
+    }),
+  };
 
   return (
     <div className={styles.bentoBoxContainer}>
@@ -122,7 +122,7 @@ const BentoBox = () => {
             custom={index}
             initial="hidden"
             animate={isInView[index] ? "visible" : "hidden"}
-            // variants={variants}
+            variants={variants}
             whileHover={{ zIndex: 3 }}
           >
             <motion.h3 className={styles.title} whileHover={{ scale: 1.1 }}>
