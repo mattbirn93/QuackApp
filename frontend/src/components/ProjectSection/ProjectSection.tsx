@@ -132,7 +132,7 @@ const ProjectsSection = () => {
 
 export default ProjectsSection;
 
-/////////////
+/////////////////////
 
 // import React, { useEffect, useRef, useState } from "react";
 // import { motion, useAnimation } from "framer-motion";
