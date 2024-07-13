@@ -57,14 +57,13 @@ const BackgroundParallax1 = () => {
   return (
     <>
       <div ref={container} className={styles.screenHeight}>
-        <motion.div style={{ y }} className={styles.relativeFullHeight}>
+        {/* <motion.div style={{ y }} className={styles.relativeFullHeight}>
           <img
             src={Background2}
             alt="image"
             className={styles.backgroundImage}
           />
-          {/* <p>lkjlkjlkj</p> */}
-        </motion.div>
+        </motion.div> */}
       </div>
       <div ref={container} className={styles.container}>
         <div className={styles.content}>

@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+    margin-bottom: 10rem;
+}
+
+.textPath {
+    font-size: 6px;
+    text-transform: uppercase;
+    fill: rgb(255, 255, 255);
+}
+
+.logos {
+    height: 250px;
+    background-color: black;
+    overflow: hidden;
+}
