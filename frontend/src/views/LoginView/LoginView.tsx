@@ -14,6 +14,7 @@ import HumanSection from "../../components/humanSection/HumanSection";
 import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
 import ProjectsSection from "../../components/ProjectSection/ProjectSection";
+import BackgroundParallax1 from "../../components/BackgroundParallax1/BackgroundParallax1";
 import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import styles from "./LoginView.module.css";
 
@@ -453,6 +454,10 @@ const LoginView: React.FC = () => {
 
         <div>
           <BentoBox1 />
+        </div>
+
+        <div>
+          <BackgroundParallax1 />
         </div>
 
         {/* Phone Section */}
