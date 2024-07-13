@@ -332,20 +332,28 @@
     font-weight: 400;
 }
 
-.darkFrontiersContainer {
+.darkFrontiersWrapper {
     display: flex;
-    position: relative;
-    flex-direction: column;
     border-bottom: 1px solid rgb(91, 91, 91);
     border-top: 1px solid grey;
+    height: 300vh;
+}
+
+.darkFrontiersContainer {
+    display: flex;
+    position: sticky;
+    flex-direction: column;
+    top: 0;
+    height: 100vh;
     padding: 15rem 0;
+    /* margin-inline: auto; */
 }
 
 .darkBlackBox {
     display: flex;
     position: absolute;
     top: 7.9rem;
-    left: 14.5rem;
+    left: 15rem;
     background-color: rgb(17, 17, 17);
     height: 40rem;
     width: 90rem;

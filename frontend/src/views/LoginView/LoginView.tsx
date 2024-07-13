@@ -215,8 +215,8 @@ const LoginView: React.FC = () => {
     const cubeTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: cubeContainerRef.current,
-        start: "top 90%",
-        end: "top 70%",
+        start: "top 80%",
+        end: "top 30%",
         scrub: true,
       },
     });
@@ -426,25 +426,27 @@ const LoginView: React.FC = () => {
         </div>
 
         {/* Cube Section */}
-        <div ref={containerRef} className={styles.darkFrontiersContainer}>
-          <div ref={blackBoxRef} className={styles.darkBlackBox}></div>
-          <div ref={textContainerRef} className={styles.darkTextContainer}>
-            <h1 ref={headingRef} className={styles.darkHeading}>
-              What is Quack!
-            </h1>
-            <p ref={paragraphRef} className={styles.darkParagraph}>
-              Meet Quack!, a cutting-edge mobile screenwriting app designed for
-              the modern screenwriter on the go. Seamlessly blending
-              functionality and convenience, Quack! allows users to craft, edit,
-              and collaborate on scripts directly from their mobile devices.
-              Whether you’re brainstorming ideas, writing dialogue, or revising
-              scenes, Quack! provides a user-friendly interface that makes
-              screenwriting a breeze.
-            </p>
-          </div>
-          <div ref={cubeContainerRef} className={styles.cubeContainer}>
-            <div className={styles.cubeWrapper}>
-              <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+        <div ref={containerRef} className={styles.darkFrontiersWrapper}>
+          <div ref={containerRef} className={styles.darkFrontiersContainer}>
+            <div ref={blackBoxRef} className={styles.darkBlackBox}></div>
+            <div ref={textContainerRef} className={styles.darkTextContainer}>
+              <h1 ref={headingRef} className={styles.darkHeading}>
+                What is Quack!
+              </h1>
+              <p ref={paragraphRef} className={styles.darkParagraph}>
+                Meet Quack!, a cutting-edge mobile screenwriting app designed
+                for the modern screenwriter on the go. Seamlessly blending
+                functionality and convenience, Quack! allows users to craft,
+                edit, and collaborate on scripts directly from their mobile
+                devices. Whether you’re brainstorming ideas, writing dialogue,
+                or revising scenes, Quack! provides a user-friendly interface
+                that makes screenwriting a breeze.
+              </p>
+            </div>
+            <div ref={cubeContainerRef} className={styles.cubeContainer}>
+              <div className={styles.cubeWrapper}>
+                <Spline scene="https://prod.spline.design/hlJIQzJ8X2DX6g5J/scene.splinecode" />
+              </div>
             </div>
           </div>
         </div>
