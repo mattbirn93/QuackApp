@@ -490,9 +490,9 @@ const LoginView: React.FC = () => {
           <MediaSectionComponent1 />
         </div>
 
-        <div>
+        {/* <div>
           <ProjectsSection />
-        </div>
+        </div> */}
 
         <div className={styles.quackIconContainer}>
           <motion.div

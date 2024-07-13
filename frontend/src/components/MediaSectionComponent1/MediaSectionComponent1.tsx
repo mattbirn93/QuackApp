@@ -65,11 +65,10 @@ const MediaSectionComponent1: React.FC = () => {
 
 export default MediaSectionComponent1;
 
-//////////////////////////
+/////////////////////
 
-// import React, { useEffect, useRef } from "react";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import React, { useRef } from "react";
+// import { motion, useScroll, useTransform } from "framer-motion";
 // import Film1 from "../../assets/images/Film1.webp";
 // import Film2 from "../../assets/images/Film2.webp";
 // import Film3 from "../../assets/images/Film3.webp";
@@ -81,36 +80,32 @@ export default MediaSectionComponent1;
 // import Film9 from "../../assets/images/Film9.webp";
 // import "./MediaSectionComponent1.css";
 
-// gsap.registerPlugin(ScrollTrigger);
-
 // const MediaSectionComponent1: React.FC = () => {
 //   const sectionRef = useRef<HTMLDivElement | null>(null);
 //   const carouselRef = useRef<HTMLDivElement | null>(null);
 
-//   useEffect(() => {
-//     if (!carouselRef.current || !sectionRef.current) return;
+//   const { scrollYProgress } = useScroll({
+//     target: sectionRef,
+//     offset: ["start start", "end start"],
+//   });
 
-//     const totalScrollDistance =
-//       carouselRef.current.scrollWidth - sectionRef.current.offsetWidth;
+//   const totalScrollDistance =
+//     carouselRef.current && sectionRef.current
+//       ? carouselRef.current.scrollWidth - sectionRef.current.offsetWidth
+//       : 0;
 
-//     gsap.to(carouselRef.current, {
-//       x: -totalScrollDistance,
-//       ease: "none",
-//       scrollTrigger: {
-//         trigger: sectionRef.current,
-//         start: "top top",
-//         end: () => `+=${totalScrollDistance}`,
-//         scrub: true,
-//       },
-//     });
-//   }, []);
+//   const x = useTransform(scrollYProgress, [0, 1], [0, -totalScrollDistance]);
 
 //   return (
 //     <div className="InfoSection2__wrapper" ref={sectionRef}>
 //       <div className="InfoSection2__mainContainer">
 //         <div className="InfoSection2__title">Media</div>
 //         <div className="InfoSection2__picsContainerWrapper">
-//           <div className="InfoSection2__picsContainer" ref={carouselRef}>
+//           <motion.div
+//             className="InfoSection2__picsContainer"
+//             ref={carouselRef}
+//             style={{ x }}
+//           >
 //             {[
 //               Film1,
 //               Film2,
@@ -130,7 +125,7 @@ export default MediaSectionComponent1;
 //                 />
 //               </div>
 //             ))}
-//           </div>
+//           </motion.div>
 //         </div>
 //       </div>
 //     </div>

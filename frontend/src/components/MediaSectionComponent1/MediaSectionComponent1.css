@@ -1,11 +1,9 @@
 .InfoSection2__wrapper {
     display: flex;
-    background: linear-gradient(90deg,
-    rgba(0, 0, 0, 1) 21%,
-    rgba(115, 32, 173, 0.8127844887955182) 100%,
-    rgba(22, 0, 25, 0.7) 100%);   
+    background-color: rgb(0, 0, 0);
     padding: 6rem;
     height: 400vh;
+    border-bottom: 1px solid rgb(105, 105, 105);
 }
 
 .InfoSection2__mainContainer {
@@ -18,9 +16,9 @@
 }
 
 .InfoSection2__title {
-    width: 39%;
+    width: 111rem;
     font-size: clamp(3.5rem, 5vw, 5rem);
-    font-weight: 700;
+    font-weight: 500;
     color: #fff;
     text-align: center;
     margin-bottom: 4rem;
@@ -33,21 +31,21 @@
 
 .InfoSection2__picsContainer {
     display: flex;
-    gap: 10rem;
+    gap: 17rem;
 }
-
 .InfoSection__Box {
     width: 23rem;
     height: auto;
     overflow: hidden;
     perspective: 1000px;
+    /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2), 0 8px 16px rgba(255, 255, 255, 0.15), 0 12px 24px rgba(255, 255, 255, 0.1); */
+    border-radius: 20px;
 }
 
 .InfoSection2__playPics {
     width: 100%;
     height: 520px;
     object-fit: cover;
-    transition: transform 0.3s;
-    border-radius: 15px;
-    border: 1px solid rgb(105, 105, 105);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 5px;
 }
