@@ -12,9 +12,8 @@
     position: relative;
     z-index: 10;
     padding: 20px;
-    /* mix-blend-mode: difference; */
-    /* color: white; */
-    color: rgba(163, 91, 215, 0.8);
+    mix-blend-mode: difference;
+    color: rgb(169, 104, 191);
     width: 100%;
     height: 100%;
     display: flex;
@@ -55,4 +54,14 @@
     width: 100%;
     height: 100%;
     filter: invert(1);
+}
+
+.screenHeight {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.relativeFullHeight {
+    position: relative;
+    height: 100%;
 }
