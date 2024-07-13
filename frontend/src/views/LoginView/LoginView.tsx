@@ -271,7 +271,7 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <AnimatedCursor1 />
+      {/* <AnimatedCursor1 /> */}
       <div>
         <motion.div
           className={styles.mainContainer}
@@ -490,9 +490,9 @@ const LoginView: React.FC = () => {
           <MediaSectionComponent1 />
         </div>
 
-        {/* <div>
-          <ProjectsSection />
-        </div> */}
+        <div>
+          <Spline scene="https://prod.spline.design/52M2yCjRn6qjzfSc/scene.splinecode" />
+        </div>
 
         <div className={styles.quackIconContainer}>
           <motion.div
