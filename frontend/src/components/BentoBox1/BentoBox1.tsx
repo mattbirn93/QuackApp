@@ -122,7 +122,6 @@ const BentoBox = () => {
             custom={index}
             initial="hidden"
             animate={isInView[index] ? "visible" : "hidden"}
-            // variants={variants}
             whileHover={{ zIndex: 3 }}
           >
             <motion.h3 className={styles.title} whileHover={{ scale: 1.1 }}>
@@ -136,20 +135,13 @@ const BentoBox = () => {
               {item.content}
             </motion.p>
             {item.image && (
-              <motion.div
-                className={item.flip ? styles.flipCard : ""}
-                whileHover={item.flip ? { rotateY: 180 } : {}}
-              >
+              <div>
                 <motion.img
-                  className={styles.flipCardFront}
                   src={item.image}
                   alt={item.title}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileHover={{ scale: 1.1 }}
                 />
-                {item.flip && (
-                  <motion.div className={styles.flipCardBack}></motion.div>
-                )}
-              </motion.div>
+              </div>
             )}
             {index === 1 || index === 4 ? (
               <motion.div
@@ -157,12 +149,7 @@ const BentoBox = () => {
                 initial={{ opacity: 0, height: 0 }}
                 whileHover={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.5 }}
-              >
-                <p>
-                  More about Quack: This is an amazing feature that enhances
-                  your experience.
-                </p>
-              </motion.div>
+              ></motion.div>
             ) : null}
           </motion.div>
         ))}

@@ -271,7 +271,7 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      {/* <AnimatedCursor1 /> */}
+      <AnimatedCursor1 />
       <div>
         <motion.div
           className={styles.mainContainer}
