@@ -1,25 +1,29 @@
 .InfoSection2__wrapper {
     display: flex;
-    justify-content: center;
-    width: 100%;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 21%, rgba(115, 32, 173, 0.8127844887955182) 100%, rgba(22, 0, 25, 0.7) 100%), url("../../assets/images/background6.jpg") no-repeat center center/cover;
-    box-sizing: border-box;
-    padding: 12rem 0;
+    background: linear-gradient(90deg,
+    rgba(0, 0, 0, 1) 21%,
+    rgba(115, 32, 173, 0.8127844887955182) 100%,
+    rgba(22, 0, 25, 0.7) 100%);   
+    padding: 6rem;
+    height: 400vh;
 }
 
 .InfoSection2__mainContainer {
     display: flex;
     flex-direction: column;
-    position: relative;
+    position: sticky;
+    top: 0;
+    height: 100vh;
     margin-inline: auto;
 }
 
-.InfoSection2__title,
-.InfoSection2__header {
+.InfoSection2__title {
+    width: 39%;
     font-size: clamp(3.5rem, 5vw, 5rem);
     font-weight: 700;
     color: #fff;
     text-align: center;
+    margin-bottom: 4rem;
 }
 
 .InfoSection2__picsContainerWrapper {
@@ -29,12 +33,11 @@
 
 .InfoSection2__picsContainer {
     display: flex;
-    transition: transform 0.3s;
     gap: 10rem;
 }
 
 .InfoSection__Box {
-    width: 23.0rem;
+    width: 23rem;
     height: auto;
     overflow: hidden;
     perspective: 1000px;

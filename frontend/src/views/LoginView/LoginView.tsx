@@ -279,6 +279,7 @@ const LoginView: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
+          {/* Navbar section */}
           <div>
             <motion.div className={styles.homeNavContainer}>
               <motion.div className={styles.searchBarContainer}>
@@ -339,6 +340,7 @@ const LoginView: React.FC = () => {
             </button>
           </div>
 
+          {/* Header section */}
           <div>
             <motion.div
               className={styles.loginSectionContainer}
@@ -423,6 +425,7 @@ const LoginView: React.FC = () => {
           <ProjectsSection />
         </div>
 
+        {/* Cube Section */}
         <div ref={containerRef} className={styles.darkFrontiersContainer}>
           <div ref={blackBoxRef} className={styles.darkBlackBox}></div>
           <div ref={textContainerRef} className={styles.darkTextContainer}>
@@ -450,6 +453,7 @@ const LoginView: React.FC = () => {
           <BentoBox1 />
         </div>
 
+        {/* Phone Section */}
         <div className={styles.phoneSectionHeader}>
           <div ref={phoneSectionRef}>
             <motion.div
@@ -482,6 +486,10 @@ const LoginView: React.FC = () => {
 
         <div>
           <MediaSectionComponent1 />
+        </div>
+
+        <div>
+          <ProjectsSection />
         </div>
 
         <div className={styles.quackIconContainer}>
