@@ -22,6 +22,7 @@ import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import MaskAnimation1 from "../../components/MaskAnimation1/MaskAnimation1";
 import MaskTransition1 from "../../components/MaskTransition1/MaskTransition1";
 import TextRevealComponent from "../../components/TextRevealComponent/TextRevealComponent";
+import TextOpacityComponent from "../../components/TextOpacityComponent/TextOpacityComponent";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -476,6 +477,10 @@ const LoginView: React.FC = () => {
 
         <div>
           <TextRevealComponent />
+        </div>
+
+        <div>
+          <TextOpacityComponent />
         </div>
 
         <div>
