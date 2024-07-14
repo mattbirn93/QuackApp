@@ -475,11 +475,11 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
-          <MaskTransition1 />
+          <TextRevealComponent />
         </div>
 
         <div>
-          <TextRevealComponent />
+          <MaskTransition1 />
         </div>
 
         {/* Phone Section */}

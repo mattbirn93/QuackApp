@@ -38,15 +38,14 @@ const TextComponent = () => {
   return (
     <div>
       <div className="wrapper">
-        <div className="content">
+        <div className="textRevealContainer">
           <div className="text">
-            A magical new way to interact with iPhone. A vital safety feature
-            designed to save lives. An innovative 48MP camera for mind-blowing
-            detail. All powered by the ultimate smartphone chip.
+            Seamlessly blending functionality and convenience, Quack! allows
+            users to craft, edit, and collaborate on scripts directly from their
+            mobile devices.
           </div>
         </div>
       </div>
-      <div className="spacer"></div>
     </div>
   );
 };
