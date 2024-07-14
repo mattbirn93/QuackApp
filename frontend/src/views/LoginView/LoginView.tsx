@@ -15,7 +15,7 @@ import BentoBox1 from "../../components/BentoBox1/BentoBox1";
 import MediaSectionComponent1 from "../../components/MediaSectionComponent1/MediaSectionComponent1";
 import WaveText1 from "../../components/WaveText/WaveText1";
 import ProjectsSection from "../../components/ProjectSection/ProjectSection";
-import MaskedCursor from "../../components/MaskedCursor/MaskedCursor";
+import MaskedCursor from "../../components/MaaskedCursor/MaskedCursor";
 import BackgroundParallax1 from "../../components/BackgroundParallax1/BackgroundParallax1";
 import ZoomParallax1 from "../../components/ZoomParallax1/ZoomParallax1";
 import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
@@ -276,7 +276,7 @@ const LoginView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <AnimatedCursor1 />
+      {/* <AnimatedCursor1 /> */}
       <div>
         <motion.div
           className={styles.mainContainer}

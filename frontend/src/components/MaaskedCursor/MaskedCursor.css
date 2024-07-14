@@ -9,7 +9,7 @@
 
 .mask {
     position: absolute;
-    mask-image: url("../../../public/mask.svg");
+    mask-image: url("../../assets/svg/mask.svg");
     background: #757de8;
     mask-repeat: no-repeat;
     mask-size: 50px;
