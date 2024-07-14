@@ -16,7 +16,9 @@ import MediaSectionComponent1 from "../../components/MediaSectionComponent1/Medi
 import WaveText1 from "../../components/WaveText/WaveText1";
 import ProjectsSection from "../../components/ProjectSection/ProjectSection";
 import BackgroundParallax1 from "../../components/BackgroundParallax1/BackgroundParallax1";
+import ZoomParallax1 from "../../components/ZoomParallax1/ZoomParallax1";
 import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
+import MaskAnimation1 from "../../components/MaskAnimation1/MaskAnimation1";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -458,11 +460,19 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
+          <ZoomParallax1 />
+        </div>
+
+        <div>
           <WaveText1 />
         </div>
 
         <div>
           <BackgroundParallax1 />
+        </div>
+
+        <div>
+          <MaskAnimation1 />
         </div>
 
         {/* Phone Section */}
