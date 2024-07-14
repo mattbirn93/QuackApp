@@ -20,6 +20,7 @@ import BackgroundParallax1 from "../../components/BackgroundParallax1/Background
 import ZoomParallax1 from "../../components/ZoomParallax1/ZoomParallax1";
 import AnimatedCursor1 from "../../components/AnimatedCursor/AnimatedCursor1";
 import MaskAnimation1 from "../../components/MaskAnimation1/MaskAnimation1";
+import MaskTransition1 from "../../components/MaskTransition1/MaskTransition1";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -461,10 +462,6 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
-          <ZoomParallax1 />
-        </div>
-
-        <div>
           <WaveText1 />
         </div>
 
@@ -477,7 +474,7 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
-          <MaskedCursor />
+          <MaskTransition1 />
         </div>
 
         {/* Phone Section */}
@@ -512,8 +509,12 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
-          <MediaSectionComponent1 />
+          <ZoomParallax1 />
         </div>
+
+        {/* <div>
+          <MediaSectionComponent1 />
+        </div> */}
 
         <div>
           <Spline scene="https://prod.spline.design/52M2yCjRn6qjzfSc/scene.splinecode" />
