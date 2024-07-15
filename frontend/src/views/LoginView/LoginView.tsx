@@ -461,11 +461,11 @@ const LoginView: React.FC = () => {
         </div>
 
         <div>
-          <BentoBox1 />
+          <MaskReveal />
         </div>
 
         <div>
-          <MaskReveal />
+          <BentoBox1 />
         </div>
 
         <div>
