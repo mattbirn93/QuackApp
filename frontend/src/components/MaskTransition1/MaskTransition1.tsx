@@ -26,7 +26,7 @@ const MaskTransition1 = () => {
 
   return (
     <main>
-      <div ref={ref} className="relative z-10 h-[200vh] overflow-clip">
+      <div ref={ref} className="">
         <motion.div
           style={{ scale }}
           className="hero-background sticky left-0 top-0 grid h-screen origin-[50%_70%] gap-2 p-6 pt-12 [grid-template-rows:4fr_1fr] md:origin-[90%_40%] md:pt-20"
