@@ -23,6 +23,7 @@ import MaskAnimation1 from "../../components/MaskAnimation1/MaskAnimation1";
 import MaskTransition1 from "../../components/MaskTransition1/MaskTransition1";
 import TextRevealComponent from "../../components/TextRevealComponent/TextRevealComponent";
 import TextOpacityComponent from "../../components/TextOpacityComponent/TextOpacityComponent";
+import MaskReveal from "../../components/MaskReveal/MaskReveal";
 import styles from "./LoginView.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -461,6 +462,10 @@ const LoginView: React.FC = () => {
 
         <div>
           <BentoBox1 />
+        </div>
+
+        <div>
+          <MaskReveal />
         </div>
 
         <div>
