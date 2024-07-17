@@ -5,6 +5,7 @@ import ScriptsLibraryComponent from "../../components/ScriptsLibraryComponent/Sc
 import Duck from "../../assets/images/duck1.png";
 import styles from "./ScriptsLibraryView.module.css";
 
+
 const ScriptsLibraryView: React.FC = () => {
   return (
     <div className={styles.wrapper}>

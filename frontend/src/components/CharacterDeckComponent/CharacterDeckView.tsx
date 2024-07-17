@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import CharacterDeckComponent from "./CharacterDeckComponent";
 import styles from "./CharacterDeckView.module.css";
+import { useCharacterContext } from "../../context/CharacterContext"; // Import the custom hook
+
 
 interface CharacterDeckViewProps {
   characterArray: string[];
@@ -12,7 +14,8 @@ const CharacterDeckView: React.FC<CharacterDeckViewProps> = ({
   onCharacterButtonClick,
 }) => {
   const deckRef = useRef<HTMLDivElement>(null);
-
+  // const { state } = useCharacterContext(); // Get the state from context
+// /  console.log(CharacterDeck)
   useEffect(() => {
     const deckElement = deckRef.current;
     let startY = 0;
